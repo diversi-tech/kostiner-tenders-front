@@ -17,10 +17,30 @@ class Data {
     async init() {
         try {
             // json שרת דמו של 
-            const res = await fetch('https://jsonplaceholder.typicode.com/posts')
+            const res = await fetch('https://jsonplaceholder.typicode.com/todos').then()
             const data = await res.json();
+            // fetch('https://jsonplaceholder.typicode.com/todos')
+            // .then(response => response.json())
+            // .then(this.list=response)
+
+
             runInAction(() => {
-                this.list = data;             
+                //const _ = require('lodash');
+
+               
+                //this.list= JSON.parse(JSON.stringify(data));
+                //for(var i=0;i<data.length;i++)
+                this.list = [...data]
+                        //_.cloneDeep(originalArray);
+
+                        // newArray[0].a = 99;
+                        // console.log(originalArray[0].a); // 1, האובייקט המקורי לא השתנה
+
+                        //  = [...data]; 
+                        
+                        //this.list={...this.list} 
+                console.log("data", data);  
+                console.log("list",this.list);        
             });
            
         }
