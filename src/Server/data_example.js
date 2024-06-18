@@ -1,5 +1,5 @@
 import { action, computed, makeObservable, observable, runInAction } from 'mobx';
-//import { Axios } from 'axios';
+
 
 class Data {
     list = [];
@@ -59,15 +59,3 @@ class Data {
 const singleton = new Data();
 export default singleton;
 
-// function get()
-// {
-//   //axios.post('http://127.0.0.1:5000/api/data',)
-//   axios.get('http://127.0.0.1:5000/api/data')
-//       .then(response => {
-//         // setData(response.data);
-//         // setClicked(true);
-//       })
-//       .catch(error => {
-//         console.error('There was an error fetching the data!', error);
-//       });
-// }

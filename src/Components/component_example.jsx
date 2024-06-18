@@ -14,6 +14,8 @@ export default function Component_Example()
     <>
 
 <p>hi</p>
+<p>example to merge(yehudit kolviansky)
+</p>
 <ul>
         {posts.map(post => (
           <li>
