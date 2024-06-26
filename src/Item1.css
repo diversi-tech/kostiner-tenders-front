@@ -1,0 +1,65 @@
+.item-container {
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.item-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto; /* יישום של מרכז הטבלה */
+}
+
+.item-table th,
+.item-table td {
+    padding: 8px;
+    border: 1px solid rgb(10, 63, 61); /* גבולות בצבע המבוקש */
+    text-align: center; /* מיושר למרכז */
+}
+
+.item-table th {
+    background-color: rgba(10, 63, 61, 0.8); /* רקע הכותרות בגוון מוחלש */
+    color: #fff; /* צבע הטקסט לבן */
+    font-weight: bold;
+}
+
+@media screen and (max-width: 600px) {
+    .item-table thead {
+        display: none; /* הסתרת הכותרות במכשירים קטנים */
+    }
+
+    .item-table,
+    .item-table tbody,
+    .item-table tr,
+    .item-table td {
+        display: block; /* הופך את הטבלה למבנה בלוקי */
+        width: 100%;
+        text-align: right; /* יישום מיושר לימין בתאים */
+    }
+
+    .item-table tr {
+        margin-bottom: 10px; /* מרווח בין השורות */
+        text-align: center; /* מיושר למרכז */
+    }
+
+    .item-table td {
+        text-align: center; /* מיושר למרכז במקרה של טלפון */
+        padding-left: 50%;
+        position: relative;
+        width: 100%;
+        box-sizing: border-box; /* מבטיח שהתא יתפוס את רוחב המסך */
+    }
+
+    .item-table td::before {
+        content: attr(data-label); /* מציג את שם השדה לפני הערך */
+        position: absolute;
+        left: 10px;
+        width: calc(50% - 20px); /* מבטיח שהשם השדה לא יתנגש בערך */
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+        color: rgb(10, 63, 61); /* צבע הכותרות בצבע המבוקש */
+    }
+}
