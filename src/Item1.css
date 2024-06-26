@@ -1,3 +1,87 @@
+<<<<<<< HEAD
+=======
+/*.item-container {
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.item-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.item-table th,
+.item-table td {
+    padding: 8px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+.item-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+} 
+.item-container {
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow-x: auto; אפשר גלילה אופקית במכשירים קטנים
+}
+
+.item-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px; /* מונע מהטבלה להתכווץ יותר מדי
+}
+
+.item-table th,
+.item-table td {
+    padding: 8px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+.item-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 600px) {
+    .item-table thead {
+        display: none; /* הסתרת הכותרות במכשירים קטנים
+    }
+
+    .item-table, .item-table tbody, .item-table tr, .item-table td {
+        display: block; /* הופך את הטבלה למבנה בלוקי
+        width: 100%;
+    }
+
+    .item-table tr {
+        margin-bottom: 10px; /* מרווח בין השורות 
+    }
+
+    .item-table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    .item-table td::before {
+        content: attr(data-label); /* מציג את שם השדה לפני הערך/
+        position: absolute;
+        left: 10px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+    }
+}  */
+>>>>>>> 72fbc1557e59eca20c1b8b0beee5b7753eeb689a
 .item-container {
     margin: 0 auto;
     padding: 10px;
@@ -8,12 +92,16 @@
 .item-table {
     width: 100%;
     border-collapse: collapse;
+<<<<<<< HEAD
     margin: 0 auto; /* יישום של מרכז הטבלה */
+=======
+>>>>>>> 72fbc1557e59eca20c1b8b0beee5b7753eeb689a
 }
 
 .item-table th,
 .item-table td {
     padding: 8px;
+<<<<<<< HEAD
     border: 1px solid rgb(10, 63, 61); /* גבולות בצבע המבוקש */
     text-align: center; /* מיושר למרכז */
 }
@@ -21,6 +109,14 @@
 .item-table th {
     background-color: rgba(10, 63, 61, 0.8); /* רקע הכותרות בגוון מוחלש */
     color: #fff; /* צבע הטקסט לבן */
+=======
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+.item-table th {
+    background-color: #f4f4f4;
+>>>>>>> 72fbc1557e59eca20c1b8b0beee5b7753eeb689a
     font-weight: bold;
 }
 
@@ -29,6 +125,7 @@
         display: none; /* הסתרת הכותרות במכשירים קטנים */
     }
 
+<<<<<<< HEAD
     .item-table,
     .item-table tbody,
     .item-table tr,
@@ -36,15 +133,27 @@
         display: block; /* הופך את הטבלה למבנה בלוקי */
         width: 100%;
         text-align: right; /* יישום מיושר לימין בתאים */
+=======
+    .item-table, .item-table tbody, .item-table tr, .item-table td {
+        display: block; /* הופך את הטבלה למבנה בלוקי */
+        width: 100%;
+>>>>>>> 72fbc1557e59eca20c1b8b0beee5b7753eeb689a
     }
 
     .item-table tr {
         margin-bottom: 10px; /* מרווח בין השורות */
+<<<<<<< HEAD
         text-align: center; /* מיושר למרכז */
     }
 
     .item-table td {
         text-align: center; /* מיושר למרכז במקרה של טלפון */
+=======
+    }
+
+    .item-table td {
+        text-align: right;
+>>>>>>> 72fbc1557e59eca20c1b8b0beee5b7753eeb689a
         padding-left: 50%;
         position: relative;
         width: 100%;
@@ -60,6 +169,9 @@
         white-space: nowrap;
         text-align: left;
         font-weight: bold;
+<<<<<<< HEAD
         color: rgb(10, 63, 61); /* צבע הכותרות בצבע המבוקש */
+=======
+>>>>>>> 72fbc1557e59eca20c1b8b0beee5b7753eeb689a
     }
 }
