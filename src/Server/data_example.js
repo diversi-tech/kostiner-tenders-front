@@ -10,8 +10,8 @@ class Data {
             init: action,
             getService: computed
            
-        }),
-            this.init();
+        })
+            //this.init();
     }
 
     async init() {
@@ -29,8 +29,10 @@ class Data {
 
                
                 //this.list= JSON.parse(JSON.stringify(data));
-                //for(var i=0;i<data.length;i++)
-                this.list = [...data]
+                for(var i=0;i<20;i++){
+                    this.list[i]=data[i];
+                }
+                //this.list = [...data]
                         //_.cloneDeep(originalArray);
 
                         // newArray[0].a = 99;
