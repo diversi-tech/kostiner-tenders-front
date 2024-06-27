@@ -63,17 +63,11 @@ function App() {
         id: '12345',
     };
 
-    return (
-        <div className="app">
-            <h1>Sample Item Data</h1>
-            <Item {...itemData} />
->>>>>>> 72fbc1557e59eca20c1b8b0beee5b7753eeb689a
-        </div>
-    );
+  return (
+    <>
+     <Component_example/>
+    </>
+  )
 }
 
-export default App;
-<<<<<<< HEAD
-=======
-
->>>>>>> 72fbc1557e59eca20c1b8b0beee5b7753eeb689a
+export default App

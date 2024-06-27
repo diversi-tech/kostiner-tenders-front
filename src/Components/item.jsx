@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React from 'react';
 import '../Item1.css'; // קובץ סגנון חיצוני לקומפוננטה Item
 function Item({ company, nameTender, datePublished, dateSubmission, category, winnerDetails, offer, winnerData, bidAmount, id }) {
@@ -16,6 +17,8 @@ function Item({ company, nameTender, datePublished, dateSubmission, category, wi
             <td data-label="ID">{id}</td>
         </tr>
 =======
+=======
+>>>>>>> 72fbc1557e59eca20c1b8b0beee5b7753eeb689a
 // import React from 'react';
 import '../Item1.css'; // קובץ סגנון חיצוני לקומפוננטה Item
 
@@ -53,6 +56,9 @@ function Item({ company, nameTender, datePublished, dateSubmission, category, wi
                 </tbody>
             </table>
         </div>
+<<<<<<< HEAD
+>>>>>>> 72fbc1557e59eca20c1b8b0beee5b7753eeb689a
+=======
 >>>>>>> 72fbc1557e59eca20c1b8b0beee5b7753eeb689a
     );
 }

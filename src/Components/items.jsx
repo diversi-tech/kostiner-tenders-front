@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React from 'react';
 import '../Item1.css'; // קובץ סגנון חיצוני לקומפוננטה Item
 
@@ -43,6 +44,8 @@ function ItemsList({ items }) {
 
 export default ItemsList;
 =======
+=======
+>>>>>>> 72fbc1557e59eca20c1b8b0beee5b7753eeb689a
 import Item from "./item";
 import { useState, useEffect } from "react";
 import { sortData } from "../Services/service_example";
@@ -80,5 +83,9 @@ export default function Items() {
         </div>
         
     )
+<<<<<<< HEAD
+}
+>>>>>>> 72fbc1557e59eca20c1b8b0beee5b7753eeb689a
+=======
 }
 >>>>>>> 72fbc1557e59eca20c1b8b0beee5b7753eeb689a
