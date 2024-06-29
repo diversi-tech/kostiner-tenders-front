@@ -18,6 +18,10 @@ import GoogleAuthOld from './Components/GoogleAuth-old'
 import LoginButton from './Components/LoginGoogle-LAST!'
 import G from './Components/try-login'
 import { GoogleLogin } from 'react-google-login';
+import CreditCard from './Components/CreditCard'
+import CreditCards from './Components/CreditCard'
+import LastGoogleLoginButton from './Components/LastGoogle'
+import GGG from './Components/ggg'
 function App() {
   function btn()
   {
@@ -68,6 +72,13 @@ function App() {
 <p>----------------------------------------------</p>
 <br></br>
 <div class="g-signin2" data-onsuccess="onSignIn">ghjkl;'</div> */}
+
+<CreditCard></CreditCard>
+<LastGoogleLoginButton></LastGoogleLoginButton>
+<p>***************************</p>
+   
+   <GGG></GGG>
+   
          </>
   )
 }
