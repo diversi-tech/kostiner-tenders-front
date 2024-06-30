@@ -3,6 +3,8 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  direction: rtl;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .logo {
@@ -40,3 +42,17 @@
 .read-the-docs {
   color: #888;
 }
+text{
+  text-align: center;
+  direction: rtl;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+body{
+  direction: rtl;
+  text-align: center;
+  /* color: rgb(106, 174, 151); */
+}
+/* TextField{
+   direction: rtl; 
+  text-align: center;
+} */

@@ -1,4 +1,4 @@
-import { sortData } from "../Services/service_example";
+import { sortData } from "../Logic/service_example";
 import { useState, useEffect } from "react";
 
 export default function Component_Example()
@@ -18,9 +18,9 @@ export default function Component_Example()
 </p>
 <ul>
         {posts.map(post => (
-          <li key={post.id}>
+          <li>
             <h2>{post.title}</h2>
-            <p>{post.body}</p>
+            <p> {post.completed}</p>
           </li>
         ))}
       </ul>

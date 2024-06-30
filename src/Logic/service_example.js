@@ -1,4 +1,4 @@
-import singleton from "../Data/data_example";
+import singleton from "../Server/data_example";
 
 export function sortData()
 {

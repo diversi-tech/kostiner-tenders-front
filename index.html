@@ -4,10 +4,23 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com"> -->
     <title>Vite + React</title>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <!-- <script>
+      window.onload = function () {
+        google.accounts.id.initialize({
+          client_id: '720220089306-t58chastvvm3593rprr080mgjbjcntub.apps.googleusercontent.com',
+          callback: handleCredentialResponse
+        });
+        const parent = document.getElementById('google_btn');
+        google.accounts.id.renderButton(parent, {theme: "filled_blue"});
+        google.accounts.id.prompt();
+      }
+    </script> -->
+    <!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
   </body>
 </html>
