@@ -1,16 +1,21 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import Component_example from './Components/component_example'
+import Footer from './Components/footer.jsx'
+import HomePage from './Components/homePage.jsx'
+import Product  from './Components/product.jsx'
+import TypeProduct from './Components/typeProduct.jsx'
 
 function App() {
-  
 
   return (
-    <>
-     <Component_example/>
-    </>
+    <div id="root">
+    <div className="content">
+
+      <HomePage/>    
+      <TypeProduct />
+      <Product/> 
+    </div>
+    <Footer />
+  </div>
   )
 }
 
