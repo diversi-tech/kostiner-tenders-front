@@ -7,7 +7,7 @@ export default function Component_Example()
     const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-   setPosts( sortData());
+  //  setPosts( sortData());
 
   }, []);
     return( 
