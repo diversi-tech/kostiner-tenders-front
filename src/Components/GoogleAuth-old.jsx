@@ -122,7 +122,8 @@ import React from 'react';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 
-const clientId = '290860980213-comb21pdjv13dejo0ofou5afivk1ra4m.apps.googleusercontent.com';
+const clientId =import.meta.env.VITE_CLIENT_ID;
+
 //720220089306-5rmsdqqui44gegs1d7f4h1mr8infd5d4.apps.googleusercontent.com
 
 const GoogleAuthOld = () => {
