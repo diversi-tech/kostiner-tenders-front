@@ -122,21 +122,50 @@ import React from 'react';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 
-const clientId = '720220089306-5rmsdqqui44gegs1d7f4h1mr8infd5d4.apps.googleusercontent.com';
+const clientId = '290860980213-comb21pdjv13dejo0ofou5afivk1ra4m.apps.googleusercontent.com';
 //720220089306-5rmsdqqui44gegs1d7f4h1mr8infd5d4.apps.googleusercontent.com
 
 const GoogleAuthOld = () => {
   const handleLoginSuccess = (response) => {
     console.log('Login Success:', response);
-    axios.post('http://127.0.0.1:5000/google-login', {
-      token: response.credential,
+    console.log("token",response.credential);
+    //  axios.post('http://127.0.0.1:5000/google-login', {
+    //   token: response.credential,
+    // })
+    // .then((res) => {
+    //   console.log('Server Response:', res.data);
+    // })
+    // .catch((err) => {
+    //   console.error('Server Error:', err);
+    // });
+    // axios.post('http://127.0.0.1:5000/google', {
+    //   token: response.credential,
+    // })
+    // .then((res) => {
+    //   console.log('Server Response:', res.data);
+    // })
+    // .catch((err) => {
+    //   console.error('Server Error:', err);
+    // });
+
+    //********************* */
+    console.log('Login Success: currentUser:', response);
+     fetch('http://127.0.0.1:5000/google', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+       
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+       
+      },
+      body: JSON.stringify({ token: response.credential }),
     })
-    .then((res) => {
-      console.log('Server Response:', res.data);
-    })
-    .catch((err) => {
-      console.error('Server Error:', err);
-    });
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error:', error));
+
+
   };
 
   const handleLoginFailure = (error) => {
@@ -145,13 +174,13 @@ const GoogleAuthOld = () => {
 
   return (
     <GoogleOAuthProvider clientId={clientId}>
-      <div>
-        <h1>Login with Google</h1>
+      
+       
         <GoogleLogin
           onSuccess={handleLoginSuccess}
           onError={handleLoginFailure}
         />
-      </div>
+      
     </GoogleOAuthProvider>
   );
 };

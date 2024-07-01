@@ -93,12 +93,12 @@ const GoogleLoginButton = () => {
   // פונקציה לקריאה ל-Google People API באמצעות ה-access token
   const getProfileInfo = async (token) => {
     try {
-      const response = await fetch('http://127.0.0.1:5000/google-login', {
+      const response = await fetch('http://127.0.0.1:5000/google', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ access_token: token })
+        body: JSON.stringify( token )
       });
       const data = await response.json();
       console.log('Profile Info:', data);

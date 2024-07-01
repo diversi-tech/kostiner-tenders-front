@@ -6,7 +6,7 @@ const CLIENT_ID = '720220089306-t58chastvvm3593rprr080mgjbjcntub.apps.googleuser
 const GoogleAuth = () => {
   const onSuccess = async(response) => {
     console.log('Login Success: currentUser:', response);
-    await fetch('http://127.0.0.1:5000/api/google-login', {
+    await fetch('http://127.0.0.1:5000/api/google', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

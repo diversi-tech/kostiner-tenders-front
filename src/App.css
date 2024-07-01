@@ -56,3 +56,13 @@ body{
    direction: rtl; 
   text-align: center;
 } */
+
+.creditCardInput{
+  
+  border: #4a5757aa, 2px, solid;
+  }
+
+.creditCardInput ::first-letter{
+
+border: #5a7a7baa, 5px, solid;
+}
