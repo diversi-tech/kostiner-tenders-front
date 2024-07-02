@@ -1,17 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
-import logo from '../image/logo.png';
+import logo from '../../image/logo.png';
 import { Link } from 'react-router-dom';
 
 
 const FooterWrapper = styled.footer`
-  background: #5c5c5c;
+  background: #a1a1a1; /* צבע הרקע שונה ל-a1a1a1 */
   padding: 60px 0 20px;
   color: #d5d5d5;
   border-top: none;
   position: relative;
   display: block;
 `;
+
 
 const FooterContent = styled.div`
   display: flex;

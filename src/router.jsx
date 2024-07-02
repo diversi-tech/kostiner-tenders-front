@@ -4,7 +4,7 @@ import HomePage from './Components/homePage';
 import Product from './Components/product';
 import AutocompleteModal from './Components/typeProduct';
 import Footer from './Components/footer';
-import IconStepper from './Components/stepPay';
+import IconStepper from './Components/product/stepPay/stepPay';
 import Product_Step from './Components/product_step';
 import TypeProduct_Step from './Components/typeProduct_step';
 import ScrollToTop from './Components/ScrollToTop';

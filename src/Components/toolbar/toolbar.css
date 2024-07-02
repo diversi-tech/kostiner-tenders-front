@@ -1,0 +1,94 @@
+.navbar {
+    background-color: #a1a1a1;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.navbar-logo {
+    width: 100px;
+    height: auto;
+    margin-right: auto; /* מרחק מימין */
+    order: 2; /* סדר הצגת האלמנט */
+    margin-left:auto; /* מרחק משמאל כשהלוגו נמצא מעל הניתובים */
+}
+
+.navbar-list {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    margin-left: auto; /* מרחק משמאל */
+    padding-left: 0;
+    margin-right: 20px; /* מרחק מימין */
+    order: 1; /* סדר הצגת האלמנט */
+}
+
+.navbar-item {
+    padding: 0.3rem 1rem;
+    cursor: pointer;
+    transition: font-size 0.3s;
+}
+
+.navbar-item:hover {
+    font-size: 1.2em;
+    color: rgba(26,96,104,255);
+}
+
+.submenu {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    padding: 0.5rem 1rem;
+}
+
+.submenu li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-item:hover .submenu {
+    display: block;
+}
+
+.custom-link {
+    color: rgba(26,96,104,255);
+    text-decoration: none;
+}
+
+.custom-link:hover {
+    color: rgba(26,96,104,255);
+}
+
+@media screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0.5rem 1rem; /* ריפוד קטן על המסך קטן */
+    }
+
+    .navbar-logo {
+        order: 1; /* סדר הצגת האלמנט במסך קטן */
+        margin-right: 0; /* אפס מרחק מימין במסך קטן */
+        margin-bottom: 10px; /* מרחק מסוף במסך קטן */
+    }
+
+    .navbar-list {
+        order: 2; /* סדר הצגת האלמנט */
+        margin-left: 0; /* אפס מרחק משמאל במסך קטן */
+        margin-right: 0; /* אפס מרחק מימין במסך קטן */
+    }
+
+    .navbar-item {
+        padding: 0.3rem 0.5rem; /* ריפוד קטן על המסך קטן */
+    }
+}

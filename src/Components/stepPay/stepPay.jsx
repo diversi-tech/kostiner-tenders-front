@@ -25,7 +25,7 @@ export default function IconStepper({ activeStep }) {
               '--StepIndicator-size': '3rem',
               '--Step-connectorInset': '0px',
               display: 'flex',
-               mt:5 ,
+              mt: 5,
               justifyContent: 'space-between', // Add space between steps
               [`& .${stepIndicatorClasses.root}`]: {
                 borderWidth: 4,

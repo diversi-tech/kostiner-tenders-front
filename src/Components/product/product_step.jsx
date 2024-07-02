@@ -1,9 +1,9 @@
 import React from 'react';
 import Modal from '@mui/material/Modal';
-import IconStepper from './product/stepPay/stepPay';
-import TypeProduct from './typeProduct';
+import Product from './product';
+import IconStepper from '../stepPay/stepPay';
 
-export default function TypeProduct_Step() {
+export default function Product_Step() {
     const [open, setOpen] = React.useState(true); // Open the modal by default
     const handleClose = () => setOpen(false);
 
@@ -14,15 +14,10 @@ export default function TypeProduct_Step() {
             aria-labelledby="modal-title"
             aria-describedby="modal-description"
             sx={{ alignItems: 'center' }}
-            BackdropProps={{
-                style: {
-                    backgroundColor: 'rgba(0, 0, 0, 0.5)', // פחות שקוף (יותר כהה)
-                },
-            }}
         >
             <div>
-                <IconStepper activeStep={1} />
-                <TypeProduct />
+                <IconStepper activeStep={0} />
+                <Product />
             </div>
         </Modal>
     );
