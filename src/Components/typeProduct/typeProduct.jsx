@@ -2,16 +2,16 @@ import * as React from 'react';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Card from '@mui/joy/Card';
-import CardActions from '@mui/joy/CardActions';
 import CardContent from '@mui/joy/CardContent';
 import Typography from '@mui/joy/Typography';
 import Autocomplete from '@mui/material/Autocomplete';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
-import IconStepper from './stepPay';
+import IconStepper from '../stepPay/stepPay';
 
 export default function AutocompleteBox() {
   const [selectedOptions, setSelectedOptions] = React.useState([]);
+  const [openAutocomplete, setOpenAutocomplete] = React.useState(false); // State to manage Autocomplete open state
 
   const handleSelect = (event, value) => {
     if (value.length > 3) {
@@ -19,19 +19,28 @@ export default function AutocompleteBox() {
     } else {
       setSelectedOptions(value);
     }
+
+    // Close Autocomplete if exactly 3 options are selected
+    if (value.length === 3) {
+      setOpenAutocomplete(false);
+    }
+  };
+
+  const handleOpenAutocomplete = () => {
+    setOpenAutocomplete(true); // Open the Autocomplete on button click
   };
 
   return (
     <Box
       sx={{
         width: '90%',
-        maxWidth: 700, // הגדלנו את הרוחב המקסימלי של ה-Box
+        maxWidth: 700,
         bgcolor: 'transparent',
         p: 4,
         position: 'relative',
         zIndex: 1,
         textAlign: 'center',
-        margin: 'auto',  // Center the Box in the middle of the page
+        margin: 'auto',
         mt: 4,
       }}
     >
@@ -43,10 +52,10 @@ export default function AutocompleteBox() {
           borderRadius: '16px',
           transition: 'transform 0.3s ease',
           '&:hover': {
-            transform: 'scale(1.05)', // הגדלנו את ההגדלה בהובר ל-1.05
+            transform: 'scale(1.05)',
           },
-          width: '100%', // הגדלנו את רוחב הכרטיס
-          p: 2, // הוספנו padding כדי לתת יותר מקום לתוכן
+          width: '100%',
+          p: 2,
         }}
       >
         <CardContent>
@@ -57,14 +66,17 @@ export default function AutocompleteBox() {
               sx={{
                 fontFamily: 'var(--joy-fontFamily-display, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"))',
                 fontWeight: 'var(--joy-fontWeight-xl, 700)',
-                fontSize: 'var(--Typography-fontSize, 1.5rem)', // שינוי גודל הפונט
-                color: 'black', // שינוי צבע הפונט לשחור
+                fontSize: 'var(--Typography-fontSize, 1.5rem)',
+                color: 'black',
               }}
             >
               ?אילו תחומים מעניינים אותך
             </Typography>
             <Autocomplete
               multiple
+              open={openAutocomplete} // Controlled by state
+              onOpen={() => setOpenAutocomplete(true)}
+              onClose={() => setOpenAutocomplete(false)}
               limitTags={3}
               disableCloseOnSelect
               options={top100Films}
@@ -78,6 +90,7 @@ export default function AutocompleteBox() {
             <Button
               variant="contained"
               color="primary"
+              onClick={handleOpenAutocomplete} // Open Autocomplete on button click
               sx={{
                 margin: 'auto',
                 borderRadius: '12px',

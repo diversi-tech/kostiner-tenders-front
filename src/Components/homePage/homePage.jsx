@@ -1,15 +1,9 @@
 import React from 'react';
-// import Stack from '@mui/material/Stack';
-// import Button from '@mui/material/Button';
-// import { BsPersonCircle,BsPerson } from "react-icons/bs";
-// import { BsPerson } from "react-icons/bs";
-import logo from '../image/logo.png';
-import backgroundPicture from '../image/backgroundPicture.png';  
+import backgroundPicture from '../../image/backgroundPicture.png';  
 import { Grid, Box, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import Footer from './footer';
 export default function HomePage() {
-  
+    
   const theme = useTheme();
   const isMediumScreen = useMediaQuery(theme.breakpoints.between('sm', 'md'));
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
@@ -41,7 +35,6 @@ export default function HomePage() {
         padding: 2,
         }}
     >
-    <img src={logo} alt="Logo" style={{ width:logoSize,  height: 'auto' }}/>
   </Box>
     <Grid container spacing={2} alignItems="center" justifyContent="center">
         <Grid item xs={12} sx={{ marginTop: '180px' }}>
@@ -61,45 +54,5 @@ export default function HomePage() {
         </Grid>
     </Grid>
   </Box>
-
-
- /* <Stack direction="row" spacing={1}>
-      <Button variant="outlined" 
-      style={{
-        position: 'absolute',
-        top: '25px',    // מרחק מהגבוה
-        right: '850px',  // מרחק מהצדדים
-        width: '300px', // גודל
-        height: 'auto',
-        color:'rgb(10, 82, 78)',
-        fontSize:'18px',
-        borderColor:'rgb(10, 82, 78)',
-        borderWidth:'3px',
-        fontSize:'25px',
-        borderRadius:'25px'
-      }}
-      startIcon={<BsPersonCircle/>}
-      >
-        להרשמה
-      </Button>
-      <Button variant="outlined" direction="row" spacing={11} 
-      style={{position: 'absolute',
-        top: '25px',    // מרחק מהגבוה
-        right: '1200px',  // מרחק מהצדדים
-        width: '300px', // גודל
-        height: 'auto',
-        color:'rgb(10, 82, 78)',
-        fontSize:'18px' ,
-        borderColor:'rgb(10, 82, 78)',
-        borderWidth:'3px',
-        fontSize:'25px',
-        borderRadius:'25px'
-      }}
-      startIcon={<BsPerson/>}
-        >
-        לכניסה לחשבונך
-      </Button>
-    </Stack> */
-
-            )
+ );
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from '@mui/material/Modal';
 import Product from './product';
-import IconStepper from './stepPay';
+import IconStepper from '../stepPay/stepPay';
 
 export default function Product_Step() {
     const [open, setOpen] = React.useState(true); // Open the modal by default
