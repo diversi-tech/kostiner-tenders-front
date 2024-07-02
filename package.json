@@ -19,6 +19,7 @@
     "mobx": "^6.12.4",
     "mobx-react": "^9.1.1",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.10.4",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.24.0",
     "styled": "^1.0.0",

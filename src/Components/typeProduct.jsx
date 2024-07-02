@@ -5,13 +5,12 @@ import Card from '@mui/joy/Card';
 import CardActions from '@mui/joy/CardActions';
 import CardContent from '@mui/joy/CardContent';
 import Typography from '@mui/joy/Typography';
-import Modal from '@mui/material/Modal';
 import Autocomplete from '@mui/material/Autocomplete';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import IconStepper from './stepPay';
 
-export default function AutocompleteModal() {
+export default function AutocompleteBox() {
   const [selectedOptions, setSelectedOptions] = React.useState([]);
 
   const handleSelect = (event, value) => {
@@ -23,69 +22,59 @@ export default function AutocompleteModal() {
   };
 
   return (
-    <Modal
-      open={true} // Open modal directly
-      aria-labelledby="modal-title"
-      aria-describedby="modal-description"
+    <Box
       sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backdropFilter: 'blur(5px)',
+        width: '90%',
+        maxWidth: 700, // הגדלנו את הרוחב המקסימלי של ה-Box
+        bgcolor: 'transparent',
+        p: 4,
+        position: 'relative',
+        zIndex: 1,
+        textAlign: 'center',
+        margin: 'auto',  // Center the Box in the middle of the page
+        mt: 4,
       }}
     >
-      <Box
+      <Card
+        variant="outlined"
         sx={{
-          width: '90%',
-          maxWidth: 500,
-          bgcolor: 'transparent',
-          p: 4,
-          position: 'relative',
-          zIndex: 1,
-          textAlign: 'center',
+          mt: 4,
+          bgcolor: 'background.paper',
+          borderRadius: '16px',
+          transition: 'transform 0.3s ease',
+          '&:hover': {
+            transform: 'scale(1.05)', // הגדלנו את ההגדלה בהובר ל-1.05
+          },
+          width: '100%', // הגדלנו את רוחב הכרטיס
+          p: 2, // הוספנו padding כדי לתת יותר מקום לתוכן
         }}
       >
-        <IconStepper activeStep={1} />
-        <Card
-          variant="outlined"
-          sx={{
-            mt: 4,
-            bgcolor: 'background.paper',
-            borderRadius: '16px',
-            transition: 'transform 0.3s ease',
-            '&:hover': {
-              transform: 'scale(1.02)',
-            },
-          }}
-        >
-          <CardContent>
+        <CardContent>
+          <Stack spacing={3}>
             <Typography
               variant="h6"
               component="div"
               sx={{
-                fontFamily: 'EFT_Asaf Heavy',
-                fontSize: '1.5rem',
-                fontWeight: 300,
+                fontFamily: 'var(--joy-fontFamily-display, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"))',
+                fontWeight: 'var(--joy-fontWeight-xl, 700)',
+                fontSize: 'var(--Typography-fontSize, 1.5rem)', // שינוי גודל הפונט
+                color: 'black', // שינוי צבע הפונט לשחור
               }}
             >
               ?אילו תחומים מעניינים אותך
             </Typography>
-            <Stack spacing={2}>
-              <Autocomplete
-                multiple
-                limitTags={3}
-                disableCloseOnSelect
-                options={top100Films}
-                getOptionLabel={(option) => option.label}
-                value={selectedOptions}
-                onChange={handleSelect}
-                renderInput={(params) => (
-                  <TextField {...params} variant="outlined" label="בחר עד שלושה תחומים" />
-                )}
-              />
-            </Stack>
-          </CardContent>
-          <CardActions>
+            <Autocomplete
+              multiple
+              limitTags={3}
+              disableCloseOnSelect
+              options={top100Films}
+              getOptionLabel={(option) => option.label}
+              value={selectedOptions}
+              onChange={handleSelect}
+              renderInput={(params) => (
+                <TextField {...params} variant="outlined" label="בחר עד שלושה תחומים" />
+              )}
+            />
             <Button
               variant="contained"
               color="primary"
@@ -101,10 +90,10 @@ export default function AutocompleteModal() {
             >
               שליחה לתשלום
             </Button>
-          </CardActions>
-        </Card>
-      </Box>
-    </Modal>
+          </Stack>
+        </CardContent>
+      </Card>
+    </Box>
   );
 }
 
