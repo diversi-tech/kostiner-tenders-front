@@ -1,68 +1,97 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
 .item-container {
-    margin: 0 auto;
-    padding: 10px;
-    border-radius: 5px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    overflow-x: auto; /* גלילה אופקית במקרה של היקפים גדולים */
-    background-color: #f9f9f9; /* צבע רקע כללי */
+    overflow-x: auto; 
 }
 
 .item-table {
     width: 100%;
     border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 1em;
+    text-align: left;
+
 }
 
 .item-table th,
 .item-table td {
-    padding: 8px;
-    border: 1px solid rgb(10, 63, 61); /* גבולות בצבע המבוקש */
-    text-align: center; /* מיושר למרכז אופקית */
-    vertical-align: middle; /* מיושר למרכז אנכית */
-    color: rgb(10, 63, 61); /* צבע הטקסט בצבע המבוקש */
+    padding: 12px 15px;
+    border: 1px solid #ddd;
 }
 
 .item-table th {
-    background-color: rgba(10, 63, 61, 0.8); /* רקע הכותרות בגוון מוחלש */
-    color: #fff; /* צבע הטקסט לבן */
-    font-weight: bold;
+    background-color:  rgba(26,96,104,255);
+    color: #ffffff;
+    text-transform: uppercase;
 }
 
-@media screen and (max-width: 600px) {
-    .item-table {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
+.item-table tr:nth-child(even) {
+    background-color: #f3f3f3;
+}
+
+.item-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.item-table td {
+    text-align: right;
+}
+
+.item-table th {
+    text-align: right;
+}
+
+
+@media screen and (max-width: 768px) {
+    .item-table,
+    .item-table thead,
+    .item-table tbody,
+    .item-table th,
+    .item-table td,
+    .item-table tr {
+        display: block;
+        
     }
 
     .item-table tr {
-        margin-bottom: 10px;
-        display: flex;
-        flex-direction: column;
-        border: 1px solid rgb(10, 63, 61);
-        border-radius: 5px;
-        margin: 5px 0;
-        padding: 5px;
+        margin-bottom: 15px;
+        
     }
 
     .item-table td {
         text-align: right;
-        padding-left: 50%;
+        padding-left: 58%;
         position: relative;
-        width: 100%;
-        box-sizing: border-box;
-        color: rgb(10, 63, 61); /* צבע הטקסט בצבע המבוקש */
-        vertical-align: middle; /* מיושר למרכז אנכית */
     }
 
     .item-table td::before {
         content: attr(data-label);
         position: absolute;
         left: 10px;
-        width: calc(50% - 20px);
-        padding-right: 10px;
-        white-space: nowrap;
-        text-align: left;
         font-weight: bold;
-        color: rgb(10, 63, 61); /* צבע הכותרות בצבע המבוקש */
+        white-space: nowrap; /* מונע שבירה של השורות בתוויות */
+        
+    }
+
+    .item-table th {
+        display: none;
+        background-color:  rgba(26,96,104,255);
+        
     }
 }

@@ -1,6 +1,6 @@
-
 import React from 'react';
-import '../Item1.css'; // קובץ סגנון חיצוני לקומפוננטה Item
+import '../Item1.css';
+
 function Item({ company, nameTender, datePublished, dateSubmission, category, winnerDetails, offer, winnerData, bidAmount, id }) {
     return (
         <tr>
@@ -15,7 +15,6 @@ function Item({ company, nameTender, datePublished, dateSubmission, category, wi
             <td data-label="סכום ההצעה">{bidAmount}</td>
             <td data-label="ID">{id}</td>
         </tr>
-
     );
 }
 

@@ -1,6 +1,6 @@
-
 import React from 'react';
-import '../Item1.css'; // קובץ סגנון חיצוני לקומפוננטה Item
+import '../Item1.css';
+import Item from './item';
 
 function ItemsList({ items }) {
     return (
@@ -22,18 +22,19 @@ function ItemsList({ items }) {
                 </thead>
                 <tbody>
                     {items.map((item, index) => (
-                        <tr key={index}>
-                            <td>{item.company}</td>
-                            <td>{item.nameTender}</td>
-                            <td>{item.datePublished}</td>
-                            <td>{item.dateSubmission}</td>
-                            <td>{item.category.join(', ')}</td>
-                            <td>{item.winnerDetails}</td>
-                            <td>{item.offer}</td>
-                            <td>{item.winnerData}</td>
-                            <td>{item.bidAmount}</td>
-                            <td>{item.id}</td>
-                        </tr>
+                        <Item
+                            key={index}
+                            company={item.company}
+                            nameTender={item.nameTender}
+                            datePublished={item.datePublished}
+                            dateSubmission={item.dateSubmission}
+                            category={item.category}
+                            winnerDetails={item.winnerDetails}
+                            offer={item.offer}
+                            winnerData={item.winnerData}
+                            bidAmount={item.bidAmount}
+                            id={item.id}
+                        />
                     ))}
                 </tbody>
             </table>
@@ -42,5 +43,3 @@ function ItemsList({ items }) {
 }
 
 export default ItemsList;
-
-
