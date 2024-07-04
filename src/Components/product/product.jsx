@@ -16,8 +16,13 @@ import { useNavigate } from 'react-router-dom';
 export default function Product() {
   const nav = useNavigate();
 
-  const handleNav = () => {
-    nav('/typeProduct');
+  const handleNav = (title) => {
+
+    if (title === 'דו"ח חד פעמי') {
+      nav('/tenderSearch');
+    } else {
+      nav('/typeProduct');
+    }
   };
 
   const cardData = [
@@ -48,12 +53,12 @@ export default function Product() {
         height: '100vh',
         display: 'grid',
         justifyContent: 'center',
-        alignItems: 'flex-start', // Align cards closer to the top
-        padding: '5rem 2rem 0 3rem', // Added extra padding-bottom
+        alignItems: 'flex-start',
+        padding: '5rem 2rem 0 3rem',
         boxSizing: 'border-box',
         overflowY: 'auto',
         margin: 'auto',
-        scrollbarWidth: 'none', 
+        scrollbarWidth: 'none',
         '&::-webkit-scrollbar': {
           display: 'none',
         },
@@ -65,7 +70,7 @@ export default function Product() {
           flexWrap: 'wrap',
           justifyContent: 'center',
           gap: 2,
-          maxWidth: '1200px', 
+          maxWidth: '1200px',
         }}
       >
         {cardData.map((card, index) => (
@@ -75,13 +80,13 @@ export default function Product() {
             variant="outlined"
             sx={{
               minWidth: 380,
-              maxWidth: '100%', // Ensure responsiveness to smaller screens
+              maxWidth: '100%',
               boxShadow: '0px 3px 6px #00000029',
               transition: 'transform 0.3s ease',
               '&:hover': {
                 transform: 'scale(1.02)',
               },
-              marginBottom: '2rem', // Added margin-bottom to space cards
+              marginBottom: '2rem',
             }}
           >
             {card.title === "מנוי קבוע" && (
@@ -127,7 +132,7 @@ export default function Product() {
                   },
                   color: '#ffffff',
                 }}
-                onClick={handleNav}
+                onClick={() => handleNav(card.title)}
               >
                 {card.buttonText}
               </Button>

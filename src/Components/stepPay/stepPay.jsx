@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Stepper from '@mui/joy/Stepper';
 import Step, { stepClasses } from '@mui/joy/Step';
 import StepIndicator, { stepIndicatorClasses } from '@mui/joy/StepIndicator';
@@ -11,6 +12,29 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 export default function IconStepper({ activeStep }) {
+  const navigate = useNavigate();
+
+  const handleStepClick = (stepIndex) => {
+    if (activeStep >= stepIndex) {
+      switch (stepIndex) {
+        case 0:
+          navigate('/product');
+          break;
+        case 1:
+          navigate('/typeProduct');
+          break;
+        case 2:
+          navigate('/payment');
+          break;
+        case 3:
+          navigate('/confirmation');
+          break;
+        default:
+          break;
+      }
+    }
+  };
+
   return (
     <Container fluid className="p-0">
       <Row className="justify-content-center">
@@ -26,7 +50,7 @@ export default function IconStepper({ activeStep }) {
               '--Step-connectorInset': '0px',
               display: 'flex',
               mt: 5,
-              justifyContent: 'space-between', // Add space between steps
+              justifyContent: 'space-between',
               [`& .${stepIndicatorClasses.root}`]: {
                 borderWidth: 4,
                 borderColor: 'white',
@@ -62,6 +86,7 @@ export default function IconStepper({ activeStep }) {
             <Step
               completed={activeStep > 0}
               active={activeStep === 0}
+              onClick={() => handleStepClick(0)}
               indicator={
                 <StepIndicator
                   variant="outlined"
@@ -79,6 +104,7 @@ export default function IconStepper({ activeStep }) {
             <Step
               completed={activeStep > 1}
               active={activeStep === 1}
+              onClick={() => handleStepClick(1)}
               indicator={
                 <StepIndicator
                   variant="outlined"
@@ -96,6 +122,7 @@ export default function IconStepper({ activeStep }) {
             <Step
               completed={activeStep > 2}
               active={activeStep === 2}
+              onClick={() => handleStepClick(2)}
               indicator={
                 <StepIndicator
                   variant="outlined"
@@ -113,6 +140,7 @@ export default function IconStepper({ activeStep }) {
             <Step
               disabled={activeStep < 3}
               active={activeStep === 3}
+              onClick={() => handleStepClick(3)}
               indicator={
                 <StepIndicator
                   variant="outlined"

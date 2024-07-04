@@ -1,6 +1,6 @@
 
 const navigationitems = [
-    { label: 'הרשמה/התחברות', link: '/Connection', isAuthRequired: false, isAdmin: false },
+    { label: 'הרשמה/התחברות', link: '/connection', isAuthRequired: false, isAdmin: false },
     { label: 'תמיכה ועזרה', link: '/help', isAuthRequired: false, isAdmin: false },
     {
         label: 'תוצאות מכרזים', link: '/result', isAuthRequired: false, isAdmin: false

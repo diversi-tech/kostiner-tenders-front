@@ -7,11 +7,11 @@ import Typography from '@mui/joy/Typography';
 import Autocomplete from '@mui/material/Autocomplete';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
-import IconStepper from '../stepPay/stepPay';
+// import IconStepper from '../IconStepper/IconStepper';
 
-export default function AutocompleteBox() {
+export default function typeProduct() {
   const [selectedOptions, setSelectedOptions] = React.useState([]);
-  const [openAutocomplete, setOpenAutocomplete] = React.useState(false); // State to manage Autocomplete open state
+  const [openAutocomplete, setOpenAutocomplete] = React.useState(false);
 
   const handleSelect = (event, value) => {
     if (value.length > 3) {
@@ -24,10 +24,6 @@ export default function AutocompleteBox() {
     if (value.length === 3) {
       setOpenAutocomplete(false);
     }
-  };
-
-  const handleOpenAutocomplete = () => {
-    setOpenAutocomplete(true); // Open the Autocomplete on button click
   };
 
   return (
@@ -83,16 +79,6 @@ export default function AutocompleteBox() {
               getOptionLabel={(option) => option.label}
               value={selectedOptions}
               onChange={handleSelect}
-              renderOption={(props, option) => (
-                <li {...props}>
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-                    {option.label}
-                    <Typography variant="body2" color="textSecondary">
-                      {option.price} ₪
-                    </Typography>
-                  </Box>
-                </li>
-              )}
               renderInput={(params) => (
                 <TextField {...params} variant="outlined" label="בחר עד שלושה תחומים" />
               )}
@@ -100,7 +86,6 @@ export default function AutocompleteBox() {
             <Button
               variant="contained"
               color="primary"
-              onClick={handleOpenAutocomplete} // Open Autocomplete on button click
               sx={{
                 margin: 'auto',
                 borderRadius: '12px',
@@ -121,24 +106,24 @@ export default function AutocompleteBox() {
 }
 
 const top100Films = [
-  { label: 'בנייה ותשתיות', price: 100 },
-  { label: 'שירותים מקצועיים', price: 150 },
-  { label: 'טכנולוגיה ותקשורת', price: 200 },
-  { label: 'מזון ומסחר תעופתי', price: 250 },
-  { label: 'שירותים רפואיים', price: 300 },
-  { label: 'חינוך והכשרה', price: 350 },
-  { label: 'שירותים לתעסוקה', price: 400 },
-  { label: 'שירותים פיננסיים ומשפטיים', price: 450 },
-  { label: 'מחקר ופיתוח', price: 500 },
-  { label: 'תרבות ופנאי', price: 550 },
-  { label: 'סביבה וקידום בריאות', price: 600 },
-  { label: 'שירותים חברתיים ומגזר שלישי', price: 650 },
-  { label: 'תחבורה ותחנות דלק', price: 700 },
-  { label: 'אנרגיה ומים', price: 750 },
-  { label: 'בטיחות ואבטחה', price: 800 },
-  { label: 'ניהול וייעוץ ארגוני', price: 850 },
-  { label: 'מוצרים וציוד', price: 900 },
-  { label: 'קניות ולוגיסטיקה', price: 950 },
-  { label: 'שירותים למגזר הציבורי', price: 1000 },
-  { label: 'ביטוח ופיננסים', price: 1050 },
+  { label: 'בנייה ותשתיות' },
+  { label: 'שירותים מקצועיים' },
+  { label: 'טכנולוגיה ותקשורת' },
+  { label: 'מזון ומסחר תעופתי' },
+  { label: 'שירותים רפואיים' },
+  { label: 'חינוך והכשרה' },
+  { label: 'שירותים לתעסוקה' },
+  { label: 'שירותים פיננסיים ומשפטיים' },
+  { label: 'מחקר ופיתוח' },
+  { label: 'תרבות ופנאי' },
+  { label: 'סביבה וקידום בריאות' },
+  { label: 'שירותים חברתיים ומגזר שלישי' },
+  { label: 'תחבורה ותחנות דלק' },
+  { label: 'אנרגיה ומים' },
+  { label: 'בטיחות ואבטחה' },
+  { label: 'ניהול וייעוץ ארגוני' },
+  { label: 'מוצרים וציוד' },
+  { label: 'קניות ולוגיסטיקה' },
+  { label: 'שירותים למגזר הציבורי' },
+  { label: 'ביטוח ופיננסים' },
 ];

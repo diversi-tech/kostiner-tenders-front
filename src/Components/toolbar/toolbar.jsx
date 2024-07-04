@@ -32,7 +32,6 @@ const Toolbar = ({ isAuthenticated, isAdmin }) => {
             }
         }
         return (
-            
             <li key={index} className="navbar-item">
                 <Link to={item.link} className="custom-link">{item.label}</Link>
                 {item.submenu && (
@@ -48,13 +47,20 @@ const Toolbar = ({ isAuthenticated, isAdmin }) => {
         );
     };
 
+    const handleLogoClick = (e) => {
+        e.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    };
+
     return (
         <div className="navbar">
             <ul className="navbar-list">
                 {navigationitems.map((item, index) => renderNavItem(item, index))}
             </ul>
-            <img src={logo} alt="Logo" className="navbar-logo" />
-
+            <img src={logo} alt="Logo" className="navbar-logo" onClick={handleLogoClick} />
         </div>
     );
 }

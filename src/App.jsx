@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import AppRoutes from './Components/router/Routes'; // Assuming this is where your routes are defined
+import AppRoutes from './Components/router/Routes';
 import './App.css';
 import Footer from './Components/footer/footer';
 import HomePage from './Components/homePage/homePage';
@@ -15,8 +15,8 @@ function App() {
       <div id="root">
         <Toolbar isAuthenticated={isAuthenticated} isAdmin={isAdmin} />
         <div className="content">
-          <AppRoutes />
           <HomePage />
+          <AppRoutes />
         </div>
         <Footer />
       </div>
