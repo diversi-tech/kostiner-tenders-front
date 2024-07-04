@@ -1,14 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import navigationitems from './navigationitems';
+import navigationitems from '../router/navigationitems';
 import './toolbar.css';
+import logo from '../../image/logo.png';
 
 const Toolbar = ({ isAuthenticated, isAdmin }) => {
+
     const renderNavItem = (item, index) => {
         if (!isAuthenticated && item.isAuthRequired) {
             return null; 
         }
-        if ( isAuthenticated) {
+        if (isAuthenticated) {
             if (item.label === 'Login/Register') {
                 return null; 
             }
@@ -45,15 +47,22 @@ const Toolbar = ({ isAuthenticated, isAdmin }) => {
         );
     };
 
+    const handleLogoClick = (e) => {
+        e.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    };
+
     return (
         <div className="navbar">
             <ul className="navbar-list">
                 {navigationitems.map((item, index) => renderNavItem(item, index))}
             </ul>
+            <img src={logo} alt="Logo" className="navbar-logo" onClick={handleLogoClick} />
         </div>
     );
 }
 
 export default Toolbar;
-
-

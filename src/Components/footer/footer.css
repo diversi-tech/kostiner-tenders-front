@@ -1,0 +1,74 @@
+.footer-wrapper {
+  background: #d5e6df; /* צבע הרקע שונה ל-a1a1a1 */
+  padding: 60px 0 20px;
+  color: rgba(26, 96, 104, 1); /* שינוי צבע הטקסט ל-rgba(26, 96, 104, 1) */
+  border-top: none;
+  position: relative;
+  display: block;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: nowrap; /* Prevent wrapping */
+  justify-content: space-around; /* Add space between columns */
+  padding: 0 20px;
+  width: 100%;
+}
+
+.column {
+  flex: 1;
+  min-width: auto;
+  text-align: center;
+  min-height: auto;
+  margin-bottom: 20px; /* Add space at the bottom */
+}
+
+.column h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.column ul,
+.column form,
+.column div {
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+}
+
+.column li {
+  margin-bottom: 10px;
+}
+
+.column a {
+  color: rgba(26, 96, 104, 1); /* שינוי צבע הטקסט ל-rgba(26, 96, 104, 1) */
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.column a:hover {
+  color: #0a3f3d; /* Change color on hover */
+}
+
+.logo-wrapper {
+  text-align: center;
+}
+
+.logo-wrapper img {
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+.copyright-wrapper {
+  flex-basis: 100%; /* Full width */
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.copyright {
+  color: rgba(26, 96, 104, 1); /* שינוי צבע הטקסט ל-rgba(26, 96, 104, 1) */
+  font-size: 0.9em;
+  text-align: center;
+}
