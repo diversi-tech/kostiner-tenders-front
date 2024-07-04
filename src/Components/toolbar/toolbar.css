@@ -1,0 +1,135 @@
+.navbar {
+    background-color: #d5e6df;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.navbar-logo {
+    width: 100px;
+    height: auto;
+    margin-right: 20px;
+    order: 2;
+    margin-left: auto;
+}
+
+.navbar-list {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    margin-left: auto;
+    padding-left: 120px;
+    margin-right: 0;
+    order: 1;
+}
+
+.navbar-item {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: font-size 0.3s;
+    font-size: 1.2em;
+    position: relative;
+    margin-right: 60px; /* רווח בין קישורים */
+    margin-top: 10px; /* רווח מעל לקישורים */
+}
+
+.navbar-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: rgba(26, 96, 104, 255); /* צבע המיתר */
+    transform-origin: bottom left;
+    transform: scaleX(0);
+    transition: transform 0.3s ease-out;
+}
+
+.navbar-item:hover::after {
+    transform: scaleX(1);
+}
+
+.navbar-item:hover {
+    color: rgba(26, 96, 104, 255);
+}
+
+.submenu {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    padding: 0.5rem 1rem;
+}
+
+.submenu li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-item:hover .submenu {
+    display: block;
+}
+
+.custom-link {
+    color: rgba(26, 96, 104, 255);
+    text-decoration: none;
+}
+
+.custom-link:hover {
+    color: rgba(26, 96, 104, 255);
+}
+
+@media screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center; /* למרכז את התיק במרכז */
+        padding: 1rem;
+    }
+
+    .navbar-logo {
+        order: 1;
+        margin-right: 40%;
+        margin-bottom: 10px;
+    }
+
+    .navbar-list {
+        order: 2;
+        margin-left: 0;
+        padding-left: 0; /* לבטל padding-left שמוסיף מרחק לימין במסך קטן */
+        margin-right: 0;
+    }
+
+    .navbar-item {
+        padding: 0.5rem 0.8rem;
+        font-size: 1.1em;
+        position: relative;
+        margin-right: 0; /* במצב מסך קטן אין צורך ברווח בין קישורים */
+        margin-top: 10px; /* רווח מעל לקישורים */
+    }
+
+    .navbar-item::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: rgba(26, 96, 104, 255);
+        transform-origin: bottom left;
+        transform: scaleX(0);
+        transition: transform 0.3s ease-out;
+    }
+
+    .navbar-item:hover::after {
+        transform: scaleX(1);
+    }
+}
