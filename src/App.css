@@ -16,6 +16,8 @@ html, body {
 /* Content should take up remaining space */
 .content {
   flex: 1;
+  direction: rtl;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .logo {

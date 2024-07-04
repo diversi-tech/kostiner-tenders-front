@@ -11,7 +11,7 @@ import TypeProduct_Step from '../typeProduct/typeProduct_step';
 import Product_Step from '../product/product_step';
 import ProductTender_Step from '../productTender/productTender_step';
 import ResultTender from '../resultTender';
-import ScrollToTop from '../scrollToTop';
+import ScrollToTop from '../ScrollToTop';
 import ScrollToAnchor from '../scrollToAnchor';
 import HomePage from '../homePage/homePage'
 const AppRoutes = () => {
