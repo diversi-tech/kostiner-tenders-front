@@ -1,46 +1,20 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Component_example from './Components/component_example'
-import Login from './Components/Login'
-import SignUp from './Components/SignUp'
-import { Button } from '@mui/material'
-import singleton from './Logic/AuthService'
-import axios from 'axios'
-import GoogleAuthOld from './Components/GoogleAuth-old'
-import CreditCard from './Components/CreditCard'
-// import CreditCards from './Components/CreditCard'
-import GGG from './Components/ggg'
+import React from 'react';
+import { BrowserRouter as Router, Routes } from 'react-router-dom';
+import Toolbar from './Components/toolbar';
+import AppRoutes from './Routes'; // Import the AppRoutes component with a unique identifier
+
 function App() {
-  function btn()
-  {
-   const res= axios.get('http://127.0.0.1:5000/')
- console.log("btn",res);
-  }
-  
-  return (
-    <>
-     {/* <Component_example/> */}
-     <Login></Login>
-      <SignUp/>
-      
-    {/* <Button class="btn" onClick={btn}>goooooooooogle</Button>*/}
-     
-    {/* <GoogleAuthOld></GoogleAuthOld>*/}
+    const isAuthenticated = false; 
+    const isAdmin = false;
 
-<p>----------------------------------------------</p>
-<br></br>
-
-
-<CreditCard></CreditCard>
-
-<p>***************************</p>
-   
-   <GGG></GGG>
-   
-         </>
-  )
+    return (
+        <Router>
+            <div>
+                <Toolbar isAuthenticated={isAuthenticated} isAdmin={isAdmin} />
+                <AppRoutes /> 
+            </div>
+        </Router>
+    );
 }
 
-export default App
+export default App;
