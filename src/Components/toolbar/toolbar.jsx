@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import navigationitems from '../router/navigationitems';
 import './toolbar.css';
 import logo from '../../image/logo.png';
-
+import {useState} from "react";
 const Toolbar = ({ isAuthenticated, isAdmin }) => {
 
     const renderNavItem = (item, index) => {
@@ -31,15 +31,18 @@ const Toolbar = ({ isAuthenticated, isAdmin }) => {
                 );
             }
         }
+       
+
         return (
             <li key={index} className="navbar-item">
                 <Link to={item.link} className="custom-link">{item.label}</Link>
                 {item.submenu && (
                     <ul className="submenu">
                         {item.submenu.map((subItem, subIndex) => (
-                            <li key={subIndex}>
-                                <Link to={subItem.link} className="custom-link">{subItem.label}</Link>
+                            <li key={subIndex}  >
+                                <Link to={subItem.link} className="custom-link" >{subItem.label}</Link>
                             </li>
+
                         ))}
                     </ul>
                 )}

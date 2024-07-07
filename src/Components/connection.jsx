@@ -1,10 +1,11 @@
 import React from 'react';
-
+import  Login  from "./Login";
+import  SignUp  from "./SignUp";
 const Rutn= () => {
     return (
-        <div>
-       
-            <h1>התחברות והרשמה-(כניסה ורישום).</h1>
+        <div style={{display:"none"}}>
+            {/* <Login open={true}/> */}
+            <SignUp  open={true}/>
         </div>
     );
 }

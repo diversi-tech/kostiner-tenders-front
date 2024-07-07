@@ -167,9 +167,10 @@ import BusinessIcon from '@mui/icons-material/Business';
 import PersonIcon from '@mui/icons-material/Person';
 import LockIcon from '@mui/icons-material/Lock';
 import authSingleton from '../Logic/AuthService';
-
-export default function SignUp() {
-  const [open, setOpen] = React.useState(false);
+import {useNavigate } from 'react-router-dom';
+export default function SignUp(props) {
+  const [open, setOpen] = React.useState(props.open);
+  const navigate= useNavigate();
   const [details, setDetails] = useState({
     username: '',
     password: '',
@@ -198,10 +199,32 @@ export default function SignUp() {
     handleChange(field, value);
     //בדיקות תקינות----------------------------------------------------------------------------------------------
   };
-
+// const handleSignUp =()=>
+//   {
+//     navigate('/connection')
+//   }
   return (
     <React.Fragment>
-      <Button variant="contained" color="primary" onClick={handleClickOpen} style={{ backgroundColor: 'rgb(106, 174, 165)', color: 'white' }}>
+      {/* <Button variant="contained" color="primary" onClick={handleClickOpen} style={{ backgroundColor: 'rgb(106, 174, 165)', color: 'white' }}>
+        הרשמה
+      </Button> */}
+      <Button 
+        variant="contained"
+        color="primary"
+        onClick={handleClickOpen}
+        style={{
+          backgroundColor: 'rgb(33, 37, 41)',
+          color: 'white',
+          padding: '15px 30px',
+          fontSize: '18px',
+          borderRadius: '10px',
+          textTransform: 'none',
+          boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16)',
+          transition: 'background-color 0.3s ease',
+        }}
+        onMouseOver={(e) => (e.currentTarget.style.backgroundColor = 'rgb(23, 27, 31)')}
+        onMouseOut={(e) => (e.currentTarget.style.backgroundColor = 'rgb(33, 37, 41)')}
+      >
         הרשמה
       </Button>
       <Dialog
@@ -214,13 +237,13 @@ export default function SignUp() {
             authSingleton.SignUp({ ...details });
             handleClose();
           },
-          style: { backgroundColor: 'rgb(224, 242, 241)', color: 'rgb(10, 63, 61)' }
+          style: { backgroundColor: 'rgb(224, 242, 241)', color: 'rgb(10, 63, 61)',textAlign:'center' }
         }}
       >
-        <DialogTitle>הצטרף אלינו!</DialogTitle>
+        <DialogTitle>!הצטרף אלינו</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            צור חשבון חדש והצטרף לקהילה שלנו!
+            !צור חשבון חדש והצטרף לקהילה שלנו
           </DialogContentText>
           <TextField
             autoFocus

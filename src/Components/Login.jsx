@@ -468,14 +468,16 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
 import GoogleAuthOld from './GoogleAuth-old';
-
-export default function Login() {
-  const [open, setOpen] = React.useState(false);
+import SignUp from "./SignUp";
+import {useNavigate } from 'react-router-dom';
+export default function Login(props) {
+  
+  const [open, setOpen] = React.useState(props.open);
   const [credential, setCredential] = useState({ userName: '', password: '' });
   const [forgetPassword, setForgetPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-
+  const navigate = useNavigate();
   const handleChange = (field, value) => {
     var temp = { ...credential };
     temp[field] = value;
@@ -488,6 +490,7 @@ export default function Login() {
 
   const handleClose = () => {
     setOpen(false);
+    navigate('/');
   };
 
   const handleChangePassword = (field, value) => {
@@ -499,13 +502,21 @@ export default function Login() {
     setShowPassword(!showPassword);
   };
 
+  const handleSignUp = ()=>{
+
+    handleClose();
+    navigate('/connection')
+  }
+
+
+
   return (
     <React.Fragment>
-      <Button variant="contained" color="primary" onClick={handleClickOpen} style={{ backgroundColor: 'rgb(106, 174, 165)', color: 'white' }}>
+      {/* <Button variant="contained" color="primary" onClick={handleClickOpen} style={{ backgroundColor: 'rgb(106, 174, 165)', color: 'white' }}>
         Log-In
-      </Button>
+      </Button> */}
 
-      <Dialog
+      <Dialog 
         open={open}
         onClose={handleClose}
         PaperProps={{
@@ -524,9 +535,9 @@ export default function Login() {
               handleClose();
             }
           },
-          //224, 242, 241
           
-          style: { backgroundColor: 'rgb(224, 242, 241)', color: 'rgb(10, 63, 61)' }
+          
+          style: { backgroundColor: 'rgb(224, 242, 241)', color: 'rgb(10, 63, 61)', textAlign: 'center'  }
         }}
       >
         <DialogTitle>{forgetPassword ? "איפוס סיסמא " : "כניסה לחשבון"}</DialogTitle>
@@ -541,7 +552,7 @@ export default function Login() {
               margin="dense"
               id="username"
               name="username"
-              label="Username"
+              label="שם משתמש"
               dir="rtl"
               InputProps={{
                 startAdornment: (
@@ -565,7 +576,7 @@ export default function Login() {
               margin="dense"
               id="password"
               name="password"
-              label="Password"
+              label="סיסמא"
               type={showPassword ? "text" : "password"}
               variant="outlined"
              dir='rtl'
@@ -599,7 +610,7 @@ export default function Login() {
               margin="dense"
               id="email"
               name="email"
-              label="Email"
+              label="אימייל"
               type="email"
               dir='rtl'
               variant="outlined"
@@ -617,19 +628,40 @@ export default function Login() {
                 style: { color: 'rgb(10, 63, 61)' }
               }}
             />
-            <br />
+            {/* <br /> */}
             
           </>}
           <Button onClick={() => setForgetPassword(!forgetPassword)} style={{ color: 'rgb(10, 63, 61)', marginTop: '10px' }}>{!forgetPassword ? "שכחתי סיסמא" : "שם משתמש וסיסמא"}</Button>
           <br/>
           <p style={{ color: 'rgb(10, 63, 61)' }}>או</p>
             <GoogleAuthOld></GoogleAuthOld>
-       
-        
+            <br/>
+        <p>?אין לך חשבון עדיין</p>
+        <br/>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleSignUp}
+          style={{
+            backgroundColor:'#1c5f68' ,
+            color: 'white',
+            padding: '15px 30px',
+            fontSize: '18px',
+            borderRadius: '10px',
+            textTransform: 'none',
+            boxShadow: '0px 3px 6px #c8c8c8b5',
+            transition: 'background-color 0.3s ease',
+          }}
+          onMouseOver={(e) => (e.currentTarget.style.backgroundColor = 'rgb(23, 27, 31)')}
+          onMouseOut={(e) => (e.currentTarget.style.backgroundColor = 'rgb(33, 37, 41)')}
+        >צור חשבון</Button>
+        <br/>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} style={{ color: 'rgb(10, 63, 61)' }}>ביטול</Button>
           {forgetPassword ? <Button type="submit" style={{ color: 'rgb(10, 63, 61)' }}>שלח קוד אימות למייל</Button> : <Button type="submit" style={{ color: 'rgb(10, 63, 61)' }}>היכנס לחשבון</Button>}
+        
+       
         </DialogActions>
       </Dialog>
     </React.Fragment>
