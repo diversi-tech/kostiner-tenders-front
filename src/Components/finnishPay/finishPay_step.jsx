@@ -1,11 +1,11 @@
 import React from 'react';
 import Modal from '@mui/material/Modal';
-import Product from './product';
 import IconStepper from '../stepPay/stepPay';
 import { useNavigate } from 'react-router-dom';
 import SvgIconsSize from '../stepPay/cancel'
-
-export default function Product_Step() {
+import PaymentConfirmation from './finishPay'
+export default function FinishPay_Step() {
+    console.log("fi");
     const [open, setOpen] = React.useState(true); // פתח את המודאל כברירת מחדל
     const navigate = useNavigate();
 
@@ -25,8 +25,8 @@ export default function Product_Step() {
         >
             <div>
                 <SvgIconsSize/>
-                <IconStepper activeStep={0} />
-                <Product />
+                <IconStepper activeStep={3} />
+                <PaymentConfirmation />
             </div>
         </Modal>
     );

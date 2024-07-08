@@ -7,12 +7,14 @@ import Typography from '@mui/joy/Typography';
 import Autocomplete from '@mui/material/Autocomplete';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
+import { useNavigate } from 'react-router-dom';
+
 // import IconStepper from '../IconStepper/IconStepper';
 
 export default function typeProduct() {
   const [selectedOptions, setSelectedOptions] = React.useState([]);
   const [openAutocomplete, setOpenAutocomplete] = React.useState(false);
-
+const nav=useNavigate();
   const handleSelect = (event, value) => {
     if (value.length > 3) {
       value.pop(); // Remove the last item if more than 3 are selected
@@ -26,6 +28,10 @@ export default function typeProduct() {
     }
   };
 
+  const handleNav = (title) => {
+    console.log("nav");
+    nav('/creditCard');
+  };
   return (
     <Box
       sx={{
@@ -95,9 +101,10 @@ export default function typeProduct() {
                   backgroundColor: 'rgb(129, 175, 164)',
                 },
               }}
+onClick={handleNav}
             >
               שליחה לתשלום
-            </Button>
+            </Button >
           </Stack>
         </CardContent>
       </Card>

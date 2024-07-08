@@ -17,9 +17,9 @@ const navigationitems = [
     },
     { label: 'Logout', link: '/logout', isAuthRequired: true, isAdmin: false },
     { label: 'Profile Management', link: '/profile-management', isAuthRequired: true, isAdmin: false },
-    { label: 'Clean ing', link: '/cleaning', isAuthRequired: true, isAdmin: false },
-    { label: 'Control Panel', link: '/control-panel', isAuthRequired: true, isAdmin: true },
-    { label: 'User Management', link: '/user-management', isAuthRequired: true, isAdmin: true },
+    // { label: 'Clean ing', link: '/cleaning', isAuthRequired: true, isAdmin: false },
+    { label: 'Control Panel', link: '/admin-dashboard', isAuthRequired: true, isAdmin: true },
+    // { label: 'User Management', link: '/user-management', isAuthRequired: true, isAdmin: true },
 ];
 
 export default navigationitems;

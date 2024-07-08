@@ -1,14 +1,16 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import AppRoutes from './Components/router/Routes';
+import AppRoutes from './Components/router/routes';
 import './App.css';
 import Footer from './Components/footer/footer';
 import HomePage from './Components/homePage/homePage';
 import Toolbar from './Components/toolbar/toolbar';
 
 function App() {
-  const isAuthenticated = false;
-  const isAdmin = false;
+  const isAuthenticated = true;
+  const isAdmin = true;
+  // const isAuthenticated = false;
+  // const isAdmin = false;
 
   return (
     <BrowserRouter>
@@ -16,7 +18,7 @@ function App() {
         <Toolbar isAuthenticated={isAuthenticated} isAdmin={isAdmin} />
         <div className="content">
           <HomePage />
-          <AppRoutes />
+          <AppRoutes isAdmin={isAdmin} />
         </div>
         <Footer />
       </div>

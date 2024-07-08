@@ -7,25 +7,42 @@ import Typography from '@mui/joy/Typography';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import CircularProgress from '@mui/material/CircularProgress';
+import SearchIcon from '@mui/icons-material/Search';
+import CancelIcon from '@mui/icons-material/Cancel';
+import { useNavigate } from 'react-router-dom';
 
 export default function TenderSearchBox() {
   const [tenderName, setTenderName] = React.useState('');
   const [loading, setLoading] = React.useState(false);
   const [found, setFound] = React.useState(null);
+  const nav = useNavigate();
 
   const handleSearch = async () => {
     setLoading(true);
     setFound(null);
-    
+
     // סימולציה של חיפוש במערכת
     setTimeout(() => {
       setLoading(false);
       if (tenderName === 'השם שקיים במערכת') {
         setFound(true);
       } else {
-        setFound(false);
+        setFound(true);
       }
     }, 2000); // סימולציה של 2 שניות
+  };
+
+  const handleNav = () => {
+    if (found === true) {
+      nav('/creditCard');
+    } else {
+      setTenderName('');
+    }
+  };
+
+  const handleReset = () => {
+    setTenderName('');
+    setFound(null);
   };
 
   return (
@@ -81,27 +98,56 @@ export default function TenderSearchBox() {
               <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}>
                 <CircularProgress sx={{ color: 'rgba(26,96,104,255)' }} />
               </Box>
-            ) : (
-              found === false && (
-                <Typography color="error">לא נמצא מכרז, הכנס שנית</Typography>
-              )
+            ) : found === true ? (
+              <React.Fragment>
+                <Typography color="success">נמצא מכרז!</Typography>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleNav}
+                  sx={{
+                    margin: 'auto',
+                    borderRadius: '12px',
+                    backgroundColor: 'rgba(26,96,104,255)',
+                    '&:hover': {
+                      backgroundColor: 'rgb(129, 175, 164)',
+                    },
+                    color: 'white',
+                  }}
+                >
+                  המשך לתשלום
+                </Button>
+              </React.Fragment>
+            ) : found === false ? (
+              <Typography color="error">לא נמצא מכרז, הכנס שנית</Typography>
+            ) : null}
+            {!loading && found === false && (
+              <Button
+                variant="text"
+                color="error"
+                onClick={handleReset}
+                startIcon={<CancelIcon />}
+              >
+                אפס חיפוש
+              </Button>
             )}
             <Button
               variant="contained"
               color="primary"
               onClick={handleSearch}
               disabled={loading || !tenderName}
+              startIcon={<SearchIcon />}
               sx={{
                 margin: 'auto',
                 borderRadius: '12px',
                 backgroundColor: 'rgba(26,96,104,255)',
-                  '&:hover': {
-                    backgroundColor: 'rgb(129, 175, 164)',
-                  },
+                '&:hover': {
+                  backgroundColor: 'rgb(129, 175, 164)',
+                },
                 color: 'white',
               }}
             >
-              שליחה לתשלום
+              חפש מכרז
             </Button>
           </Stack>
         </CardContent>
