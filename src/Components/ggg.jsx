@@ -10,7 +10,7 @@
 
 // //   useScript("https://accounts.google.com/gsi/client", () => {
 // //     window.google.accounts.id.initialize({
-/
+
 // //       callback: onGoogleSignIn,
 // //     });
 // //     window.google.accounts.id.renderButton(
@@ -26,7 +26,7 @@
 // import React from 'react';
 // import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 
-/
+
 
 // const GGG = () => {
 //   const onSuccess = (response) => {
@@ -75,7 +75,7 @@
 import React from 'react';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 
-const clientId = '290860980213-comb21pdjv13dejo0ofou5afivk1ra4m.apps.googleusercontent.com';
+const clientId = import.meta.env.VITE_CLIENT_ID;
 
 const GoogleLoginButton = () => {
   const onSuccess = (response) => {
