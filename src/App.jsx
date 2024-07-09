@@ -28,3 +28,14 @@ function App() {
 }
 
 export default App;
+
+
+// "@rollup/rollup-linux-arm-gnueabihf": "4.18.0",
+// "@rollup/rollup-linux-arm-musleabihf": "4.18.0",
+// "@rollup/rollup-linux-arm64-gnu": "4.18.0",
+// "@rollup/rollup-linux-arm64-musl": "4.18.0",
+// "@rollup/rollup-linux-powerpc64le-gnu": "4.18.0",
+// "@rollup/rollup-linux-riscv64-gnu": "4.18.0",
+// "@rollup/rollup-linux-s390x-gnu": "4.18.0",
+// "@rollup/rollup-linux-x64-gnu": "4.18.0",
+// "@rollup/rollup-linux-x64-musl": "4.18.0",
