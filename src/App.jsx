@@ -7,8 +7,10 @@ import HomePage from './Components/homePage/homePage';
 import Toolbar from './Components/toolbar/toolbar';
 import  GGG  from "./Components/ggg";
 function App() {
-  const isAuthenticated = false;
-  const isAdmin = false;
+  const isAuthenticated = true;
+  const isAdmin = true;
+  // const isAuthenticated = false;
+  // const isAdmin = false;
 
   return (
     <BrowserRouter>
@@ -17,7 +19,7 @@ function App() {
         <Toolbar isAuthenticated={isAuthenticated} isAdmin={isAdmin} />
         <div className="content">
           <HomePage />
-          <AppRoutes />
+          <AppRoutes isAdmin={isAdmin} />
         </div>
         <Footer />
       </div>
