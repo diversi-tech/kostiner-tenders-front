@@ -19,15 +19,15 @@ import UploadCSV from '../GPT/uploadCSV/uploadCSV';
 import ViewTenders from '../GPT/viewEditTenders/viewEditTenders';
 import CreditCard_Step from '../card/card_step';
 import FinishPay_Step from '../finnishPay/finishPay_step';
-
+import Login from '../Login';
 const AppRoutes = ({ isAdmin }) => {
     return (
       <>
         <ScrollToTop />
         <Routes>
         {/* anchorId="connection-anchor" */}
-          <Route path="/connection" element={<ScrollToAnchor component={<Connection />}  key="connection" />} />
-          {/* <Route path="/login" element={<ScrollToAnchor component={<Login open={true} />}  key="connection" />} /> */}
+          {/* <Route path="/connection" element={<ScrollToAnchor component={<Connection />}  key="connection" />} /> */}
+          <Route path="/login" element={<ScrollToAnchor component={<Login open={true} />}  key="connection" />} />
           <Route path="/help" element={<ScrollToAnchor component={<Help />} anchorId="help-anchor" key="help" />} />
           <Route path="/controlpanel" element={<ScrollToAnchor component={<ControlPanel />} anchorId="controlpanel-anchor" key="controlpanel" />} />
           <Route path="/usermanagement" element={<ScrollToAnchor component={<UserManagement />} anchorId="usermanagement-anchor" key="usermanagement" />} />
