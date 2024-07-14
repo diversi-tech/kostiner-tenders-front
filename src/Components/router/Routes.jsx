@@ -26,7 +26,7 @@ const AppRoutes = ({ isAdmin }) => {
         <ScrollToTop />
         <Routes>
         {/* anchorId="connection-anchor" */}
-          {/* <Route path="/connection" element={<ScrollToAnchor component={<Connection />}  key="connection" />} /> */}
+          <Route path="/connection" element={<ScrollToAnchor component={<Connection />}  key="connection" />} />
           <Route path="/login" element={<ScrollToAnchor component={<Login open={true} />}  key="connection" />} />
           <Route path="/help" element={<ScrollToAnchor component={<Help />} anchorId="help-anchor" key="help" />} />
           <Route path="/controlpanel" element={<ScrollToAnchor component={<ControlPanel />} anchorId="controlpanel-anchor" key="controlpanel" />} />
