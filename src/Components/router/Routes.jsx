@@ -21,37 +21,37 @@ import CreditCard_Step from '../card/card_step';
 import FinishPay_Step from '../finnishPay/finishPay_step';
 
 const AppRoutes = ({ isAdmin }) => {
-    return (
-      <>
-        <ScrollToTop />
-        <Routes>
+  return (
+    <>
+      <ScrollToTop />
+      <Routes>
         {/* anchorId="connection-anchor" */}
-          <Route path="/connection" element={<ScrollToAnchor component={<Connection />}  key="connection" />} />
-          {/* <Route path="/login" element={<ScrollToAnchor component={<Login open={true} />}  key="connection" />} /> */}
-          <Route path="/help" element={<ScrollToAnchor component={<Help />} anchorId="help-anchor" key="help" />} />
-          <Route path="/controlpanel" element={<ScrollToAnchor component={<ControlPanel />} anchorId="controlpanel-anchor" key="controlpanel" />} />
-          <Route path="/usermanagement" element={<ScrollToAnchor component={<UserManagement />} anchorId="usermanagement-anchor" key="usermanagement" />} />
-          <Route path="/introduction" element={<ScrollToAnchor component={<Introduction />} anchorId="introduction-anchor" key="introduction" />} />
-          <Route path="/about" element={<ScrollToAnchor component={<About />} anchorId="about-anchor" key="about" />} />
-          <Route path="/result" element={<ScrollToAnchor component={<ResultTender />} anchorId="result-anchor" key="result" />} />
-          <Route path="/subscription" element={<ScrollToAnchor component={<Subscription />} anchorId="subscription-anchor" key="subscription" />} />
-          <Route path="/product" element={<Product_Step />} />
-          <Route path="/typeProduct" element={<TypeProduct_Step />} />
-          <Route path="/tenderSearch" element={<ProductTender_Step />} />
-          <Route path="/creditCard" element={<CreditCard_Step />} />
-          <Route path="/finishPay" element={<FinishPay_Step />} />
+        <Route path="/connection" element={<ScrollToAnchor component={<Connection />} key="connection" />} />
+        {/* <Route path="/login" element={<ScrollToAnchor component={<Login open={true} />}  key="connection" />} /> */}
+        <Route path="/help" element={<ScrollToAnchor component={<Help />} anchorId="help-anchor" key="help" />} />
+        <Route path="/controlpanel" element={<ScrollToAnchor component={<ControlPanel />} anchorId="controlpanel-anchor" key="controlpanel" />} />
+        <Route path="/usermanagement" element={<ScrollToAnchor component={<UserManagement />} anchorId="usermanagement-anchor" key="usermanagement" />} />
+        <Route path="/introduction" element={<ScrollToAnchor component={<Introduction />} anchorId="introduction-anchor" key="introduction" />} />
+        <Route path="/about" element={<ScrollToAnchor component={<About />} anchorId="about-anchor" key="about" />} />
+        <Route path="/result" element={<ScrollToAnchor component={<ResultTender />} anchorId="result-anchor" key="result" />} />
+        <Route path="/subscription" element={<ScrollToAnchor component={<Subscription />} anchorId="subscription-anchor" key="subscription" />} />
+        <Route path="/product" element={<Product_Step />} />
+        <Route path="/typeProduct" element={<TypeProduct_Step />} />
+        <Route path="/tenderSearch" element={<ProductTender_Step  />} />
+        <Route path="/creditCard" element={<CreditCard_Step />} />
+        <Route path="/finishPay" element={<FinishPay_Step />} />
 
-          
-          {isAdmin && (
-            <>
-              <Route path="/admin-dashboard" element={<ScrollToAnchor component={<AdminDashboard />} anchorId="subscription-anchor" key="subscription" />} />
-              <Route path="/upload-csv" element={<ScrollToAnchor component={<UploadCSV />} anchorId="subscription-anchor" key="subscription" /> }/>
-              <Route path="/view-tenders" element={<ScrollToAnchor component={<ViewTenders />} anchorId="subscription-anchor" key="subscription" />} />
-            </>
-          )}
-        </Routes>
-      </>
-    );
-  };
-  
-  export default AppRoutes;
+
+        {isAdmin && (
+          <>
+            <Route path="/admin-dashboard" element={<ScrollToAnchor component={<AdminDashboard />} anchorId="subscription-anchor" key="subscription" />} />
+            <Route path="/upload-csv" element={<ScrollToAnchor component={<UploadCSV />} anchorId="subscription-anchor" key="subscription" />} />
+            <Route path="/view-tenders" element={<ScrollToAnchor component={<ViewTenders />} anchorId="subscription-anchor" key="subscription" />} />
+          </>
+        )}
+      </Routes>
+    </>
+  );
+};
+
+export default AppRoutes;

@@ -14,7 +14,8 @@ import { useNavigate } from 'react-router-dom';
 export default function typeProduct() {
   const [selectedOptions, setSelectedOptions] = React.useState([]);
   const [openAutocomplete, setOpenAutocomplete] = React.useState(false);
-const nav=useNavigate();
+  const nav = useNavigate();
+
   const handleSelect = (event, value) => {
     if (value.length > 3) {
       value.pop(); // Remove the last item if more than 3 are selected
@@ -22,16 +23,19 @@ const nav=useNavigate();
       setSelectedOptions(value);
     }
 
-    // Close Autocomplete if exactly 3 options are selected
-    if (value.length === 3) {
+    // Open Autocomplete if less than 3 options are selected
+    if (value.length < 3) {
+      setOpenAutocomplete(true);
+    } else {
+      // Close Autocomplete if exactly 3 options are selected
       setOpenAutocomplete(false);
     }
   };
 
-  const handleNav = (title) => {
-    console.log("nav");
+  const handleNav = () => {
     nav('/creditCard');
   };
+
   return (
     <Box
       sx={{
@@ -101,10 +105,10 @@ const nav=useNavigate();
                   backgroundColor: 'rgb(129, 175, 164)',
                 },
               }}
-onClick={handleNav}
+              onClick={handleNav}
             >
               שליחה לתשלום
-            </Button >
+            </Button>
           </Stack>
         </CardContent>
       </Card>

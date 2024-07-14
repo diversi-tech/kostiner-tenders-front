@@ -7,44 +7,23 @@ import Typography from '@mui/joy/Typography';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import CircularProgress from '@mui/material/CircularProgress';
-import SearchIcon from '@mui/icons-material/Search';
-import CancelIcon from '@mui/icons-material/Cancel';
-import { useNavigate } from 'react-router-dom';
-
+import Snackbar from '@mui/material/Snackbar'; // ייבוא של Snackbar
+import Alert from '@mui/material/Alert'; // ייבוא של Alert
 export default function TenderSearchBox() {
   const [tenderName, setTenderName] = React.useState('');
   const [loading, setLoading] = React.useState(false);
-  const [found, setFound] = React.useState(null);
-  const nav = useNavigate();
-
-  const handleSearch = async () => {
+  const [openSnackbar, setOpenSnackbar] = React.useState(false);
+  const handleSubmit = async () => {
     setLoading(true);
-    setFound(null);
-
-    // סימולציה של חיפוש במערכת
+    // סימולציה של שמירה במערכת
     setTimeout(() => {
       setLoading(false);
-      if (tenderName === 'השם שקיים במערכת') {
-        setFound(true);
-      } else {
-        setFound(true);
-      }
+      setOpenSnackbar(true);
     }, 2000); // סימולציה של 2 שניות
   };
-
-  const handleNav = () => {
-    if (found === true) {
-      nav('/creditCard');
-    } else {
-      setTenderName('');
-    }
+  const handleCloseSnackbar = () => {
+    setOpenSnackbar(false);
   };
-
-  const handleReset = () => {
-    setTenderName('');
-    setFound(null);
-  };
-
   return (
     <Box
       sx={{
@@ -98,60 +77,33 @@ export default function TenderSearchBox() {
               <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}>
                 <CircularProgress sx={{ color: 'rgba(26,96,104,255)' }} />
               </Box>
-            ) : found === true ? (
-              <React.Fragment>
-                <Typography color="success">נמצא מכרז!</Typography>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleNav}
-                  sx={{
-                    margin: 'auto',
-                    borderRadius: '12px',
-                    backgroundColor: 'rgba(26,96,104,255)',
-                    '&:hover': {
-                      backgroundColor: 'rgb(129, 175, 164)',
-                    },
-                    color: 'white',
-                  }}
-                >
-                  המשך לתשלום
-                </Button>
-              </React.Fragment>
-            ) : found === false ? (
-              <Typography color="error">לא נמצא מכרז, הכנס שנית</Typography>
-            ) : null}
-            {!loading && found === false && (
+            ) : (
               <Button
-                variant="text"
-                color="error"
-                onClick={handleReset}
-                startIcon={<CancelIcon />}
+                variant="contained"
+                color="primary"
+                onClick={handleSubmit}
+                disabled={!tenderName}
+                sx={{
+                  margin: 'auto',
+                  borderRadius: '12px',
+                  backgroundColor: 'rgba(26,96,104,255)',
+                  '&:hover': {
+                    backgroundColor: 'rgb(129, 175, 164)',
+                  },
+                  color: 'white',
+                }}
               >
-                אפס חיפוש
+                שלח לבדיקה
               </Button>
             )}
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleSearch}
-              disabled={loading || !tenderName}
-              startIcon={<SearchIcon />}
-              sx={{
-                margin: 'auto',
-                borderRadius: '12px',
-                backgroundColor: 'rgba(26,96,104,255)',
-                '&:hover': {
-                  backgroundColor: 'rgb(129, 175, 164)',
-                },
-                color: 'white',
-              }}
-            >
-              חפש מכרז
-            </Button>
           </Stack>
         </CardContent>
       </Card>
+      <Snackbar open={openSnackbar} autoHideDuration={6000} onClose={handleCloseSnackbar}>
+        <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: '100%' }}>
+          הבקשה נשלחה לבדיקה, בימים הקרובים תקבל עדכונים
+        </Alert>
+      </Snackbar>
     </Box>
   );
 }

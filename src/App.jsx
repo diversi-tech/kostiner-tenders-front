@@ -6,6 +6,7 @@ import Footer from './Components/footer/footer';
 import HomePage from './Components/homePage/homePage';
 import Toolbar from './Components/toolbar/toolbar';
 import  GGG  from "./Components/ggg";
+import TenderStatus from './Components/statusRequest/statusRequest';
 function App() {
   // const isAuthenticated = true;
   // const isAdmin = true;
@@ -20,7 +21,8 @@ function App() {
         <div className="content">
           <HomePage />
           <AppRoutes isAdmin={isAdmin} />
-        </div>
+          <TenderStatus/>
+          </div>
         <Footer />
       </div>
     </BrowserRouter>

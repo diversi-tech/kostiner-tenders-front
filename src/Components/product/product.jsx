@@ -17,7 +17,6 @@ export default function Product() {
   const nav = useNavigate();
 
   const handleNav = (title) => {
-
     if (title === 'דו"ח חד פעמי') {
       nav('/tenderSearch');
     } else {
@@ -40,7 +39,7 @@ export default function Product() {
     },
     {
       title: "דו\"ח חודשי",
-      subtitle: " תוצאות של מכרזי החודש בתחומים נבחרים",
+      subtitle: "תוצאות של מכרזי החודש בתחומים נבחרים",
       buttonText: "לרכישה",
       features: ["דוח מפורט", "סקירה חודשית בתחומים נבחרים", "שלושה תחומים לבחירה"]
     }
@@ -140,6 +139,13 @@ export default function Product() {
           </Card>
         ))}
       </Box>
+      {/* Scrollbar for manual scrolling */}
+      <Box
+        sx={{
+          display: 'block',
+          height: '20px', // Adjust height as needed
+        }}
+      />
     </Box>
   );
 }
