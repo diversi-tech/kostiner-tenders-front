@@ -16,11 +16,13 @@ import ScrollToAnchor from '../scrollToAnchor';
 import Login from '../Login';
 import EditAdminProfile from '../EditProfile/editAdminProfile';
 import EditUserProfile from '../EditProfile/editUserProfile';
+import RequestsStatus from '../user/requestStatus'
 const AppRoutes = () => {
   return (
     <>
       <ScrollToTop />
       <Routes>
+        <Route path='/status-requests' element={<ScrollToAnchor component={<RequestsStatus/>} key="Requstsstatus" />} />
         <Route path="/user-profile" element={<ScrollToAnchor component={<EditUserProfile />} key="userPrpfile" />} />
         <Route path="/admin-profile" element={<ScrollToAnchor component={<EditAdminProfile />} key="adminProfile" />} />
         <Route path="/connection" element={<ScrollToAnchor component={<Connection />} key="connection" />} />

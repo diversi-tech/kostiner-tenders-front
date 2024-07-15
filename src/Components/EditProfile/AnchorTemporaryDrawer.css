@@ -1,0 +1,33 @@
+.drawer-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px; /* Margin Bottom */
+    margin-left: 12px;  /* Margin Left */
+    margin-top: 16px;   /* Margin Top */
+  }
+  
+  .drawer-avatar {
+    background-color: rgba(26, 96, 104, 255) !important;
+    margin-right: 16px;
+  }
+  
+  
+  .drawer-account-icon {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+  }
+  
+  .list-item-button:hover {
+    background-color: #839a9d;
+  }
+  
+  .list-item-icon {
+    transition: transform 0.3s ease-in-out;
+    margin-right: 6px; /* Margin Right */
+  }
+  
+  .list-item-icon:hover {
+    transform: translateX(-6px);
+  }
+  

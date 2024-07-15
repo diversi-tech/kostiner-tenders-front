@@ -1,22 +1,31 @@
-
 import { useState, useContext } from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
+import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import PersonIcon from '@mui/icons-material/Person';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import AssignmentIcon from '@mui/icons-material/Assignment'; 
+import HistoryIcon from '@mui/icons-material/History'; 
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle'; // Icon for admin users
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../context/userContext';
+import './AnchorTemporaryDrawer.css';
+
+const icons = {
+  'התנתקות': <ExitToAppIcon />,
+  'עריכת פרופיל': <PersonIcon />,
+  'לוח בקרה': <DashboardIcon />,
+  'סטטוס בקשות': <AssignmentIcon />,
+  'היסטורית רכישות': <HistoryIcon />
+};
 
 const AnchorTemporaryDrawer = () => {
   const navigate = useNavigate();
@@ -32,41 +41,46 @@ const AnchorTemporaryDrawer = () => {
 
   const handleItemClick = (text) => {
     setState({ ...state, selectedOption: text });
-    if (text === 'עריכת פרופיל') {
-      if(user.role === 'user')
-        navigate('/user-profile');
-      else if(user.role === 'admin')
-        navigate('/admin-profile');
-    } else if (text === 'התנתקות') {
-      handleLogout();
-    } else if (text === 'ניהול משתמשים' && user.role === 'admin') {
-      navigate('/manage-users');
+    switch (text) {
+      case 'עריכת פרופיל':
+        navigate(user.role === 'user' ? '/user-profile' : '/admin-profile');
+        break;
+      case 'התנתקות':
+        handleLogout();
+        break;
+      case 'סטטוס בקשות':
+        navigate('/status-requests');
+        break;
+      case 'היסטורית רכישות':
+        navigate('/purchase-history');
+        break;
+      case 'לוח בקרה':
+        navigate('/dashboard');
+        break;
+      default:
+        break;
     }
-    else if(text==='סטטוס בקשות'){
-      navigate('/status-requests')
-    }
-    
   };
 
   const handleLogout = () => {
     logout();
   };
 
-  const userName = user ? user.name : 'אורח';
+  const userName = user ? user.name : '';
   const userEmail = user ? user.email : '';
+
+  const menuItems = [
+    { text: 'התנתקות', role: ['user', 'admin'] },
+    { text: 'עריכת פרופיל', role: ['user', 'admin'] },
+    { text: 'לוח בקרה', role: ['admin'] },
+    { text: 'סטטוס בקשות', role: ['user'] },
+    { text: 'היסטורית רכישות', role: ['user'] }
+  ];
 
   const list = () => (
     <Box sx={{ width: 250 }} role="presentation" onKeyDown={toggleDrawer(false)}>
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          marginBottom: 2,
-          marginLeft: 1.5,
-          marginTop: 2,
-        }}
-      >
-        <Avatar sx={{ bgcolor: 'rgba(26,96,104,255)', marginRight: 2 }}>
+      <Box className="drawer-header">
+        <Avatar className="drawer-avatar">
           {userName ? userName.charAt(0).toUpperCase() : ''}
         </Avatar>
         <Box>
@@ -79,41 +93,29 @@ const AnchorTemporaryDrawer = () => {
 
       <Divider />
       <List>
-        {['התנתקות', 'עריכת פרופיל', user.role === 'admin' && 'בקרת מנהל',user.role==='user'&&'סטטוס בקשות',user.role==='user'&&'הסטורית רכישות'].map((text, index) => (
-          text && (
-            <ListItem key={text} disablePadding>
+        {menuItems
+          .filter(item => item.role.includes(user.role))
+          .map((item) => (
+            <ListItem key={item.text} disablePadding>
               <ListItemButton
-                selected={state.selectedOption === text}
-                onClick={() => handleItemClick(text)}
-                sx={{
-                  '&:hover': {
-                    backgroundColor: '#839a9d',
-                  },
-                }}
+                selected={state.selectedOption === item.text}
+                onClick={() => handleItemClick(item.text)}
+                className="list-item-button"
               >
-                <ListItemIcon
-                  sx={{
-                    transition: 'transform 0.3s ease-in-out',
-                    marginRight: '6px',
-                    '&:hover': {
-                      transform: 'translateX(-6px)',
-                    },
-                  }}
-                >
-                  {index % 2 === 0 ? <ExitToAppIcon /> : <PersonIcon />}
+                <ListItemIcon className="list-item-icon">
+                  {icons[item.text] || <PersonIcon />} 
                 </ListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemText primary={item.text} />
               </ListItemButton>
             </ListItem>
-          )
-        ))}
+          ))}
       </List>
     </Box>
   );
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <Box onClick={toggleDrawer(true)} aria-label="account" sx={{ position: 'fixed', top: 16, left: 16 }}>
+      <Box onClick={toggleDrawer(true)} aria-label="account" className="drawer-account-icon">
         <AccountCircleOutlinedIcon />
       </Box>
       <Drawer 
@@ -128,7 +130,6 @@ const AnchorTemporaryDrawer = () => {
       >
         {list()}
       </Drawer>
-      
     </Box>
   );
 };

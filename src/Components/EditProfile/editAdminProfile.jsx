@@ -5,43 +5,8 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
-import { Divider } from '@mui/material';
-import { styled } from '@mui/system';
-
-const BackgroundBox = styled(Box)({
-  minHeight: '100vh',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  background: '#f0f0f0',
-  position: 'relative',
-  overflow: 'hidden',
-});
-
-const GradientCircle = styled(Box)(({ size, color, top, left }) => ({
-  position: 'absolute',
-  width: size,
-  height: size,
-  borderRadius: '50%',
-  background: `rgba(${color.r}, ${color.g}, ${color.b}, ${color.a})`,
-  top,
-  left,
-  zIndex: 0,
-  filter: 'blur(80px)',
-}));
-
-const EditBox = styled(Box)({
-  backgroundColor: 'white',
-  borderRadius: '12px',
-  padding: '40px 20px',
-  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
-  position: 'relative',
-  zIndex: 1,
-  textAlign: 'center',
-  maxWidth: '600px',
-  width: '100%',
-  margin: '0 20px',
-});
+import Divider from '@mui/material/Divider';
+import './AdminProfileEdit.css';
 
 const AdminProfileEdit = () => {
   const { user, setUser } = useContext(UserContext);
@@ -77,7 +42,6 @@ const AdminProfileEdit = () => {
         throw new Error('Network response was not ok');
       }
 
-      // Update the context with new user data
       setUser(adminData);
 
       alert('פרטי האדמין נשמרו בהצלחה!');
@@ -93,29 +57,21 @@ const AdminProfileEdit = () => {
   };
 
   return (
-    <BackgroundBox>
-      <GradientCircle size="600px" color={{ r: 26, g: 96, b: 104, a: 0.5 }} top="-200px" left="-200px" />
-      <GradientCircle size="400px" color={{ r: 26, g: 96, b: 104, a: 0.3 }} top="50%" left="70%" />
-      <GradientCircle size="300px" color={{ r: 26, g: 96, b: 104, a: 0.3 }} top="80%" left="20%" />
+    <Box className="background-box">
+      <Box className="gradient-circle circle-1"></Box>
+      <Box className="gradient-circle circle-2"></Box>
+      <Box className="gradient-circle circle-3"></Box>
 
-      <EditBox>
+      <Box className="edit-box">
         <Typography variant="h5" gutterBottom>
           עריכת פרטי מנהל
         </Typography>
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            marginBottom: 2,
-            marginLeft: 1.5,
-            marginTop: 2,
-          }}
-        >
-          <Avatar sx={{ bgcolor: 'rgba(26,96,104,255)', marginRight: 2 }}>
+        <Box className="drawer-header">
+          <Avatar className="drawer-avatar">
             {user.userName ? user.userName.charAt(0).toUpperCase() : ''}
           </Avatar>
-          <Divider orientation="vertical" flexItem sx={{ marginLeft: 2 }} />
-          <Box sx={{ marginLeft: 2 }}>
+          <Divider orientation="vertical" flexItem className="divider" />
+          <Box className="user-details">
             <Typography variant="subtitle1">
               <b>{user.userName}</b>
             </Typography>
@@ -138,13 +94,12 @@ const AdminProfileEdit = () => {
           onChange={handleEmailChange}
         />
 
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: 2 }}>
+        <Box className="button-container">
           <Button
             variant="contained"
             color="primary"
             onClick={handleSave}
             disabled={saving}
-            sx={{ marginRight: 2 }}
           >
             שמור
           </Button>
@@ -152,8 +107,8 @@ const AdminProfileEdit = () => {
             בטל
           </Button>
         </Box>
-      </EditBox>
-    </BackgroundBox>
+      </Box>
+    </Box>
   );
 }
 
