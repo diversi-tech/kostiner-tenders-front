@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Routes, Route } from 'react-router-dom';
 import Connection from '../connection';
 import Help from '../help';
@@ -20,12 +20,16 @@ import ViewTenders from '../GPT/viewEditTenders/viewEditTenders';
 import CreditCard_Step from '../card/card_step';
 import FinishPay_Step from '../finnishPay/finishPay_step';
 import Login from '../Login';
+import EditUserProfile from '../EditProfile/editUserProfile'
+import EditAdminProfile from '../EditProfile/editAdminProfile'
+import RequestsStatus from '../user/requestStatus'
 const AppRoutes = ({ isAdmin }) => {
     return (
       <>
         <ScrollToTop />
         <Routes>
-        {/* anchorId="connection-anchor" */}
+          <Route path="/user-profile" element={<ScrollToAnchor component={<EditUserProfile />}  key="userProfile" />} />
+          <Route path="/status-requests" element={<ScrollToAnchor component={<RequestsStatus/>}  key="RequestsStatus" />} />
           <Route path="/connection" element={<ScrollToAnchor component={<Connection />}  key="connection" />} />
           <Route path="/login" element={<ScrollToAnchor component={<Login open={true} />}  key="connection" />} />
           <Route path="/help" element={<ScrollToAnchor component={<Help />} anchorId="help-anchor" key="help" />} />
@@ -47,6 +51,8 @@ const AppRoutes = ({ isAdmin }) => {
               <Route path="/admin-dashboard" element={<ScrollToAnchor component={<AdminDashboard />} anchorId="subscription-anchor" key="subscription" />} />
               <Route path="/upload-csv" element={<ScrollToAnchor component={<UploadCSV />} anchorId="subscription-anchor" key="subscription" /> }/>
               <Route path="/view-tenders" element={<ScrollToAnchor component={<ViewTenders />} anchorId="subscription-anchor" key="subscription" />} />
+              <Route path="/admin-profile" element={<ScrollToAnchor component={<EditAdminProfile />}  key="adminProfile" />} />
+
             </>
           )}
         </Routes>
