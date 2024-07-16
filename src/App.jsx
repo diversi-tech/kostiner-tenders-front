@@ -29,12 +29,9 @@ function App() {
           </div>
           <Footer />
         </div>
-<<<<<<< HEAD
         
-        <Footer />
-      {/* </div> */}
-=======
->>>>>>> 646a9ec24290edfb5cf83490051477b09628ef3a
+       
+      
       </UserProvider>
     </BrowserRouter>
   );
