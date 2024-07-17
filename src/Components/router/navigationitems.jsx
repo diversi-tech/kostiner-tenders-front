@@ -1,4 +1,5 @@
 const navigationitems = [
+    //{label:<AnchorTemporaryDrawer></AnchorTemporaryDrawer>,isAuthRequired:false,isAdmin:false},
     { label: 'התחברות', link: '/login', isAuthRequired: false, isAdmin: false },
     { label: 'התנתקות', link: '/logout', isAuthRequired: true, isAdmin: false },
     { label: 'תמיכה ועזרה', link: '#help-section', isAuthRequired: false, isAdmin: false },

@@ -70,6 +70,8 @@ const Toolbar = ({ isAuthenticated, isAdmin, setScrollToSection }) => {
         <div className="navbar">
             <ul className="navbar-list">
                 {navigationitems.map((item, index) => renderNavItem(item, index))}
+                {/* Replace AnchorTemporaryDrawer with the appropriate component you intend to render */}
+                {/* Example: <li>{renderCustomNavItem(SomeComponent, isAuthenticated, isAdmin)}</li> */}
             </ul>
             <img src={logo} alt="Logo" className="navbar-logo" onClick={handleLogoClick} />
         </div>
