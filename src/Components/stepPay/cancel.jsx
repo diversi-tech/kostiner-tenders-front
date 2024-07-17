@@ -12,7 +12,16 @@ export default function SvgIconsSize() {
 
   return (
     <Box sx={{ position: 'absolute', top: 0, right: 0, color: 'white', p: 4 }}>
-      <CancelIcon fontSize="large" onClick={handleNav} />
+      <CancelIcon
+        fontSize="large"
+        onClick={handleNav}
+        sx={{
+          cursor: 'pointer',
+          '&:hover': {
+            transform: 'scale(1.1)',
+          },
+        }}
+      />
     </Box>
   );
 }

@@ -1,22 +1,21 @@
 import React, { useEffect } from 'react';
+import { Container } from 'react-bootstrap';
 
-const ScrollToAnchor = ({ component, anchorId, offset = 150 }) => {
-  console.log("1");
+const ScrollToAnchor = ({ component, anchorId }) => {
   useEffect(() => {
-    console.log("2");
     const element = document.getElementById(anchorId);
     if (element) {
-      const yOffset = -offset;
+      const yOffset = window.innerWidth < 768 ? -200 : -115; // Adjust offset based on screen size
       const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
-  }, [anchorId, offset]);
+  }, [anchorId]);
 
   return (
-    <>
+    <Container fluid className="d-flex flex-column vh-100 w-100">
       <div id={anchorId}></div>
       {component}
-    </>
+    </Container>
   );
 };
 

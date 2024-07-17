@@ -96,7 +96,8 @@ export default function IconStepper({ activeStep }) {
                   }}
                 >
                   <ShoppingCartRoundedIcon
-                    sx={{ color: activeStep === 0 ? 'rgba(26,96,104,255)' : 'white' }}
+                    sx={{ color: activeStep === 0 ? 'rgba(26,96,104,255)' : 'white' ,
+                     cursor: 'pointer',}}
                   />
                 </StepIndicator>
               }
@@ -114,7 +115,8 @@ export default function IconStepper({ activeStep }) {
                   }}
                 >
                   <FormatListBulletedRoundedIcon
-                    sx={{ color: activeStep === 1 ? 'rgba(26,96,104,255)' : 'white' }}
+                    sx={{ color: activeStep === 1 ? 'rgba(26,96,104,255)' : 'white',
+                    cursor: 'pointer', }}
                   />
                 </StepIndicator>
               }
@@ -132,7 +134,8 @@ export default function IconStepper({ activeStep }) {
                   }}
                 >
                   <CreditCardRoundedIcon
-                    sx={{ color: activeStep === 2 ? 'rgba(26,96,104,255)' : 'white' }}
+                    sx={{ color: activeStep === 2 ? 'rgba(26,96,104,255)' : 'white' ,
+                    cursor: 'pointer',}}
                   />
                 </StepIndicator>
               }
@@ -150,7 +153,8 @@ export default function IconStepper({ activeStep }) {
                   }}
                 >
                   <CheckCircleRoundedIcon
-                    sx={{ color: activeStep === 3 ? 'rgba(26,96,104,255)' : 'white' }}
+                    sx={{ color: activeStep === 3 ? 'rgba(26,96,104,255)' : 'white',
+                    cursor: 'pointer', }}
                   />
                 </StepIndicator>
               }

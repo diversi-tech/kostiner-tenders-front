@@ -9,29 +9,34 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import { useNavigate } from 'react-router-dom';
 
-// import IconStepper from '../IconStepper/IconStepper';
-
-export default function typeProduct() {
+export default function TypeProduct() {
   const [selectedOptions, setSelectedOptions] = React.useState([]);
   const [openAutocomplete, setOpenAutocomplete] = React.useState(false);
-const nav=useNavigate();
+  const nav = useNavigate();
+
   const handleSelect = (event, value) => {
     if (value.length > 3) {
       value.pop(); // Remove the last item if more than 3 are selected
-    } else {
-      setSelectedOptions(value);
     }
-
+    setSelectedOptions(value);
     // Close Autocomplete if exactly 3 options are selected
     if (value.length === 3) {
       setOpenAutocomplete(false);
     }
   };
 
-  const handleNav = (title) => {
-    console.log("nav");
-    nav('/creditCard');
+  const handleNav = () => {
+  // Create an object with selected options to send to the server
+  const dataToSend = {
+    selectedOptions: selectedOptions.map(option => option.label)
   };
+  console.log("Sending data:", dataToSend);
+
+  // Example navigation to '/creditCard'
+  nav('/creditCard');
+};
+
+
   return (
     <Box
       sx={{
@@ -101,7 +106,7 @@ const nav=useNavigate();
                   backgroundColor: 'rgb(129, 175, 164)',
                 },
               }}
-onClick={handleNav}
+              onClick={handleNav}
             >
               שליחה לתשלום
             </Button >
