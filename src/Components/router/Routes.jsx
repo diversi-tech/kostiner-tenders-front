@@ -19,6 +19,7 @@ import UploadCSV from '../GPT/uploadCSV/uploadCSV';
 import ViewTenders from '../GPT/viewEditTenders/viewEditTenders';
 import CreditCard_Step from '../card/card_step';
 import FinishPay_Step from '../finnishPay/finishPay_step';
+import TenderStatus from '../statusRequest/statusRequest';
 
 const AppRoutes = ({ isAdmin }) => {
   return (
@@ -35,12 +36,12 @@ const AppRoutes = ({ isAdmin }) => {
         <Route path="/about" element={<ScrollToAnchor component={<About />} anchorId="about-anchor" key="about" />} />
         <Route path="/result" element={<ScrollToAnchor component={<ResultTender />} anchorId="result-anchor" key="result" />} />
         <Route path="/subscription" element={<ScrollToAnchor component={<Subscription />} anchorId="subscription-anchor" key="subscription" />} />
+        <Route path="/statusRequest" element={<ScrollToAnchor component={<TenderStatus />} anchorId="status-request" key="status-request" />} />
         <Route path="/product" element={<Product_Step />} />
         <Route path="/typeProduct" element={<TypeProduct_Step />} />
         <Route path="/tenderSearch" element={<ProductTender_Step  />} />
         <Route path="/creditCard" element={<CreditCard_Step />} />
         <Route path="/finishPay" element={<FinishPay_Step />} />
-
 
         {isAdmin && (
           <>

@@ -6,6 +6,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 import HourglassTopIcon from '@mui/icons-material/HourglassTop';
 import { useNavigate } from 'react-router-dom';
+import './statusRequest.css';
 
 const tenderStatuses = [
   {
@@ -44,31 +45,9 @@ const TenderStatus = () => {
   };
 
   return (
-    <Box
-      sx={{
-        width: '33vw',
-        height: '100%',
-        margin: 'auto',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        padding: '1rem',
-      }}
-    >
+    <Box className="tender-container">
       {tenderStatuses.map((tender, index) => (
-        <Box
-          key={index}
-          sx={{
-            width: '100%',
-            backgroundColor: '#f0f0f0',
-            padding: '1rem',
-            marginBottom: '1rem',
-            borderRadius: '4px',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-          }}
-        >
+        <Box key={index} className="tender-box">
           <Typography variant="h6" gutterBottom>
             שם המכרז המבוקש: <br />
             {tender.nameTendet}
@@ -80,14 +59,14 @@ const TenderStatus = () => {
                   <>
                     {tender.isPaid ? (
                       <>
-                        <CheckCircleIcon sx={{ color: 'green', fontSize: 30, marginLeft: '0.5rem' }} />
+                        <CheckCircleIcon className="icon" style={{ color: 'green' }} />
                         <Typography variant="body1" color="green">
                           הבקשה אושרה והתהליך הסתיים בהצלחה
                         </Typography>
                       </>
                     ) : (
                       <>
-                        <HourglassTopIcon sx={{ color: 'blue', fontSize: 30, marginLeft: '0.5rem' }} />
+                        <HourglassTopIcon className="icon" style={{ color: 'blue' }} />
                         <Typography variant="body1" color="blue">
                           הבקשה אושרה וממתינה לסיום התהליך
                         </Typography>
@@ -96,7 +75,7 @@ const TenderStatus = () => {
                   </>
                 ) : (
                   <>
-                    <CancelIcon sx={{ color: 'red', fontSize: 30, marginLeft: '0.5rem' }} />
+                    <CancelIcon className="icon" style={{ color: 'red' }} />
                     <Typography variant="body1" color="red">
                       הבקשה נדחתה
                     </Typography>
@@ -105,30 +84,14 @@ const TenderStatus = () => {
               </>
             ) : (
               <>
-                <HourglassEmptyIcon sx={{ color: 'gray', fontSize: 30, marginLeft: '0.5rem' }} />
+                <HourglassEmptyIcon className="icon" style={{ color: 'gray' }} />
                 <Typography variant="body1">הבקשה בטיפול</Typography>
               </>
             )}
           </Box>
           {tender.isCheck && tender.isRequestApproved && !tender.isPaid && (
-            <Typography
-              sx={{
-                marginTop: '0.5rem',
-                color: 'black',
-                textAlign: 'center',
-              }}
-            >
-              לסיום התהליך{' '}
-              <span
-                style={{
-                  textDecoration: 'underline',
-                  cursor: 'pointer',
-                  color: 'rgba(26,96,104,255)',
-                }}
-                onClick={handleFinishProcess}
-              >
-                לחץ כאן
-              </span>
+            <Typography className="finish-process-text" onClick={handleFinishProcess}>
+              לסיום התהליך <span className="finish-link">לחץ כאן</span>
             </Typography>
           )}
         </Box>
