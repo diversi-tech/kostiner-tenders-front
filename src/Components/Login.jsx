@@ -598,7 +598,7 @@ const handleChange = (field, value) => {
         <DialogTitle>{forgetPassword ? "איפוס סיסמא " : "כניסה לחשבון"}</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            {forgetPassword ? "אנא הכנס את האימייל שאיתו נרשמת לחשבון" : "כניסה לחשבון קיים"}
+            {forgetPassword ? "אנא הכנס את האימייל איתו נרשמת לחשבון" : "כניסה לחשבון קיים"}
           </DialogContentText>
           {!forgetPassword ? <>
             <TextField
@@ -609,6 +609,7 @@ const handleChange = (field, value) => {
               name="username"
               label="שם משתמש"
               dir="rtl"
+              value={credential.userName}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -632,6 +633,7 @@ const handleChange = (field, value) => {
               id="password"
               name="password"
               label="סיסמא"
+              value={credential.password}
               type={showPassword ? "text" : "password"}
               variant="outlined"
              dir='rtl'
@@ -668,8 +670,9 @@ const handleChange = (field, value) => {
               label="אימייל"
               type="email"
               dir='rtl'
+              value={email}
               variant="outlined"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {setEmail(e.target.value); console.log(e.target.value);}}
               style={{ backgroundColor: 'rgb(240, 255, 255)', borderRadius: '4px', marginBottom: '10px' }}
               InputProps={{
                 startAdornment: (
@@ -707,8 +710,8 @@ const handleChange = (field, value) => {
             boxShadow: '0px 3px 6px #c8c8c8b5',
             transition: 'background-color 0.3s ease',
           }}
-          onMouseOver={(e) => (e.currentTarget.style.backgroundColor = 'rgb(23, 27, 31)')}
-          onMouseOut={(e) => (e.currentTarget.style.backgroundColor = 'rgb(33, 37, 41)')}
+          onMouseMove={(e) => (e.currentTarget.style.backgroundColor = 'rgb(23, 27, 30)')}
+          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#1c5f68')}
         >צור חשבון</Button>
         <br/>
         </DialogContent>
