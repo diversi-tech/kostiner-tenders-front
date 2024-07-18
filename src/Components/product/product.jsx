@@ -12,19 +12,15 @@ import Typography from '@mui/joy/Typography';
 import Check from '@mui/icons-material/Check';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import { useNavigate } from 'react-router-dom';
-
 export default function Product() {
   const nav = useNavigate();
-
   const handleNav = (title) => {
-
     if (title === 'דו"ח חד פעמי') {
       nav('/tenderSearch');
     } else {
       nav('/typeProduct');
     }
   };
-
   const cardData = [
     {
       title: "דו\"ח חד פעמי",
@@ -40,12 +36,11 @@ export default function Product() {
     },
     {
       title: "דו\"ח חודשי",
-      subtitle: " תוצאות של מכרזי החודש בתחומים נבחרים",
+      subtitle: "תוצאות של מכרזי החודש בתחומים נבחרים",
       buttonText: "לרכישה",
       features: ["דוח מפורט", "סקירה חודשית בתחומים נבחרים", "שלושה תחומים לבחירה"]
     }
   ];
-
   return (
     <Box
       sx={{
@@ -104,7 +99,6 @@ export default function Product() {
                 MOST POPULAR
               </Chip>
             )}
-
             <Typography level="h2" textAlign="center">{card.title}</Typography>
             <Divider inset="none" />
             <Typography level="h6" textAlign="center">{card.subtitle}</Typography>
@@ -130,7 +124,7 @@ export default function Product() {
                   '&:hover': {
                     backgroundColor: 'rgb(129, 175, 164)',
                   },
-                  color: '#ffffff',
+                  color: '#FFFFFF',
                 }}
                 onClick={() => handleNav(card.title)}
               >
@@ -140,6 +134,13 @@ export default function Product() {
           </Card>
         ))}
       </Box>
+      {/* Scrollbar for manual scrolling */}
+      <Box
+        sx={{
+          display: 'block',
+          height: '20px', // Adjust height as needed
+        }}
+      />
     </Box>
   );
 }

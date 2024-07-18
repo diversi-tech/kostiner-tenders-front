@@ -10,7 +10,7 @@ export default function HomePage() {
   const logoSize = isSmallScreen ? '150px' : isMediumScreen ? '200px' : '250px';
 
   return (
-  
+  <section class="sec1">
   <Box
     sx={{
         flexGrow: 1,
@@ -54,5 +54,6 @@ export default function HomePage() {
         </Grid>
     </Grid>
   </Box>
+  </section>
  );
 }

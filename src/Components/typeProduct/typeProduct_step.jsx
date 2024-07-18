@@ -6,7 +6,7 @@ import SvgIconsSize from '../stepPay/cancel';
 
 export default function TypeProduct_Step() {
     const [open, setOpen] = React.useState(true); // Open the modal by default
-    const handleClose = () => setOpen(false);
+    const handleClose = () => setOpen(true);
 
     return (
         <Modal
