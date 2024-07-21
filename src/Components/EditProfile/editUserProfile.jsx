@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { UserContext } from '../../context/userContext';
 import Login from '../../Server/Auth';
-import './editUserProfile.css';
+import './EditUserProfile.css';
 
 export default function EditUserProfile() {
   const { user, setUser } = useContext(UserContext);
