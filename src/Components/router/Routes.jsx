@@ -25,26 +25,32 @@ import ResetPasswordForm from '../resetPasswordForm/resetPasswordorm'
 // import ItemsList from '../item/items';
 import CategorySelection from '../categorySelection/categorySelection';
 import ItemsList from '../item/items';
+import EditUserProfile from '../EditProfile/editUserProfile';
+import AdminProfileEdit from '../EditProfile/editAdminProfile';
+import RequestsStatus from '../requestStatus/requestStatus';
+import Login from '../Login';
+
+
 const AppRoutes = ({ isAuthenticated, isAdmin }) => {
   console.log("router");
 
   const categoriesData = [
     {
-        name: 'בניין',
-        description: 'קטגוריה עבור בניין ואדריכלות',
+      name: 'בניין',
+      description: 'קטגוריה עבור בניין ואדריכלות',
     },
     {
-        name: 'טכנולוגיה',
-        description: 'קטגוריה עבור טכנולוגיה ותוכנה',
+      name: 'טכנולוגיה',
+      description: 'קטגוריה עבור טכנולוגיה ותוכנה',
     },
     {
-        name: 'משתמשים',
-        description: 'קטגוריה עבור ניהול משתמשים והרשאות',
+      name: 'משתמשים',
+      description: 'קטגוריה עבור ניהול משתמשים והרשאות',
     },
-];
+  ];
 
-const items = [
-  {
+  const items = [
+    {
       company: "חברת א",
       nameTender: "מכרז 1234",
       datePublished: "01/01/2023",
@@ -55,8 +61,8 @@ const items = [
       winnerData: "חברת א - פרטי הזוכה",
       bidAmount: "1,000,000 ₪",
       id: "1234"
-  },
-  {
+    },
+    {
       company: "חברת ב",
       nameTender: "מכרז 5678",
       datePublished: "02/01/2023",
@@ -67,8 +73,8 @@ const items = [
       winnerData: "חברת ב - פרטי הזוכה",
       bidAmount: "2,000,000 ₪",
       id: "5678"
-  }
-];
+    }
+  ];
 
   return (
     <>
@@ -83,7 +89,7 @@ const items = [
         {/* <Route path="/result" element={<ScrollToAnchor component={< ItemsList/>} anchorId="result-anchor" />} /> */}
         <Route path="/subscription" element={<ScrollToAnchor component={<Subscription />} anchorId="subscription-anchor" />} />
         <Route path="/resetPasword" element={<ScrollToAnchor component={<ResetPasswordForm />} anchorId="ResetPasswordForm-anchor" />} />
-        <Route path="/categortTender" element={<ScrollToAnchor component={<ItemsList items={items}/>} anchorId="categoryTender-anchor" />} />
+        <Route path="/categortTender" element={<ScrollToAnchor component={<ItemsList items={items} />} anchorId="categoryTender-anchor" />} />
         <Route path="/product" element={<Product_Step />} />
         <Route path="/typeProduct" element={<TypeProduct_Step />} />
         <Route path="/tenderSearch" element={<ProductTender_Step />} />
@@ -101,16 +107,19 @@ const items = [
         )}
 
         {!isAuthenticated && (
-          <Route path="/login" element={<HomePage />} />
-        )}
+          <Route path="/login" element={<ScrollToAnchor component={<Login open={true} />} key="connection" />} />)}
 
         {isAuthenticated && (
           <>
-          <Route path="/logout" element={<HomePage />} />
-          <Route path="/categotySelect" element={<ScrollToAnchor component={<CategorySelection categories={categoriesData}/>} anchorId="categortSelect-anchor" />}/>
+            <Route path="/logout" element={<HomePage />} />
+            <Route path="/categotySelect" element={<ScrollToAnchor component={<CategorySelection categories={categoriesData} />} anchorId="categortSelect-anchor" />} />
+            <Route path="/user-profile" element={<ScrollToAnchor component={<EditUserProfile />} anchorId="userProfile" key="userProfile" />} />
+            <Route path="/status-requests" element={<ScrollToAnchor component={<RequestsStatus />} anchorId="RequestStatus" key="RequestsStatus" />} />
+            <Route path="/admin-profile" element={<ScrollToAnchor component={<AdminProfileEdit />} anchorId="adminProfile" key="adminProfile" />} />
+
           </>
         )}
-        
+
       </Routes>
     </>
   );

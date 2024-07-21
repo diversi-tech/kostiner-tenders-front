@@ -10,14 +10,15 @@ import ListItemText from '@mui/material/ListItemText';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import PersonIcon from '@mui/icons-material/Person';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import AssignmentIcon from '@mui/icons-material/Assignment'; 
-import HistoryIcon from '@mui/icons-material/History'; 
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import HistoryIcon from '@mui/icons-material/History';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../context/userContext';
-import './AnchorTemporaryDrawer.css';
+import './anchorTemporaryDrawer.css';
+import Login from '../../Server/Auth';
 
 const icons = {
   'התנתקות': <ExitToAppIcon />,
@@ -30,7 +31,7 @@ const icons = {
 const AnchorTemporaryDrawer = () => {
   const navigate = useNavigate();
   const [state, setState] = useState({ left: false, selectedOption: null });
-  const { user, logout } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
   const toggleDrawer = (open) => (event) => {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -63,7 +64,7 @@ const AnchorTemporaryDrawer = () => {
   };
 
   const handleLogout = () => {
-    logout();
+    Login.logout();
   };
 
   const userName = user ? user.name : '';
@@ -90,7 +91,6 @@ const AnchorTemporaryDrawer = () => {
           <Typography variant="body2">{userEmail}</Typography>
         </Box>
       </Box>
-
       <Divider />
       <List>
         {menuItems
@@ -103,7 +103,7 @@ const AnchorTemporaryDrawer = () => {
                 className="list-item-button"
               >
                 <ListItemIcon className="list-item-icon">
-                  {icons[item.text] || <PersonIcon />} 
+                  {icons[item.text] || <PersonIcon />}
                 </ListItemIcon>
                 <ListItemText primary={item.text} />
               </ListItemButton>
@@ -114,18 +114,36 @@ const AnchorTemporaryDrawer = () => {
   );
 
   return (
-    <Box sx={{ display: 'flex' }}>
-      <Box onClick={toggleDrawer(true)} aria-label="account" className="drawer-account-icon">
+    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          // justifyContent: 'flex-end',
+          alignItems: 'flex-end',
+          position: 'fixed',
+          top: '16px',
+          marginLeft: '45px',
+          color: 'rgba(26, 96, 104, 255)',
+          cursor: 'pointer',
+          zIndex: 1, // Ensure it's above other content
+          transition: 'color 0.3s',
+          marginTop: '30px', // Optional: Adjust vertical alignment
+          // marginRight: '10px', // Optional: Adjust horizontal alignment
+        }}
+        onClick={toggleDrawer(true)}
+        aria-label="account"
+        className="drawer-account-icon"
+      >
         <AccountCircleOutlinedIcon />
       </Box>
-      <Drawer 
+      <Drawer
         anchor="left"
         open={state.left}
         onClose={toggleDrawer(false)}
         onClick={toggleDrawer(false)}
         variant="persistent"
         PaperProps={{
-          sx: { width: 250 },
+          sx: { width: 250, overflow: 'hidden' },
         }}
       >
         {list()}

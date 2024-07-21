@@ -472,7 +472,7 @@ import LoginService from '../Logic/LoginService';
 // import SignUp from "./SignUp";
 import {useNavigate } from 'react-router-dom';
 export default function Login(props) {
-  
+  console.log("login");
   const [open, setOpen] = React.useState(props.open);
   const [credential, setCredential] = useState({ userName: '', password: '' });
   const [forgetPassword, setForgetPassword] = useState(false);
