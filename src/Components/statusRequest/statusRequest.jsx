@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
@@ -6,9 +6,11 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 import HourglassTopIcon from '@mui/icons-material/HourglassTop';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './statusRequest.css';
 
-const tenderStatuses = [
+// מערך ברירת מחדל במקרה של כשל בקבלת הנתונים מה-API
+const defaultTenderStatuses = [
   {
     nameTendet: "מזון ומסחר תעופתי",
     isCheck: true,
@@ -36,7 +38,35 @@ const tenderStatuses = [
 ];
 
 const TenderStatus = () => {
+  const [tenderStatuses, setTenderStatuses] = useState(defaultTenderStatuses);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // פונקציה לטיפול בקבלת הנתונים מה-API
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('/api/tender-statuses'); // הנתיב לקבלת הנתונים
+        setTenderStatuses(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setError('נפלה שגיאה בעת טעינת הנתונים');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []); // [] כאן מוודא שהקריאה תתבצע רק פעם אחת בעת ההרצה הראשונית של הקומפוננטה
+
+  if (loading) {
+    return <div>טוען נתונים...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   const handleFinishProcess = () => {
     navigate('/creditcard', {

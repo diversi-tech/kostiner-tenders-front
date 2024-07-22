@@ -8,6 +8,9 @@ import Toolbar from './Components/toolbar/toolbar';
 import  GGG  from "./Components/ggg";
 import TenderStatus from './Components/statusRequest/statusRequest';
 import ItemsList from './Components/item/items';
+import ExportExcel from './Components/uploadCSV/uploadCSV';
+import ViewEditTenders from './Components/managementTender/managementTender';
+import UploadCSV from './Components/uploadCSV/uploadCSV';
 function App() {
   // const isAuthenticated = true;
   // const isAdmin = true;
@@ -73,8 +76,6 @@ function App() {
         <div className="content">
           <HomePage />
           <AppRoutes isAdmin={isAdmin} />
-          <TenderStatus/>
-          <ItemsList items={items}  />
           </div>
         <Footer />
       </div>
