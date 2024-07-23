@@ -7,7 +7,7 @@ import AnchorTemporaryDrawer from '../EditProfile/anchorTemporaryDrawer'; // Imp
 
 const Toolbar = ({ isAuthenticated, isAdmin, setScrollToSection }) => {
     const navigate = useNavigate();
-
+console.log(isAuthenticated,isAdmin);
     const handleNavItemClick = (e, item) => {
         if (item.link.startsWith('#')) {
             e.preventDefault();

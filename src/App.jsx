@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import AppRoutes from './Components/router/Routes';
 import './App.css';
@@ -9,13 +9,9 @@ import GGG from './Components/ggg';
 import Help from './Components/help/help';
 import About from './Components/about/about';
 import ItemsList from './Components/item/items';
-import { UserProvider } from './context/userContext';
-
+import { UserProvider, UserContext } from './context/userContext';
 
 function App() {
-    const isAuthenticated = true;
-    const isAdmin = false;
-
     const items = [
         {
             company: "חברת א",
@@ -43,28 +39,50 @@ function App() {
         }
     ];
 
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(false);
+
     return (
         <BrowserRouter>
-          <UserProvider>
-            <MainComponent isAuthenticated={isAuthenticated} isAdmin={isAdmin} items={items} />
+            <UserProvider>
+                <MainComponent 
+                    isAuthenticated={isAuthenticated} 
+                    setIsAuthenticated={setIsAuthenticated}
+                    isAdmin={isAdmin} 
+                    setIsAdmin={setIsAdmin}
+                    items={items} 
+                />
             </UserProvider>
         </BrowserRouter>
     );
 }
 
-const MainComponent = ({ isAuthenticated, isAdmin, items }) => {
+const MainComponent = ({ isAuthenticated, setIsAuthenticated, isAdmin, setIsAdmin, items }) => {
+    const { user, setUser } = useContext(UserContext);
     const location = useLocation();
+
+    useEffect(() => {
+        const token = localStorage.getItem('authToken');
+        const role = user.role; // Adjust this line if role is managed differently
+
+        if (token) {
+            setIsAuthenticated(true);
+            setIsAdmin(role === 'admin');
+        } else {
+            setIsAuthenticated(false);
+            setIsAdmin(false);
+        }
+    }, [user.role]); // Adding user.role as dependency if it's being updated
 
     const isSectionPath = location.hash;
 
     return (
         <>
-  
             <div style={{ display: 'none' }}><GGG /></div>
             <div id="root">
                 <Toolbar isAuthenticated={isAuthenticated} isAdmin={isAdmin} />
                 <div className="content">
-                   <HomePage />
+                    <HomePage />
                     {!isSectionPath && !isAdmin && isAuthenticated && (
                         <>
                             <About />
