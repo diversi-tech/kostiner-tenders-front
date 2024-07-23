@@ -9,9 +9,11 @@ import GGG from './Components/ggg';
 import Help from './Components/help/help';
 import About from './Components/about/about';
 import ItemsList from './Components/item/items';
+import { UserProvider } from './context/userContext';
+
 
 function App() {
-    const isAuthenticated = true;
+    const isAuthenticated = false;
     const isAdmin = false;
 
     const items = [
@@ -43,7 +45,9 @@ function App() {
 
     return (
         <BrowserRouter>
+          <UserProvider>
             <MainComponent isAuthenticated={isAuthenticated} isAdmin={isAdmin} items={items} />
+            </UserProvider>
         </BrowserRouter>
     );
 }
@@ -55,6 +59,7 @@ const MainComponent = ({ isAuthenticated, isAdmin, items }) => {
 
     return (
         <>
+  
             <div style={{ display: 'none' }}><GGG /></div>
             <div id="root">
                 <Toolbar isAuthenticated={isAuthenticated} isAdmin={isAdmin} />

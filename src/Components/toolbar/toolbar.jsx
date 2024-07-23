@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import navigationitems from '../router/navigationitems';
 import './toolbar.css';
 import logo from '../../image/logo.png';
+import AnchorTemporaryDrawer from '../EditProfile/anchorTemporaryDrawer'; // Import the AnchorTemporaryDrawer component
 
 const Toolbar = ({ isAuthenticated, isAdmin, setScrollToSection }) => {
     const navigate = useNavigate();
@@ -70,9 +71,14 @@ const Toolbar = ({ isAuthenticated, isAdmin, setScrollToSection }) => {
         <div className="navbar">
             <ul className="navbar-list">
                 {navigationitems.map((item, index) => renderNavItem(item, index))}
-                {/* Replace AnchorTemporaryDrawer with the appropriate component you intend to render */}
-                {/* Example: <li>{renderCustomNavItem(SomeComponent, isAuthenticated, isAdmin)}</li> */}
+                {/* Conditionally render AnchorTemporaryDrawer if isAdmin and isAuthenticated */}
+                {isAuthenticated && (
+                    <li>
+                        <AnchorTemporaryDrawer/>
+                    </li>
+                )}
             </ul>
+            
             <img src={logo} alt="Logo" className="navbar-logo" onClick={handleLogoClick} />
         </div>
     );

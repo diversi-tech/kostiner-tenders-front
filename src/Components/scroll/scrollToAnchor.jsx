@@ -10,7 +10,7 @@ const ScrollToAnchor = ({ component, anchorId }) => {
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
   }, [anchorId]);
-
+console.log("scroll");
   return (
     <Container fluid className="d-flex flex-column vh-100 w-100">
       <div id={anchorId}></div>
