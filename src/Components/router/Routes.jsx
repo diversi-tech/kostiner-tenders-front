@@ -25,6 +25,7 @@ import ResetPasswordForm from '../resetPasswordForm/resetPasswordorm'
 // import ItemsList from '../item/items';
 import CategorySelection from '../categorySelection/categorySelection';
 import ItemsList from '../item/items';
+import Login from '../Login';
 const AppRoutes = ({ isAuthenticated, isAdmin }) => {
   console.log("router");
 
@@ -76,6 +77,7 @@ const items = [
       <Routes>
         {/* <Route path="/" element={<HomePage />} /> */}
         <Route path="/connection" element={<ScrollToAnchor component={<Connection />} anchorId="connection-anchor" />} />
+        {/* <Route path="/login" element={<ScrollToAnchor component={<Login open={true}/>}  />} /> */}
         {/* <Route path="/help" element={<ScrollToAnchor component={<Help />} anchorId="help-anchor" />} /> */}
         <Route path="/controlpanel" element={<ScrollToAnchor component={<ControlPanel />} anchorId="controlpanel-anchor" />} />
         <Route path="/usermanagement" element={<ScrollToAnchor component={<UserManagement />} anchorId="usermanagement-anchor" />} />
@@ -100,8 +102,8 @@ const items = [
           </>
         )}
 
-        {!isAuthenticated && (
-          <Route path="/login" element={<HomePage />} />
+        {isAuthenticated && (
+          <Route path="/login" element={<ScrollToAnchor component={<Login open={true} />}  />} />
         )}
 
         {isAuthenticated && (

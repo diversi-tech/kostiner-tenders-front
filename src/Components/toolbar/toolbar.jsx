@@ -29,8 +29,8 @@ const Toolbar = ({ isAuthenticated, isAdmin, setScrollToSection }) => {
 
     const renderNavItem = (item, index) => {
         if ((!isAuthenticated && item.isAuthRequired) ||
-            (isAuthenticated && item.label === 'התחברות' && !item.isAdmin) ||
-            (!isAuthenticated && item.label === 'התנתקות' && !item.isAdmin) ||
+            (!isAuthenticated && item.label === 'התחברות' && !item.isAdmin) ||
+            (isAuthenticated && item.label === 'התנתקות' && !item.isAdmin) ||
             (isAuthenticated && item.label === 'דוגמא למכרזים' && !item.isAdmin) ||
             (!isAuthenticated && item.label === 'תוצאות מכרזים' && !item.isAdmin)) {
             return null;

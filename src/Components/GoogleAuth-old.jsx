@@ -197,7 +197,7 @@ const GoogleAuthOld = () => {
   const handleLoginSuccess = (response) => {
     console.log('Login Success:', response);
     console.log("token",response.credential);
-    fetch('http://127.0.0.1:5000/google', {
+    fetch('https://kostiner-tenders-back.onrender.com/auth/continue-with-google', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -205,9 +205,10 @@ const GoogleAuthOld = () => {
         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
       },
       body: JSON.stringify({ token: response.credential }),
+      token: response.credential
     })
     .then(res => res.json())
-    .then(data => console.log(data))
+    .then(data => localStorage.setItem('authToken', data.access_token))
     .catch(error => console.error('Error:', error));
   };
 
