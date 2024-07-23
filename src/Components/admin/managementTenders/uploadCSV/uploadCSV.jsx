@@ -5,6 +5,8 @@ import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRo
 import { useDropzone } from 'react-dropzone';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import ExcelJS from 'exceljs/dist/exceljs.min.js';
+import { addTender } from '../../../../Server/tender'; // יש לוודא שהקובץ מיובא נכון
+
 const requiredColumns = ["שם גוף", "שם ומספר המכרז", "תאריך פרסום", "תאריך הגשה", "קטגוריות", "שם הזוכה ופרטי הזוכה", "מציעים", "מידע על הזוכה", "סכום ההצעה", "אומדן"];
 const columnWidths = {
   "שם גוף": 10,
@@ -12,7 +14,7 @@ const columnWidths = {
   "תאריך פרסום": 10,
   "תאריך הגשה": 10,
   "קטגוריות": 10,
-  "שם הזוכה ופרטי הזוכה": 18,
+  "שם הזוכה ": 18,
   "מציעים": 10,
   "מידע על הזוכה": 12,
   "סכום ההצעה": 10,
@@ -30,13 +32,16 @@ const columnSamples = {
   "סכום ההצעה": ["100,000", "200,000", "300,000"],
   "אומדן": ["אומדן 1", "אומדן 2", "אומדן 3"]
 };
+
 const ExportExcel = () => {
   const [data, setData] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
   const [fileName, setFileName] = useState('');
+
   const exportToExcel = () => {
     const workbook = new ExcelJS.Workbook();
     const sheet = workbook.addWorksheet('Sheet1', { views: [{ rightToLeft: true }] });
+
     // Adding headers with custom background color for the title row only
     const headerRow = sheet.addRow(requiredColumns);
     headerRow.eachCell({ includeEmpty: true }, function(cell) {
@@ -49,12 +54,14 @@ const ExportExcel = () => {
       cell.alignment = { vertical: 'middle', horizontal: 'center' }; // Center align headers
     });
     headerRow.height = 23; // Height for header row
+
     // Setting column widths dynamically
     requiredColumns.forEach((column, index) => {
       const width = columnWidths[column] || 20;
       const sheetColumn = sheet.getColumn(index + 1); // index + 1 because ExcelJS columns are 1-based
       sheetColumn.width = width;
     });
+
     // Adding data rows and setting their heights
     for (let i = 0; i < 3; i++) {
       const row = requiredColumns.map(column => columnSamples[column][i]);
@@ -64,32 +71,45 @@ const ExportExcel = () => {
         cell.alignment = { vertical: 'middle', horizontal: 'center' }; // Center align data cells
       });
     }
+
     // Save workbook
     workbook.xlsx.writeBuffer().then(buffer => {
       saveAs(new Blob([buffer]), 'example_tender.xlsx');
     }).catch(err => console.error('Error exporting Excel:', err));
   };
+
   const handleFile = (file) => {
     const reader = new FileReader();
-    reader.onload = (e) => {
+    reader.onload = async (e) => {
       const data = new Uint8Array(e.target.result);
       const workbook = XLSX.read(data, { type: 'array' });
       const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
       const jsonData = XLSX.utils.sheet_to_json(firstSheet, { header: 1 });
       const headers = jsonData[0];
       const missingColumns = requiredColumns.filter(column => !headers.includes(column));
+
       if (missingColumns.length > 0) {
         setErrorMessage(`העמודות הבאות חסרות בקובץ: ${missingColumns.join(', ')}`);
         setData([]);
         setFileName('');
       } else {
-        setData(jsonData.slice(1));
+        const tenderData = jsonData.slice(1); // הנתונים עצמם ללא הכותרות
+        setData(tenderData);
         setErrorMessage('');
         setFileName(file.name);
+
+        // קריאה לפונקציה addTender עם המכרז והקובץ
+        try {
+          await addTender( file);
+          console.log('Tender added successfully');
+        } catch (error) {
+          console.error('Error adding Tender:', error);
+        }
       }
     };
     reader.readAsArrayBuffer(file);
   };
+
   const { getRootProps, getInputProps } = useDropzone({
     accept: '.xlsx, .xls',
     onDrop: (acceptedFiles) => {
@@ -139,14 +159,14 @@ const ExportExcel = () => {
           {errorMessage}
         </Typography>
       )}
-      <Button variant="contained" onClick={exportToExcel}  sx={{
-                  backgroundColor: 'rgba(26,96,104,255)',
-                  '&:hover': {
-                    backgroundColor: 'rgb(129, 175, 164)',
-                  },
-                  color: '#ffffff',
-                }}>
-      הורד קובץ לדוגמא
+      <Button variant="contained" onClick={exportToExcel} sx={{
+        backgroundColor: 'rgba(26,96,104,255)',
+        '&:hover': {
+          backgroundColor: 'rgb(129, 175, 164)',
+        },
+        color: '#ffffff',
+      }}>
+        הורד קובץ לדוגמא
       </Button>
       {data.length > 0 && (
         <TableContainer component={Paper} sx={{ width: '80%', marginTop: '20px' }}>
@@ -177,4 +197,5 @@ const ExportExcel = () => {
     </Box>
   );
 };
+
 export default ExportExcel;

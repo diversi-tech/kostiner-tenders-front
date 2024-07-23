@@ -13,7 +13,7 @@ import { UserProvider } from './context/userContext';
 
 
 function App() {
-    const isAuthenticated = false;
+    const isAuthenticated = true;
     const isAdmin = false;
 
     const items = [

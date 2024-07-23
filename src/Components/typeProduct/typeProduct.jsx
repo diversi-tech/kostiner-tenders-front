@@ -7,21 +7,19 @@ import Typography from '@mui/joy/Typography';
 import Autocomplete from '@mui/material/Autocomplete';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { getAllProducts } from '../../Server/caregory'; // Adjust the path according to your project structure
+import { useNavigate } from 'react-router-dom';
+import { getAllCategories } from '../../Server/caregory'; // Adjust the path according to your project structure
 
-export default function TypeProduct({ type }) {
+export default function TypeProduct({ typeTender }) {
   const [selectedOptions, setSelectedOptions] = React.useState([]);
   const [openAutocomplete, setOpenAutocomplete] = React.useState(false);
   const [options, setOptions] = React.useState([]);
   const nav = useNavigate();
-  // const location = useLocation();
-console.log(type);
+
   React.useEffect(() => {
     async function fetchProducts() {
-      const products = await getAllProducts();
-      const priceKey = type === 1 ? 'monthlyPrice' : 'subscriptionPrice';
-      console.log(priceKey);
+      const products = await getAllCategories();
+      const priceKey = typeTender.type == 1 ? 'monthlyPrice' : 'subscriptionPrice';
       const formattedOptions = products.map(product => ({
         label: `${product.category} - ₪${product[priceKey]}`,
         value: product.category,
@@ -32,7 +30,7 @@ console.log(type);
     }
 
     fetchProducts();
-  }, [type]);
+  }, [typeTender]);
 
   const handleSelect = (event, value) => {
     if (value.length > 3) {
@@ -53,7 +51,7 @@ console.log(type);
 
     // Example navigation to '/creditCard'
     nav('/creditCard', {
-      state: { type } // Passing 'type' back to the '/creditCard' route
+      state: { type: typeTender } // Passing 'type' back to the '/creditCard' route
     });
   };
 

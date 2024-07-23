@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Grid, Card, CardContent, Typography, IconButton, Divider } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import AssignmentIcon from '@mui/icons-material/Assignment';
-import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
-import BuildIcon from '@mui/icons-material/Build';
+import TableViewIcon from '@mui/icons-material/TableView';
 import { styled } from '@mui/material/styles';
+// import { getAllTenders } from '../api'; // ייבוא הפונקציה מהקובץ המתאים - מסולש
 
 const ColoredIconButton = styled(IconButton)(({ theme }) => ({
     color: 'rgba(26,96,104,255)',
@@ -14,16 +13,36 @@ const ColoredIconButton = styled(IconButton)(({ theme }) => ({
 }));
 
 const iconMap = {
-    בניין: <BuildIcon fontSize="large" />,
-    טכנולוגיה: <AssignmentIcon fontSize="large" />,
-    משתמשים: <PeopleAltIcon fontSize="large" />,
+    default: <TableViewIcon fontSize="large" />,
 };
 
-const CategorySelection = ({ categories }) => {
+const CategorySelection = () => {
     const navigate = useNavigate();
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        const fetchDummyTenders = async () => {
+            // נתוני דמהק
+            const dummyTenders = [
+                { name: 'בניה', description: 'תיאור מכרז 1' },
+                { name: 'תקשורת', description: 'תיאור מכרז 2' },
+                { name: 'נקיון', description: 'תיאור מכרז 3' },
+            ];
+            setCategories(dummyTenders);
+        };
+        fetchDummyTenders();
+        // const fetchTenders = async () => {
+        //     try {
+        //         const tenderData = await getAllTenders();
+        //         setCategories(tenderData);
+        //     } catch (error) {
+        //         console.error('Error fetching Tenders:', error);
+        //     }
+        // };
+        // fetchTenders();
+    }, []);
 
     const handleNavigate = (categoryName) => {
-        // navigate(`/category/${categoryName}`);
         navigate('/categortTender');
     };
 
@@ -57,7 +76,7 @@ const CategorySelection = ({ categories }) => {
                         >
                             <CardContent sx={{ width: '100%', textAlign: 'center' }}>
                                 <ColoredIconButton aria-label={category.name}>
-                                    {iconMap[category.name] || <AssignmentIcon fontSize="large" />}
+                                    {iconMap.default}
                                 </ColoredIconButton>
                                 <Typography variant="h5" align="center" gutterBottom>
                                     {category.name}

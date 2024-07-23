@@ -82,10 +82,10 @@ const AppRoutes = ({ isAuthenticated, isAdmin }) => {
       <Routes>
         {/* <Route path="/" element={<HomePage />} /> */}
         <Route path="/connection" element={<ScrollToAnchor component={<Connection />} anchorId="connection-anchor" />} />
-        {/* <Route path="/help" element={<ScrollToAnchor component={<Help />} anchorId="help-anchor" />} /> */}
+        <Route path="/help" element={<ScrollToAnchor component={<Help />} anchorId="help-anchor" />} />
         <Route path="/controlpanel" element={<ScrollToAnchor component={<ControlPanel />} anchorId="controlpanel-anchor" />} />
         <Route path="/usermanagement" element={<ScrollToAnchor component={<UserManagement />} anchorId="usermanagement-anchor" />} />
-        {/* <Route path="/about" element={<ScrollToAnchor component={<About />} anchorId="about-anchor" />} /> */}
+        <Route path="/about" element={<ScrollToAnchor component={<About />} anchorId="about-anchor" />} />
         {/* <Route path="/result" element={<ScrollToAnchor component={< ItemsList/>} anchorId="result-anchor" />} /> */}
         <Route path="/subscription" element={<ScrollToAnchor component={<Subscription />} anchorId="subscription-anchor" />} />
         <Route path="/resetPasword" element={<ScrollToAnchor component={<ResetPasswordForm />} anchorId="ResetPasswordForm-anchor" />} />

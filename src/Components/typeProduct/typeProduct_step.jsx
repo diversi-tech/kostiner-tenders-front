@@ -10,9 +10,7 @@ export default function TypeProduct_Step() {
     const handleClose = () => setOpen(false); // Close the modal
 
     const location = useLocation();
-    const type  = location.state || {}; // Destructure 'type' from location state
-    console.log(type); // ידפיס את הערך של type מתוך location.state, לדוגמה: 1
-    console.log(location.state); // ידפיס את כל האובייקט של location.stateז
+    const type = location.state || {}; // Destructure 'type' from location state
     return (
         <Modal
             open={open}
