@@ -78,7 +78,7 @@ const ManagementTenders = () => {
                   <SettingsIcon fontSize="large" />
                 </ColoredIconButton>
                 <Typography variant="h5" align="center" gutterBottom>
-                  הצג וערוך את פרטי המכרז
+                  הצג וערוך את קטגוריות מכרזים
                 </Typography>
               </CardContent>
               <Divider />

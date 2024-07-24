@@ -7,22 +7,42 @@ import Typography from '@mui/joy/Typography';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import CircularProgress from '@mui/material/CircularProgress';
-import Snackbar from '@mui/material/Snackbar'; // ייבוא של Snackbar
-import Alert from '@mui/material/Alert'; // ייבוא של Alert
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
+
+// ייבוא של הפונקציה המתאימה מתוך requests.js
+import { addRequest } from "../../Server/requests"; 
 
 export default function TenderSearchBox() {
   const [tenderName, setTenderName] = React.useState('');
   const [loading, setLoading] = React.useState(false);
   const [openSnackbar, setOpenSnackbar] = React.useState(false);
+  const [snackbarMessage, setSnackbarMessage] = React.useState('');
+  const [snackbarSeverity, setSnackbarSeverity] = React.useState('success');
 
   const handleSubmit = async () => {
     setLoading(true);
 
-    // סימולציה של שמירה במערכת
-    setTimeout(() => {
+    const token = localStorage.getItem('authToken'); // קבלת מזהה המשתמש מה-localStorage
+    const request = {
+      token: token,
+      date: new Date().toISOString(),
+      tenderName: tenderName
+    };
+
+    try {
+      await addRequest(request);
       setLoading(false);
+      setSnackbarMessage('הבקשה נשלחה לבדיקה, בימים הקרובים תקבל עדכונים');
+      setSnackbarSeverity('success');
       setOpenSnackbar(true);
-    }, 2000); // סימולציה של 2 שניות
+    } catch (error) {
+      console.error('Error adding request:', error);
+      setLoading(false);
+      setSnackbarMessage('שגיאה בשליחת הבקשה. נסה שוב מאוחר יותר.');
+      setSnackbarSeverity('error');
+      setOpenSnackbar(true);
+    }
   };
 
   const handleCloseSnackbar = () => {
@@ -105,8 +125,8 @@ export default function TenderSearchBox() {
         </CardContent>
       </Card>
       <Snackbar open={openSnackbar} autoHideDuration={6000} onClose={handleCloseSnackbar}>
-        <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: '100%' }}>
-          הבקשה נשלחה לבדיקה, בימים הקרובים תקבל עדכונים
+        <Alert onClose={handleCloseSnackbar} severity={snackbarSeverity} sx={{ width: '100%' }}>
+          {snackbarMessage}
         </Alert>
       </Snackbar>
     </Box>

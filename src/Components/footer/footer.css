@@ -40,7 +40,7 @@
 }
 
 .column li {
-  margin-bottom: 10px;
+  margin-bottom: 20px; /* להגדיל את הרווח בין השורות */
 }
 
 .column a {
@@ -50,7 +50,7 @@
 }
 
 .column a:hover {
-  color: #0a3f3d; /* שינוי הצבע בעת העטיפה */
+  color: #82a7a3; /* שינוי הצבע בעת העטיפה לצבע בהיר יותר */
 }
 
 .logo-wrapper {
@@ -59,7 +59,7 @@
 
 .logo-wrapper img {
   width: 100%;
-  max-width: 200px;
+  max-width: 150px;
   margin: 0 auto;
 }
 

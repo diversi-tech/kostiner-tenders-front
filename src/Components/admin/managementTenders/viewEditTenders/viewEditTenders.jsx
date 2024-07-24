@@ -6,7 +6,7 @@ import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
 import styled from 'styled-components';
 import AddCategoryForm from './addOrEditCategory';
-import { getAllProducts, addProduct, updateProduct, deleteProduct } from '../../../../Server/caregory'; // ייבוא הפונקציות מה-API
+import { getAllCategories, addCategory, updateCategory, deleteCategory } from '../../../../Server/caregory'; // ייבוא הפונקציות מה-API
 import { useTheme } from '@mui/material/styles';
 const StyledTableRow = styled(TableRow)`
   transition: transform 0.3s ease-in-out;
@@ -45,7 +45,7 @@ function EnhancedTable() {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   useEffect(() => {
     const fetchData = async () => {
-      const products = await getAllProducts();
+      const products = await getAllCategories();
       setData(products);
     };
     fetchData();
@@ -66,7 +66,7 @@ function EnhancedTable() {
     const originalItem = editingItem;
     if (originalItem) {
       try {
-        await updateProduct(originalItem.category, item);
+        await updateCategory(originalItem.category, item);
         const updatedData = data.map((d) => (d.category === originalItem.category ? item : d));
         setData(updatedData);
       } catch (error) {
@@ -74,7 +74,7 @@ function EnhancedTable() {
       }
     } else {
       try {
-        const newProduct = await addProduct(item);
+        const newProduct = await addCategory(item);
         setData((prevData) => [...prevData, newProduct]);
       } catch (error) {
         console.error('Error adding product:', error);
@@ -89,7 +89,7 @@ function EnhancedTable() {
   };
   const handleDeleteConfirm = async () => {
     try {
-      await deleteProduct(deleteCategory);
+      await deleteCategory(deleteCategory);
       const updatedData = data.filter((item) => item.category !== deleteCategory);
       setData(updatedData);
     } catch (error) {

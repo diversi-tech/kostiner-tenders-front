@@ -1,22 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import logo from '../../image/logo.png';
 import { Link } from 'react-router-dom';
 import './footer.css';
+import { UserContext } from '../../context/userContext'; // הנחה שיש הקשר חיבור משתמש
 
 const Footer = () => {
+  const { loggedIn } = useContext(UserContext); // שימוש בהקשר חיבור משתמש
+
   return (
     <footer className="footer-wrapper">
-      <div className="container py-5">
+      <div className="container">
         <div className="footer-content row">
           <div className="column col-md-3 mb-4">
             <h3>ניווט</h3>
             <ul className="list-unstyled">
               <li><Link to="/product" className="custom-hover">מסלולי מנוי</Link></li>
-              <li><a href="#" className="custom-hover">ליווי וייעוץ</a></li>
-              <li><a href="#" className="custom-hover">אודות</a></li>
-              <li><a href="#" className="custom-hover">שאלות ותשובות</a></li>
-              <li><a href="#" className="custom-hover">צור קשר</a></li>
-              <li><a href="#" className="custom-hover">כניסת מנויים</a></li>
+              {/* <li><a href="#" className="custom-hover">ליווי וייעוץ</a></li> */}
+              <li><Link to="/about" className="custom-hover">עלינו</Link></li>
+              <li><Link to="/help" className="custom-hover">עזרה</Link></li>
+              {/* <li><a href="#" className="custom-hover">צור קשר</a></li> */}
+              {!loggedIn && (
+                <li><Link to="/login" className="custom-hover">כניסת מנויים</Link></li>
+              )}
             </ul>
           </div>
           <div className="column col-md-6 mb-3 contact-form">
