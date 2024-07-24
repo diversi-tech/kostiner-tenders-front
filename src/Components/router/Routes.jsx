@@ -20,7 +20,7 @@ import ViewTenders from '../GPT/viewEditTenders/viewEditTenders';
 import CreditCard_Step from '../card/card_step';
 import FinishPay_Step from '../finnishPay/finishPay_step';
 import TenderStatus from '../statusRequest/statusRequest';
-import TenderTable from '../conductingTenders/conductingTenders';
+import TenderTable from '../edittingTenders/edittingTenders';
 
 const AppRoutes = ({ isAdmin }) => {
   return (

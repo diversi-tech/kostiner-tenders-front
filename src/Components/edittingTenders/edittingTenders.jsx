@@ -229,17 +229,16 @@ const TenderTable = () => {
                                   </TableCell>
                                 ))}
                                 <TableCell align="center">
-                                  <Button
-                                    variant="contained"
-                                    sx={{
-                                      backgroundColor: 'rgba(26,96,104,255)',
+                                  <Button 
+                                    onClick={() => handleEditToggle(category, index)} 
+                                    style={{ 
+                                      backgroundColor: 'rgba(26,96,104,255)', 
                                       color: 'white',
-                                      border: 'none',
                                       '&:hover': {
-                                        backgroundColor: 'rgb(129, 175, 164)',
-                                      }
+                                        backgroundColor: 'rgb(129, 175, 164)'
+                                      },
+                                      border: 'none'
                                     }}
-                                    onClick={() => handleEditToggle(category, index)}
                                   >
                                     {tender.editable ? 'שמור' : 'ערוך'}
                                   </Button>
