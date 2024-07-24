@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import navigationitems from '../router/navigationitems';
 import './toolbar.css';
 import logo from '../../image/logo.png';
-import AnchorTemporaryDrawer from '../EditProfile/anchorTemporaryDrawer'; // Import the AnchorTemporaryDrawer component
+import AnchorTemporaryDrawer from '../EditProfile/AnchorTemporaryDrawer'; // Import the AnchorTemporaryDrawer component
 
 const Toolbar = ({ isAuthenticated, isAdmin, setScrollToSection }) => {
     const navigate = useNavigate();
