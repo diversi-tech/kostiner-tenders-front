@@ -20,6 +20,7 @@ import ViewTenders from '../GPT/viewEditTenders/viewEditTenders';
 import CreditCard_Step from '../card/card_step';
 import FinishPay_Step from '../finnishPay/finishPay_step';
 import TenderStatus from '../statusRequest/statusRequest';
+import TenderTable from '../conductingTenders/conductingTenders';
 
 const AppRoutes = ({ isAdmin }) => {
   return (
@@ -48,6 +49,7 @@ const AppRoutes = ({ isAdmin }) => {
             <Route path="/admin-dashboard" element={<ScrollToAnchor component={<AdminDashboard />} anchorId="subscription-anchor" key="subscription" />} />
             <Route path="/upload-csv" element={<ScrollToAnchor component={<UploadCSV />} anchorId="subscription-anchor" key="subscription" />} />
             <Route path="/view-tenders" element={<ScrollToAnchor component={<ViewTenders />} anchorId="subscription-anchor" key="subscription" />} />
+            <Route path="/editting-tenders" element={<ScrollToAnchor component={<TenderTable />} anchorId="editting-tenders" key="subscription" />} />          
           </>
         )}
       </Routes>

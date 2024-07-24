@@ -11,6 +11,8 @@ import ItemsList from './Components/item/items';
 import ExportExcel from './Components/uploadCSV/uploadCSV';
 import ViewEditTenders from './Components/managementTender/managementTender';
 import UploadCSV from './Components/uploadCSV/uploadCSV';
+import TenderDataGrid from './Components/conductingTenders/conductingTenders';
+import TenderTable from './Components/conductingTenders/conductingTenders';
 function App() {
   // const isAuthenticated = true;
   // const isAdmin = true;
@@ -76,6 +78,8 @@ function App() {
         <div className="content">
           <HomePage />
           <AppRoutes isAdmin={isAdmin} />
+          <ItemsList items={items} />
+          <TenderTable/>
           </div>
         <Footer />
       </div>

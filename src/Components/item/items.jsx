@@ -1,38 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios'; // נדרש עבור קריאות ה-API
+import React from 'react';
 import './Item1.css';
 import Item from './item'; // נתיב מותאם
 import ExportExcel from './itemExel'; // נוודא שזה הנתיב הנכון לקומפוננטה
 
-function ItemsList() {
-    const [items, setItems] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState('');
-
-    useEffect(() => {
-        // פונקציה לטיפול בקבלת הנתונים מה-API
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('/api/items'); // הנתיב לקבלת הנתונים
-                setItems(response.data);
-                setLoading(false);
-            } catch (error) {
-                setError('נפלה שגיאה בעת טעינת הנתונים');
-                setLoading(false);
-            }
-        };
-
-        fetchData();
-    }, []); // [] כאן מוודא שהקריאה תתבצע רק פעם אחת בעת ההרצה הראשונית של הקומפוננטה
-
-    if (loading) {
-        return <div>טוען נתונים...</div>;
-    }
-
-    if (error) {
-        return <div>{error}</div>;
-    }
-
+function ItemsList({ items }) {
     return (
         <div className="item-container">
             <table className="item-table">
