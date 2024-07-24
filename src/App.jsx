@@ -9,10 +9,10 @@ import  GGG  from "./Components/ggg";
 import TenderStatus from './Components/statusRequest/statusRequest';
 import ItemsList from './Components/item/items';
 import ExportExcel from './Components/uploadCSV/uploadCSV';
-import ViewEditTenders from './Components/managementTender/managementTender';
-import UploadCSV from './Components/uploadCSV/uploadCSV';
-import TenderDataGrid from './Components/conductingTenders/conductingTenders';
-import TenderTable from './Components/conductingTenders/conductingTenders';
+// import ViewEditTenders from './Components/managementTender/managementTender';
+// import UploadCSV from './Components/uploadCSV/uploadCSV';
+// import TenderDataGrid from './Components/conductingTenders/conductingTenders';
+// import TenderTable from './Components/conductingTenders/conductingTenders';
 function App() {
   // const isAuthenticated = true;
   // const isAdmin = true;
@@ -71,15 +71,14 @@ function App() {
 ];
 
   return (
-    <BrowserRouter>
-    <div style={{display:"none"}}> <GGG /></div>
+    <BrowserRouter> 
       <div id="root">
         <Toolbar isAuthenticated={isAuthenticated} isAdmin={isAdmin} />
         <div className="content">
           <HomePage />
           <AppRoutes isAdmin={isAdmin} />
           <ItemsList items={items} />
-          <TenderTable/>
+          {/* <TenderTable/> */}
           </div>
         <Footer />
       </div>
