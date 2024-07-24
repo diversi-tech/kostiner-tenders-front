@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from '@mui/material/Modal';
 import IconStepper from '../stepPay/stepPay';
-import CreditCard from './card';
+import CreditCard from './creditCard';
 import SvgIconsSize from '../stepPay/cancel';
 import { useLocation } from 'react-router-dom';
 

@@ -1,0 +1,91 @@
+/* editUserProfile.css */
+
+.BackgroundBox {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F0F0F0;
+  position: relative;
+  overflow: hidden;
+}
+
+.GradientCircle {
+  position: absolute;
+  border-radius: 50%;
+  z-index: 0;
+  /* filter: blur(80px); */
+}
+
+.circle-1 {
+  width: 600px;
+  height: 600px;
+  background: rgba(26, 96, 104, 0.5);
+  top: -200px;
+  left: -200px;
+}
+
+.circle-2 {
+  width: 400px;
+  height: 400px;
+  background: rgba(26, 96, 104, 0.3);
+  top: 50%;
+  left: 70%;
+}
+
+.circle-3 {
+  width: 300px;
+  height: 300px;
+  background: rgba(26, 96, 104, 0.3);
+  top: 80%;
+  left: 20%;
+}
+
+.EditBox {
+  background-color: white;
+  border-radius: 12px;
+  padding: 40px 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+  margin: 40px 20px; /* Increased margin for spacing */
+}
+
+.EditBoxTitle {
+  margin-bottom: 20px; /* Additional space below the title */
+  color: rgba(26, 96, 104, 255); /* Text color */
+  font-weight: bold; /* Bold font */
+}
+
+.EditBoxInputs {
+  margin-bottom: 20px; /* Space below inputs */
+}
+
+.EditBoxInputs .MuiTextField-root {
+  margin-bottom: 20px; /* Space between inputs */
+}
+.EditBoxButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px; /* Space above buttons */
+}
+.EditBoxButtons .MuiButton-root {
+  color: rgba(26, 96, 104, 255); /* Button text color */
+  border-color: rgba(26, 96, 104, 255); /* Button border color */
+}
+.EditBoxButtons .MuiButton-containedPrimary {
+  background-color: rgba(26, 96, 104, 255); /* Button background color */
+  color: white; /* Button text color */
+}
+.EditBoxButtons .MuiButton-containedPrimary:hover {
+  background-color: rgba(129, 175, 164, 255); /* Button hover background color */
+}
+.MuiInputBase-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(26, 96, 104, 255) !important; /* Input outline color */
+}
+.MuiFormLabel-root.Mui-focused {
+  color: rgba(26, 96, 104, 255) !important; /* Input label color */
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import './Item1.css';
+import './item1.css';
 import Item from './item'; // נתיב מותאם
 import ExportExcel from './itemExel'; // נוודא שזה הנתיב הנכון לקומפוננטה
 

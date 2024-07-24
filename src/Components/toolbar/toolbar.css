@@ -1,3 +1,5 @@
+/* toolbar.css */
+
 .navbar {
     background-color: #d5e6df;
     color: white;
@@ -68,12 +70,6 @@
     padding: 0.5rem 1rem;
 }
 
-.submenu li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
 .navbar-item:hover .submenu {
     display: block;
 }
@@ -134,4 +130,9 @@
     .navbar-item:hover::after {
         transform: scaleX(1);
     }
+}
+
+.custom-anchor-drawer-item {
+    /* סגנון ייעודי עבור AnchorTemporaryDrawer */
+    margin-right: 20px; /* דוגמא */
 }

@@ -1,90 +1,107 @@
-import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import AppRoutes from './Components/router/Routes';
 import './App.css';
 import Footer from './Components/footer/footer';
 import HomePage from './Components/homePage/homePage';
 import Toolbar from './Components/toolbar/toolbar';
-import  GGG  from "./Components/ggg";
-import TenderStatus from './Components/statusRequest/statusRequest';
+import GGG from './Components/ggg';
+import Help from './Components/help/help';
+import About from './Components/about/about';
 import ItemsList from './Components/item/items';
-import ExportExcel from './Components/uploadCSV/uploadCSV';
-// import ViewEditTenders from './Components/managementTender/managementTender';
-// import UploadCSV from './Components/uploadCSV/uploadCSV';
-// import TenderDataGrid from './Components/conductingTenders/conductingTenders';
-// import TenderTable from './Components/conductingTenders/conductingTenders';
-function App() {
-  // const isAuthenticated = true;
-  // const isAdmin = true;
-  const isAuthenticated = false;
-  const isAdmin = false;
-  const items = [
-    {
-        company: "חברה א",
-        nameTender: "מכרז בניה",
-        datePublished: "01/01/2023",
-        dateSubmission: "01/02/2023",
-        category: "בניין",
-        winnerDetails: "חברה א",
-        offer: "חברה ב, חברה ג",
-        winnerData: "פרטי הזוכה",
-        bidAmount: "1,000,000 ₪",
-        id: "1234"
-    },
-    {
-        company: "חברה ב",
-        nameTender: "מכרז תחבורה",
-        datePublished: "02/01/2023",
-        dateSubmission: "02/02/2023",
-        category: "טכנולוגיה",
-        winnerDetails: "חברה ב",
-        offer: "חברה ד, חברה ה",
-        winnerData: "פרטי הזוכה",
-        bidAmount: "2,000,000 ₪",
-        id: "5678"
-    },
-    {
-        company: "חברה ג",
-        nameTender: "מכרז ציוד",
-        datePublished: "03/01/2023",
-        dateSubmission: "03/02/2023",
-        category: "ציוד",
-        winnerDetails: "חברה ד",
-        offer: "חברה ג, חברה ה",
-        winnerData: "פרטי הזוכה",
-        bidAmount: "3,000,000 ₪",
-        id: "91011"
-    },
-    {
-        company: "חברה ד",
-        nameTender: "מכרז שירותים",
-        datePublished: "04/01/2023",
-        dateSubmission: "04/02/2023",
-        category: "שירותים",
-        winnerDetails: "חברה ה",
-        offer: "חברה ג, חברה ד",
-        winnerData: "פרטי הזוכה",
-        bidAmount: "4,000,000 ₪",
-        id: "121314"
-    }
-    // ניתן להוסיף עוד פריטים כפי שתרצה
-];
+import { UserProvider, UserContext } from './context/userContext';
 
-  return (
-    <BrowserRouter> 
-      <div id="root">
-        <Toolbar isAuthenticated={isAuthenticated} isAdmin={isAdmin} />
-        <div className="content">
-          <HomePage />
-          <AppRoutes isAdmin={isAdmin} />
-          <ItemsList items={items} />
-          {/* <TenderTable/> */}
-          </div>
-        <Footer />
-      </div>
-    </BrowserRouter>
-  );
+function App() {
+    const items = [
+        {
+            company: "חברת א",
+            nameTender: "מכרז 1234",
+            datePublished: "01/01/2023",
+            dateSubmission: "01/02/2023",
+            category: "בניין",
+            winnerDetails: "הזוכה - חברת א",
+            offer: "חברה ב, חברה ג",
+            winnerData: "חברת א - פרטי הזוכה",
+            bidAmount: "1,000,000 ₪",
+            id: "1234"
+        },
+        {
+            company: "חברת ב",
+            nameTender: "מכרז 5678",
+            datePublished: "02/01/2023",
+            dateSubmission: "02/02/2023",
+            category: "טכנולוגיה",
+            winnerDetails: "הזוכה - חברת ב",
+            offer: "חברה ד, חברה ה",
+            winnerData: "חברת ב - פרטי הזוכה",
+            bidAmount: "2,000,000 ₪",
+            id: "5678"
+        }
+    ];
+
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(false);
+
+    return (
+        <BrowserRouter>
+            <UserProvider>
+                <MainComponent 
+                    isAuthenticated={isAuthenticated} 
+                    setIsAuthenticated={setIsAuthenticated}
+                    isAdmin={isAdmin} 
+                    setIsAdmin={setIsAdmin}
+                    items={items} 
+                />
+            </UserProvider>
+        </BrowserRouter>
+    );
 }
 
-export default App;
+const MainComponent = ({ isAuthenticated, setIsAuthenticated, isAdmin, setIsAdmin, items }) => {
+    const { user, setUser } = useContext(UserContext);
+    const location = useLocation();
 
+    useEffect(() => {
+        const token = localStorage.getItem('authToken');
+        const role = user.role; // Adjust this line if role is managed differently
+
+        if (token) {
+            setIsAuthenticated(true);
+            setIsAdmin(role === 'admin');
+        } else {
+            setIsAuthenticated(false);
+            setIsAdmin(false);
+        }
+    }, [user.role]); // Adding user.role as dependency if it's being updated
+
+    const isSectionPath = location.hash;
+
+    return (
+        <>
+            <div style={{ display: 'none' }}><GGG /></div>
+            <div id="root">
+                <Toolbar isAuthenticated={isAuthenticated} isAdmin={isAdmin} />
+                <div className="content">
+                    <HomePage />
+                    {!isSectionPath && !isAdmin && isAuthenticated && (
+                        <>
+                            <About />
+                            <Help />
+                        </>
+                    )}
+                    {!isSectionPath && !isAdmin && !isAuthenticated && (
+                        <>
+                            <About />
+                            <Help />
+                            <ItemsList items={items} />
+                        </>
+                    )}
+                    <AppRoutes isAuthenticated={isAuthenticated} isAdmin={isAdmin} />
+                </div>
+                <Footer />
+            </div>
+        </>
+    );
+}
+
+export default App; 

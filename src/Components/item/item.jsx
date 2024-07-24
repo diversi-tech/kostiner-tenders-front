@@ -1,6 +1,6 @@
     import React from 'react';
     import PropTypes from 'prop-types';
-    import './Item1.css';
+    import './item1.css';
 
     function Item({ company, nameTender, datePublished, dateSubmission, category, winnerDetails, offer, winnerData, bidAmount, id }) {
         return (
