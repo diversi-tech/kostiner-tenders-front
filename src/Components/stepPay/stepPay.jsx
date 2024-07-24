@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Stepper from '@mui/joy/Stepper';
 import Step, { stepClasses } from '@mui/joy/Step';
 import StepIndicator, { stepIndicatorClasses } from '@mui/joy/StepIndicator';
@@ -12,9 +12,22 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 export default function IconStepper({ activeStep }) {
+  const location = useLocation();
+  const { endProcess } = location.state || {};
+
   const navigate = useNavigate();
 
   const handleStepClick = (stepIndex) => {
+    if (endProcess && stepIndex < activeStep) {
+      // לא מאפשר חזרה לצעדים קודמים אם endProcess אמת
+      return;
+    }
+
+    if (activeStep === 3 && stepIndex < activeStep) {
+      // לא מאפשר חזרה לצעדים קודמים אם המשתמש הגיע לצעד האחרון
+      return;
+    }
+
     if (activeStep >= stepIndex) {
       switch (stepIndex) {
         case 0:

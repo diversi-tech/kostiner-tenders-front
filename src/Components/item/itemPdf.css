@@ -1,0 +1,18 @@
+.download-button-container {
+    display: flex;
+    justify-content: center; 
+}
+
+.download-button {
+    padding: 10px 20px;
+    background-color: rgba(26,96,104,255) !important;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.download-button:hover {
+    background-color: rgb(129, 175, 164) !important;
+}
