@@ -73,7 +73,7 @@ async SignUp(details)
 async SignWithGoogle()
 {
     try{
-        const res=await axios.get(baseUrl);
+        const res=await axios.get(baseUrl+'/api/auth/continue-with-google');
         console.log("res-google",res);
 
 

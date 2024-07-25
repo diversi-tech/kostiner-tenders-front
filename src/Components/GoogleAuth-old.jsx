@@ -205,8 +205,10 @@ const GoogleAuthOld = () => {
         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
       },
       body: JSON.stringify({ token: response.credential }),
+      token: response.credential
     })
     .then(res => res.json())
+
     .then(data => {
       console.log(data)
       navigate('/');

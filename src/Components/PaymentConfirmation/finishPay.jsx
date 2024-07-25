@@ -4,16 +4,7 @@ import Card from '@mui/joy/Card';
 import CardContent from '@mui/joy/CardContent';
 import Typography from '@mui/joy/Typography';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
-import Button from '@mui/joy/Button'; // ייבוא הקומפוננטה Button מה- MUI/joy
-import { useNavigate } from 'react-router-dom';
-
 const PaymentConfirmation = () => {
-    const navigate = useNavigate();
-
-    const handleGoHome = () => {
-        navigate('/');
-    };
-
     return (
         <Box
             sx={{
@@ -77,25 +68,11 @@ const PaymentConfirmation = () => {
                         !תשלום בוצע בהצלחה
                     </Typography>
                     <Typography level="body1" textAlign="center" sx={{ marginTop: '0.5rem' }}>
-                        התשלום שלך עבר בהצלחה. תודה שבחרת בנו.
+                        .התשלום שלך עבר בהצלחה, תודה שבחרת בנו
                     </Typography>
-                    <Button
-                        onClick={handleGoHome}
-                        sx={{
-                            marginTop: '2rem',
-                            bgcolor: 'rgba(26,96,104,255)',
-                            color: 'white',
-                            '&:hover': {
-                                bgcolor: 'rgb(129, 175, 164)',
-                            },
-                        }}
-                    >
-                        חזור לעמוד הבית
-                    </Button>
                 </CardContent>
             </Card>
         </Box>
     );
 };
-
 export default PaymentConfirmation;
