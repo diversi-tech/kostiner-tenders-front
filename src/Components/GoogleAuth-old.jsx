@@ -197,7 +197,7 @@ const GoogleAuthOld = () => {
   const handleLoginSuccess = (response) => {
     console.log('Login Success:', response);
     console.log("token",response.credential);
-    fetch('http://127.0.0.1:5000/google', {
+    fetch('http://127.0.0.1:5000/auth/cotinue-with-google', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -207,7 +207,15 @@ const GoogleAuthOld = () => {
       body: JSON.stringify({ token: response.credential }),
     })
     .then(res => res.json())
-    .then(data => console.log(data))
+    .then(data => {
+      console.log(data)
+      navigate('/');
+
+      navigate('/user-profile');
+        location.reload();
+
+
+    })
     .catch(error => console.error('Error:', error));
   };
 
