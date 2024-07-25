@@ -612,6 +612,7 @@ const handleChange = (field, value) => {
               name="username"
               label="שם משתמש"
               dir="rtl"
+              value={credential.userName}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -635,6 +636,7 @@ const handleChange = (field, value) => {
               id="password"
               name="password"
               label="סיסמא"
+              value={credential.password}
               type={showPassword ? "text" : "password"}
               variant="outlined"
              dir='rtl'
@@ -671,6 +673,7 @@ const handleChange = (field, value) => {
               label="אימייל"
               type="email"
               dir='rtl'
+              value={email}
               variant="outlined"
               onChange={(e) => setEmail(e.target.value)}
               style={{ backgroundColor: 'rgb(240, 255, 255)', borderRadius: '4px', marginBottom: '10px' }}
