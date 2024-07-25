@@ -48,7 +48,6 @@ export default function TenderSearchBox() {
   const handleCloseSnackbar = () => {
     setOpenSnackbar(false);
   };
-
   return (
     <Box
       sx={{

@@ -5,12 +5,29 @@ import { Grid, Typography, TextField, Box, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 const CreditCard = () => {
+
     const nav = useNavigate();
 
     const handleNav = () => {
-        console.log("ניווט לסיום תשלום");
-        nav('/finishPay');
-    }
+        const cardNumberError = validateCardNumber(state.number);
+        const expiryError = validateExpiry(state.expiry);
+        const cvcError = validateCvc(state.cvc);
+        const nameError = validateName(state.name);
+
+        setErrors({
+            number: cardNumberError,
+            expiry: expiryError,
+            cvc: cvcError,
+            name: nameError,
+        });
+
+        if (!cardNumberError && !expiryError && !cvcError && !nameError) {
+            console.log("ניווט לסיום תשלום");
+            nav('/finishPay');
+        } else {
+            console.log("ישנם שדות שאינם תקינים, אנא בדוק שוב");
+        }
+    };
 
     const [state, setState] = useState({
         number: '',
@@ -24,6 +41,7 @@ const CreditCard = () => {
         number: '',
         expiry: '',
         cvc: '',
+        name: '',
     });
 
     const handleInputChange = (evt) => {
@@ -45,6 +63,11 @@ const CreditCard = () => {
             setErrors((prev) => ({
                 ...prev,
                 cvc: validateCvc(value),
+            }));
+        } else if (name === 'name') {
+            setErrors((prev) => ({
+                ...prev,
+                name: validateName(value),
             }));
         }
     };
@@ -74,19 +97,28 @@ const CreditCard = () => {
         return '';
     };
 
+    const validateName = (value) => {
+        if (!value || value.trim() === '') {
+            return 'שם בעל הכרטיס אינו תקין';
+        }
+        return '';
+    };
+
     const handleSubmit = (evt) => {
         evt.preventDefault();
         const cardNumberError = validateCardNumber(state.number);
         const expiryError = validateExpiry(state.expiry);
         const cvcError = validateCvc(state.cvc);
+        const nameError = validateName(state.name);
 
         setErrors({
             number: cardNumberError,
             expiry: expiryError,
             cvc: cvcError,
+            name: nameError,
         });
 
-        if (!cardNumberError && !expiryError && !cvcError) {
+        if (!cardNumberError && !expiryError && !cvcError && !nameError) {
             console.log('נתונים תקינים, ניתן להמשיך');
         } else {
             console.log('ישנם שדות שאינם תקינים, אנא בדוק שוב');
@@ -98,12 +130,12 @@ const CreditCard = () => {
             <Grid item xs={12} sm={8} md={6} lg={4} mt={3}>
                 <Box sx={{ p: 2, bgcolor: 'background.paper', borderRadius: 4 }}>
                     <Typography variant="h6" gutterBottom textAlign="center"
-                     sx={{
-                        fontFamily: 'var(--joy-fontFamily-display, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"))',
-                        fontWeight: 'var(--joy-fontWeight-xl, 700)',
-                        fontSize: 'var(--Typography-fontSize, 1.5rem)',
-                        color: 'black',
-                      }}> 
+                        sx={{
+                            fontFamily: 'var(--joy-fontFamily-display, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"))',
+                            fontWeight: 'var(--joy-fontWeight-xl, 700)',
+                            fontSize: 'var(--Typography-fontSize, 1.5rem)',
+                            color: 'black',
+                        }}>
                         הכנס פרטי אשראי
                     </Typography>
                     <Cards
@@ -159,6 +191,8 @@ const CreditCard = () => {
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
+                                    error={!!errors.name}
+                                    helperText={errors.name}
                                     sx={{ width: '100%' }}
                                     name="name"
                                     placeholder="שם בעל הכרטיס"
@@ -170,24 +204,24 @@ const CreditCard = () => {
                             </Grid>
                             <Grid item xs={12}>
                                 <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
-                                <Button
-    type="submit"
-    variant="contained"
-    color="primary"
-    sx={{
-        backgroundColor: 'rgba(26,96,104,255)',
-        '&:hover': {
-            backgroundColor: 'rgb(129, 175, 164)',
-        },
-        color: '#ffffff',
-        fontSize: '1.2rem', // גודל גופן גדול יותר
-        padding: '12px 24px', // מרווח פנימי גדול יותר
-        borderRadius: 5, // פינות מעוגלות
-    }}
-    onClick={handleNav}
->
-    שלח תשלום
-</Button>
+                                    <Button
+                                        type="submit"
+                                        variant="contained"
+                                        color="primary"
+                                        sx={{
+                                            backgroundColor: 'rgba(26,96,104,255)',
+                                            '&:hover': {
+                                                backgroundColor: 'rgb(129, 175, 164)',
+                                            },
+                                            color: '#ffffff',
+                                            fontSize: '1.2rem', // גודל גופן גדול יותר
+                                            padding: '12px 24px', // מרווח פנימי גדול יותר
+                                            borderRadius: 5, // פינות מעוגלות
+                                        }}
+                                        onClick={handleNav}
+                                    >
+                                        שלח תשלום
+                                    </Button>
 
                                 </Box>
                             </Grid>
