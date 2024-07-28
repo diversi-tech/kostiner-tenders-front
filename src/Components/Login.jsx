@@ -555,16 +555,19 @@ const handleChange = (field, value) => {
           else if (res.status === 200) {
             let userData = res.data;
             const token= localStorage.getItem('authToken');
-            userData =await LoginService.fetchAndSetUser(token)
-            //setUser(userData);
-            // console.log(user);
+            // userData =await LoginService.fetchAndSetUser(token)
+          
+            navigate('/');
+
+            navigate('/user-profile');
+              location.reload();
             handleClose();
             // await LoginService.getUsers();
           }
         }
       };
 
-
+   
   return (
     <React.Fragment>
       {/* <Button variant="contained" color="primary" onClick={handleClickOpen} style={{ backgroundColor: 'rgb(106, 174, 165)', color: 'white' }}>
