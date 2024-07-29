@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TextField, Button, Dialog, DialogActions, DialogContent, DialogTitle, Box } from '@mui/material';
+
 const AddCategoryForm = ({ open, handleClose, handleSave, initialData }) => {
     const [formData, setFormData] = useState({
       category: '',
@@ -13,6 +14,7 @@ const AddCategoryForm = ({ open, handleClose, handleSave, initialData }) => {
       monthlyPrice: false,
       subscriptionPrice: false
     });
+
     useEffect(() => {
       if (initialData) {
         setFormData({
@@ -30,6 +32,7 @@ const AddCategoryForm = ({ open, handleClose, handleSave, initialData }) => {
         });
       }
     }, [initialData]);
+
     const handleCancel = () => {
         setFormData({
             category: '',
@@ -43,13 +46,15 @@ const AddCategoryForm = ({ open, handleClose, handleSave, initialData }) => {
             monthlyPrice: false,
             subscriptionPrice: false
         });
-      handleClose();
+        handleClose();
     };
+
     const handleChange = (e) => {
       const { name, value } = e.target;
       setFormData({ ...formData, [name]: value });
       setErrors({ ...errors, [name]: value.trim() === '' });
     };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         let formIsValid = true;
@@ -73,11 +78,12 @@ const AddCategoryForm = ({ open, handleClose, handleSave, initialData }) => {
         }
         setErrors(newErrors);
         if (formIsValid) {
-            console.log(formData,formData);
+            console.log(formData, formData);
           handleSave(formData);
           handleClose();
         }
       };
+
     return (
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle sx={{ textAlign: 'right' }}>{initialData ? 'עריכת פריט' : 'הוספת פריט'}</DialogTitle>
@@ -143,19 +149,38 @@ const AddCategoryForm = ({ open, handleClose, handleSave, initialData }) => {
             FormHelperTextProps={{ style: { textAlign: 'right', direction: 'rtl' } }}
           />
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCancel} color="primary">
+        <DialogActions sx={{ justifyContent: 'center' }}>
+          <Button
+            onClick={handleCancel}
+            color="primary"
+            sx={{
+              backgroundColor: 'rgba(26,96,104,255)',
+              '&:hover': {
+                backgroundColor: 'rgb(129, 175, 164)',
+              },
+              color: 'white',
+              margin: '0 8px', // Optional: add margin between buttons
+            }}
+          >
             ביטול
           </Button>
-          <Button onClick={handleSubmit} color="primary">
+          <Button
+            onClick={handleSubmit}
+            color="primary"
+            sx={{
+              backgroundColor: 'rgba(26,96,104,255)',
+              '&:hover': {
+                backgroundColor: 'rgb(129, 175, 164)',
+              },
+              color: 'white',
+              margin: '0 8px', // Optional: add margin between buttons
+            }}
+          >
             שמירה
           </Button>
         </DialogActions>
       </Dialog>
     );
-  }
+}
+
 export default AddCategoryForm;
-
-
-
-

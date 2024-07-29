@@ -8,16 +8,18 @@ import styled from 'styled-components';
 import AddCategoryForm from './addOrEditCategory';
 import { getAllCategories, addCategory, updateCategory, deleteCategory } from '../../../../Server/caregory'; // ייבוא הפונקציות מה-API
 import { useTheme } from '@mui/material/styles';
+
 const StyledTableRow = styled(TableRow)`
   transition: transform 0.3s ease-in-out;
   position: relative;
   &:hover {
-    transform: scale(1.0);
+    transform: scale(1.02); /* שיפוט קל של גודל שיפור */
     & > td > div {
       display: block;
     }
   }
 `;
+
 const IconContainer = styled.div`
   display: none;
   position: absolute;
@@ -26,6 +28,7 @@ const IconContainer = styled.div`
   left: 16px;
   z-index: 1;
 `;
+
 function EnhancedTable() {
   const [data, setData] = useState([
     { id: 5, category: 'קוסמטיקה', description: 'קרם לחות לפנים', monthlyPrice: 30, subscriptionPrice: 300 },
@@ -43,6 +46,7 @@ function EnhancedTable() {
   const [deleteCategory, setDeleteCategory] = useState(null);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   useEffect(() => {
     const fetchData = async () => {
       const products = await getAllCategories();
@@ -50,18 +54,22 @@ function EnhancedTable() {
     };
     fetchData();
   }, []);
+
   const handleAddClick = () => {
     setEditingItem(null);
     setOpen(true);
   };
+
   const handleEditClick = (item) => {
     setEditingItem(item);
     setOpen(true);
   };
+
   const handleClose = () => {
     setOpen(false);
     setEditingItem(null);
   };
+
   const handleSave = async (item) => {
     const originalItem = editingItem;
     if (originalItem) {
@@ -83,10 +91,12 @@ function EnhancedTable() {
     handleClose();
     return { originalItem, newItem: item };
   };
+
   const handleDeleteClick = (category) => {
     setDeleteCategory(category);
     setOpenDeleteDialog(true);
   };
+
   const handleDeleteConfirm = async () => {
     try {
       await deleteCategory(deleteCategory);
@@ -98,42 +108,35 @@ function EnhancedTable() {
     setOpenDeleteDialog(false);
     setDeleteCategory(null);
   };
+
   const handleDeleteCancel = () => {
     setOpenDeleteDialog(false);
     setDeleteCategory(null);
   };
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
+
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+
   const handleRowHover = (category) => {
     setHoveredRow(category);
   };
+
   const handleRowLeave = () => {
     setHoveredRow(null);
   };
+
   return (
-    <Box sx={{ width: '100%' }} >
+    <Box sx={{ width: '100%' }}>
       <Typography variant="h4" gutterBottom align="center">
         קטגוריות המכרזים
       </Typography>
       <Paper sx={{ width: '100%', mb: 2, p: 2 }}>
-        <Grid container justifyContent="flex-start" spacing={2} mb={2}>
-          <Grid item>
-            <Button
-              variant="contained"
-              style={{ backgroundColor: 'rgba(26,96,104,255)', color: '#fff' }}
-              onClick={handleAddClick}
-              startIcon={<AddIcon />}
-            >
-              הוסף קטגוריה
-            </Button>
-          </Grid>
-        </Grid>
-        <AddCategoryForm open={open} handleClose={handleClose} handleSave={handleSave} initialData={editingItem} />
         <TableContainer>
           <Table sx={{ minWidth: isMobile ? 'auto' : 850 }} aria-labelledby="tableTitle">
             <TableHead>
@@ -196,6 +199,17 @@ function EnhancedTable() {
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
+        {/* Box for the Add Category button */}
+        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+          <Button
+            variant="contained"
+            style={{ backgroundColor: 'rgba(26,96,104,255)', color: '#fff' }}
+            onClick={handleAddClick}
+            endIcon={<AddIcon />} // Icon after the text
+          >
+            הוסף קטגוריה
+          </Button>
+        </Box>
       </Paper>
       <Dialog open={openDeleteDialog} onClose={handleDeleteCancel}>
         <DialogTitle>אישור מחיקה</DialogTitle>
@@ -211,7 +225,9 @@ function EnhancedTable() {
           </Button>
         </DialogActions>
       </Dialog>
+      <AddCategoryForm open={open} handleClose={handleClose} handleSave={handleSave} initialData={editingItem} />
     </Box>
   );
 }
+
 export default EnhancedTable;
