@@ -21,8 +21,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
      <QueryClientProvider client={queryClient}>
    <Auth0Provider
-    domain="localhost:5173"
-    clientId="720220089306-5rmsdqqui44gegs1d7f4h1mr8infd5d4.apps.googleusercontent.com"
+    domain="https://kostiner-tenders.onrender.com"
+    clientId= {import.meta.env.VITE_CLIENT_ID}
+
     authorizationParams={{
       redirect_uri: window.location.origin
     }}

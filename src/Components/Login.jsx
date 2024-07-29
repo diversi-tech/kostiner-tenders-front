@@ -558,9 +558,9 @@ const handleChange = (field, value) => {
             // userData =await LoginService.fetchAndSetUser(token)
           
             navigate('/');
-
+            location.reload();
             navigate('/user-profile');
-              location.reload();
+              
             handleClose();
             // await LoginService.getUsers();
           }

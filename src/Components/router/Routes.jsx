@@ -28,9 +28,26 @@ import CategorySelection from '../categorySelection/categorySelection';
 import EditUserProfile from '../EditProfile/editUserProfile';
 import RequestsStatus from '../requestStatus/requestStatus';
 import AdminProfileEdit from '../EditProfile/editAdminProfile';
-
+import { useLocation } from 'react-router-dom';
 const AppRoutes = ({ isAuthenticated, isAdmin }) => {
   console.log("router");
+
+
+  
+   const location = useLocation();
+  console.log(location);
+  
+      const currentPath = window.location.pathname;
+      
+      // location.reload();
+
+      window.addEventListener('load', () => {
+          window.location.pathname = '/';
+          history.pushState(null, null, currentPath);
+      });
+  
+
+  // window.addEventListener('load')
 
   const categoriesData = [
     {
