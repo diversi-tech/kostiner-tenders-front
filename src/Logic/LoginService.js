@@ -86,8 +86,9 @@ class Login {
     // }
     async fetchAndSetUser(token) {
         try {
-            const userId = this.getUserIdFromToken(token); // Implement this function to extract user ID from token
-            const response = await fetch(`https://kostiner-tenders-back.onrender.com/users/${userId}`, {
+            const userId = this.getUserIdFromToken(token); 
+            console.log(userId);
+            const response = await fetch(`https://kostiner-tenders-back.onrender.com/api/get-id-user/${userId}`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `${token}`,

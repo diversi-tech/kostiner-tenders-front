@@ -1,9 +1,9 @@
 // import AnchorTemporaryDrawer from '../EditProfile/AnchorTemporaryDrawer'; // Import the AnchorTemporaryDrawer component
-
+import Login from "../../Server/Auth";
 const navigationitems = [
     // {label:<AnchorTemporaryDrawer/>,isAuthRequired:false,isAdmin:false},
     { label: 'התחברות', link: '/login', isAuthRequired: false, isAdmin: false },
-    { label: 'התנתקות', link: '/logout', isAuthRequired: true, isAdmin: false },
+    { label: 'התנתקות', onClick: () => Login.logout(), isAuthRequired: true, isAdmin: false },
     { label: 'תמיכה ועזרה', link: '#help-section', isAuthRequired: false, isAdmin: false },
     { label: 'דוגמא למכרזים', link: '#result-section', isAuthRequired: false, isAdmin: false },
     { label: 'תוצאות מכרזים', link: '/categotySelect', isAuthRequired: true, isAdmin: false },

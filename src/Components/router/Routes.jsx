@@ -109,7 +109,7 @@ const AppRoutes = ({ isAuthenticated, isAdmin }) => {
 
         {isAuthenticated && (
           <>
-            <Route path="/logout" element={<HomePage />} />
+            {/* <Route path="/logout" element={<HomePage />} /> */}
             <Route path="/categotySelect" element={<ScrollToAnchor component={<CategorySelection categories={categoriesData} />} anchorId="categortSelect-anchor" />} />
             <Route path="/user-profile" element={<ScrollToAnchor component={<EditUserProfile />} anchorId="userProfile" key="userProfile" />} />
             <Route path="/status-requests" element={<ScrollToAnchor component={<RequestsStatus />} anchorId="RequestStatus" key="RequestsStatus" />} />
