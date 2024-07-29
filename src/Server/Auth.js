@@ -86,6 +86,7 @@ class Login {
     }
 
     
+
 }
 const singleton = new Login();
 export default singleton;
