@@ -66,7 +66,6 @@ async SignUp(details)
             return true;
         
     } catch (err) { console.log(err) }
-
 }
 
 
@@ -75,19 +74,9 @@ async SignWithGoogle()
     try{
         const res=await axios.get(baseUrl+'/api/auth/continue-with-google');
         console.log("res-google",res);
-
-
-
     }
     catch(err) { console.log(err) }
-    
-
-
-
 }
-
-
-
 }
 const singleton = new Login();
 export default singleton;
