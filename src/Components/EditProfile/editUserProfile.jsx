@@ -306,31 +306,18 @@ export default function EditUserProfile() {
   const { user, setUser } = useContext(UserContext);
 
   const [formUserName, setFormUserName] = useState('');
-<<<<<<< Updated upstream
   const [formUserEmail, setFormUserEmail] = useState('');
   const [originalUserName, setOriginalUserName] = useState('');
   const [originalUserEmail, setOriginalUserEmail] = useState('');
-=======
   const [formFirstName, setFormFirstName] = useState('');
   const [formLastName, setFormLastName] = useState('');
   const [formBusinessName, setFormBusinessName] = useState('');
   const [formPassword, setFormPassword] = useState('');
   const [formConfirmPassword, setFormConfirmPassword] = useState('');
-  const [originalUserName, setOriginalUserName] = useState('');
-  const [originalFirstName, setOriginalFirstName] = useState('');
-  const [originalLastName, setOriginalLastName] = useState('');
-  const [originalBusinessName, setOriginalBusinessName] = useState('');
->>>>>>> Stashed changes
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     if (user) {
-<<<<<<< Updated upstream
-      setFormUserName(user.userName);
-      setFormUserEmail(user.userEmail);
-      setOriginalUserName(user.userName);
-      setOriginalUserEmail(user.userEmail);
-=======
       setFormUserName(user.user_name);
       setFormFirstName(user.first_name);
       setFormLastName(user.last_name);
@@ -339,7 +326,6 @@ export default function EditUserProfile() {
       setOriginalFirstName(user.first_name);
       setOriginalLastName(user.last_name);
       setOriginalBusinessName(user.business_name);
->>>>>>> Stashed changes
     }
   }, [user]);
 
@@ -366,30 +352,18 @@ export default function EditUserProfile() {
     }
 
     const updatedUser = {
-<<<<<<< Updated upstream
-      ...user,
-      userName: formUserName,
-      userEmail: formUserEmail,
-=======
       user_name: formUserName,
       first_name: formFirstName,
       last_name: formLastName,
       business_name: formBusinessName,
       password: formPassword ? formPassword : undefined,
->>>>>>> Stashed changes
     };
    
 
     try {
       setSaving(true);
-<<<<<<< Updated upstream
-      const token = sessionStorage.getItem('token');
-
-      const response = await fetch('https://kostiner-tender-1111.onrender.com/api/put-user', {
-=======
       const token = localStorage.getItem('token');
       const response = await fetch(`https://kostiner-tender-1111.onrender.com/api/put-user/${user.id}`, {
->>>>>>> Stashed changes
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -405,82 +379,31 @@ export default function EditUserProfile() {
       setOriginalUserName(userData.userName);
       setOriginalUserEmail(userData.userEmail);
       setSaving(false);
-<<<<<<< Updated upstream
-      alert('Details saved successfully!');
-
-    } catch (error) {
-      console.error('Error saving user details:', error);
-=======
       alert('פרטים נשמרו בהצלחה!');
     } catch (error) {
       console.error('שגיאה בשמירת פרטי המשתמש:', error);
       setSaving(false);
->>>>>>> Stashed changes
     }
   };
 
   const handleCancel = () => {
     setFormUserName(originalUserName);
-<<<<<<< Updated upstream
-    setFormUserEmail(originalUserEmail);
-=======
     setFormFirstName(originalFirstName);
     setFormLastName(originalLastName);
     setFormBusinessName(originalBusinessName);
     setFormPassword('');
     setFormConfirmPassword('');
->>>>>>> Stashed changes
   };
 
   return (
     <Box className="BackgroundBox">
-<<<<<<< Updated upstream
-      <Box className="GradientCircle" style={{ width: '600px', height: '600px', background: 'rgba(26, 96, 104, 0.5)', top: '-200px', left: '-200px' }} />
-      <Box className="GradientCircle" style={{ width: '400px', height: '400px', background: 'rgba(26, 96, 104, 0.3)', top: '50%', left: '70%' }} />
-      <Box className="GradientCircle" style={{ width: '300px', height: '300px', background: 'rgba(26, 96, 104, 0.3)', top: '80%', left: '20%' }} />
-
-=======
       <Box className="GradientCircle circle-1" />
       <Box className="GradientCircle circle-2" />
       <Box className="GradientCircle circle-3" />
->>>>>>> Stashed changes
       <Box className="EditBox">
         <Typography variant="h5" gutterBottom>
           עדכון פרטי משתמש
         </Typography>
-<<<<<<< Updated upstream
-
-        <TextField
-          fullWidth
-          margin="normal"
-          label="שם מלא"
-          value={formUserName}
-          onChange={handleNameChange}
-        />
-        <TextField
-          fullWidth
-          margin="normal"
-          label="כתובת אימייל"
-          value={formUserEmail}
-          onChange={handleEmailChange}
-        />
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            marginTop: 2,
-          }}
-        >
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleSave}
-            disabled={saving}
-          >
-            שמור
-          </Button>
-          <Button
-=======
         <Box className="EditBoxInputs">
           <TextField
             fullWidth
@@ -594,7 +517,6 @@ export default function EditUserProfile() {
               },
               style: { color: 'rgba(26, 96, 104, 255)' },
             }}
->>>>>>> Stashed changes
             variant="outlined"
           />
           <TextField
