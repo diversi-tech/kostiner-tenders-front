@@ -3,13 +3,18 @@ import { Link, useNavigate } from 'react-router-dom';
 import navigationitems from '../router/navigationitems';
 import './toolbar.css';
 import logo from '../../image/logo.png';
-import AnchorTemporaryDrawer from '../EditProfile/anchorTemporaryDrawer'; // Import the AnchorTemporaryDrawer component
+import AnchorTemporaryDrawer from '../EditProfile/AnchorTemporaryDrawer'; // Import the AnchorTemporaryDrawer component
 
 const Toolbar = ({ isAuthenticated, isAdmin, setScrollToSection }) => {
     const navigate = useNavigate();
-console.log(isAuthenticated,isAdmin);
+    console.log(isAuthenticated, isAdmin);
+
     const handleNavItemClick = (e, item) => {
-        if (item.link.startsWith('#')) {
+        if (item.onClick) {
+            e.preventDefault();
+            item.onClick();
+        }
+        else if (item.link.startsWith('#')) {
             e.preventDefault();
             const sectionId = item.link.substring(1);
             const section = document.getElementById(sectionId);
@@ -74,7 +79,7 @@ console.log(isAuthenticated,isAdmin);
                 {/* Conditionally render AnchorTemporaryDrawer if isAdmin and isAuthenticated */}
                 {isAuthenticated && (
                     <li>
-                        <AnchorTemporaryDrawer/>
+                        <AnchorTemporaryDrawer />
                     </li>
                 )}
             </ul>

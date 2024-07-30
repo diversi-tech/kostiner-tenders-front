@@ -105,4 +105,4 @@ const MainComponent = ({ isAuthenticated, setIsAuthenticated, isAdmin, setIsAdmi
     );
 }
 
-export default App;
+export default App; 

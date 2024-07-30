@@ -1,35 +1,35 @@
-
+// Routes.jsx
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+import ScrollToTop from '../scroll/ScrollToTop';
+import ScrollToAnchor from '../scroll/scrollToAnchor';
 import Connection from '../connection';
 import Help from '../help/help';
 import ControlPanel from '../controlpanel';
 import UserManagement from '../usermanagement';
-import Introduction from '../introduction';
 import About from '../about/about';
 import Subscription from '../subscription';
-import TypeProduct_Step from '../typeProduct/typeProduct_step';
+import ResetPasswordForm from '../resetPasswordForm/resetPasswordorm';
+import ItemsList from '../item/items';
 import Product_Step from '../product/product_step';
+import TypeProduct_Step from '../typeProduct/typeProduct_step';
 import ProductTender_Step from '../productTender/productTender_step';
 import ResultTender from '../resultTender';
-import ScrollToTop from '../scroll/ScrollToTop';
-import ScrollToAnchor from '../scroll/scrollToAnchor';
-import HomePage from '../homePage/homePage';
 import ManagementTenders from '../admin/managementTenders/managementTenders';
 import UploadCSV from '../admin/managementTenders/uploadCSV/uploadCSV';
 import ViewTenders from '../admin/managementTenders/viewEditTenders/viewEditTenders';
 import CheckTender from '../admin/managementTenders/checkTender/checkTender';
 import CreditCard_Step from '../creditCard/credirCard_step';
 import FinishPay_Step from '../finnishPay/finishPay_step';
-import ResetPasswordForm from '../resetPasswordForm/resetPasswordorm'
-// import ItemsList from '../item/items';
-import CategorySelection from '../categorySelection/categorySelection';
-import ItemsList from '../item/items';
-import EditUserProfile from '../EditProfile/editUserProfile';
-import AdminProfileEdit from '../EditProfile/editAdminProfile';
-import RequestsStatus from '../requestStatus/requestStatus';
+import TenderTable from '../tendersTable/TendersTable';
 import Login from '../Login';
 import ManagementUser from '../admin/managementUser/managementUser';
 import ViewUser from '../admin/managementUser/viewUser/viewUser';
+// import HomePage from '../homePage/homePage';
+import CategorySelection from '../categorySelection/categorySelection';
+import EditUserProfile from '../EditProfile/editUserProfile';
+import RequestsStatus from '../requestStatus/requestStatus';
+import AdminProfileEdit from '../EditProfile/editAdminProfile';
 
 const AppRoutes = ({ isAuthenticated, isAdmin }) => {
   console.log("router");
@@ -80,13 +80,11 @@ const AppRoutes = ({ isAuthenticated, isAdmin }) => {
     <>
       <ScrollToTop />
       <Routes>
-        {/* <Route path="/" element={<HomePage />} /> */}
         <Route path="/connection" element={<ScrollToAnchor component={<Connection />} anchorId="connection-anchor" />} />
         <Route path="/help" element={<ScrollToAnchor component={<Help />} anchorId="help-anchor" />} />
         <Route path="/controlpanel" element={<ScrollToAnchor component={<ControlPanel />} anchorId="controlpanel-anchor" />} />
         <Route path="/usermanagement" element={<ScrollToAnchor component={<UserManagement />} anchorId="usermanagement-anchor" />} />
         <Route path="/about" element={<ScrollToAnchor component={<About />} anchorId="about-anchor" />} />
-        {/* <Route path="/result" element={<ScrollToAnchor component={< ItemsList/>} anchorId="result-anchor" />} /> */}
         <Route path="/subscription" element={<ScrollToAnchor component={<Subscription />} anchorId="subscription-anchor" />} />
         <Route path="/resetPasword" element={<ScrollToAnchor component={<ResetPasswordForm />} anchorId="ResetPasswordForm-anchor" />} />
         <Route path="/categortTender" element={<ScrollToAnchor component={<ItemsList items={items} />} anchorId="categoryTender-anchor" />} />
@@ -104,23 +102,23 @@ const AppRoutes = ({ isAuthenticated, isAdmin }) => {
             <Route path="/view-tenders" element={<ScrollToAnchor component={<ViewTenders />} anchorId="view-tenders-anchor" />} />
             <Route path="/checkTender" element={<ScrollToAnchor component={<CheckTender />} anchorId="check-tender-anchor" />} />
             <Route path="/viewUser" element={<ScrollToAnchor component={<ViewUser/>} anchorId="view-tenders-anchor" />} />
+            <Route path="/editting-tenders" element={<ScrollToAnchor component={<TenderTable />} anchorId="editting-tenders" />} />
           </>
         )}
 
         {!isAuthenticated && (
-          <Route path="/login" element={<ScrollToAnchor component={<Login open={true} />} key="connection" />} />)}
+          <Route path="/login" element={<ScrollToAnchor component={<Login open={true} />} key="connection" />} />
+        )}
 
         {isAuthenticated && (
           <>
-            <Route path="/logout" element={<HomePage />} />
+            {/* <Route path="/logout" element={<HomePage />} /> */}
             <Route path="/categotySelect" element={<ScrollToAnchor component={<CategorySelection categories={categoriesData} />} anchorId="categortSelect-anchor" />} />
             <Route path="/user-profile" element={<ScrollToAnchor component={<EditUserProfile />} anchorId="userProfile" key="userProfile" />} />
             <Route path="/status-requests" element={<ScrollToAnchor component={<RequestsStatus />} anchorId="RequestStatus" key="RequestsStatus" />} />
             <Route path="/admin-profile" element={<ScrollToAnchor component={<AdminProfileEdit />} anchorId="adminProfile" key="adminProfile" />} />
-
           </>
         )}
-
       </Routes>
     </>
   );
