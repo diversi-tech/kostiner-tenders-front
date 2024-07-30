@@ -79,7 +79,7 @@ console.log(isAuthenticated,isAdmin);
                 )}
             </ul>
             
-            <img src={logo} alt="Logo" className="navbar-logo" onClick={handleLogoClick} />
+            <img src={logo} alt="Logo" sx={{cursor: 'pointer',}} className="navbar-logo" onClick={handleLogoClick} />
         </div>
     );
 };

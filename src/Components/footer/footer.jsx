@@ -15,7 +15,6 @@ const Footer = () => {
             <h3>ניווט</h3>
             <ul className="list-unstyled">
               <li><Link to="/product" className="custom-hover">מסלולי מנוי</Link></li>
-              {/* <li><a href="#" className="custom-hover">ליווי וייעוץ</a></li> */}
               <li><Link to="/about" className="custom-hover">עלינו</Link></li>
               <li><Link to="/help" className="custom-hover">עזרה</Link></li>
               {/* <li><a href="#" className="custom-hover">צור קשר</a></li> */}

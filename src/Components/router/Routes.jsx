@@ -18,7 +18,6 @@ import ManagementTenders from '../admin/managementTenders/managementTenders';
 import UploadCSV from '../admin/managementTenders/uploadCSV/uploadCSV';
 import ViewTenders from '../admin/managementTenders/viewEditTenders/viewEditTenders';
 import CheckTender from '../admin/managementTenders/checkTender/checkTender';
-import AdminDashboard from '../admin/adminDashboard';
 import CreditCard_Step from '../creditCard/credirCard_step';
 import FinishPay_Step from '../finnishPay/finishPay_step';
 import ResetPasswordForm from '../resetPasswordForm/resetPasswordorm'
@@ -29,7 +28,8 @@ import EditUserProfile from '../EditProfile/editUserProfile';
 import AdminProfileEdit from '../EditProfile/editAdminProfile';
 import RequestsStatus from '../requestStatus/requestStatus';
 import Login from '../Login';
-
+import ManagementUser from '../admin/managementUser/managementUser';
+import ViewUser from '../admin/managementUser/viewUser/viewUser';
 
 const AppRoutes = ({ isAuthenticated, isAdmin }) => {
   console.log("router");
@@ -98,11 +98,12 @@ const AppRoutes = ({ isAuthenticated, isAdmin }) => {
 
         {isAdmin && (
           <>
-            <Route path="/adminDashboard" element={<ScrollToAnchor component={<AdminDashboard />} anchorId="admin-dashbord-anchor" />} />
+            <Route path="/managementUser" element={<ScrollToAnchor component={<ManagementUser />} anchorId="manage-user-anchor" />} />
             <Route path="/manageTenders" element={<ScrollToAnchor component={<ManagementTenders />} anchorId="manage-tenders-anchor" />} />
             <Route path="/upload-csv" element={<ScrollToAnchor component={<UploadCSV />} anchorId="upload-csv-anchor" />} />
             <Route path="/view-tenders" element={<ScrollToAnchor component={<ViewTenders />} anchorId="view-tenders-anchor" />} />
             <Route path="/checkTender" element={<ScrollToAnchor component={<CheckTender />} anchorId="check-tender-anchor" />} />
+            <Route path="/viewUser" element={<ScrollToAnchor component={<ViewUser/>} anchorId="view-tenders-anchor" />} />
           </>
         )}
 
