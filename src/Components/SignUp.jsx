@@ -172,10 +172,10 @@ export default function SignUp(props) {
   const [open, setOpen] = React.useState(props.open);
   const navigate= useNavigate();
   const [details, setDetails] = useState({
-    username: '',
+    user_name: '',
     password: '',
     email: '',
-    role: '',
+    role: 'user',
     first_name: '',
     last_name: '',
     business_name: ''
@@ -265,7 +265,7 @@ export default function SignUp(props) {
             }}
             variant="outlined"
             fullWidth
-            onChange={(e) => handleChange("username", e.target.value)}
+            onChange={(e) => handleChange("user_name", e.target.value)}
             style={{ backgroundColor: 'rgb(240, 255, 255)', borderRadius: '4px', marginBottom: '10px' }}
           />
           <TextField

@@ -2,6 +2,8 @@ import React from 'react';
 import backgroundPicture from '../../image/backgroundPicture.png';  
 import { Grid, Box, useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
+import './homePage.css';
+
 export default function HomePage() {
 
   const theme = useTheme();
@@ -10,49 +12,17 @@ export default function HomePage() {
   const logoSize = isSmallScreen ? '150px' : isMediumScreen ? '200px' : '250px';
 
   return (
-  
-  <Box
-    sx={{
-        flexGrow: 1,
-        minHeight: '100vh',
-        backgroundImage: `url(${backgroundPicture})`, // החלף ב-URL של תמונת הרקע שלך
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        textAlign: 'center',
-        position: 'relative',
-        padding: 2
-      }}
-    >
-  <Box
-    sx={{
-        position: 'absolute',
-        top: 50,
-        right: 50,
-        padding: 2,
-        }}
-    >
-  </Box>
-    <Grid container spacing={2} alignItems="center" justifyContent="center">
-        <Grid item xs={12} sx={{ marginTop: '180px' }}>
-            <h1 style={{
-            fontSize: isSmallScreen ? '60px' : isMediumScreen ? '90px' : '120px',
-            fontFamily: 'EFT_Asaf Heavy',
-                fontStyle: 'normal',
-                color: 'rgb(10, 63, 61)'
-            }}>קוסטינר</h1>
+    <Box className="homePageContainer" style={{ backgroundImage: `url(${backgroundPicture})` }}>
+      <Grid container spacing={2} alignItems="center" justifyContent="center">
+        <Grid item xs={12} className="titleGrid">
+          <h1 className={`title ${isSmallScreen ? 'small' : isMediumScreen ? 'medium' : 'large'}`}>א. קוסטינר</h1>
         </Grid>
-        <Grid item xs={12} >
-            <h2 style={{
-                fontSize: isSmallScreen ? '25px' : isMediumScreen ? '35px' : '50px',
-                fontFamily: 'EFT_Asaf Heavy',
-                fontStyle: 'normal',
-                color: 'rgb(10, 63, 61)'}}>מידע מעולם המכרזים שיחשוף וינגיש לכם את תוצאות המכרזים הפומביים</h2>
+        <Grid item xs={12}>
+          <h2 className={`subtitle ${isSmallScreen ? 'small' : isMediumScreen ? 'medium' : 'large'}`}>
+            מידע מעולם המכרזים שיחשוף וינגיש לכם את תוצאות המכרזים הפומביים
+          </h2>
         </Grid>
-    </Grid>
-  </Box>
- );
+      </Grid>
+    </Box>
+  );
 }

@@ -7,25 +7,65 @@ import Typography from '@mui/joy/Typography';
 import Autocomplete from '@mui/material/Autocomplete';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
+<<<<<<< Updated upstream
 // import IconStepper from '../IconStepper/IconStepper';
 
 export default function typeProduct() {
   const [selectedOptions, setSelectedOptions] = React.useState([]);
   const [openAutocomplete, setOpenAutocomplete] = React.useState(false);
+=======
+import { useNavigate } from 'react-router-dom';
+import { getAllCategories } from '../../Server/caregory'; // Adjust the path according to your project structure
+
+export default function TypeProduct({ typeTender }) {
+  const [selectedOptions, setSelectedOptions] = React.useState([]);
+  const [openAutocomplete, setOpenAutocomplete] = React.useState(false);
+  const [options, setOptions] = React.useState([]);
+  const nav = useNavigate();
+
+  React.useEffect(() => {
+    async function fetchProducts() {
+      const products = await getAllCategories();
+      const priceKey = typeTender.type == 1 ? 'monthlyPrice' : 'subscriptionPrice';
+      const formattedOptions = products.map(product => ({
+        label: `${product.category} - ₪${product[priceKey]}`,
+        value: product.category,
+        price: product[priceKey],
+      }));
+      console.log(formattedOptions);
+      setOptions(formattedOptions);
+    }
+
+    fetchProducts();
+  }, [typeTender]);
+>>>>>>> Stashed changes
 
   const handleSelect = (event, value) => {
     if (value.length > 3) {
       value.pop(); // Remove the last item if more than 3 are selected
-    } else {
-      setSelectedOptions(value);
     }
-
+    setSelectedOptions(value);
     // Close Autocomplete if exactly 3 options are selected
     if (value.length === 3) {
       setOpenAutocomplete(false);
     }
   };
 
+<<<<<<< Updated upstream
+=======
+  const handleNav = () => {
+    // Create an object with selected options to send to the server
+    const dataToSend = {
+      selectedOptions: selectedOptions.map(option => option.value)
+    };
+
+    // Example navigation to '/creditCard'
+    nav('/creditCard', {
+      state: { type: typeTender } // Passing 'type' back to the '/creditCard' route
+    });
+  };
+
+>>>>>>> Stashed changes
   return (
     <Box
       sx={{
@@ -73,36 +113,45 @@ export default function typeProduct() {
               open={openAutocomplete} // Controlled by state
               onOpen={() => setOpenAutocomplete(true)}
               onClose={() => setOpenAutocomplete(false)}
-              limitTags={3}
-              disableCloseOnSelect
-              options={top100Films}
-              getOptionLabel={(option) => option.label}
               value={selectedOptions}
               onChange={handleSelect}
+              options={options}
+              getOptionLabel={(option) => option.label}
               renderInput={(params) => (
-                <TextField {...params} variant="outlined" label="בחר עד שלושה תחומים" />
+                <TextField
+                  {...params}
+                  variant="outlined"
+                  label="בחר תחומים"
+                  placeholder="עד 3 תחומים"
+                />
               )}
+              sx={{ width: '100%' }}
             />
             <Button
               variant="contained"
               color="primary"
+              onClick={handleNav}
+              disabled={selectedOptions.length === 0}
               sx={{
-                margin: 'auto',
-                borderRadius: '12px',
-                backgroundColor: 'rgba(26,96,104,255)',
-                color: 'white',
+                bgcolor: 'rgba(26,96,104,255)',
                 '&:hover': {
-                  backgroundColor: 'rgb(129, 175, 164)',
+                  bgcolor: 'rgb(129, 175, 164)',
                 },
+                color: '#FFFFFF',
               }}
             >
+<<<<<<< Updated upstream
               שליחה לתשלום
+=======
+              להמשיך לתשלום
+>>>>>>> Stashed changes
             </Button>
           </Stack>
         </CardContent>
       </Card>
     </Box>
   );
+<<<<<<< Updated upstream
 }
 
 const top100Films = [
@@ -127,3 +176,6 @@ const top100Films = [
   { label: 'שירותים למגזר הציבורי' },
   { label: 'ביטוח ופיננסים' },
 ];
+=======
+}
+>>>>>>> Stashed changes

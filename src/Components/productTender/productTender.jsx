@@ -7,14 +7,29 @@ import Typography from '@mui/joy/Typography';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import CircularProgress from '@mui/material/CircularProgress';
+<<<<<<< Updated upstream
+=======
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
+
+// ייבוא של הפונקציה המתאימה מתוך requests.js
+import { addRequest } from "../../Server/requests"; 
+>>>>>>> Stashed changes
 
 export default function TenderSearchBox() {
   const [tenderName, setTenderName] = React.useState('');
   const [loading, setLoading] = React.useState(false);
+<<<<<<< Updated upstream
   const [found, setFound] = React.useState(null);
+=======
+  const [openSnackbar, setOpenSnackbar] = React.useState(false);
+  const [snackbarMessage, setSnackbarMessage] = React.useState('');
+  const [snackbarSeverity, setSnackbarSeverity] = React.useState('success');
+>>>>>>> Stashed changes
 
-  const handleSearch = async () => {
+  const handleSubmit = async () => {
     setLoading(true);
+<<<<<<< Updated upstream
     setFound(null);
     
     // סימולציה של חיפוש במערכת
@@ -28,6 +43,34 @@ export default function TenderSearchBox() {
     }, 2000); // סימולציה של 2 שניות
   };
 
+=======
+
+    const token = localStorage.getItem('authToken'); // קבלת מזהה המשתמש מה-localStorage
+    const request = {
+      token: token,
+      date: new Date().toISOString(),
+      tenderName: tenderName
+    };
+
+    try {
+      await addRequest(request);
+      setLoading(false);
+      setSnackbarMessage('הבקשה נשלחה לבדיקה, בימים הקרובים תקבל עדכונים');
+      setSnackbarSeverity('success');
+      setOpenSnackbar(true);
+    } catch (error) {
+      console.error('Error adding request:', error);
+      setLoading(false);
+      setSnackbarMessage('שגיאה בשליחת הבקשה. נסה שוב מאוחר יותר.');
+      setSnackbarSeverity('error');
+      setOpenSnackbar(true);
+    }
+  };
+
+  const handleCloseSnackbar = () => {
+    setOpenSnackbar(false);
+  };
+>>>>>>> Stashed changes
   return (
     <Box
       sx={{
@@ -82,6 +125,7 @@ export default function TenderSearchBox() {
                 <CircularProgress sx={{ color: 'rgba(26,96,104,255)' }} />
               </Box>
             ) : (
+<<<<<<< Updated upstream
               found === false && (
                 <Typography color="error">לא נמצא מכרז, הכנס שנית</Typography>
               )
@@ -103,9 +147,34 @@ export default function TenderSearchBox() {
             >
               שליחה לתשלום
             </Button>
+=======
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleSubmit}
+                disabled={!tenderName}
+                sx={{
+                  margin: 'auto',
+                  borderRadius: '12px',
+                  backgroundColor: 'rgba(26,96,104,255)',
+                  '&:hover': {
+                    backgroundColor: 'rgb(129, 175, 164)',
+                  },
+                  color: 'white',
+                }}
+              >
+                שלח לבדיקה
+              </Button>
+            )}
+>>>>>>> Stashed changes
           </Stack>
         </CardContent>
       </Card>
+      <Snackbar open={openSnackbar} autoHideDuration={6000} onClose={handleCloseSnackbar}>
+        <Alert onClose={handleCloseSnackbar} severity={snackbarSeverity} sx={{ width: '100%' }}>
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 }

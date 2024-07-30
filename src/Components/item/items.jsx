@@ -1,6 +1,7 @@
 import React from 'react';
-import '../Item1.css';
-import Item from './item';
+import './item.css';
+import Item from './item'; // נתיב מותאם
+import ExportExcel from './itemExel'; // נוודא שזה הנתיב הנכון לקומפוננטה
 
 function ItemsList({ items }) {
     return (
@@ -13,7 +14,7 @@ function ItemsList({ items }) {
                         <th>תאריך פרסום</th>
                         <th>תאריך הגשה</th>
                         <th>קטגוריות</th>
-                        <th>שם הזוכה ופרטי</th>
+                        <th>שם ופרטי הזוכה</th>
                         <th>מציעים</th>
                         <th>מידע על הזוכה</th>
                         <th>סכום ההצעה</th>
@@ -38,6 +39,7 @@ function ItemsList({ items }) {
                     ))}
                 </tbody>
             </table>
+            <ExportExcel items={items} /> {/* לוודא שהקומפוננטה מקבלת את הנתונים */}
         </div>
     );
 }

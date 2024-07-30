@@ -5,7 +5,11 @@ import IconStepper from '../stepPay/stepPay';
 
 export default function ProductTender_Step() {
     const [open, setOpen] = React.useState(true); // Open the modal by default
+<<<<<<< Updated upstream
     const handleClose = () => setOpen(false);
+=======
+    const handleClose = () => setOpen(true);
+>>>>>>> Stashed changes
 
     return (
         <Modal

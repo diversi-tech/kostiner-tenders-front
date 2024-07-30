@@ -1,150 +1,84 @@
-
-
-// import React from 'react';
-// import { Link } from 'react-router-dom';
-// import navigationitems from '../router/navigationitems';
-// import './toolbar.css';
-// import logo from '../../image/logo.png';
-// import { useState } from 'react';
-// import AnchorTemporaryDrawer from '../EditProfile/AnchorTemporaryDrawer'; // ייבוא הקומפוננטה
-
-// const Toolbar = ({ isAuthenticated, isAdmin }) => {
-//     const renderNavItem = (item, index) => {
-//         if (!isAuthenticated && item.isAuthRequired) {
-//             return null; 
-//         }
-//         if (isAuthenticated) {
-//             if (item.label === 'Login/Register') {
-//                 return null; 
-//             }
-//         }
-//         if (isAdmin && item.isAdmin) {
-//             return (
-//                 <li key={index} className="navbar-item">
-//                     <Link to={item.link} className="custom-link">{item.label}</Link>
-//                 </li>
-//             );
-//         }
-//         if (isAuthenticated && !isAdmin) {
-//             if (item.label === 'Profile Management' || item.label === 'Logout') {
-//                 return (
-//                     <li key={index} className="navbar-item">
-//                         <Link to={item.link} className="custom-link">{item.label}</Link>
-//                     </li>
-//                 );
-//             }
-//         }
-//         return (
-//             <li key={index} className="navbar-item">
-//                     <Link to={item.link} className="custom-link">{item.label}</Link>
-//                 {item.submenu && (
-//                     <ul className="submenu">
-//                         {item.submenu.map((subItem, subIndex) => (
-//                             <li key={subIndex}>
-//                                 <Link to={subItem.link} className="custom-link">{subItem.label}</Link>
-//                             </li>
-//                         ))}
-//                     </ul>
-//                 )}
-//             </li>
-//         );
-//     };
-
-//     const handleLogoClick = (e) => {
-//         e.preventDefault();
-//         window.scrollTo({
-//             top: 0,
-//             behavior: 'smooth'
-//         });
-//     };
-
-//     return (
-//         <div className="navbar">
-//             <ul className="navbar-list">
-//                 {navigationitems.map((item, index) => renderNavItem(item, index))}
-//             </ul>
-//             <li >
-//                 <AnchorTemporaryDrawer isAuthenticated={false} isAdmin={false}></AnchorTemporaryDrawer>
-//             </li>
-//             <img src={logo} alt="Logo" className="navbar-logo" onClick={handleLogoClick} />
-//         </div>
-//     );
-// }
-
-// export default Toolbar;
-// Toolbar.jsx
-// Toolbar.jsx
 import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import navigationitems from '../router/navigationitems';
 import './toolbar.css';
-import { Link } from 'react-router-dom';
- import AnchorTemporaryDrawer from '../EditProfile/AnchorTemporaryDrawer'; // ייבוא הקומפוננטה
- import navigationitems from '../router/navigationitems';
- import logo from '../../image/logo.png';
+import logo from '../../image/logo.png';
+import AnchorTemporaryDrawer from '../EditProfile/AnchorTemporaryDrawer'; // Import the AnchorTemporaryDrawer component
 
-const Toolbar = ({ isAuthenticated, isAdmin }) => {
-    const renderNavItem = (item, index) => {
-        if (!isAuthenticated && item.isAuthRequired) {
-            return null;
-        }
-        if (isAuthenticated && item.label === 'Login/Register') {
-            return null;
-        }
-        if (isAdmin && item.isAdmin) {
-            return (
-                <li key={index} className="navbar-item">
-                    <Link to={item.link} className="custom-link">{item.label}</Link>
-                </li>
-            );
-        }
-        if (isAuthenticated && !isAdmin && (item.label === 'Profile Management' || item.label === 'Logout')) {
-            return (
-                <li key={index} className="navbar-item">
-                    <Link to={item.link} className="custom-link">{item.label}</Link>
-                </li>
-            );
-        }
-        return (
-            <li key={index} className="navbar-item">
-                <Link to={item.link} className="custom-link">{item.label}</Link>
-                {item.submenu && (
-                    <ul className="submenu">
-                        {item.submenu.map((subItem, subIndex) => (
-                            <li key={subIndex}>
-                                <Link to={subItem.link} className="custom-link">{subItem.label}</Link>
-                            </li>
-                        ))}
-                    </ul>
-                )}
-            </li>
-        );
-    };
-
-    const renderCustomNavItem = (Component, isAuthenticatedComponent, isAdminComponent) => {
-        if (!isAuthenticated && isAuthenticatedComponent) {
-            return null;
-        }
-        if (isAuthenticated && isAdminComponent && !isAdmin && isAdminComponent) {
-            return null;
-        }
-        return (
-            <li>
-                <Component  />
-            </li>
-        );
-    };
-    const handleLogoClick = (e) => {
-                e.preventDefault();
+const Toolbar = ({ isAuthenticated, isAdmin, setScrollToSection }) => {
+    const navigate = useNavigate();
+console.log(isAuthenticated,isAdmin);
+    const handleNavItemClick = (e, item) => {
+        if (item.link.startsWith('#')) {
+            e.preventDefault();
+            const sectionId = item.link.substring(1);
+            const section = document.getElementById(sectionId);
+            if (section) {
+                const yOffset = window.innerWidth < 768 ? -220 : -125; // Adjust this value to set the offset
+                const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
                 window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
+                    top: y,
+                    behavior: 'smooth',
                 });
-            };
+                navigate('/', { state: { scrollToSection: sectionId } });
+                setScrollToSection(sectionId); // Set state for scrolling after navigating to home
+            }
+        } else {
+            navigate(item.link);
+        }
+    };
+
+    const renderNavItem = (item, index) => {
+        if ((!isAuthenticated && item.isAuthRequired) ||
+            (isAuthenticated && item.label === 'התחברות' && !item.isAdmin) ||
+            (!isAuthenticated && item.label === 'התנתקות' && !item.isAdmin) ||
+            (isAuthenticated && item.label === 'דוגמא למכרזים' && !item.isAdmin) ||
+            (!isAuthenticated && item.label === 'תוצאות מכרזים' && !item.isAdmin)) {
+            return null;
+        }
+
+        if (isAdmin && isAuthenticated) {
+            if (item.isAdmin || item.label === 'התנתקות') {
+                return (
+                    <li key={index} className="navbar-item">
+                        <Link to={item.link} className="custom-link" onClick={(e) => handleNavItemClick(e, item)}>{item.label}</Link>
+                    </li>
+                );
+            }
+        } else {
+            if (!item.isAdmin) {
+                return (
+                    <li key={index} className="navbar-item">
+                        <Link to={item.link} className="custom-link" onClick={(e) => handleNavItemClick(e, item)}>{item.label}</Link>
+                    </li>
+                );
+            }
+        }
+
+        return null;
+    };
+
+    const handleLogoClick = (e) => {
+        e.preventDefault();
+        navigate('/');
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    };
+
     return (
         <div className="navbar">
             <ul className="navbar-list">
                 {navigationitems.map((item, index) => renderNavItem(item, index))}
-                {renderCustomNavItem(AnchorTemporaryDrawer, false, false)}
+                {/* Conditionally render AnchorTemporaryDrawer if isAdmin and isAuthenticated */}
+                {isAuthenticated && (
+                    <li>
+                        <AnchorTemporaryDrawer/>
+                    </li>
+                )}
             </ul>
+            
             <img src={logo} alt="Logo" className="navbar-logo" onClick={handleLogoClick} />
         </div>
     );

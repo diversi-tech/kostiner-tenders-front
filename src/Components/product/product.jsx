@@ -15,34 +15,39 @@ import { useNavigate } from 'react-router-dom';
 
 export default function Product() {
   const nav = useNavigate();
-
-  const handleNav = (title) => {
-
+  const handleNav = (title, type) => {
     if (title === 'דו"ח חד פעמי') {
       nav('/tenderSearch');
+    } else if (title === 'מנוי קבוע') {
+      nav('/typeProduct', { state: { type:2 } });
     } else {
-      nav('/typeProduct');
+      nav('/typeProduct', { state: { type: 1 } });
     }
   };
+  
+  
 
   const cardData = [
     {
       title: "דו\"ח חד פעמי",
       subtitle: "תוצאות מכרז בודד",
       buttonText: "לרכישה",
-      features: ["דוח מפורט למכרז בודד"]
+      features: ["דוח מפורט למכרז בודד"],
+      type: "single"
     },
     {
       title: "מנוי קבוע",
       subtitle: "סקירה שנתית של תוצאות מכרזים",
       buttonText: "לרכישה",
-      features: ["דוח מפורט", "מידע שוטף בתחומים נבחרים בתיבת המייל", "שלושה תחומים לבחירה"]
+      features: ["דוח מפורט", "מידע שוטף בתחומים נבחרים בתיבת המייל", "שלושה תחומים לבחירה"],
+      type: "subscription"
     },
     {
       title: "דו\"ח חודשי",
-      subtitle: " תוצאות של מכרזי החודש בתחומים נבחרים",
+      subtitle: "תוצאות של מכרזי החודש בתחומים נבחרים",
       buttonText: "לרכישה",
-      features: ["דוח מפורט", "סקירה חודשית בתחומים נבחרים", "שלושה תחומים לבחירה"]
+      features: ["דוח מפורט", "סקירה חודשית בתחומים נבחרים", "שלושה תחומים לבחירה"],
+      type: "monthly"
     }
   ];
 
@@ -104,7 +109,6 @@ export default function Product() {
                 MOST POPULAR
               </Chip>
             )}
-
             <Typography level="h2" textAlign="center">{card.title}</Typography>
             <Divider inset="none" />
             <Typography level="h6" textAlign="center">{card.subtitle}</Typography>
@@ -130,9 +134,9 @@ export default function Product() {
                   '&:hover': {
                     backgroundColor: 'rgb(129, 175, 164)',
                   },
-                  color: '#ffffff',
+                  color: '#FFFFFF',
                 }}
-                onClick={() => handleNav(card.title)}
+                onClick={() => handleNav(card.title, card.type)}
               >
                 {card.buttonText}
               </Button>
@@ -140,6 +144,13 @@ export default function Product() {
           </Card>
         ))}
       </Box>
+      {/* Scrollbar for manual scrolling */}
+      <Box
+        sx={{
+          display: 'block',
+          height: '20px', // Adjust height as needed
+        }}
+      />
     </Box>
   );
 }

@@ -6,7 +6,8 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
-import './AdminProfileEdit.css';
+import Grid from '@mui/material/Grid';
+import './editAdminProfile.css';
 
 const AdminProfileEdit = () => {
   const { user, setUser } = useContext(UserContext);
@@ -57,58 +58,60 @@ const AdminProfileEdit = () => {
   };
 
   return (
-    <Box className="background-box">
-      <Box className="gradient-circle circle-1"></Box>
-      <Box className="gradient-circle circle-2"></Box>
-      <Box className="gradient-circle circle-3"></Box>
+    <Grid container className="background-box">
+      <Grid item xs={12} className="gradient-circle circle-1"></Grid>
+      <Grid item xs={12} className="gradient-circle circle-2"></Grid>
+      <Grid item xs={12} className="gradient-circle circle-3"></Grid>
 
-      <Box className="edit-box">
-        <Typography variant="h5" gutterBottom>
-          עריכת פרטי מנהל
-        </Typography>
-        <Box className="drawer-header">
-          <Avatar className="drawer-avatar">
-            {user.userName ? user.userName.charAt(0).toUpperCase() : ''}
-          </Avatar>
-          <Divider orientation="vertical" flexItem className="divider" />
-          <Box className="user-details">
-            <Typography variant="subtitle1">
-              <b>{user.userName}</b>
-            </Typography>
-            <Typography variant="body2">{user.userEmail}</Typography>
+      <Grid item xs={12} container justifyContent="center" alignItems="center">
+        <Box className="edit-box">
+          <Typography variant="h5" gutterBottom>
+            עריכת פרטי מנהל
+          </Typography>
+          <Box className="drawer-header">
+            <Avatar className="drawer-avatar">
+              {user.userName ? user.userName.charAt(0).toUpperCase() : ''}
+            </Avatar>
+            <Divider orientation="vertical" flexItem className="divider" />
+            <Box className="user-details">
+              <Typography variant="subtitle1">
+                <b>{user.userName}</b>
+              </Typography>
+              <Typography variant="body2">{user.userEmail}</Typography>
+            </Box>
+          </Box>
+
+          <TextField
+            fullWidth
+            margin="normal"
+            label="שם מלא"
+            value={user.userName}
+            onChange={handleNameChange}
+          />
+          <TextField
+            fullWidth
+            margin="normal"
+            label="אימייל"
+            value={user.userEmail}
+            onChange={handleEmailChange}
+          />
+
+          <Box className="button-container">
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleSave}
+              disabled={saving}
+            >
+              שמור
+            </Button>
+            <Button variant="outlined" onClick={handleCancel} disabled={saving}>
+              בטל
+            </Button>
           </Box>
         </Box>
-
-        <TextField
-          fullWidth
-          margin="normal"
-          label="שם מלא"
-          value={user.userName}
-          onChange={handleNameChange}
-        />
-        <TextField
-          fullWidth
-          margin="normal"
-          label="אימייל"
-          value={user.userEmail}
-          onChange={handleEmailChange}
-        />
-
-        <Box className="button-container">
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleSave}
-            disabled={saving}
-          >
-            שמור
-          </Button>
-          <Button variant="outlined" onClick={handleCancel} disabled={saving}>
-            בטל
-          </Button>
-        </Box>
-      </Box>
-    </Box>
+      </Grid>
+    </Grid>
   );
 }
 

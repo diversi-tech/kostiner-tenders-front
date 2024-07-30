@@ -18,6 +18,10 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../context/userContext';
 import './AnchorTemporaryDrawer.css';
+<<<<<<< Updated upstream
+=======
+import Login from '../../Server/Auth';
+>>>>>>> Stashed changes
 
 const icons = {
   'התנתקות': <ExitToAppIcon />,
@@ -30,7 +34,11 @@ const icons = {
 const AnchorTemporaryDrawer = () => {
   const navigate = useNavigate();
   const [state, setState] = useState({ left: false, selectedOption: null });
+<<<<<<< Updated upstream
   const { user, logout } = useContext(UserContext);
+=======
+  const { user, setUser } = useContext(UserContext);
+>>>>>>> Stashed changes
 
   const toggleDrawer = (open) => (event) => {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -90,7 +98,6 @@ const AnchorTemporaryDrawer = () => {
           <Typography variant="body2">{userEmail}</Typography>
         </Box>
       </Box>
-
       <Divider />
       <List>
         {menuItems
@@ -114,8 +121,31 @@ const AnchorTemporaryDrawer = () => {
   );
 
   return (
+<<<<<<< Updated upstream
     <Box sx={{ display: 'flex' }}>
       <Box onClick={toggleDrawer(true)} aria-label="account" className="drawer-account-icon">
+=======
+    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          // justifyContent: 'flex-end',
+          alignItems: 'flex-end',
+          position: 'fixed',
+          top: '16px',
+          marginLeft: '45px',
+          color: 'rgba(26, 96, 104, 255)',
+          cursor: 'pointer',
+          zIndex: 1, // Ensure it's above other content
+          transition: 'color 0.3s',
+          marginTop: '30px', // Optional: Adjust vertical alignment
+          // marginRight: '10px', // Optional: Adjust horizontal alignment
+        }}
+        onClick={toggleDrawer(true)}
+        aria-label="account"
+        className="drawer-account-icon"
+      >
+>>>>>>> Stashed changes
         <AccountCircleOutlinedIcon />
       </Box>
       <Drawer 

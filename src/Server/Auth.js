@@ -1,6 +1,10 @@
 import { action, makeObservable } from 'mobx';
 import axios from 'axios';
+<<<<<<< Updated upstream
 const baseUrl = "http://127.0.0.1:5000";
+=======
+const baseUrl = "https://kostiner-tenders-back.onrender.com";
+>>>>>>> Stashed changes
 
 class Login
 {
@@ -19,7 +23,11 @@ class Login
             //     body: JSON.stringify(username,password),
             //     referrerPolicy:'origin'
             // });
+<<<<<<< Updated upstream
             const res = await axios.post('http://127.0.0.1:5000/login', { username, password })
+=======
+            const res = await axios.post(baseUrl+'/login', { username, password })
+>>>>>>> Stashed changes
             console.log("res login",res.data);
             console.log("res token",res.data.access_token);
             return res;
@@ -53,7 +61,17 @@ async resetEmail(username,email){
 async SignUp(details)
 {
     try {
+<<<<<<< Updated upstream
         const res = await axios.post(baseUrl + '/sign-up',{details});
+=======
+        await fetch(baseUrl + '/api/user/post-user', {
+            method: 'POST',
+            headers: { 'Content-Type':'application/json' },
+            body: JSON.stringify(details)
+        });
+        console.log("details",details);
+        console.log("res ",res);
+>>>>>>> Stashed changes
         if(res.status!=200)
             return false;
         else
@@ -67,7 +85,11 @@ async SignUp(details)
 async SignWithGoogle()
 {
     try{
+<<<<<<< Updated upstream
         const res=await axios.get(baseUrl);
+=======
+        const res=await axios.get(baseUrl+'/api/auth/continue-with-google');
+>>>>>>> Stashed changes
         console.log("res-google",res);
 
 

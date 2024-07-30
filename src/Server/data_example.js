@@ -19,10 +19,6 @@ class Data {
             // json שרת דמו של 
             const res = await fetch('https://jsonplaceholder.typicode.com/todos').then()
             const data = await res.json();
-            // fetch('https://jsonplaceholder.typicode.com/todos')
-            // .then(response => response.json())
-            // .then(this.list=response)
-
 
             runInAction(() => {
                 //const _ = require('lodash');

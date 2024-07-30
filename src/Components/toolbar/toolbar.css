@@ -4,7 +4,7 @@
     background-color: #d5e6df;
     color: white;
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* לשמור על המרכז */
     align-items: center;
     position: fixed;
     top: 0;
@@ -28,9 +28,8 @@
     align-items: center;
     flex: 1;
     margin-left: auto;
+    margin-right: auto;
     padding-left: 120px;
-    margin-right: 0;
-    order: 1;
 }
 
 .navbar-item {
@@ -39,7 +38,11 @@
     transition: font-size 0.3s;
     font-size: 1.2em;
     position: relative;
+<<<<<<< Updated upstream
     margin-right: 60px; /* רווח בין קישורים */
+=======
+    margin-right: 40px; /* רווח בין קישורים */
+>>>>>>> Stashed changes
     margin-top: 10px; /* רווח מעל לקישורים */
 }
 
@@ -93,12 +96,15 @@
 
     .navbar-logo {
         order: 1;
-        margin-right: 40%;
-        margin-bottom: 10px;
+        margin: 0 auto 10px auto; /* למרכז את הלוגו ולהוסיף מרווח מתחתיו */
     }
 
     .navbar-list {
         order: 2;
+        flex-direction: row; /* לשמור על כיוון התצוגה מאוזן */
+        justify-content: center;
+        align-items: center;
+        width: 100%; /* להפוך את הרשימה לרוחב מלא */
         margin-left: 0;
         padding-left: 0; /* לבטל padding-left שמוסיף מרחק לימין במסך קטן */
         margin-right: 0;
@@ -108,8 +114,13 @@
         padding: 0.5rem 0.8rem;
         font-size: 1.1em;
         position: relative;
+<<<<<<< Updated upstream
         margin-right: 0; /* במצב מסך קטן אין צורך ברווח בין קישורים */
         margin-top: 10px; /* רווח מעל לקישורים */
+=======
+        margin-right: 10px; /* רווח קטן יותר בין קישורים במסך קטן */
+        margin-top: 0; /* לבטל את הרווח מעל לקישורים */
+>>>>>>> Stashed changes
     }
 
     .navbar-item::after {

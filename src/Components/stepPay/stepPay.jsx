@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Stepper from '@mui/joy/Stepper';
 import Step, { stepClasses } from '@mui/joy/Step';
 import StepIndicator, { stepIndicatorClasses } from '@mui/joy/StepIndicator';
@@ -12,9 +12,22 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 export default function IconStepper({ activeStep }) {
+  const location = useLocation();
+  const { endProcess } = location.state || {};
+
   const navigate = useNavigate();
 
   const handleStepClick = (stepIndex) => {
+    if (endProcess && stepIndex < activeStep) {
+      // לא מאפשר חזרה לצעדים קודמים אם endProcess אמת
+      return;
+    }
+
+    if (activeStep === 3 && stepIndex < activeStep) {
+      // לא מאפשר חזרה לצעדים קודמים אם המשתמש הגיע לצעד האחרון
+      return;
+    }
+
     if (activeStep >= stepIndex) {
       switch (stepIndex) {
         case 0:
@@ -93,10 +106,12 @@ export default function IconStepper({ activeStep }) {
                   position="right"
                   sx={{
                     bgcolor: activeStep === 0 ? 'white' : 'transparent',
+                    cursor: 'pointer',
                   }}
                 >
                   <ShoppingCartRoundedIcon
-                    sx={{ color: activeStep === 0 ? 'rgba(26,96,104,255)' : 'white' }}
+                    sx={{ color: activeStep === 0 ? 'rgba(26,96,104,255)' : 'white' ,
+                     cursor: 'pointer',}}
                   />
                 </StepIndicator>
               }
@@ -111,10 +126,12 @@ export default function IconStepper({ activeStep }) {
                   position="right"
                   sx={{
                     bgcolor: activeStep === 1 ? 'white' : 'transparent',
+                    cursor: 'pointer',
                   }}
                 >
                   <FormatListBulletedRoundedIcon
-                    sx={{ color: activeStep === 1 ? 'rgba(26,96,104,255)' : 'white' }}
+                    sx={{ color: activeStep === 1 ? 'rgba(26,96,104,255)' : 'white',
+                    cursor: 'pointer', }}
                   />
                 </StepIndicator>
               }
@@ -129,10 +146,12 @@ export default function IconStepper({ activeStep }) {
                   position="right"
                   sx={{
                     bgcolor: activeStep === 2 ? 'white' : 'transparent',
+                    cursor: 'pointer',
                   }}
                 >
                   <CreditCardRoundedIcon
-                    sx={{ color: activeStep === 2 ? 'rgba(26,96,104,255)' : 'white' }}
+                    sx={{ color: activeStep === 2 ? 'rgba(26,96,104,255)' : 'white' ,
+                   }}
                   />
                 </StepIndicator>
               }
@@ -147,10 +166,12 @@ export default function IconStepper({ activeStep }) {
                   position="right"
                   sx={{
                     bgcolor: activeStep === 3 ? 'white' : 'transparent',
+                    cursor: 'pointer',
                   }}
                 >
                   <CheckCircleRoundedIcon
-                    sx={{ color: activeStep === 3 ? 'rgba(26,96,104,255)' : 'white' }}
+                    sx={{ color: activeStep === 3 ? 'rgba(26,96,104,255)' : 'white',
+                    }}
                   />
                 </StepIndicator>
               }

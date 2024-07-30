@@ -1,0 +1,44 @@
+.tender-container {
+    width: 33vw;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+  
+  @media (max-width: 600px) {
+    .tender-container {
+      width: 50vw;
+    }
+  }
+  
+  .tender-box {
+    width: 100%;
+    background-color: #f0f0f0;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .icon {
+    font-size: 30px;
+    margin-left: 0.5rem;
+  }
+  
+  .finish-process-text {
+    margin-top: 0.5rem;
+    color: black;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .finish-link {
+    text-decoration: underline;
+    color: rgba(26, 96, 104, 255);
+  }
+  
