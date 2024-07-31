@@ -10,19 +10,15 @@ import ListItemText from '@mui/material/ListItemText';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import PersonIcon from '@mui/icons-material/Person';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import AssignmentIcon from '@mui/icons-material/Assignment'; 
-import HistoryIcon from '@mui/icons-material/History'; 
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import HistoryIcon from '@mui/icons-material/History';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../context/userContext';
 import './AnchorTemporaryDrawer.css';
-<<<<<<< Updated upstream
-=======
 import Login from '../../Server/Auth';
->>>>>>> Stashed changes
-
 const icons = {
   'התנתקות': <ExitToAppIcon />,
   'עריכת פרופיל': <PersonIcon />,
@@ -30,23 +26,16 @@ const icons = {
   'סטטוס בקשות': <AssignmentIcon />,
   'היסטורית רכישות': <HistoryIcon />
 };
-
 const AnchorTemporaryDrawer = () => {
   const navigate = useNavigate();
   const [state, setState] = useState({ left: false, selectedOption: null });
-<<<<<<< Updated upstream
-  const { user, logout } = useContext(UserContext);
-=======
   const { user, setUser } = useContext(UserContext);
->>>>>>> Stashed changes
-
   const toggleDrawer = (open) => (event) => {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
     setState({ ...state, left: open });
   };
-
   const handleItemClick = (text) => {
     setState({ ...state, selectedOption: text });
     switch (text) {
@@ -69,14 +58,11 @@ const AnchorTemporaryDrawer = () => {
         break;
     }
   };
-
   const handleLogout = () => {
-    logout();
+    Login.logout();
   };
-
   const userName = user ? user.name : '';
   const userEmail = user ? user.email : '';
-
   const menuItems = [
     { text: 'התנתקות', role: ['user', 'admin'] },
     { text: 'עריכת פרופיל', role: ['user', 'admin'] },
@@ -84,7 +70,6 @@ const AnchorTemporaryDrawer = () => {
     { text: 'סטטוס בקשות', role: ['user'] },
     { text: 'היסטורית רכישות', role: ['user'] }
   ];
-
   const list = () => (
     <Box sx={{ width: 250 }} role="presentation" onKeyDown={toggleDrawer(false)}>
       <Box className="drawer-header">
@@ -110,7 +95,7 @@ const AnchorTemporaryDrawer = () => {
                 className="list-item-button"
               >
                 <ListItemIcon className="list-item-icon">
-                  {icons[item.text] || <PersonIcon />} 
+                  {icons[item.text] || <PersonIcon />}
                 </ListItemIcon>
                 <ListItemText primary={item.text} />
               </ListItemButton>
@@ -119,12 +104,7 @@ const AnchorTemporaryDrawer = () => {
       </List>
     </Box>
   );
-
   return (
-<<<<<<< Updated upstream
-    <Box sx={{ display: 'flex' }}>
-      <Box onClick={toggleDrawer(true)} aria-label="account" className="drawer-account-icon">
-=======
     <Box sx={{ display: 'flex', alignItems: 'center' }}>
       <Box
         sx={{
@@ -145,17 +125,16 @@ const AnchorTemporaryDrawer = () => {
         aria-label="account"
         className="drawer-account-icon"
       >
->>>>>>> Stashed changes
         <AccountCircleOutlinedIcon />
       </Box>
-      <Drawer 
+      <Drawer
         anchor="left"
         open={state.left}
         onClose={toggleDrawer(false)}
         onClick={toggleDrawer(false)}
         variant="persistent"
         PaperProps={{
-          sx: { width: 250 },
+          sx: { width: 250, overflow: 'hidden' },
         }}
       >
         {list()}
@@ -163,5 +142,11 @@ const AnchorTemporaryDrawer = () => {
     </Box>
   );
 };
-
 export default AnchorTemporaryDrawer;
+
+
+
+
+
+
+

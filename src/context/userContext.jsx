@@ -4,7 +4,7 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState({role:'user'});
   return (
-    <UserContext.Provider value={{ user, setUser }}>
+    <UserContext.Provider value={{ user, setUser}}>
       {children}
     </UserContext.Provider>
   );
@@ -12,3 +12,4 @@ export const UserProvider = ({ children }) => {
 UserProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
+

@@ -15,25 +15,13 @@
     "@emotion/styled": "^11.13.0",
     "@mui/icons-material": "^5.16.0",
     "@mui/joy": "^5.0.0-beta.36",
-<<<<<<< Updated upstream
-    "@mui/material": "^5.15.20",
-=======
     "@mui/material": "^5.16.4",
     "@mui/x-data-grid-premium": "^7.11.0",
->>>>>>> Stashed changes
     "@react-oauth/google": "^0.12.1",
     "@react-pdf/renderer": "^3.4.4",
     "@tanstack/react-query": "^5.51.15",
     "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
-<<<<<<< Updated upstream
-    "mobx": "^6.12.4",
-    "mobx-react": "^9.1.1",
-    "react": "^18.2.0",
-    "react-bootstrap": "^2.10.4",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.24.0"
-=======
     "date-fns": "^3.6.0",
     "exceljs": "^4.4.0",
     "file-saver": "^2.0.5",
@@ -57,7 +45,6 @@
     "styled": "^1.0.0",
     "styled-components": "^6.1.11",
     "xlsx": "^0.18.5"
->>>>>>> Stashed changes
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

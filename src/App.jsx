@@ -1,10 +1,5 @@
-<<<<<<< Updated upstream
-import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-=======
 import React, { useContext, useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
->>>>>>> Stashed changes
 import AppRoutes from './Components/router/Routes';
 import './App.css';
 import Footer from './Components/footer/footer';
@@ -15,7 +10,6 @@ import Help from './Components/help/help';
 import About from './Components/about/about';
 import ItemsList from './Components/item/items';
 import { UserProvider, UserContext } from './context/userContext';
-
 function App() {
     const items = [
         {
@@ -43,36 +37,30 @@ function App() {
             id: "5678"
         }
     ];
-
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
-
     return (
         <BrowserRouter>
             <UserProvider>
-                <MainComponent 
-                    isAuthenticated={isAuthenticated} 
+                <MainComponent
+                    isAuthenticated={isAuthenticated}
                     setIsAuthenticated={setIsAuthenticated}
-                    isAdmin={isAdmin} 
+                    isAdmin={isAdmin}
                     setIsAdmin={setIsAdmin}
-                    items={items} 
+                    items={items}
                 />
             </UserProvider>
         </BrowserRouter>
     );
 }
-
-<<<<<<< Updated upstream
-export default App;
-=======
 const MainComponent = ({ isAuthenticated, setIsAuthenticated, isAdmin, setIsAdmin, items }) => {
     const { user, setUser } = useContext(UserContext);
     const location = useLocation();
-
     useEffect(() => {
         const token = localStorage.getItem('authToken');
         const role = user.role; // Adjust this line if role is managed differently
-
+console.log("role");
+console.log(role);
         if (token) {
             setIsAuthenticated(true);
             setIsAdmin(role === 'admin');
@@ -81,9 +69,7 @@ const MainComponent = ({ isAuthenticated, setIsAuthenticated, isAdmin, setIsAdmi
             setIsAdmin(false);
         }
     }, [user.role]); // Adding user.role as dependency if it's being updated
-
     const isSectionPath = location.hash;
-
     return (
         <>
             <div style={{ display: 'none' }}><GGG /></div>
@@ -111,6 +97,10 @@ const MainComponent = ({ isAuthenticated, setIsAuthenticated, isAdmin, setIsAdmi
         </>
     );
 }
+export default App;
 
-export default App; 
->>>>>>> Stashed changes
+
+
+
+
+
