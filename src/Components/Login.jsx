@@ -469,6 +469,9 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
 import GoogleAuthOld from './GoogleAuth-old';
 import LoginService from '../Logic/LoginService';
+import { UserContext } from '../context/userContext';
+import { useContext } from 'react';
+
 // import SignUp from "./SignUp";
 import {useNavigate } from 'react-router-dom';
 export default function Login(props) {
@@ -485,6 +488,8 @@ export default function Login(props) {
 //const {user,setUser } = useContext(UserContext);
   const passwordRef = useRef(null);
   const emailRef = useRef(null);
+  const {setUser } = useContext(UserContext);
+
 
 const handleChange = (field, value) => {
     var temp = { ...credential };
@@ -555,12 +560,13 @@ const handleChange = (field, value) => {
           else if (res.status === 200) {
             let userData = res.data;
             const token= localStorage.getItem('authToken');
-            // userData =await LoginService.fetchAndSetUser(token)
-          
+            userData =await LoginService.fetchAndSetUser(token)
+            setUser(userData);
+            console.log(userData);
             navigate('/');
 
-            navigate('/user-profile');
-              location.reload();
+            // navigate('/user-profile');
+            location.reload();
             handleClose();
             // await LoginService.getUsers();
           }

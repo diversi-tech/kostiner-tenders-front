@@ -1,6 +1,6 @@
 // Routes.jsx
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, HashRouter } from 'react-router-dom';
 import ScrollToTop from '../scroll/ScrollToTop';
 import ScrollToAnchor from '../scroll/scrollToAnchor';
 import Connection from '../connection';
@@ -75,6 +75,7 @@ const AppRoutes = ({ isAuthenticated, isAdmin }) => {
   ];
 
   return (
+
     <>
       <ScrollToTop />
       <Routes>
