@@ -10,7 +10,10 @@ import Help from './Components/help/help';
 import About from './Components/about/about';
 import ItemsList from './Components/item/items';
 import { UserProvider, UserContext } from './context/userContext';
+<<<<<<< HEAD
 import TendersTable from './Components/tendersTable/TendersTable';
+=======
+>>>>>>> 26420acc277fc2da82b6128444e1d536a3405a8b
 import EnhancedTable from './Components/admin/managementTenders/viewEditTenders/viewEditTenders';
 
 function App() {
@@ -96,9 +99,14 @@ const MainComponent = ({ isAuthenticated, setIsAuthenticated, isAdmin, setIsAdmi
                         <>
                             <About />
                             <Help />
+<<<<<<< HEAD
                             <TendersTable/>
                             <EnhancedTable/>
                             {/* <ItemsList items={items} /> */}
+=======
+                            <ItemsList items={items} />
+                            <EnhancedTable/>
+>>>>>>> 26420acc277fc2da82b6128444e1d536a3405a8b
                         </>
                     )}
                     <AppRoutes isAuthenticated={isAuthenticated} isAdmin={isAdmin} />

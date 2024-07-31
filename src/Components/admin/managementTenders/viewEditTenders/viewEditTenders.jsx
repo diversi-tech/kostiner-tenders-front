@@ -13,7 +13,7 @@ const StyledTableRow = styled(TableRow)`
   transition: transform 0.3s ease-in-out;
   position: relative;
   &:hover {
-    transform: scale(1.0);
+    transform: scale(1.02); /* שיפוט קל של גודל שיפור */
     & > td > div {
       display: block;
     }
@@ -141,19 +141,6 @@ function EnhancedTable() {
         קטגוריות המכרזים
       </Typography>
       <Paper sx={{ width: '100%', mb: 2, p: 2 }}>
-        <Grid container justifyContent="flex-start" spacing={2} mb={2}>
-          <Grid item>
-            <Button
-              variant="contained"
-              style={{ backgroundColor: 'rgba(26,96,104,255)', color: '#fff' }}
-              onClick={handleAddClick}
-              startIcon={<AddIcon />}
-            >
-              הוסף קטגוריה
-            </Button>
-          </Grid>
-        </Grid>
-        <AddCategoryForm open={open} handleClose={handleClose} handleSave={handleSave} initialData={editingItem} />
         <TableContainer>
           <Table sx={{ minWidth: isMobile ? 'auto' : 850 }} aria-labelledby="tableTitle">
             <TableHead>
@@ -216,6 +203,17 @@ function EnhancedTable() {
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
+        {/* Box for the Add Category button */}
+        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+          <Button
+            variant="contained"
+            style={{ backgroundColor: 'rgba(26,96,104,255)', color: '#fff' }}
+            onClick={handleAddClick}
+            endIcon={<AddIcon />} // Icon after the text
+          >
+            הוסף קטגוריה
+          </Button>
+        </Box>
       </Paper>
       <Dialog open={openDeleteDialog} onClose={handleDeleteCancel}>
         <DialogTitle>אישור מחיקה</DialogTitle>
@@ -231,6 +229,7 @@ function EnhancedTable() {
           </Button>
         </DialogActions>
       </Dialog>
+      <AddCategoryForm open={open} handleClose={handleClose} handleSave={handleSave} initialData={editingItem} />
     </Box>
   );
 }
