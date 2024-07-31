@@ -1,0 +1,23 @@
+import axios from "../axios/axios";
+
+export const getAllUsers = async () => {
+  console.log("getAllUsers");
+  const token = localStorage.getItem('authToken');
+  try {
+    const response = await axios.get(`/get-all-users`, {
+      method:'GET',
+      headers: {
+        'Authorization': token,
+        'Content-Type': 'application/json',
+      },
+    });
+    console.log("response");
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    console.error('Response:', error.response);
+    return null;
+  }
+  
+};

@@ -17,7 +17,7 @@ import Typography from '@mui/material/Typography';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../context/userContext';
-import './AnchorTemporaryDrawer.css';
+import './anchorTemporaryDrawer.css';
 import Login from '../../Server/Auth';
 
 const icons = {

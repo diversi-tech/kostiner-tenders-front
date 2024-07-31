@@ -14,16 +14,18 @@ import ItemsList from '../item/items';
 import Product_Step from '../product/product_step';
 import TypeProduct_Step from '../typeProduct/typeProduct_step';
 import ProductTender_Step from '../productTender/productTender_step';
-import CreditCard_Step from '../creditCard/credirCard_step';
-import FinishPay_Step from '../finnishPay/finishPay_step';
-import AdminDashboard from '../admin/adminDashboard';
-import ManagementTenders from '../managementTender/managementTender';
-import UploadCSV from '../uploadCSV/uploadCSV';
+import ResultTender from '../resultTender';
+import ManagementTenders from '../admin/managementTenders/managementTenders';
+import UploadCSV from '../admin/managementTenders/uploadCSV/uploadCSV';
 import ViewTenders from '../admin/managementTenders/viewEditTenders/viewEditTenders';
 import CheckTender from '../admin/managementTenders/checkTender/checkTender';
+import CreditCard_Step from '../creditCard/credirCard_step';
+import FinishPay_Step from '../finnishPay/finishPay_step';
 import TenderTable from '../tendersTable/TendersTable';
 import Login from '../Login';
-import HomePage from '../homePage/homePage';
+import ManagementUser from '../admin/managementUser/managementUser';
+import ViewUser from '../admin/managementUser/viewUser/viewUser';
+// import HomePage from '../homePage/homePage';
 import CategorySelection from '../categorySelection/categorySelection';
 import EditUserProfile from '../EditProfile/editUserProfile';
 import RequestsStatus from '../requestStatus/requestStatus';
@@ -94,11 +96,12 @@ const AppRoutes = ({ isAuthenticated, isAdmin }) => {
 
         {isAdmin && (
           <>
-            <Route path="/adminDashboard" element={<ScrollToAnchor component={<AdminDashboard />} anchorId="admin-dashbord-anchor" />} />
+            <Route path="/managementUser" element={<ScrollToAnchor component={<ManagementUser />} anchorId="manage-user-anchor" />} />
             <Route path="/manageTenders" element={<ScrollToAnchor component={<ManagementTenders />} anchorId="manage-tenders-anchor" />} />
             <Route path="/upload-csv" element={<ScrollToAnchor component={<UploadCSV />} anchorId="upload-csv-anchor" />} />
             <Route path="/view-tenders" element={<ScrollToAnchor component={<ViewTenders />} anchorId="view-tenders-anchor" />} />
             <Route path="/checkTender" element={<ScrollToAnchor component={<CheckTender />} anchorId="check-tender-anchor" />} />
+            <Route path="/viewUser" element={<ScrollToAnchor component={<ViewUser/>} anchorId="view-tenders-anchor" />} />
             <Route path="/editting-tenders" element={<ScrollToAnchor component={<TenderTable />} anchorId="editting-tenders" />} />
           </>
         )}
