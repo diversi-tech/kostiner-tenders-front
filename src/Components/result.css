@@ -1,0 +1,93 @@
+.tender-filter-container {
+  padding: 15px; /* Decrease padding */
+  max-width: 250px; /* Decrease max width */
+  margin: 15px; /* Decrease margin */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 10px rgba(26, 96, 104, 255);
+  position: relative;
+  float: right;
+}
+
+.filter-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.input-group {
+  width: 100%;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.label-category {
+  color: rgba(26, 96, 104, 255); /* Change this to your desired color */
+  font-weight: bold; /* Optional */
+}
+
+.filter-inputs input {
+  padding: 10px;
+  border: 1px solid rgba(26, 96, 104, 255);
+  border-radius: 5px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.tender-list {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.tender-item {
+  padding: 10px;
+  border: 1px solid rgba(26, 96, 104, 255);
+  border-radius: 5px;
+  background-color: #e7f0ff;
+  transition: background-color 0.3s;
+}
+
+.tender-item:hover {
+  background-color: #d0e7ff;
+}
+
+h2 {
+  color: rgba(26, 96, 104, 255);
+  text-align: center; /* Center the text */
+  font-weight: bold; /* Make the text bold */
+}
+
+h3 {
+  color: rgba(26, 96, 104, 255);
+  text-align: left;
+}
+
+p {
+  color: #666666;
+  text-align: left;
+}
+
+/* Button specific styles */
+.search-button {
+  color: rgba(26, 96, 104, 255);/* Change this to your desired color */
+  font-weight: bold; /* Make the text bold */
+  border: 2px solid transparent; /* Initial border (optional) */
+  padding: 10px 15px; /* Add some padding for a better look */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  transition: border-color 0.3s; /* Smooth transition for border color */
+}
+
+.search-button:hover {
+  border-color:rgba(26, 96, 104, 255); /* Change this to your desired hover border color */
+  background-color: #f0f0f0; /* Optional: Change background on hover */
+}
+
+
