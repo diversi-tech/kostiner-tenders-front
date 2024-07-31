@@ -6,8 +6,9 @@ import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
 import styled from 'styled-components';
 import AddCategoryForm from './addOrEditCategory';
-import { getAllCategories, addCategory, updateCategory, deleteCategory } from '../../../../Server/caregory'; // ייבוא הפונקציות מה-API
+import { getAllCategories, addCategory, updateCategory, deleteCategory } from '../../../../Server/caregory';
 import { useTheme } from '@mui/material/styles';
+
 const StyledTableRow = styled(TableRow)`
   transition: transform 0.3s ease-in-out;
   position: relative;
@@ -18,6 +19,7 @@ const StyledTableRow = styled(TableRow)`
     }
   }
 `;
+
 const IconContainer = styled.div`
   display: none;
   position: absolute;
@@ -26,42 +28,51 @@ const IconContainer = styled.div`
   left: 16px;
   z-index: 1;
 `;
+
 function EnhancedTable() {
-  const [data, setData] = useState([
-    { id: 5, category: 'קוסמטיקה', description: 'קרם לחות לפנים', monthlyPrice: 30, subscriptionPrice: 300 },
-    { id: 1, category: 'אלקטרוניקה', description: 'סמארטפון', monthlyPrice: 50, subscriptionPrice: 500 },
-    { id: 2, category: 'ספרים', description: 'ספרי צדיקים', monthlyPrice: 10, subscriptionPrice: 100 },
-    { id: 3, category: 'ריהוט', description: 'כיסא משרדי', monthlyPrice: 20, subscriptionPrice: 200 },
-    { id: 4, category: 'כושר', description: 'מזרנית יוגה', monthlyPrice: 5, subscriptionPrice: 50 },
-  ]);
+  const [data, setData] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [open, setOpen] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
   const [hoveredRow, setHoveredRow] = useState(null);
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
-  const [deleteCategory, setDeleteCategory] = useState(null);
+  const [deleteCategoryId, setDeleteCategoryId] = useState(null); // Use an id or unique identifier
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   useEffect(() => {
     const fetchData = async () => {
-      const products = await getAllCategories();
-      setData(products);
+      const categories = await getAllCategories();
+      if (categories) {
+        const formattedData = categories.map(item => ({
+          ...item,
+          category: item.category || "ךך",
+          description: item.description || "ךך",
+          monthlyPrice: item.price_monthly !== null ? item.price_monthly : "ךך",
+          subscriptionPrice: item.price_subscription !== null ? item.price_subscription : "ךך"
+        }));
+        setData(formattedData);
+      }
     };
     fetchData();
   }, []);
+
   const handleAddClick = () => {
     setEditingItem(null);
     setOpen(true);
   };
+
   const handleEditClick = (item) => {
     setEditingItem(item);
     setOpen(true);
   };
+
   const handleClose = () => {
     setOpen(false);
     setEditingItem(null);
   };
+
   const handleSave = async (item) => {
     const originalItem = editingItem;
     if (originalItem) {
@@ -70,53 +81,62 @@ function EnhancedTable() {
         const updatedData = data.map((d) => (d.category === originalItem.category ? item : d));
         setData(updatedData);
       } catch (error) {
-        console.error('Error updating product:', error);
+        console.error('Error updating category:', error);
       }
     } else {
       try {
-        const newProduct = await addCategory(item);
-        setData((prevData) => [...prevData, newProduct]);
+        const newCategory = await addCategory(item);
+        setData((prevData) => [...prevData, newCategory]);
       } catch (error) {
-        console.error('Error adding product:', error);
+        console.error('Error adding category:', error);
       }
     }
     handleClose();
-    return { originalItem, newItem: item };
   };
+
   const handleDeleteClick = (category) => {
-    setDeleteCategory(category);
+    setDeleteCategoryId(category); // Set the category id or identifier for deletion
     setOpenDeleteDialog(true);
   };
+
   const handleDeleteConfirm = async () => {
-    try {
-      await deleteCategory(deleteCategory);
-      const updatedData = data.filter((item) => item.category !== deleteCategory);
-      setData(updatedData);
-    } catch (error) {
-      console.error('Error deleting product:', error);
+    if (deleteCategoryId) {
+      try {
+        await deleteCategory(deleteCategoryId); // Pass the identifier to deleteCategory
+        const updatedData = data.filter((item) => item.category !== deleteCategoryId); // Filter out the deleted item
+        setData(updatedData);
+      } catch (error) {
+        console.error('Error deleting category:', error);
+      }
+      setOpenDeleteDialog(false);
+      setDeleteCategoryId(null);
     }
-    setOpenDeleteDialog(false);
-    setDeleteCategory(null);
   };
+
   const handleDeleteCancel = () => {
     setOpenDeleteDialog(false);
-    setDeleteCategory(null);
+    setDeleteCategoryId(null);
   };
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
+
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+
   const handleRowHover = (category) => {
     setHoveredRow(category);
   };
+
   const handleRowLeave = () => {
     setHoveredRow(null);
   };
+
   return (
-    <Box sx={{ width: '100%' }} >
+    <Box sx={{ width: '100%' }}>
       <Typography variant="h4" gutterBottom align="center">
         קטגוריות המכרזים
       </Typography>
@@ -214,4 +234,5 @@ function EnhancedTable() {
     </Box>
   );
 }
+
 export default EnhancedTable;

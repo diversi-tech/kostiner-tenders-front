@@ -46,12 +46,12 @@ function App() {
         <HashRouter>
         {/* // <BrowserRouter> */}
             <UserProvider>
-                <MainComponent 
-                    isAuthenticated={isAuthenticated} 
+                <MainComponent
+                    isAuthenticated={isAuthenticated}
                     setIsAuthenticated={setIsAuthenticated}
-                    isAdmin={isAdmin} 
+                    isAdmin={isAdmin}
                     setIsAdmin={setIsAdmin}
-                    items={items} 
+                    items={items}
                 />
             </UserProvider>
             {/* </BrowserRouter> */}
@@ -66,7 +66,8 @@ const MainComponent = ({ isAuthenticated, setIsAuthenticated, isAdmin, setIsAdmi
     useEffect(() => {
         const token = localStorage.getItem('authToken');
         const role = user.role; // Adjust this line if role is managed differently
-
+        console.log("role");
+        console.log(role);
         if (token) {
             setIsAuthenticated(true);
             setIsAdmin(role === 'admin');

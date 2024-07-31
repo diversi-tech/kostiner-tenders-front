@@ -13,10 +13,10 @@ export const getAllTenders = async () => {
     console.log("getAllTenders");
     const token = localStorage.getItem('authToken');
     console.log(token);
-    const response = await axios.get(`/get-all-Tender`, {
+    const response = await axios.get(`/get-all-tenders`, {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `${token}`,
+        'Authorization': token,
       },
       responseType: 'blob', // כדי להבטיח שהקבצים מתקבלים כבלוב
     });
@@ -61,22 +61,24 @@ const splitCSVBlobs = (blob, numFiles) => {
 
 export const addTender = async (file) => {
   try {
-    const token = localStorage.getItem('authToken')
+    const token = localStorage.getItem('authToken');
     const formData = new FormData();
-    formData.append('tender', file); // הוסף את קובץ האקסל
+    formData.append('file', file); // הוסף את הקובץ עם המפתח 'file' או כפי שדורש השרת
+    
     const response = await axios.post(`/post-upload-csv`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
-        'Authorization': `${token}`,
+        'Authorization': token,
       },
     });
 
     return response.data;
   } catch (error) {
     console.error('Error adding Tender:', error);
-    throw error; // כדי לטפל בשגיאות ספציפיות אם צריך
+    throw error; // לטיפול בשגיאות ספציפיות אם צריך
   }
 };
+
 
 export const updateTender = async (Tender, updatedProduct) => {
   try {

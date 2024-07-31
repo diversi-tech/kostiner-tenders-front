@@ -1,68 +1,74 @@
-// import axios from 'axios';
-import axios from "../axios/axios";
-// const apiUrl = 'http://localhost:5000/api'; // Adjust URL according to your server
-const list = [
-  { category: 'אלקטרוניקה', description: 'סמארטפון', monthlyPrice: 50, subscriptionPrice: 500 },
-  { category: 'ספרים', description: 'ספרי צדיקים', monthlyPrice: 10, subscriptionPrice: 100 },
-  { category: 'ריהוט', description: 'כיסא משרדי', monthlyPrice: 20, subscriptionPrice: 200 },
-  { category: 'כושר', description: 'מזרנית יוגה', monthlyPrice: 5, subscriptionPrice: 50 },
-  { category: 'קוסמטיקה', description: 'קרם לחות לפנים', monthlyPrice: 30, subscriptionPrice: 300 },
-]
-const token = localStorage.getItem('authToken')
+import axios from '../axios/axios';
+
 export const getAllCategories = async () => {
+  const token = localStorage.getItem('authToken');
   try {
-    console.log("getAllCategories");
-    const token = localStorage.getItem('authToken')
-    console.log(token);
-    const response = await axios.get(`/get-all-category`, {
+    const response = await axios.get(`/get-all-products`, {
       headers: {
+        'Authorization': token,
         'Content-Type': 'application/json',
-        'Authorization': `${token}`,
       },
     });
     return response.data;
   } catch (error) {
     console.error('Error fetching categories:', error);
-    return list;
+    return null;
   }
 };
+
 export const getProductByCategory = async (category) => {
   try {
-    console.log("getProductByCategory", category)
     const response = await axios.get(`/get-product-by-category/${category}`);
     return response.data;
   } catch (error) {
     console.error(`Error fetching product ${category}:`, error);
-    throw error; // Rethrow to handle specific errors if needed
+    throw error;
   }
 };
+
 export const addCategory = async (product) => {
+  const token = localStorage.getItem('authToken');
   try {
-    console.log("addCategory", product);
-    const response = await axios.post(`/post-category`, product);
+    const response = await axios.post(`/post-product`, product, {
+      headers: {
+        'Authorization': token,
+        'Content-Type': 'application/json',
+      },
+    });
     return response.data;
   } catch (error) {
     console.error('Error adding category:', error);
-    throw error; // Rethrow to handle specific errors if needed
+    throw error;
   }
 };
+
 export const updateCategory = async (category, updatedProduct) => {
+  const token = localStorage.getItem('authToken');
   try {
-    console.log("updateCategory", category, updatedProduct);
-    const response = await axios.put(`/put-category/${category}`, updatedProduct);
+    const response = await axios.put(`/put-product/${category}`, updatedProduct, {
+      headers: {
+        'Authorization': token,
+        'Content-Type': 'application/json',
+      },
+    });
     return response.data;
   } catch (error) {
     console.error(`Error updating category ${category}:`, error);
-    throw error; // Rethrow to handle specific errors if needed
+    throw error;
   }
 };
+
 export const deleteCategory = async (category) => {
+  const token = localStorage.getItem('authToken');
   try {
-    console.log("deleteCategory", category);
-    await axios.delete(`/delete-category/${category}`);
-    return true; // Assuming successful deletion returns true
+    await axios.delete(`/delete-product/${category}`, {
+      headers: {
+        'Authorization':token,
+      },
+    });
+    return true;
   } catch (error) {
     console.error(`Error deleting category ${category}:`, error);
-    throw error; // Rethrow to handle specific errors if needed
+    throw error;
   }
 };
