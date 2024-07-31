@@ -107,10 +107,7 @@ export default function Login(props) {
         userData = await LoginService.fetchAndSetUser(token)
         setUser(userData);
         console.log(userData);
-        navigate('/');
-
-        // navigate('/user-profile');
-        location.reload();
+      
         handleClose();
       }
     }
