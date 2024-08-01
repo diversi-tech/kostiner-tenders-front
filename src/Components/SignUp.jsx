@@ -583,6 +583,7 @@ export default function SignUp(props) {
   };
 
   const handleClose = () => {
+    navigate('/');
     setOpen(false);
   };
 

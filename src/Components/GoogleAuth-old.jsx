@@ -198,6 +198,7 @@ const GoogleAuthOld = () => {
     console.log('Login Success:', response);
     console.log("token",response.credential);
     fetch('https://kostiner-tenders-back.onrender.com/auth/cotinue-with-google', {
+      mode: 'cors',
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
