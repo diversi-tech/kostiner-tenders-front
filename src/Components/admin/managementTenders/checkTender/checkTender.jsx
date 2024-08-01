@@ -1,20 +1,6 @@
 import React, { useState } from 'react';
-import {
-  Box,
-  Button,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle
-} from '@mui/material';
+import {Box,Button,Table,TableBody,TableCell,TableContainer,TableHead,TableRow,Paper,Dialog,
+DialogActions,DialogContent,DialogContentText, DialogTitle} from '@mui/material';
 import { format } from 'date-fns';
 
 const initialData = [
@@ -80,82 +66,82 @@ export default function CheckTender() {
 
   return (
     <Box
-    sx={{
-      width: '100%',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      bgcolor: 'transparent',
-      position: 'relative',
-      zIndex: 1,
-      textAlign: 'center',
-      marginTop: 4, // מרחק מלמעלה של 2 רמות
-    }}
+      sx={{
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        bgcolor: 'transparent',
+        position: 'relative',
+        zIndex: 1,
+        textAlign: 'center',
+        marginTop: 4, // מרחק מלמעלה של 2 רמות
+      }}
     >
-     <TableContainer component={Paper} sx={{ width: '90%', maxHeight: '70vh' }}>
-  <Table stickyHeader sx={{ border: '2px solid rgba(26,96,104,255)', borderRadius: 2 }}>
-    <TableHead>
-      <TableRow sx={{ backgroundColor: 'rgba(26,96,104,255)' }}>
-        <TableCell align="center" sx={{ color: 'rgba(26,96,104,255)', fontFamily: 'Arial', fontSize: '1.2rem', width: '25%',fontWeight: 'bold'  }}>
-          שם משתמש
+      <TableContainer component={Paper} sx={{ width: '90%', maxHeight: '70vh' }}>
+        <Table stickyHeader sx={{ border: '2px solid rgba(26,96,104,255)', borderRadius: 2 }}>
+          <TableHead>
+            <TableRow sx={{ backgroundColor: 'rgba(26,96,104,255)' }}>
+              <TableCell align="center" sx={{ color: 'rgba(26,96,104,255)', fontFamily: 'Arial', fontSize: '1.2rem', width: '25%', fontWeight: 'bold' }}>
+                שם משתמש
         </TableCell>
-        <TableCell align="center" sx={{ color: 'rgba(26,96,104,255)', fontFamily: 'Arial', fontSize: '1.2rem', width: '25%',fontWeight: 'bold'  }}>
-          שם לחיפוש
+              <TableCell align="center" sx={{ color: 'rgba(26,96,104,255)', fontFamily: 'Arial', fontSize: '1.2rem', width: '25%', fontWeight: 'bold' }}>
+                שם לחיפוש
         </TableCell>
-        <TableCell align="center" sx={{ color: 'rgba(26,96,104,255)', fontFamily: 'Arial', fontSize: '1.2rem', width: '25%' ,fontWeight: 'bold' }}>
-          תאריך
+              <TableCell align="center" sx={{ color: 'rgba(26,96,104,255)', fontFamily: 'Arial', fontSize: '1.2rem', width: '25%', fontWeight: 'bold' }}>
+                תאריך
         </TableCell>
-        <TableCell align="center" sx={{ color: 'rgba(26,96,104,255)', fontFamily: 'Arial', fontSize: '1.2rem', width: '25%' ,fontWeight: 'bold' }}>
-          פעולה
+              <TableCell align="center" sx={{ color: 'rgba(26,96,104,255)', fontFamily: 'Arial', fontSize: '1.2rem', width: '25%', fontWeight: 'bold' }}>
+                פעולה
         </TableCell>
-      </TableRow>
-    </TableHead>
-    <TableBody>
-      {rows.map((row) => (
-        <TableRow key={row.id} sx={{ borderBottom: 'none' }}>
-          <TableCell align="center" sx={{ fontFamily: 'Arial', fontSize: '1rem', width: '25%' }}>{row.username}</TableCell>
-          <TableCell align="center" sx={{ fontFamily: 'Arial', fontSize: '1rem', width: '25%' }}>{row.searchName}</TableCell>
-          <TableCell align="center" sx={{ fontFamily: 'Arial', fontSize: '1rem', width: '25%' }}>{format(row.date, 'dd/MM/yyyy')}</TableCell>
-          <TableCell align="center" sx={{ width: '25%' }}>
-            <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1 }}>
-              <Button
-                variant="contained"
-                color="primary"
-                sx={{
-                  backgroundColor: 'rgba(26,96,104,255)',
-                  color: 'white',
-                  fontFamily: 'Arial',
-                  '&:hover': {
-                    backgroundColor: 'rgb(129, 175, 164)',
-                  },
-                }}
-                onClick={() => handleApprove(row.id)}
-              >
-                אישור
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map((row) => (
+              <TableRow key={row.id} sx={{ borderBottom: 'none' }}>
+                <TableCell align="center" sx={{ fontFamily: 'Arial', fontSize: '1rem', width: '25%' }}>{row.username}</TableCell>
+                <TableCell align="center" sx={{ fontFamily: 'Arial', fontSize: '1rem', width: '25%' }}>{row.searchName}</TableCell>
+                <TableCell align="center" sx={{ fontFamily: 'Arial', fontSize: '1rem', width: '25%' }}>{format(row.date, 'dd/MM/yyyy')}</TableCell>
+                <TableCell align="center" sx={{ width: '25%' }}>
+                  <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1 }}>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      sx={{
+                        backgroundColor: 'rgba(26,96,104,255)',
+                        color: 'white',
+                        fontFamily: 'Arial',
+                        '&:hover': {
+                          backgroundColor: 'rgb(129, 175, 164)',
+                        },
+                      }}
+                      onClick={() => handleApprove(row.id)}
+                    >
+                      אישור
               </Button>
-              <Button
-                variant="contained"
-                color="error"
-                sx={{
-                  backgroundColor: 'rgba(26,96,104,255)',
-                  color: 'white',
-                  fontFamily: 'Arial',
-                  '&:hover': {
-                    backgroundColor: 'rgb(255, 82, 82)',
-                  },
-                }}
-                onClick={() => handleReject(row.id)}
-              >
-                סירוב
+                    <Button
+                      variant="contained"
+                      color="error"
+                      sx={{
+                        backgroundColor: 'rgba(26,96,104,255)',
+                        color: 'white',
+                        fontFamily: 'Arial',
+                        '&:hover': {
+                          backgroundColor: 'rgb(255, 82, 82)',
+                        },
+                      }}
+                      onClick={() => handleReject(row.id)}
+                    >
+                      סירוב
               </Button>
-            </Box>
-          </TableCell>
-        </TableRow>
-      ))}
-    </TableBody>
-  </Table>
-</TableContainer>
+                  </Box>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
 
 
       <Dialog

@@ -1,0 +1,547 @@
+[33mcommit 7810b9117db7d6a1c838f20a3677e7bdb44a6a56[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: SaraHaouzi <sh485014@gmail.com>
+Date:   Mon Jul 29 14:55:39 2024 +0300
+
+    logout-and-context
+
+[33mcommit d463f666085b0fa00afc9dceb2b355d3a41addb0[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: SariSokolovski <s0527696785@gmail.com>
+Date:   Wed Jul 24 17:55:01 2024 +0300
+
+    24/07
+
+[33mcommit 01f0b072a70b7a053b94f7164c9603be7745d056[m
+Author: sari-itzkovch <sarit2813@gmail.com>
+Date:   Wed Jul 24 17:19:38 2024 +0300
+
+    login
+
+[33mcommit 52e757750787da6b06adcb30d6568649be00f854[m
+Merge: 036eca6 4c36803
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Wed Jul 24 14:12:56 2024 +0300
+
+    Merge branch 'master' of https://github.com/diversi-tech/kostiner-tenders-front
+
+[33mcommit 4c368033235350b4d5e1e8420cba12b90869b0d4[m
+Merge: a1cf0b9 fba52c0
+Author: MaayanMalka3697 <147383096+MaayanMalka3697@users.noreply.github.com>
+Date:   Wed Jul 24 14:05:39 2024 +0300
+
+    Merge pull request #17 from diversi-tech/maayanmalka
+    
+    small fix
+
+[33mcommit fba52c033b7aee9e4d2d616143accf62bbca9d44[m[33m ([m[1;31morigin/maayanmalka[m[33m)[m
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Wed Jul 24 13:02:04 2024 +0300
+
+    fix
+
+[33mcommit 036eca65594ee260ef3ef0f787ec7fdcefe8a951[m
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Wed Jul 24 12:20:54 2024 +0300
+
+    fix pull mistakes
+
+[33mcommit a1cf0b99fdbfa7a9fb740d85fa2c26bd04cf5e1b[m[33m ([m[1;31morigin/new-branch[m[33m, [m[1;31morigin/mm[m[33m)[m
+Author: sari-itzkovch <sarit2813@gmail.com>
+Date:   Wed Jul 24 11:25:38 2024 +0300
+
+    user
+
+[33mcommit 4c6aef75c1e52404c5f684fe9d8d6173b8390229[m
+Author: sari-itzkovch <sarit2813@gmail.com>
+Date:   Tue Jul 23 17:53:12 2024 +0300
+
+    Authenticated&role
+
+[33mcommit f68ecffb2f683d183e4e06cf2e933298a514af93[m
+Author: sari-itzkovch <sarit2813@gmail.com>
+Date:   Tue Jul 23 13:27:21 2024 +0300
+
+    change 23/07
+
+[33mcommit a3e62013086543c33b975e305a402cd93c669ff9[m
+Merge: 1691ca3 4c48164
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Tue Jul 23 12:29:00 2024 +0300
+
+    Merge branch 'master' of https://github.com/diversi-tech/kostiner-tenders-front
+
+[33mcommit 1691ca3f5ad42b0a70d2c48bb8ef2a14e9480834[m
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Tue Jul 23 12:26:56 2024 +0300
+
+    maayan malka- fix login
+
+[33mcommit 4c481644e9a1df1c0a2401e01cc06bbd9967f55f[m
+Author: sari-itzkovch <sarit2813@gmail.com>
+Date:   Sun Jul 21 12:15:13 2024 +0300
+
+    all change2 21/07
+
+[33mcommit 7874a48fde8c69a82fbbafe39b16036b58e999dc[m
+Author: sari-itzkovch <sarit2813@gmail.com>
+Date:   Sun Jul 21 12:11:25 2024 +0300
+
+    all change 21/07
+
+[33mcommit 219d29f32bc7cb9026d832500c227bb2366a14fb[m
+Author: sari-itzkovch <sarit2813@gmail.com>
+Date:   Sun Jul 21 10:34:20 2024 +0300
+
+    21/07
+
+[33mcommit b68e65d66184fbb928a42ec8f64adbfb8a31d7d3[m
+Merge: 190393a f1ba0a3
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Thu Jul 18 16:45:52 2024 +0300
+
+    Merge branch 'master' of https://github.com/diversi-tech/kostiner-tenders-front
+
+[33mcommit 190393ad644ebeddeb4d43c88d48ac4bfb3647df[m
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Thu Jul 18 16:45:47 2024 +0300
+
+    small change
+
+[33mcommit f1ba0a359141e8940be46acdbdb0685923f96fe9[m
+Author: sari-itzkovch <sarit2813@gmail.com>
+Date:   Wed Jul 17 16:14:41 2024 +0300
+
+    change2
+
+[33mcommit a97135ae5f55656a63a4071c0c906575f886d868[m
+Merge: aa18012 35cf32c
+Author: sari-itzkovch <sarit2813@gmail.com>
+Date:   Wed Jul 17 16:03:11 2024 +0300
+
+    17/07
+
+[33mcommit aa1801238bfdbe7e27ba116fb6bd8a83b7a40325[m
+Author: sari-itzkovch <sarit2813@gmail.com>
+Date:   Wed Jul 17 14:46:33 2024 +0300
+
+    17\07
+
+[33mcommit 35cf32c700552f57ae0063ddb616307892249676[m
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Wed Jul 17 11:57:05 2024 +0300
+
+    manual Chunks and resolve build problem on render
+
+[33mcommit 0737463f1f27433c9f3286571100750e1454660e[m
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Tue Jul 16 15:07:47 2024 +0300
+
+    fix problem in render
+
+[33mcommit edccc513a75e5975073e7ee2195b6e151f750540[m
+Merge: 75ebfc5 ceab0b4
+Author: MaayanMalka3697 <147383096+MaayanMalka3697@users.noreply.github.com>
+Date:   Tue Jul 16 14:25:45 2024 +0300
+
+    Merge pull request #14 from diversi-tech/maayan
+    
+    connect to server2
+
+[33mcommit ceab0b4b5d7c37c91f8225dec8a80e5e8f810ba6[m
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Tue Jul 16 14:23:34 2024 +0300
+
+    connect to server2
+
+[33mcommit 75ebfc5c0c09c7515b3e67aafb07c455c67754da[m
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Tue Jul 16 14:10:52 2024 +0300
+
+    Update App.jsx
+
+[33mcommit dfb7262aced63e2e34df9f50322a5532c1cb37fd[m
+Merge: 8f32265 646a9ec
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Tue Jul 16 13:57:00 2024 +0300
+
+    Update App.jsx
+
+[33mcommit 8f32265682a73e309baa9f3e88fa0d666d852a17[m
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Tue Jul 16 13:56:07 2024 +0300
+
+    connect to the server
+
+[33mcommit 23ac45a479ab7edfdd0cd4d347a1726fffbb7117[m
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Tue Jul 16 13:51:35 2024 +0300
+
+    connect to server
+
+[33mcommit 646a9ec24290edfb5cf83490051477b09628ef3a[m
+Author: YehuditKol <150397348+YehuditKol@users.noreply.github.com>
+Date:   Mon Jul 15 17:05:28 2024 +0300
+
+    changes in ROUTER file
+
+[33mcommit 2e38053ac6169fa7ab259bfb82809bdd88e1ed0c[m
+Author: YehuditKol <150397348+YehuditKol@users.noreply.github.com>
+Date:   Mon Jul 15 16:42:31 2024 +0300
+
+    Add componenet to request passwors
+
+[33mcommit bf5e42261098a02dbd280facb3f7137230ac1eb9[m
+Merge: 8abed90 8748729
+Author: YehuditKol <150397348+YehuditKol@users.noreply.github.com>
+Date:   Mon Jul 15 16:41:12 2024 +0300
+
+    Merge branch 'Edit-Profile'
+
+[33mcommit 8748729f8836b3661c4a77bbe1a5a9d7cb488a65[m[33m ([m[1;31morigin/Edit-Profile[m[33m)[m
+Author: YehuditKol <150397348+YehuditKol@users.noreply.github.com>
+Date:   Mon Jul 15 13:15:52 2024 +0300
+
+    Add side Nav to user deatails
+
+[33mcommit 7b33ffa66b57f5ee6291d971dc2150317d6b395b[m
+Author: YehuditKol <150397348+YehuditKol@users.noreply.github.com>
+Date:   Sun Jul 14 10:48:07 2024 +0300
+
+    Add edit profile
+
+[33mcommit 8abed9010df3152978f4a30fbda86dd3e29b8a91[m
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Sun Jul 14 08:14:56 2024 +0300
+
+    fix sign-up route
+
+[33mcommit ece1ce9b246b196b91791ee7f028e7a985d7d71f[m
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Wed Jul 10 16:27:04 2024 +0300
+
+    Fix Login in NavBar
+
+[33mcommit 0f8daf7c0a4a0242a0f8c2ea9afef569c708f999[m
+Author: sari-itzkovch <sarit2813@gmail.com>
+Date:   Tue Jul 9 13:42:12 2024 +0300
+
+    try4
+
+[33mcommit f071f4b02b7729059d29a87fe413ee14a5770edd[m
+Author: sari-itzkovch <sarit2813@gmail.com>
+Date:   Tue Jul 9 13:26:48 2024 +0300
+
+    try3
+
+[33mcommit a0937c0b8f5bdb41da532dbea7eeab23822010cb[m
+Author: sari-itzkovch <sarit2813@gmail.com>
+Date:   Tue Jul 9 13:03:53 2024 +0300
+
+    try2
+
+[33mcommit 0b9ddd916a4b281b6ff3610ab83f7a5c443ae514[m
+Merge: 46e083b 67d4db2
+Author: sari-itzkovch <sarit2813@gmail.com>
+Date:   Tue Jul 9 09:45:33 2024 +0300
+
+    Resolved merge conflicts
+
+[33mcommit 46e083bd7ba99ac951a4bd45796ca5cab5d7e1e6[m
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Tue Jul 9 02:23:26 2024 +0300
+
+    secrets
+
+[33mcommit d8430c751d69f4de4142fc57bba0f0cf8ec72781[m
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Tue Jul 9 02:01:15 2024 +0300
+
+    manage Google-Secrets
+
+[33mcommit 67d4db27b0d0486c63df0a8138a72ed5ff9c4299[m
+Author: sari-itzkovch <sarit2813@gmail.com>
+Date:   Mon Jul 8 17:23:03 2024 +0300
+
+    change 08\07
+
+[33mcommit 497f70e34674ac20f170c0758dc41c371c1dce16[m
+Merge: 1310f57 b0963ae
+Author: MaayanMalka3697 <147383096+MaayanMalka3697@users.noreply.github.com>
+Date:   Sun Jul 7 15:47:52 2024 +0300
+
+    Merge pull request #11 from diversi-tech/maayanmalka
+    
+    handle Login & SignUp components position
+
+[33mcommit b0963ae37869233ecbf8ed4951ef402bc7a8c919[m
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Sun Jul 7 15:40:16 2024 +0300
+
+    handle Login & SignUp components position
+
+[33mcommit 1310f57c42a29619fcec40d17ad591532259cf12[m
+Merge: a901edf 99560cb
+Author: MaayanMalka3697 <147383096+MaayanMalka3697@users.noreply.github.com>
+Date:   Thu Jul 4 15:30:26 2024 +0300
+
+    Merge pull request #6 from diversi-tech/talya_branch
+    
+    Talya branch
+
+[33mcommit 99560cbf1b12a5737e914b15854851073f8f7ee6[m
+Merge: 43b45ae a901edf
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Thu Jul 4 15:29:43 2024 +0300
+
+    Merge branch 'master' into talya_branch
+
+[33mcommit 43b45aee9f4ceeda2ddf4ce78faf76c439c75884[m
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Thu Jul 4 15:23:40 2024 +0300
+
+    Update package-lock.json
+
+[33mcommit a901edf4d54d7a6c0c8e32e33ae653d769aaa3b2[m
+Merge: 0b8bf10 6d1522a
+Author: MaayanMalka3697 <147383096+MaayanMalka3697@users.noreply.github.com>
+Date:   Thu Jul 4 15:13:37 2024 +0300
+
+    Merge pull request #3 from diversi-tech/maayanmalka
+    
+    Maayanmalka
+
+[33mcommit 6d1522af20123d9373984e022ce2fc1b64d434ff[m
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Thu Jul 4 13:20:46 2024 +0300
+
+    fix package-lock.json
+
+[33mcommit f1255f0afbce590e6a3b3c08f6bd210922c4137a[m
+Merge: 7853613 0b8bf10
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Thu Jul 4 12:05:15 2024 +0300
+
+    Merge branch 'master' into talya_branch
+
+[33mcommit 6821abbb613d7082ac62044223b12a3d9043d450[m
+Merge: 397ba62 0b8bf10
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Thu Jul 4 11:39:10 2024 +0300
+
+    Merge branch 'master' into maayanmalka
+
+[33mcommit 0b8bf10cbeed4e265dace757e5261492dc4b5b6c[m
+Merge: 0fe54b5 43ae327
+Author: SaraSokolovsky <s7696785@gmail.com>
+Date:   Thu Jul 4 11:34:26 2024 +0300
+
+    Merge pull request #8 from diversi-tech/sarisokolovski-branch
+    
+    final
+
+[33mcommit 7853613fa9bf4cffc3aee1ceb2e37e69e4721516[m
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Thu Jul 4 11:34:20 2024 +0300
+
+    Design responsive  Tender's Table
+
+[33mcommit 397ba6290d3a929a84710c30fda4d24db6b93aba[m
+Merge: a982249 0fe54b5
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Thu Jul 4 11:28:06 2024 +0300
+
+    Merge branch 'master' into maayanmalka
+
+[33mcommit a98224936553aa430c3c6c81ddf553585d05679e[m
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Thu Jul 4 11:23:06 2024 +0300
+
+    Resolve Conflicts
+
+[33mcommit 43ae32796ec46d4dbab95cb006904673622c86f6[m
+Author: sari-itzkovch <sarit2813@gmail.com>
+Date:   Thu Jul 4 11:07:47 2024 +0300
+
+    all change
+
+[33mcommit c8f956064b5948215c6676239bc5a09d8796753f[m
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Thu Jul 4 10:59:30 2024 +0300
+
+    app.jsx
+
+[33mcommit 0b0d370386a686bc6f7a9d37159e0834a2d93ecf[m
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Thu Jul 4 10:50:47 2024 +0300
+
+    Update package-lock.json
+
+[33mcommit 83011b81a2570954ee0140ba95f464a29c446415[m
+Merge: 6a6a72a 0fe54b5
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Thu Jul 4 10:48:25 2024 +0300
+
+    resolve conflicts
+
+[33mcommit adf9cf1b77c1a7d50b24e2144c00550c4f5eb75c[m
+Merge: bf3eda8 c691bd8
+Author: sari-itzkovch <sarit2813@gmail.com>
+Date:   Tue Jul 2 14:39:36 2024 +0300
+
+    ff
+
+[33mcommit bf3eda879d11894f32b3b3e446af331930974d1e[m
+Merge: 2e69d05 ec45960
+Author: sari-itzkovch <sarit2813@gmail.com>
+Date:   Tue Jul 2 14:20:18 2024 +0300
+
+    cc
+
+[33mcommit c691bd815b9470e4e195227254026b0a35767f0c[m
+Merge: a3afc79 0fe54b5
+Author: SariSokolovski <s0527696785@gmail.com>
+Date:   Tue Jul 2 13:50:36 2024 +0300
+
+    nav&home&footer&produt
+
+[33mcommit a3afc79e9829b4694b7adb2c709e884296bd43f4[m
+Author: SariSokolovski <s0527696785@gmail.com>
+Date:   Tue Jul 2 10:58:00 2024 +0300
+
+    change 02/07
+
+[33mcommit 760a739632762ac23c38ad2b043a31d34dc5a1e4[m
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Mon Jul 1 10:57:44 2024 +0300
+
+    Create an environment variable for client_id
+
+[33mcommit 368ca726fd17b421b1c4e197de4a19acd2b9bd23[m
+Author: SariSokolovski <s0527696785@gmail.com>
+Date:   Mon Jul 1 10:31:30 2024 +0300
+
+    whith stepper
+
+[33mcommit d9ac07ed9e40db8b975146084bd24f7753ac7d65[m
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Mon Jul 1 10:19:06 2024 +0300
+
+    arrange components + responsive Credit Card component
+
+[33mcommit 2e69d0527867bd5411d1b623c8b1bda131035238[m
+Author: sari-itzkovch <sarit2813@gmail.com>
+Date:   Mon Jul 1 10:02:00 2024 +0300
+
+    Save my change
+
+[33mcommit ec45960ba67b9f8887a27a6575041943e2fc1cf9[m
+Author: SariSokolovski <s0527696785@gmail.com>
+Date:   Sun Jun 30 23:41:38 2024 +0300
+
+    navigate
+
+[33mcommit 0fe54b5c9eea0b8a027937b8c6824db7649bed2b[m[33m ([m[1;31morigin/render[m[33m)[m
+Merge: 0f8d775 792c1b7
+Author: Talya2004 <147398638+Talya2004@users.noreply.github.com>
+Date:   Sun Jun 30 13:31:56 2024 +0300
+
+    Merge pull request #9 from diversi-tech/toolbar
+    
+    Toolbar - Navigation bar for the entire site
+
+[33mcommit 792c1b7c1eaa9a9aafdad4324e56fec96dd77f8e[m[33m ([m[1;31morigin/toolbar[m[33m)[m
+Author: rutnotoviz <r0504172131@gmail.com>
+Date:   Sun Jun 30 10:49:40 2024 +0300
+
+    Your commit message
+
+[33mcommit 3aae4bb02cd42f537477a28ba6c259ca7c775ce9[m
+Author: rutnotoviz <r0504172131@gmail.com>
+Date:   Sun Jun 30 09:15:26 2024 +0300
+
+    Commit message describing the changes
+
+[33mcommit 5fd290d7760e6edb513aa6079679ad0ef645299e[m
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Sun Jun 30 02:59:01 2024 +0300
+
+    google login- pop-up
+
+[33mcommit 4fc90e449c7061df7ac90523027ee100e801e63e[m
+Author: SariSokolovski <s0527696785@gmail.com>
+Date:   Thu Jun 27 16:01:50 2024 +0300
+
+    homePage & footer & routes to choose & category & py
+
+[33mcommit 889e2fcab49a6898a7ea099410a1100b60421405[m
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Thu Jun 27 15:24:53 2024 +0300
+
+    maayan_malka => login & sign-up
+
+[33mcommit 6a6a72a66a6fb01e42c83b046c00b98bfa27f9cf[m
+Author: Talya2004 <talya3259@gmail.com>
+Date:   Thu Jun 27 11:10:49 2024 +0300
+
+    commit
+
+[33mcommit 37fa8d92f86abbb29aaf954af906105b51ee4a5c[m
+Merge: 1e31f8b 72fbc15
+Author: Talya2004 <talya3259@gmail.com>
+Date:   Thu Jun 27 10:10:29 2024 +0300
+
+    Merge branch 'talya_branch' of https://github.com/diversi-tech/kostiner-tenders-front into talya_branch
+
+[33mcommit 5e9bd3df6821720988fdc42993d32eec35dc3791[m
+Author: SariSokolovski <s0527696785@gmail.com>
+Date:   Thu Jun 27 09:04:15 2024 +0300
+
+    final
+
+[33mcommit 1e31f8babd599bf02a181b50db60ef3f14c6fcd3[m
+Author: Talya2004 <talya3259@gmail.com>
+Date:   Wed Jun 26 17:00:55 2024 +0300
+
+    divide item to item and itemslist
+
+[33mcommit 617722c8250714a2b021115aef2740751c7bf247[m
+Author: Talya2004 <talya3259@gmail.com>
+Date:   Wed Jun 26 15:27:58 2024 +0300
+
+    תיאור קצר של השינויים שלך
+
+[33mcommit 72fbc1557e59eca20c1b8b0beee5b7753eeb689a[m
+Author: Talya2004 <talya3259@gmail.com>
+Date:   Mon Jun 24 12:29:06 2024 +0300
+
+    Responsive component
+
+[33mcommit 2a198affd03ff63504b31eb8e1c006fcc2a08954[m[33m ([m[1;31morigin/sari_itzkovich[m[33m)[m
+Author: sari-itzkovch <sarit2813@gmail.com>
+Date:   Thu Jun 20 10:52:37 2024 +0300
+
+    change
+
+[33mcommit b39552e91aa25efc720bc5c68eb185a9f11d2bff[m
+Author: Talya2004 <talya3259@gmail.com>
+Date:   Wed Jun 19 17:04:23 2024 +0300
+
+    talya ozeri commit
+
+[33mcommit 1c373931d2edbcf8da009b407e1489ea8116e11a[m
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Wed Jun 19 10:03:05 2024 +0300
+
+    start login component
+
+[33mcommit 29cd75bea81edaf0157c37a62e1abd31baf7a8b4[m
+Merge: 666b713 0f8d775
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Tue Jun 18 10:04:08 2024 +0300
+
+    Merge branch 'master' of https://github.com/diversi-tech/kostiner-tenders-front into maayanmalka
+
+[33mcommit 666b713720669eaaca21264c735f979887a01c97[m
+Author: MaayanMalka3697 <maayan.malka3697@gmail.com>
+Date:   Tue Jun 18 09:48:04 2024 +0300
+
+    Upload

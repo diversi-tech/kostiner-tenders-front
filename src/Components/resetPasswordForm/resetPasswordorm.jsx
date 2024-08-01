@@ -144,7 +144,7 @@ const ResetPasswordForm = () => {
               }}
               style={{
                 borderRadius: '8px',
-                height: '40px',
+                height: '60px',
               }}
             />
             {showRules && (
@@ -194,7 +194,7 @@ const ResetPasswordForm = () => {
               }}
               style={{
                 borderRadius: '8px',
-                height: '40px',
+                height: '60px',
               }}
             />
           </div>
