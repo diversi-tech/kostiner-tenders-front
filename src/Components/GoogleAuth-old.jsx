@@ -198,6 +198,7 @@ const GoogleAuthOld = () => {
     console.log('Login Success:', response);
     console.log("token",response.credential);
     fetch('https://kostiner-tenders-back.onrender.com/auth/cotinue-with-google', {
+      mode: 'cors',
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -212,9 +213,9 @@ const GoogleAuthOld = () => {
     .then(data => {
       localStorage.setItem('authToken', data.access_token);
       navigate('/');
-
+      location.reload();
       navigate('/user-profile');
-        location.reload();
+        
 
 
     })
@@ -227,20 +228,6 @@ const GoogleAuthOld = () => {
 
   return (
     <GoogleOAuthProvider clientId={clientId}>
-      {/* <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
-        backgroundColor: '#f5f5f5',
-      }}> */}
-        {/* <div style={{
-          backgroundColor: 'white',
-          padding: '40px',
-          borderRadius: '10px',
-          boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-          textAlign: 'center',
-        }}> */}
           <div style={{marginLeft:'10%'}}>
           <GoogleLogin
             onSuccess={handleLoginSuccess}
@@ -262,8 +249,6 @@ const GoogleAuthOld = () => {
             onMouseOut={(e) => (e.currentTarget.style.backgroundColor = '#4285F4')}
           />
           </div>
-        {/* </div> */}
-      {/* </div> */}
     </GoogleOAuthProvider>
   );
 };

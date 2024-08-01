@@ -97,21 +97,24 @@ export default function Login(props) {
         setMessage(true);
         setCredential(prev => ({ ...prev, password: '' }));
 
-        console.log("passwordRef", passwordRef);
-        console.log("passwordRef.current", passwordRef.current);
-        passwordRef.focus();
-      }
-      else if (res.status === 200) {
-        let userData = res.data;
-        const token = localStorage.getItem('authToken');
-        userData = await LoginService.fetchAndSetUser(token)
-        setUser(userData);
-        console.log(userData);
-      
-        handleClose();
-      }
-    }
-  };
+            console.log("passwordRef",passwordRef);
+            console.log("passwordRef.current",passwordRef.current);
+            passwordRef.focus();
+          }
+          else if (res.status === 200) {
+            let userData = res.data;
+            const token= localStorage.getItem('authToken');
+            // userData =await LoginService.fetchAndSetUser(token)
+          
+            navigate('/');
+            location.reload();
+            navigate('/user-profile');
+              
+            handleClose();
+            // await LoginService.getUsers();
+          }
+        }
+      };
 
 
   return (

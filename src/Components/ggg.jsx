@@ -93,7 +93,7 @@ const GoogleLoginButton = () => {
   // פונקציה לקריאה ל-Google People API באמצעות ה-access token
   const getProfileInfo = async (token) => {
     try {
-      const response = await fetch('http://127.0.0.1:5000/google', {
+      const response = await fetch('http://kostiner-tendes-back.onrender.com/continue-with-google', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
