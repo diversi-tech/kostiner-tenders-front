@@ -1,6 +1,5 @@
-// Routes.jsx
 import React from 'react';
-import { Routes, Route, HashRouter } from 'react-router-dom';
+import { Routes, Route, Navigate,HashRouter } from 'react-router-dom';
 import ScrollToTop from '../scroll/ScrollToTop';
 import ScrollToAnchor from '../scroll/scrollToAnchor';
 import Connection from '../connection';
@@ -89,9 +88,9 @@ const AppRoutes = ({ isAuthenticated, isAdmin }) => {
         <Route path="/subscription" element={<ScrollToAnchor component={<Subscription />} anchorId="subscription-anchor" />} />
         <Route path="/resetPasword" element={<ScrollToAnchor component={<ResetPasswordForm />} anchorId="ResetPasswordForm-anchor" />} />
         <Route path="/categortTender" element={<ScrollToAnchor component={<ItemsList items={items} />} anchorId="categoryTender-anchor" />} />
-        <Route path="/product" element={<Product_Step />} />
-        <Route path="/typeProduct" element={<TypeProduct_Step />} />
-        <Route path="/tenderSearch" element={<ProductTender_Step />} />
+        <Route path="/product" element={ <Product_Step />} />
+        <Route path="/typeProduct" element={isAuthenticated ?<TypeProduct_Step />: <Navigate to="/login" />} />
+        <Route path="/tenderSearch" element={isAuthenticated ? <ProductTender_Step />: <Navigate to="/login"/> } />
         <Route path="/creditCard" element={<CreditCard_Step />} />
         <Route path="/finishPay" element={<FinishPay_Step />} />
 
