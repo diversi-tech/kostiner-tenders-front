@@ -1,36 +1,4 @@
-// import { createContext, useState } from 'react';
-// import PropTypes from 'prop-types';
-// export const UserContext = createContext();
-// export const UserProvider = ({ children }) => {
-//   const [user, setUser] = useState({role:'user'});
-//   return (
-//     <UserContext.Provider value={{ user, setUser}}>
-//       {children}
-//     </UserContext.Provider>
-//   );
-// };
-// UserProvider.propTypes = {
-//   children: PropTypes.node.isRequired,
-// };
 
-
-// import { createContext, useState } from 'react';
-// import PropTypes from 'prop-types';
-// export const UserContext = createContext();
-// export const UserProvider = ({ children }) => {
-//   const [user, setUser] = useState({ role: 'user'});
-//   const setUserDetails = (userDetails) => {
-//     setUser((prevUser) => ({ ...prevUser, ...userDetails }));
-//   };
-//   return (
-//     <UserContext.Provider value={{ user, setUser: setUserDetails }}>
-//       {children}
-//     </UserContext.Provider>
-//   );
-// };
-// UserProvider.propTypes = {
-//   children: PropTypes.node.isRequired,
-// };
 import { createContext, useState,useEffect} from 'react';
 import PropTypes from 'prop-types';
 import LoginService from '../Logic/LoginService';
@@ -82,6 +50,7 @@ export const UserProvider = ({ children }) => {
     </UserContext.Provider>
   );
 };
+
 
 UserProvider.propTypes = {
   children: PropTypes.node.isRequired

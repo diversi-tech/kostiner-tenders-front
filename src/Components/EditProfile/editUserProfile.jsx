@@ -5,9 +5,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { UserContext } from '../../context/userContext';
-import Login from '../../Server/Auth';
 import './EditUserProfile.css';
-
 export default function EditUserProfile() {
   const { user, setUser } = useContext(UserContext);
   const [formUserName, setFormUserName] = useState('');
@@ -20,9 +18,7 @@ export default function EditUserProfile() {
   const [originalFirstName, setOriginalFirstName] = useState('');
   const [originalLastName, setOriginalLastName] = useState('');
   const [originalBusinessName, setOriginalBusinessName] = useState('');
-  const [userId, setUserId] = useState('');
   const [saving, setSaving] = useState(false);
-
   useEffect(() => {
     if (user) {
       setFormUserName(user.user_name);
@@ -34,43 +30,30 @@ export default function EditUserProfile() {
       setOriginalLastName(user.last_name);
       setOriginalBusinessName(user.business_name);
     }
-    const token = localStorage.getItem('token');
-    if (token) {
-      const user_id = Login.getUserIdFromToken(token);
-      setUserId(user_id);
-    }
   }, [user]);
-
   const handleUserNameChange = (event) => {
     setFormUserName(event.target.value);
   };
-
   const handleFirstNameChange = (event) => {
     setFormFirstName(event.target.value);
   };
-
   const handleLastNameChange = (event) => {
     setFormLastName(event.target.value);
   };
-
   const handleBusinessNameChange = (event) => {
     setFormBusinessName(event.target.value);
   };
-
   const handlePasswordChange = (event) => {
     setFormPassword(event.target.value);
   };
-
   const handleConfirmPasswordChange = (event) => {
     setFormConfirmPassword(event.target.value);
   };
-
   const handleSave = async () => {
     if (formPassword && formPassword !== formConfirmPassword) {
       alert('סיסמאות לא תואמות');
       return;
     }
-
     const updatedUser = {
       user_name: formUserName,
       first_name: formFirstName,
@@ -82,7 +65,7 @@ export default function EditUserProfile() {
     try {
       setSaving(true);
       const token = localStorage.getItem('token');
-      const response = await fetch(`https://kostiner-tender-1111.onrender.com/api/put-user/${userId}`, {
+      const response = await fetch(`https://kostiner-tender-1111.onrender.com/api/put-user/${user.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -104,9 +87,9 @@ export default function EditUserProfile() {
     } catch (error) {
       console.error('שגיאה בשמירת פרטי המשתמש:', error);
       setSaving(false);
+      setSaving(false);
     }
   };
-
   const handleCancel = () => {
     setFormUserName(originalUserName);
     setFormFirstName(originalFirstName);
@@ -115,7 +98,6 @@ export default function EditUserProfile() {
     setFormPassword('');
     setFormConfirmPassword('');
   };
-
   return (
     <Box className="BackgroundBox">
       <Box className="GradientCircle circle-1" />
@@ -276,3 +258,12 @@ export default function EditUserProfile() {
     </Box>
   );
 }
+
+
+
+
+
+
+
+
+

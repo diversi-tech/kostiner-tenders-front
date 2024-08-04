@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Route, Routes, useLocation } from 'react-router-dom';
 import AppRoutes from './Components/router/Routes';
 import './App.css';
 import Footer from './Components/footer/footer';
@@ -44,17 +44,19 @@ function App() {
     const [isAdmin, setIsAdmin] = useState(false);
 
     return (
-        <BrowserRouter>
+        <HashRouter>
+        {/* // <BrowserRouter> */}
             <UserProvider>
-                <MainComponent 
-                    isAuthenticated={isAuthenticated} 
+                <MainComponent
+                    isAuthenticated={isAuthenticated}
                     setIsAuthenticated={setIsAuthenticated}
-                    isAdmin={isAdmin} 
+                    isAdmin={isAdmin}
                     setIsAdmin={setIsAdmin}
-                    items={items} 
+                    items={items}
                 />
             </UserProvider>
-        </BrowserRouter>
+            {/* </BrowserRouter> */}
+        </HashRouter> 
     );
 }
 

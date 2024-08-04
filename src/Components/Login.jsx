@@ -15,7 +15,6 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
 import GoogleAuthOld from './GoogleAuth-old';
 import LoginService from '../Logic/LoginService';
-//import { UserContext } from '../context/userContext';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/userContext';
 export default function Login(props) {
@@ -31,7 +30,6 @@ export default function Login(props) {
   const [ setEmailError] = useState(false);
   const passwordRef = useRef(null);
   const emailRef = useRef(null);
-  //const { user, setUser } = useContext(UserContext);
   const { user,setUser } = useContext(UserContext);
 
 
@@ -53,11 +51,11 @@ export default function Login(props) {
   // }
   const handleClose = () => {
     setOpen(false);
-    setResetEmailSent(false); // Reset the state when dialog is closed
-    setMessage(false); // Reset the message state when dialog is closed
-    setEmailError(false); // Reset the email error state when dialog is closed
-    setCredential({ userName: '', password: '' }); // Reset credentials
-    setEmail(''); // Reset email field
+    setResetEmailSent(false);
+    setMessage(false);
+    setEmailError(false);
+    setCredential({ userName: '', password: '' }); 
+    setEmail(''); 
     navigate('/');
   };
   const handleChangePassword = (field, value) => {
@@ -147,11 +145,13 @@ export default function Login(props) {
               }}
               InputLabelProps={{
                 style: { color: 'rgb(10, 63, 61)' }
+                style: { color: 'rgb(10, 63, 61)' }
               }}
               variant="outlined"
               onChange={(e) => handleChange("userName", e.target.value)}
               style={{ backgroundColor: 'rgb(240, 255, 255)', borderRadius: '4px', marginBottom: '10px' }}
             />
+            <br />
             <br />
             <TextField
               required
@@ -162,6 +162,7 @@ export default function Login(props) {
               value={credential.password}
               type={showPassword ? "text" : "password"}
               variant="outlined"
+              dir='rtl'
               dir='rtl'
               onChange={(e) => handleChangePassword("password", e.target.value)}
               style={{ backgroundColor: 'rgb(240, 255, 255)', borderRadius: '4px', marginBottom: '10px' }}
@@ -185,6 +186,7 @@ export default function Login(props) {
               }}
             />
             <br />
+            <br />
           </> : <>
             <TextField
               required
@@ -196,6 +198,7 @@ export default function Login(props) {
               dir='rtl'
               value={email}
               variant="outlined"
+              onChange={(e) => { setEmail(e.target.value); console.log(e.target.value); }}
               onChange={(e) => { setEmail(e.target.value); console.log(e.target.value); }}
               style={{ backgroundColor: 'rgb(240, 255, 255)', borderRadius: '4px', marginBottom: '10px' }}
               InputProps={{
@@ -211,8 +214,10 @@ export default function Login(props) {
               }}
             />
             <br />
+
           </>}
           <Button onClick={() => setForgetPassword(!forgetPassword)} style={{ color: 'rgb(10, 63, 61)', marginTop: '10px' }}>{!forgetPassword ? "שכחתי סיסמא" : "שם משתמש וסיסמא"}</Button>
+          <br />
           <br />
           <p style={{ color: 'rgb(10, 63, 61)' }}>או</p>
           <GoogleAuthOld></GoogleAuthOld>
@@ -246,3 +251,6 @@ export default function Login(props) {
     </React.Fragment>
   );
 }
+
+
+

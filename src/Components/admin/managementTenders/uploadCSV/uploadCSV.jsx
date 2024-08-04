@@ -5,23 +5,23 @@ import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRo
 import { useDropzone } from 'react-dropzone';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import ExcelJS from 'exceljs/dist/exceljs.min.js';
-import { addTender } from '../../../../Server/tender'; // יש לוודא שהקובץ מיובא נכון
+import { addTender } from '../../../../Server/tender';
 
-const requiredColumns = ["שם גוף", "שם ומספר המכרז", "תאריך פרסום", "תאריך הגשה", "קטגוריות", "שם הזוכה ופרטי הזוכה", "מציעים", "מידע על הזוכה", "סכום ההצעה", "אומדן"];
+const requiredColumns = ["שם הגוף", "שם ומספר המכרז", "תאריך פרסום", "תאריך הגשה", "קטגוריות", "שם הזוכה ופרטי הזוכה", "מציעים", "מידע על הזוכה", "סכום ההצעה", "אומדן"];
 const columnWidths = {
-  "שם גוף": 10,
+  "שם הגוף": 10,
   "שם ומספר המכרז": 14,
   "תאריך פרסום": 10,
   "תאריך הגשה": 10,
   "קטגוריות": 10,
-  "שם הזוכה ": 18,
+  "שם הזוכה ופרטי הזוכה": 18,
   "מציעים": 10,
   "מידע על הזוכה": 12,
   "סכום ההצעה": 10,
   "אומדן": 10
 };
 const columnSamples = {
-  "שם גוף": ["שם גוף 1", "שם גוף 2", "שם גוף 3"],
+  "שם הגוף": ["שם גוף 1", "שם גוף 2", "שם גוף 3"],
   "שם ומספר המכרז": ["מכרז 123", "מכרז 456", "מכרז 789"],
   "תאריך פרסום": ["01/01/2023", "15/02/2023", "30/03/2023"],
   "תאריך הגשה": ["10/02/2023", "25/03/2023", "05/04/2023"],
@@ -42,37 +42,32 @@ const ExportExcel = () => {
     const workbook = new ExcelJS.Workbook();
     const sheet = workbook.addWorksheet('Sheet1', { views: [{ rightToLeft: true }] });
 
-    // Adding headers with custom background color for the title row only
     const headerRow = sheet.addRow(requiredColumns);
     headerRow.eachCell({ includeEmpty: true }, function(cell) {
       cell.fill = {
         type: 'pattern',
         pattern: 'solid',
-        fgColor: { argb: 'FF1A6068' } // Custom color for headers
+        fgColor: { argb: 'FF1A6068' }
       };
-      cell.font = { color: { argb: 'FFFFFF' } }; // White text
-      cell.alignment = { vertical: 'middle', horizontal: 'center' }; // Center align headers
+      cell.font = { color: { argb: 'FFFFFF' } };
+      cell.alignment = { vertical: 'middle', horizontal: 'center' };
     });
-    headerRow.height = 23; // Height for header row
+    headerRow.height = 23;
 
-    // Setting column widths dynamically
     requiredColumns.forEach((column, index) => {
       const width = columnWidths[column] || 20;
-      const sheetColumn = sheet.getColumn(index + 1); // index + 1 because ExcelJS columns are 1-based
-      sheetColumn.width = width;
+      sheet.getColumn(index + 1).width = width;
     });
 
-    // Adding data rows and setting their heights
     for (let i = 0; i < 3; i++) {
       const row = requiredColumns.map(column => columnSamples[column][i]);
       const dataRow = sheet.addRow(row);
-      dataRow.height = 23; // Height for data rows
+      dataRow.height = 23;
       dataRow.eachCell({ includeEmpty: true }, function(cell) {
-        cell.alignment = { vertical: 'middle', horizontal: 'center' }; // Center align data cells
+        cell.alignment = { vertical: 'middle', horizontal: 'center' };
       });
     }
 
-    // Save workbook
     workbook.xlsx.writeBuffer().then(buffer => {
       saveAs(new Blob([buffer]), 'example_tender.xlsx');
     }).catch(err => console.error('Error exporting Excel:', err));
@@ -93,17 +88,17 @@ const ExportExcel = () => {
         setData([]);
         setFileName('');
       } else {
-        const tenderData = jsonData.slice(1); // הנתונים עצמם ללא הכותרות
+        const tenderData = jsonData.slice(1); 
         setData(tenderData);
         setErrorMessage('');
         setFileName(file.name);
 
-        // קריאה לפונקציה addTender עם המכרז והקובץ
         try {
-          await addTender( file);
+          await addTender(file);
           console.log('Tender added successfully');
         } catch (error) {
           console.error('Error adding Tender:', error);
+          setErrorMessage('Error adding Tender: ' + (error.response?.data?.message || error.message));
         }
       }
     };
@@ -122,6 +117,7 @@ const ExportExcel = () => {
       }
     }
   });
+
   return (
     <Box
       sx={{

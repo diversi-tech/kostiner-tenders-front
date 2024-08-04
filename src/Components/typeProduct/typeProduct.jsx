@@ -18,15 +18,22 @@ export default function TypeProduct({ typeTender }) {
 
   React.useEffect(() => {
     async function fetchProducts() {
-      const products = await getAllCategories();
-      const priceKey = typeTender.type == 1 ? 'monthlyPrice' : 'subscriptionPrice';
-      const formattedOptions = products.map(product => ({
-        label: `${product.category} - ₪${product[priceKey]}`,
-        value: product.category,
-        price: product[priceKey],
-      }));
-      console.log(formattedOptions);
-      setOptions(formattedOptions);
+      try {
+        const products = await getAllCategories();
+        if (products) {
+          const priceKey = typeTender.type === 1 ? 'price_monthly' : 'price_subscription';
+          const formattedOptions = products.map(product => ({
+            label: `${product.category} - ₪${product[priceKey]}`,
+            value: product.category,
+            price: product[priceKey],
+          }));
+          setOptions(formattedOptions);
+        } else {
+          console.error('No products found');
+        }
+      } catch (error) {
+        console.error('Failed to fetch categories:', error);
+      }
     }
 
     fetchProducts();
@@ -44,14 +51,12 @@ export default function TypeProduct({ typeTender }) {
   };
 
   const handleNav = () => {
-    // Create an object with selected options to send to the server
     const dataToSend = {
-      selectedOptions: selectedOptions.map(option => option.value)
+      selectedOptions: selectedOptions.map(option => option.value),
     };
 
-    // Example navigation to '/creditCard'
     nav('/creditCard', {
-      state: { type: typeTender } // Passing 'type' back to the '/creditCard' route
+      state: { type: typeTender },
     });
   };
 
