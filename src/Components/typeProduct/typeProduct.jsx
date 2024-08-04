@@ -7,13 +7,6 @@ import Typography from '@mui/joy/Typography';
 import Autocomplete from '@mui/material/Autocomplete';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
-<<<<<<< Updated upstream
-// import IconStepper from '../IconStepper/IconStepper';
-
-export default function typeProduct() {
-  const [selectedOptions, setSelectedOptions] = React.useState([]);
-  const [openAutocomplete, setOpenAutocomplete] = React.useState(false);
-=======
 import { useNavigate } from 'react-router-dom';
 import { getAllCategories } from '../../Server/caregory'; // Adjust the path according to your project structure
 
@@ -38,7 +31,6 @@ export default function TypeProduct({ typeTender }) {
 
     fetchProducts();
   }, [typeTender]);
->>>>>>> Stashed changes
 
   const handleSelect = (event, value) => {
     if (value.length > 3) {
@@ -51,8 +43,6 @@ export default function TypeProduct({ typeTender }) {
     }
   };
 
-<<<<<<< Updated upstream
-=======
   const handleNav = () => {
     // Create an object with selected options to send to the server
     const dataToSend = {
@@ -65,7 +55,6 @@ export default function TypeProduct({ typeTender }) {
     });
   };
 
->>>>>>> Stashed changes
   return (
     <Box
       sx={{
@@ -140,42 +129,12 @@ export default function TypeProduct({ typeTender }) {
                 color: '#FFFFFF',
               }}
             >
-<<<<<<< Updated upstream
-              שליחה לתשלום
-=======
               להמשיך לתשלום
->>>>>>> Stashed changes
             </Button>
           </Stack>
         </CardContent>
       </Card>
     </Box>
   );
-<<<<<<< Updated upstream
 }
-
-const top100Films = [
-  { label: 'בנייה ותשתיות' },
-  { label: 'שירותים מקצועיים' },
-  { label: 'טכנולוגיה ותקשורת' },
-  { label: 'מזון ומסחר תעופתי' },
-  { label: 'שירותים רפואיים' },
-  { label: 'חינוך והכשרה' },
-  { label: 'שירותים לתעסוקה' },
-  { label: 'שירותים פיננסיים ומשפטיים' },
-  { label: 'מחקר ופיתוח' },
-  { label: 'תרבות ופנאי' },
-  { label: 'סביבה וקידום בריאות' },
-  { label: 'שירותים חברתיים ומגזר שלישי' },
-  { label: 'תחבורה ותחנות דלק' },
-  { label: 'אנרגיה ומים' },
-  { label: 'בטיחות ואבטחה' },
-  { label: 'ניהול וייעוץ ארגוני' },
-  { label: 'מוצרים וציוד' },
-  { label: 'קניות ולוגיסטיקה' },
-  { label: 'שירותים למגזר הציבורי' },
-  { label: 'ביטוח ופיננסים' },
-];
-=======
-}
->>>>>>> Stashed changes
+TypeProduct.propType

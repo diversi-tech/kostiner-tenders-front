@@ -38,11 +38,7 @@
     transition: font-size 0.3s;
     font-size: 1.2em;
     position: relative;
-<<<<<<< Updated upstream
-    margin-right: 60px; /* רווח בין קישורים */
-=======
     margin-right: 40px; /* רווח בין קישורים */
->>>>>>> Stashed changes
     margin-top: 10px; /* רווח מעל לקישורים */
 }
 
@@ -90,7 +86,7 @@
 @media screen and (max-width: 768px) {
     .navbar {
         flex-direction: column;
-        align-items: center; /* למרכז את התיק במרכז */
+        align-items: center;
         padding: 1rem;
     }
 
@@ -114,13 +110,8 @@
         padding: 0.5rem 0.8rem;
         font-size: 1.1em;
         position: relative;
-<<<<<<< Updated upstream
-        margin-right: 0; /* במצב מסך קטן אין צורך ברווח בין קישורים */
-        margin-top: 10px; /* רווח מעל לקישורים */
-=======
         margin-right: 10px; /* רווח קטן יותר בין קישורים במסך קטן */
         margin-top: 0; /* לבטל את הרווח מעל לקישורים */
->>>>>>> Stashed changes
     }
 
     .navbar-item::after {

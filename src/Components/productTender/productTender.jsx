@@ -7,43 +7,21 @@ import Typography from '@mui/joy/Typography';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import CircularProgress from '@mui/material/CircularProgress';
-<<<<<<< Updated upstream
-=======
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 
 // ייבוא של הפונקציה המתאימה מתוך requests.js
 import { addRequest } from "../../Server/requests"; 
->>>>>>> Stashed changes
 
 export default function TenderSearchBox() {
   const [tenderName, setTenderName] = React.useState('');
   const [loading, setLoading] = React.useState(false);
-<<<<<<< Updated upstream
-  const [found, setFound] = React.useState(null);
-=======
   const [openSnackbar, setOpenSnackbar] = React.useState(false);
   const [snackbarMessage, setSnackbarMessage] = React.useState('');
   const [snackbarSeverity, setSnackbarSeverity] = React.useState('success');
->>>>>>> Stashed changes
 
   const handleSubmit = async () => {
     setLoading(true);
-<<<<<<< Updated upstream
-    setFound(null);
-    
-    // סימולציה של חיפוש במערכת
-    setTimeout(() => {
-      setLoading(false);
-      if (tenderName === 'השם שקיים במערכת') {
-        setFound(true);
-      } else {
-        setFound(false);
-      }
-    }, 2000); // סימולציה של 2 שניות
-  };
-
-=======
 
     const token = localStorage.getItem('authToken'); // קבלת מזהה המשתמש מה-localStorage
     const request = {
@@ -70,7 +48,6 @@ export default function TenderSearchBox() {
   const handleCloseSnackbar = () => {
     setOpenSnackbar(false);
   };
->>>>>>> Stashed changes
   return (
     <Box
       sx={{
@@ -125,29 +102,6 @@ export default function TenderSearchBox() {
                 <CircularProgress sx={{ color: 'rgba(26,96,104,255)' }} />
               </Box>
             ) : (
-<<<<<<< Updated upstream
-              found === false && (
-                <Typography color="error">לא נמצא מכרז, הכנס שנית</Typography>
-              )
-            )}
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleSearch}
-              disabled={loading || !tenderName}
-              sx={{
-                margin: 'auto',
-                borderRadius: '12px',
-                backgroundColor: 'rgba(26,96,104,255)',
-                  '&:hover': {
-                    backgroundColor: 'rgb(129, 175, 164)',
-                  },
-                color: 'white',
-              }}
-            >
-              שליחה לתשלום
-            </Button>
-=======
               <Button
                 variant="contained"
                 color="primary"
@@ -166,7 +120,6 @@ export default function TenderSearchBox() {
                 שלח לבדיקה
               </Button>
             )}
->>>>>>> Stashed changes
           </Stack>
         </CardContent>
       </Card>

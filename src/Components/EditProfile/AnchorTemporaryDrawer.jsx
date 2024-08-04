@@ -29,7 +29,7 @@ const icons = {
 const AnchorTemporaryDrawer = () => {
   const navigate = useNavigate();
   const [state, setState] = useState({ left: false, selectedOption: null });
-  const { user, setUser } = useContext(UserContext);
+  const { user} = useContext(UserContext);
   const toggleDrawer = (open) => (event) => {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
@@ -61,8 +61,6 @@ const AnchorTemporaryDrawer = () => {
   const handleLogout = () => {
     Login.logout();
   };
-  const userName = user ? user.name : '';
-  const userEmail = user ? user.email : '';
   const menuItems = [
     { text: 'התנתקות', role: ['user', 'admin'] },
     { text: 'עריכת פרופיל', role: ['user', 'admin'] },
@@ -74,13 +72,14 @@ const AnchorTemporaryDrawer = () => {
     <Box sx={{ width: 250 }} role="presentation" onKeyDown={toggleDrawer(false)}>
       <Box className="drawer-header">
         <Avatar className="drawer-avatar">
-          {userName ? userName.charAt(0).toUpperCase() : ''}
+          {user.first_name ? user.first_name .charAt(0).toUpperCase() : ''}
         </Avatar>
         <Box>
           <Typography variant="subtitle1">
-            <b>{userName}</b>
+            {/* <b>{userName}</b> */}
+            <b>{user.first_name}</b>
           </Typography>
-          <Typography variant="body2">{userEmail}</Typography>
+          <Typography variant="body2">{user.email}</Typography>
         </Box>
       </Box>
       <Divider />

@@ -34,7 +34,7 @@
 // // // import axios from 'axios';
 // // // import Login from './Login';
 
-// // // const clientId = '720220089306-5rmsdqqui44gegs1d7f4h1mr8infd5d4.apps.googleusercontent.com';
+
 // // // //720220089306-t58chastvvm3593rprr080mgjbjcntub.apps.googleusercontent.com
 // // // const GoogleAuthOld = () => {
 // // //   const handleLoginSuccess = (response) => {
@@ -78,7 +78,6 @@
 // // import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 // // import axios from 'axios';
 
-// // const clientId = '720220089306-5rmsdqqui44gegs1d7f4h1mr8infd5d4.apps.googleusercontent.com';
 
 // // const GoogleAuthOld = () => {
 // //   const handleLoginSuccess = (response) => {
@@ -124,7 +123,6 @@
 
 // const clientId =import.meta.env.VITE_CLIENT_ID;
 
-// //720220089306-5rmsdqqui44gegs1d7f4h1mr8infd5d4.apps.googleusercontent.com
 
 // const GoogleAuthOld = () => {
 //   const handleLoginSuccess = (response) => {

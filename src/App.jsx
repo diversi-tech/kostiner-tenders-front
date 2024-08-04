@@ -10,6 +10,8 @@ import Help from './Components/help/help';
 import About from './Components/about/about';
 import ItemsList from './Components/item/items';
 import { UserProvider, UserContext } from './context/userContext';
+
+
 function App() {
     const items = [
         {
@@ -37,30 +39,33 @@ function App() {
             id: "5678"
         }
     ];
+
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
+
     return (
         <BrowserRouter>
             <UserProvider>
-                <MainComponent
-                    isAuthenticated={isAuthenticated}
+                <MainComponent 
+                    isAuthenticated={isAuthenticated} 
                     setIsAuthenticated={setIsAuthenticated}
-                    isAdmin={isAdmin}
+                    isAdmin={isAdmin} 
                     setIsAdmin={setIsAdmin}
-                    items={items}
+                    items={items} 
                 />
             </UserProvider>
         </BrowserRouter>
     );
 }
+
 const MainComponent = ({ isAuthenticated, setIsAuthenticated, isAdmin, setIsAdmin, items }) => {
     const { user, setUser } = useContext(UserContext);
     const location = useLocation();
+
     useEffect(() => {
         const token = localStorage.getItem('authToken');
-        const role = user.role; // Adjust this line if role is managed differently
-console.log("role");
-console.log(role);
+        const role = user.role; 
+
         if (token) {
             setIsAuthenticated(true);
             setIsAdmin(role === 'admin');
@@ -68,8 +73,10 @@ console.log(role);
             setIsAuthenticated(false);
             setIsAdmin(false);
         }
-    }, [user.role]); // Adding user.role as dependency if it's being updated
+    }, [user.role]); 
+
     const isSectionPath = location.hash;
+
     return (
         <>
             <div style={{ display: 'none' }}><GGG /></div>
@@ -97,10 +104,6 @@ console.log(role);
         </>
     );
 }
-export default App;
 
 
-
-
-
-
+export default App; 

@@ -1,33 +1,35 @@
 .drawer-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 16px; /* Margin Bottom */
-    margin-left: 12px;  /* Margin Left */
-    margin-top: 16px;   /* Margin Top */
-  }
-  
-  .drawer-avatar {
-    background-color: rgba(26, 96, 104, 255) !important;
-    margin-right: 16px;
-  }
-  
-  
-  .drawer-account-icon {
-    position: fixed;
-    top: 16px;
-    left: 16px;
-  }
-  
-  .list-item-button:hover {
-    background-color: #839a9d;
-  }
-  
-  .list-item-icon {
-    transition: transform 0.3s ease-in-out;
-    margin-right: 6px; /* Margin Right */
-  }
-  
-  .list-item-icon:hover {
-    transform: translateX(-6px);
-  }
-  
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px; /* Margin Bottom */
+  margin-left: 12px;  /* Margin Left */
+  margin-top: 16px;   /* Margin Top */
+}
+.drawer-avatar {
+  background-color: rgba(26, 96, 104, 255) !important;
+  margin-right: 16px;
+}
+.drawer-account-icon {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  color: rgba(26, 96, 104, 255);
+  cursor: pointer;
+  margin-right: 10px; /* Reduced margin to align better with the text */
+  margin-top: 10px;
+  transition: color 0.3s;
+}
+.list-item-button:hover {
+  background-color: #839A9D;
+}
+.list-item-icon {
+  transition: transform 0.3s ease-in-out;
+  margin-right: 6px; /* Margin Right */
+}
+.list-item-icon:hover {
+  transform: translateX(-6px);
+}
+
+.drawer-account-icon:hover {
+  color: white;
+}

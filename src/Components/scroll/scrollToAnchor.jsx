@@ -1,11 +1,7 @@
 import React, { useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 
-<<<<<<< Updated upstream:src/Components/scrollToAnchor.jsx
-const ScrollToAnchor = ({ component, anchorId, offset = 150 }) => {
-=======
 const ScrollToAnchor = ({ component, anchorId }) => {
->>>>>>> Stashed changes:src/Components/scroll/scrollToAnchor.jsx
   useEffect(() => {
     const element = document.getElementById(anchorId);
     if (element) {

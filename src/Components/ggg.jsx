@@ -10,7 +10,7 @@
 
 // //   useScript("https://accounts.google.com/gsi/client", () => {
 // //     window.google.accounts.id.initialize({
-// //       client_id: '720220089306-5rmsdqqui44gegs1d7f4h1mr8infd5d4.apps.googleusercontent.com',
+
 // //       callback: onGoogleSignIn,
 // //     });
 // //     window.google.accounts.id.renderButton(
@@ -26,7 +26,7 @@
 // import React from 'react';
 // import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 
-// const clientId = '720220089306-5rmsdqqui44gegs1d7f4h1mr8infd5d4.apps.googleusercontent.com';
+
 
 // const GGG = () => {
 //   const onSuccess = (response) => {
@@ -75,7 +75,7 @@
 import React from 'react';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 
-const clientId = '720220089306-5rmsdqqui44gegs1d7f4h1mr8infd5d4.apps.googleusercontent.com';
+const clientId = import.meta.env.VITE_CLIENT_ID;
 
 const GoogleLoginButton = () => {
   const onSuccess = (response) => {

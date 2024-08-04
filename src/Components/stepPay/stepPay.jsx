@@ -37,10 +37,10 @@ export default function IconStepper({ activeStep }) {
           navigate('/typeProduct');
           break;
         case 2:
-          navigate('/payment');
+          navigate('/creditCard');
           break;
         case 3:
-          navigate('/confirmation');
+          navigate('/finishPay');
           break;
         default:
           break;
