@@ -25,9 +25,9 @@ const columnSamples = {
   "שם ומספר המכרז": ["מכרז 123", "מכרז 456", "מכרז 789"],
   "תאריך פרסום": ["01/01/2023", "15/02/2023", "30/03/2023"],
   "תאריך הגשה": ["10/02/2023", "25/03/2023", "05/04/2023"],
-  "קטגוריות": ["קטגוריה 1", "קטגוריה 2", "קטגוריה 3"],
+  "קטגוריות": ["קטגוריה 1,קטגוריה 2", "קטגוריה 1,קטגוריה 2", "קטגוריה 1,קטגוריה 2"],
   "שם הזוכה ופרטי הזוכה": ["זוכה 1", "זוכה 2", "זוכה 3"],
-  "מציעים": ["מציע 1", "מציע 2", "מציע 3"],
+  "מציעים": ["מציע 1,מציע 2", "מציע 1,מציע 2", ""],
   "מידע על הזוכה": ["מידע 1", "מידע 2", "מידע 3"],
   "סכום ההצעה": ["100,000", "200,000", "300,000"],
   "אומדן": ["אומדן 1", "אומדן 2", "אומדן 3"]
@@ -37,6 +37,7 @@ const ExportExcel = () => {
   const [data, setData] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
   const [fileName, setFileName] = useState('');
+  const [file, setFile] = useState(null); // State to keep track of the uploaded file
 
   const exportToExcel = () => {
     const workbook = new ExcelJS.Workbook();
@@ -87,19 +88,13 @@ const ExportExcel = () => {
         setErrorMessage(`העמודות הבאות חסרות בקובץ: ${missingColumns.join(', ')}`);
         setData([]);
         setFileName('');
+        setFile(null); // Clear the file state
       } else {
         const tenderData = jsonData.slice(1); 
         setData(tenderData);
         setErrorMessage('');
         setFileName(file.name);
-
-        try {
-          await addTender(file);
-          console.log('Tender added successfully');
-        } catch (error) {
-          console.error('Error adding Tender:', error);
-          setErrorMessage('Error adding Tender: ' + (error.response?.data?.message || error.message));
-        }
+        setFile(file); // Save the file to state
       }
     };
     reader.readAsArrayBuffer(file);
@@ -114,9 +109,25 @@ const ExportExcel = () => {
       } else {
         setErrorMessage('נא להעלות רק קובץ אקסל');
         setFileName('');
+        setFile(null); // Clear the file state
       }
     }
   });
+
+  const handleUploadConfirmation = async () => {
+    if (file) {
+      try {
+        await addTender(file);
+        console.log('Tender uploaded successfully');
+        setFile(null); // Clear the file state after successful upload
+        setData([]); // Clear the data
+        setFileName(''); // Clear the file name
+      } catch (error) {
+        console.error('Error uploading Tender:', error);
+        setErrorMessage('Error uploading Tender: ' + (error.response?.data?.message || error.message));
+      }
+    }
+  };
 
   return (
     <Box
@@ -155,15 +166,35 @@ const ExportExcel = () => {
           {errorMessage}
         </Typography>
       )}
-      <Button variant="contained" onClick={exportToExcel} sx={{
-        backgroundColor: 'rgba(26,96,104,255)',
-        '&:hover': {
-          backgroundColor: 'rgb(129, 175, 164)',
-        },
-        color: '#ffffff',
-      }}>
-        הורד קובץ לדוגמא
-      </Button>
+      {!file ? (
+        <Button 
+          variant="contained" 
+          onClick={exportToExcel} 
+          sx={{
+            backgroundColor: 'rgba(26,96,104,255)',
+            '&:hover': {
+              backgroundColor: 'rgb(129, 175, 164)',
+            },
+            color: '#ffffff',
+          }}
+        >
+          הורד קובץ לדוגמא
+        </Button>
+      ) : (
+        <Button 
+          variant="contained" 
+          onClick={handleUploadConfirmation} 
+          sx={{
+            backgroundColor: 'rgba(26,96,104,255)',
+            '&:hover': {
+              backgroundColor: 'rgb(129, 175, 164)',
+            },
+            color: '#ffffff',
+          }}
+        >
+          אישור העלאה
+        </Button>
+      )}
       {data.length > 0 && (
         <TableContainer component={Paper} sx={{ width: '80%', marginTop: '20px' }}>
           <Table sx={{ minWidth: 650 }}>
@@ -184,7 +215,8 @@ const ExportExcel = () => {
                       {cell}
                     </TableCell>
                   ))}
-                </TableRow>
+               
+               </TableRow>
               ))}
             </TableBody>
           </Table>

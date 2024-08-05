@@ -78,7 +78,7 @@ const MainComponent = ({ isAuthenticated, setIsAuthenticated, isAdmin, setIsAdmi
     }, [user.role]); 
 
     const isSectionPath = location.hash;
-
+console.log("role" ,isAdmin);
     return (
         <>
             <div style={{ display: 'none' }}><GGG /></div>
@@ -96,7 +96,6 @@ const MainComponent = ({ isAuthenticated, setIsAuthenticated, isAdmin, setIsAdmi
                         <>
                             <About />
                             <Help />
-                            <ItemsList items={items} />
                         </>
                     )}
                     <AppRoutes isAuthenticated={isAuthenticated} isAdmin={isAdmin} />

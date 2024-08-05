@@ -26,6 +26,7 @@ export const getProductByCategory = async (category) => {
   }
 };
 
+
 export const addCategory = async (product) => {
   const token = localStorage.getItem('authToken');
   try {

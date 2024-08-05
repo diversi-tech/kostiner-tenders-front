@@ -52,7 +52,7 @@ const AnchorTemporaryDrawer = () => {
         navigate('/purchase-history');
         break;
       case 'לוח בקרה':
-        navigate('/dashboard');
+        navigate('/dashboardAdmin');
         break;
       default:
         break;

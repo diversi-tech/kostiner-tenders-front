@@ -206,8 +206,10 @@ console.log(dataToSend);
       state: { type: dataToSend },
     });
   };
+
   // Calculate the total price
   const totalPrice = selectedOptions.reduce((sum, option) => sum + option.price, 0);
+
   return (
     <Box
       sx={{

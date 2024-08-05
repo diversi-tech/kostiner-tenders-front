@@ -9,7 +9,7 @@ import { useLocation } from 'react-router-dom';
 export default function CreditCard_Step() {
 
     const [open, setOpen] = React.useState(true); // Open the modal by default
-    const handleClose = () => setOpen(false);
+    const handleClose = () => setOpen(true);
 
     return (
 
