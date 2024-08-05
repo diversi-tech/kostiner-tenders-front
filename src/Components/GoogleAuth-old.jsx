@@ -190,6 +190,7 @@
 import React from 'react';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const clientId = import.meta.env.VITE_CLIENT_ID;
 
@@ -197,7 +198,7 @@ const GoogleAuthOld = () => {
   const handleLoginSuccess = (response) => {
     console.log('Login Success:', response);
     console.log("token",response.credential);
-    fetch('https://kostiner-tenders-back.onrender.com/auth/cotinue-with-google', {
+    fetch('https://kostiner-tenders-back.onrender.com/auth/continue-with-google', {
       mode: 'cors',
       method: 'POST',
       headers: {
@@ -205,7 +206,7 @@ const GoogleAuthOld = () => {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
       },
-      body: JSON.stringify({ token: response.credential }),
+      body: { token: response.credential },
       token: response.credential
     })
     .then(res => res.json())

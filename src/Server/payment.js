@@ -54,3 +54,6 @@ class Payment {
 
 
 }
+
+const single = new Payment();
+export default single;

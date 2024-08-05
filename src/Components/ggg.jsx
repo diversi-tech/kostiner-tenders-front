@@ -77,6 +77,7 @@ import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 
 const clientId = import.meta.env.VITE_CLIENT_ID;
 
+
 const GoogleLoginButton = () => {
   const onSuccess = (response) => {
     console.log('Login Success:', response);
@@ -93,14 +94,15 @@ const GoogleLoginButton = () => {
   // פונקציה לקריאה ל-Google People API באמצעות ה-access token
   const getProfileInfo = async (token) => {
     try {
-      const response = await fetch('http://kostiner-tendes-back.onrender.com/continue-with-google', {
+      const response = await fetch('https://kostiner-tenders-back.onrender.com/auth/continue-with-google', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify( token )
+        body:  token 
       });
       const data = await response.json();
+      
       console.log('Profile Info:', data);
     } catch (error) {
       console.error('Error fetching profile info:', error);
