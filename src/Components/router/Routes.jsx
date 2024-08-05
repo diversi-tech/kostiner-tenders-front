@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Navigate, HashRouter } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import ScrollToTop from '../scroll/ScrollToTop';
 import ScrollToAnchor from '../scroll/scrollToAnchor';
 import Connection from '../connection';
@@ -19,7 +19,7 @@ import ViewTenders from '../admin/managementTenders/viewEditTenders/viewEditTend
 import CheckTender from '../admin/managementTenders/checkTender/checkTender';
 import CreditCard_Step from '../creditCard/credirCard_step';
 import FinishPay_Step from '../finnishPay/finishPay_step';
-import TenderTable from '../tendersTable/TendersTable';
+import TenderTable from '../admin/managementTenders/edittingTenders/edittingTenders';
 import Login from '../Login';
 import ManagementUser from '../admin/managementUser/managementUser';
 import ViewUser from '../admin/managementUser/viewUser/viewUser';
@@ -115,6 +115,7 @@ const AppRoutes = ({ isAuthenticated, isAdmin }) => {
             <Route path="/user-profile" element={<ScrollToAnchor component={<EditUserProfile />} anchorId="userProfile" key="userProfile" />} />
             <Route path="/status-requests" element={<ScrollToAnchor component={<RequestsStatus />} anchorId="RequestStatus" key="RequestsStatus" />} />
             <Route path="/admin-profile" element={<ScrollToAnchor component={<AdminProfileEdit />} anchorId="adminProfile" key="adminProfile" />} />
+            <Route path="/edit-tenders-by-category" element={<ScrollToAnchor component={<TenderTable />} anchorId="adminProfile" key="adminProfile" />} />
           </>
         )}
       </Routes>
