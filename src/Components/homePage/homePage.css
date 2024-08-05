@@ -51,4 +51,16 @@
   .subtitle.large {
     font-size: 50px;
   }
+  .linkGrid .MuiTypography-root {
+    font-size: 25px; /* עדכון גודל הטקסט */
+  }
   
+  .linkGrid .MuiLink-root {
+    font-weight: bold;
+    color: rgba(26, 96, 104, 255); /* צבע רגיל */
+    transition: color 0.3s ease;
+  }
+  
+  .linkGrid .MuiLink-root:hover {
+    color: rgb(129, 175, 164); /* צבע בעת מעבר עכבר */
+  }
