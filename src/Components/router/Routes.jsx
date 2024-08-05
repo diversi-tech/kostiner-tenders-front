@@ -38,11 +38,13 @@ const AppRoutes = ({ isAuthenticated, isAdmin }) => {
   //  const location = useLocation();
   // console.log(location);
   
-      const currentPath = window.location.pathname || '/#/';
-      console.log("currentPath", currentPath);
       // location.reload();
 
       window.addEventListener('load', () => {
+        
+          const currentPath = window.location.pathname || '/#/';
+          console.log("currentPath", currentPath);
+
           window.location.pathname = '/';
           history.pushState(null, null, currentPath);
       });

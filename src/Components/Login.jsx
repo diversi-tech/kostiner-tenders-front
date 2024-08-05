@@ -145,7 +145,6 @@ export default function Login(props) {
               }}
               InputLabelProps={{
                 style: { color: 'rgb(10, 63, 61)' }
-                style: { color: 'rgb(10, 63, 61)' }
               }}
               variant="outlined"
               onChange={(e) => handleChange("userName", e.target.value)}
@@ -162,7 +161,6 @@ export default function Login(props) {
               value={credential.password}
               type={showPassword ? "text" : "password"}
               variant="outlined"
-              dir='rtl'
               dir='rtl'
               onChange={(e) => handleChangePassword("password", e.target.value)}
               style={{ backgroundColor: 'rgb(240, 255, 255)', borderRadius: '4px', marginBottom: '10px' }}
@@ -198,7 +196,6 @@ export default function Login(props) {
               dir='rtl'
               value={email}
               variant="outlined"
-              onChange={(e) => { setEmail(e.target.value); console.log(e.target.value); }}
               onChange={(e) => { setEmail(e.target.value); console.log(e.target.value); }}
               style={{ backgroundColor: 'rgb(240, 255, 255)', borderRadius: '4px', marginBottom: '10px' }}
               InputProps={{
