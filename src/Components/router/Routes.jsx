@@ -14,7 +14,7 @@ import ItemsList from '../item/items';
 import Product_Step from '../product/product_step';
 import TypeProduct_Step from '../typeProduct/typeProduct_step';
 import ProductTender_Step from '../productTender/productTender_step';
-import ResultTender from '../resultTender';
+// import ResultTender from '../resultTender';
 import ManagementTenders from '../admin/managementTenders/managementTenders';
 import UploadCSV from '../admin/managementTenders/uploadCSV/uploadCSV';
 import ViewTenders from '../admin/managementTenders/viewEditTenders/viewEditTenders';
@@ -88,6 +88,7 @@ const AppRoutes = ({ isAuthenticated, isAdmin }) => {
         <Route path="/subscription" element={<ScrollToAnchor component={<Subscription />} anchorId="subscription-anchor" />} />
         <Route path="/resetPasword" element={<ScrollToAnchor component={<ResetPasswordForm />} anchorId="ResetPasswordForm-anchor" />} />
         <Route path="/categortTender" element={<ScrollToAnchor component={<ItemsList items={items} />} anchorId="categoryTender-anchor" />} />
+        <Route path="/exampleResult" element={<ScrollToAnchor component={<ItemsList items={items} />} anchorId="exampleResult-anchor" />} />
         <Route path="/product" element={<Product_Step />} />
         <Route path="/typeProduct" element={<TypeProduct_Step />} />
         <Route path="/tenderSearch" element={<ProductTender_Step />} />

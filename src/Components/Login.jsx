@@ -559,7 +559,7 @@ const handleChange = (field, value) => {
           
             navigate('/');
 
-            navigate('/user-profile');
+            navigate('/');
               location.reload();
             handleClose();
             // await LoginService.getUsers();

@@ -5,19 +5,19 @@ import { Button, Box } from '@mui/material';
 import './itemPdf.css'; // Import the CSS file
 
 const requiredColumns = [
-  "שם גוף", "שם ומספר המכרז", "תאריך פרסום", "תאריך הגשה", "קטגוריות",
-  "שם הזוכה ופרטי הזוכה", "מציעים", "מידע על הזוכה", "סכום ההצעה", "אומדן"
+  "שם גוף", "שם ומספר המכרז", "תאריך פרסום", "תאריך הגשה", 
+  "שם הזוכה", "מידע על הזוכה", "מציעים", "סכום ההצעה", "אומדן"
 ];
 
 const columnWidths = {
   "שם גוף": 10,
-  "שם ומספר המכרז": 14,
+  "שם ומספר המכרז": 18,
   "תאריך פרסום": 10,
   "תאריך הגשה": 10,
-  "קטגוריות": 10,
-  "שם הזוכה ופרטי הזוכה": 18,
-  "מציעים": 10,
-  "מידע על הזוכה": 12,
+  // "קטגוריות": 10,
+  "שם הזוכה ": 18,
+  "מידע על הזוכה": 20,
+  "מציעים": 20,
   "סכום ההצעה": 10,
   "אומדן": 10
 };
@@ -47,16 +47,16 @@ const ExportExcel = ({ items }) => {
 
     items.forEach(item => {
       const row = [
-        item.company,
-        item.nameTender,
-        item.datePublished,
-        item.dateSubmission,
-        item.category,
-        item.winnerDetails,
-        item.offer,
-        item.winnerData,
-        item.bidAmount,
-        item.id // Assuming "אומדן" is the id
+        item.body_name,
+        item.tender_number_name,
+        item.published_date,
+        item.submission_date,
+        // item.category,
+        item.winner_name,
+        item.details_winner,
+        item.participants,
+        item.amount_bid, // Assuming "אומדן" is the id
+        item.estimate
       ];
       const dataRow = sheet.addRow(row);
       dataRow.height = 23;

@@ -52,13 +52,23 @@ export default function TypeProduct({ typeTender }) {
 
   const handleNav = () => {
     const dataToSend = {
-      selectedOptions: selectedOptions.map(option => option.value),
+      type: typeTender, // הסוג ממנו הגענו
+      selectedOptions: selectedOptions.map(option => ({
+        price: option.price ,// מחיר
+        quantity: 1,
+        vatIncluded: false,
+        name: option.value, // שם קטגוריה
+        description: option.label // תיאור (שם קטגוריה + מחיר)
+      })),
     };
-
+console.log(dataToSend);
     nav('/creditCard', {
-      state: { type: typeTender },
+      state: { type: dataToSend },
     });
   };
+
+  // Calculate the total price
+  const totalPrice = selectedOptions.reduce((sum, option) => sum + option.price, 0);
 
   return (
     <Box
@@ -121,6 +131,18 @@ export default function TypeProduct({ typeTender }) {
               )}
               sx={{ width: '100%' }}
             />
+            <Typography
+              variant="body1"
+              component="div"
+              sx={{
+                fontFamily: 'var(--joy-fontFamily-display, "Inter", var(--joy-fontFamily-fallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"))',
+                fontWeight: 'var(--joy-fontWeight-md, 500)',
+                fontSize: '1.2rem',
+                color: 'black',
+              }}
+            >
+              סה"כ לתשלום: ₪{totalPrice}
+            </Typography>
             <Button
               variant="contained"
               color="primary"

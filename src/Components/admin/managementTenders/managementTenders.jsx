@@ -44,7 +44,7 @@ const ManagementTenders = () => {
                   <CloudUploadIcon fontSize="large" />
                 </ColoredIconButton>
                 <Typography variant="h5" align="center" gutterBottom>
-                  העלה קובצי CSV למכרז ספציפי
+                  העלה קובצי CSV למכרזים חדשים
                 </Typography>
               </CardContent>
               <Divider />

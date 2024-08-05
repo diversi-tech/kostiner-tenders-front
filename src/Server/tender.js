@@ -8,55 +8,29 @@ const list = [
   { category: 'כושר', description: 'מזרנית יוגה', monthlyPrice: 5, subscriptionPrice: 50 },
   { category: 'קוסמטיקה', description: 'קרם לחות לפנים', monthlyPrice: 30, subscriptionPrice: 300 },
 ]
+
 export const getAllTenders = async () => {
   try {
     console.log("getAllTenders");
     const token = localStorage.getItem('authToken');
     console.log(token);
-    const response = await axios.get(`/get-all-tenders`, {
+    const response = await axios.get('/get-all-tenders', {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': token,
       },
-      responseType: 'blob', // כדי להבטיח שהקבצים מתקבלים כבלוב
     });
-
-    const contentDisposition = response.headers['content-disposition'];
-    const filenames = getFilenamesFromContentDisposition(contentDisposition);
-    const blobs = splitCSVBlobs(response.data, filenames.length);
-
-    return blobs.map((blob, index) => ({
-      filename: filenames[index],
-      url: URL.createObjectURL(blob),
-    }));
+    console.log(response.data);
+    return response.data;
   } catch (error) {
-    console.error('Error fetching Tenders:', error);
-    return [];
+    console.error('Error fetching tenders:', error);
+    throw error;
   }
 };
 
-const getFilenamesFromContentDisposition = (contentDisposition) => {
-  const filenames = [];
-  const parts = contentDisposition.split(';');
-  parts.forEach(part => {
-    const matches = part.match(/filename="(.+?)"/);
-    if (matches && matches[1]) {
-      filenames.push(matches[1]);
-    }
-  });
-  return filenames;
-};
 
-const splitCSVBlobs = (blob, numFiles) => {
-  const size = Math.ceil(blob.size / numFiles);
-  const blobs = [];
-  for (let i = 0; i < numFiles; i++) {
-    const start = i * size;
-    const end = start + size;
-    blobs.push(blob.slice(start, end));
-  }
-  return blobs;
-};
+
+
 
 
 export const addTender = async (file) => {

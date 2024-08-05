@@ -44,6 +44,7 @@ function EnhancedTable() {
   useEffect(() => {
     const fetchData = async () => {
       const categories = await getAllCategories();
+      console.log(categories);
       if (categories) {
         const formattedData = categories.map(item => ({
           ...item,
