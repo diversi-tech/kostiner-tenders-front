@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Box, Grid, Card, CardContent, Typography, IconButton, Divider, Skeleton } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import TableViewIcon from '@mui/icons-material/TableView';
 import { styled } from '@mui/material/styles';
-import { getAllTenders } from '../../Server/tender';
+import { UserContext } from '../../context/userContext';
+import { getAllCategories } from '../../Server/caregory'; // שים לב לנתיב
 
 const ColoredIconButton = styled(IconButton)(({ theme }) => ({
     color: 'rgba(26,96,104,255)',
@@ -18,45 +19,53 @@ const iconMap = {
 
 const CategorySelection = () => {
     const navigate = useNavigate();
-    const [categories, setCategories] = useState([]);
+    const { user } = useContext(UserContext);
     const [loading, setLoading] = useState(true);
+    const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        const fetchTenders = async () => {
-            try {
-                const tenderData = await getAllTenders();
-                const filledLists = tenderData.filter(list => list.length > 0);
-                if (filledLists.length > 0) {
-                    setCategories(filledLists);
+        const fetchCategories = async () => {
+            if (user && user.role === 'admin') {
+                const categories = await getAllCategories();
+                if (categories) {
+                    setCategories(categories.map(category => category.category));
+                } else {
+                    setCategories([]);
                 }
-                setLoading(false);
-            } catch (error) {
-                console.error('Error fetching Tenders:', error);
-                setLoading(false);
+            } else if (user && user.subscriptions && user.subscriptions.categories) {
+                setCategories(user.subscriptions.categories);
+            } else {
+                setCategories([]);
             }
+            setLoading(false);
         };
-        fetchTenders();
-    }, []);
 
-    const handleNavigate = (categoryName, listIndex) => {
-        navigate('/categortTender', { state: { categoryName, listIndex } });
+        fetchCategories();
+    }, [user]);
+
+    const handleNavigate = (categoryName) => {
+        navigate('/categoryTender', { state: { categoryName } });
     };
-
-    const getGridSize = () => {
-        const totalCategories = categories.reduce((acc, list) => acc + list.length, 0);
-        if (totalCategories === 1) return 12;
-        if (totalCategories === 2) return 6;
-        return 4;
-    };
-
-    const gridSize = getGridSize();
 
     return (
-        <Box sx={{ flexGrow: 1, p: 3, paddingTop: '10%' }}>
+        <Box 
+            sx={{ 
+                flexGrow: 1, 
+                p: 3, 
+                paddingTop: '10%', 
+                minHeight: '100vh',
+                overflowY: 'scroll', // מאפשר גלילה פנימית
+                '&::-webkit-scrollbar': {
+                    display: 'none', // מוסיף תמיכה למערכות מבוססות WebKit כמו Chrome ו-Safari
+                },
+                scrollbarWidth: 'none', // מוסיף תמיכה לדפדפני Firefox
+                msOverflowStyle: 'none', // מוסיף תמיכה ל-Internet Explorer ו-Edge
+            }}
+        >
             <Grid container spacing={3} justifyContent="center" alignItems="center">
                 {loading ? (
                     Array.from(new Array(3)).map((_, index) => (
-                        <Grid item xs={12} sm={gridSize} md={gridSize} key={index}>
+                        <Grid item xs={12} sm={4} md={4} key={index}>
                             <Card sx={{ padding: 2 }}>
                                 <Skeleton variant="rectangular" width="100%" height={118} />
                                 <Skeleton width="60%" />
@@ -65,9 +74,9 @@ const CategorySelection = () => {
                         </Grid>
                     ))
                 ) : (
-                    categories.map((list, listIndex) =>
-                        list.map((category) => (
-                            <Grid item xs={12} sm={gridSize} md={gridSize} key={category.tender_id}>
+                    categories.length > 0 ? (
+                        categories.map((category, index) => (
+                            <Grid item xs={12} sm={4} md={4} key={index}>
                                 <Card
                                     sx={{
                                         display: 'flex',
@@ -80,23 +89,23 @@ const CategorySelection = () => {
                                             transform: 'scale(1.05)',
                                         },
                                     }}
-                                    onClick={() => handleNavigate(category.category[0], listIndex)}
+                                    onClick={() => handleNavigate(category)}
                                 >
                                     <CardContent sx={{ width: '100%', textAlign: 'center' }}>
-                                        <ColoredIconButton aria-label={category.category[0]}>
+                                        <ColoredIconButton aria-label={category}>
                                             {iconMap.default}
                                         </ColoredIconButton>
                                         <Typography variant="h5" align="center" gutterBottom>
-                                            {category.category.join(', ')}
-                                        </Typography>
-                                        <Divider />
-                                        <Typography variant="body1" align="center">
-                                            {category.body_name}
+                                            {category}
                                         </Typography>
                                     </CardContent>
                                 </Card>
                             </Grid>
                         ))
+                    ) : (
+                        <Typography variant="body1" align="center">
+                            אין קטגוריות זמינות
+                        </Typography>
                     )
                 )}
             </Grid>

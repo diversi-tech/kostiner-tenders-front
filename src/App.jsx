@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Route, Routes, useLocation } from 'react-router-dom';
 import AppRoutes from './Components/router/Routes';
 import './App.css';
 import Footer from './Components/footer/footer';
@@ -10,6 +10,7 @@ import Help from './Components/help/help';
 import About from './Components/about/about';
 import ItemsList from './Components/item/items';
 import { UserProvider, UserContext } from './context/userContext';
+
 
 function App() {
     const items = [
@@ -43,7 +44,8 @@ function App() {
     const [isAdmin, setIsAdmin] = useState(false);
 
     return (
-        <BrowserRouter>
+        <HashRouter>
+        {/* // <BrowserRouter> */}
             <UserProvider>
                 <MainComponent
                     isAuthenticated={isAuthenticated}
@@ -53,7 +55,8 @@ function App() {
                     items={items}
                 />
             </UserProvider>
-        </BrowserRouter>
+            {/* </BrowserRouter> */}
+        </HashRouter> 
     );
 }
 
@@ -63,9 +66,8 @@ const MainComponent = ({ isAuthenticated, setIsAuthenticated, isAdmin, setIsAdmi
 
     useEffect(() => {
         const token = localStorage.getItem('authToken');
-        const role = user.role; // Adjust this line if role is managed differently
-        console.log("role");
-        console.log(role);
+        const role = user.role; 
+
         if (token) {
             setIsAuthenticated(true);
             setIsAdmin(role === 'admin');
@@ -73,7 +75,7 @@ const MainComponent = ({ isAuthenticated, setIsAuthenticated, isAdmin, setIsAdmi
             setIsAuthenticated(false);
             setIsAdmin(false);
         }
-    }, [user.role]); // Adding user.role as dependency if it's being updated
+    }, [user.role]); 
 
     const isSectionPath = location.hash;
 console.log("role" ,isAdmin);
@@ -103,5 +105,6 @@ console.log("role" ,isAdmin);
         </>
     );
 }
+
 
 export default App; 

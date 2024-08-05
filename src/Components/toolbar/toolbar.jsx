@@ -3,7 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import navigationitems from '../router/navigationitems';
 import './toolbar.css';
 import logo from '../../image/logo.png';
-import AnchorTemporaryDrawer from '../EditProfile/AnchorTemporaryDrawer'; // Import the AnchorTemporaryDrawer component
+import AnchorTemporaryDrawer from '../EditProfile/AnchorTemporaryDrawer';
+//import { UserProvider, UserContext } from './context/userContext';
 
 const Toolbar = ({ isAuthenticated, isAdmin, setScrollToSection }) => {
     const navigate = useNavigate();
@@ -19,14 +20,14 @@ const Toolbar = ({ isAuthenticated, isAdmin, setScrollToSection }) => {
             const sectionId = item.link.substring(1);
             const section = document.getElementById(sectionId);
             if (section) {
-                const yOffset = window.innerWidth < 768 ? -220 : -125; // Adjust this value to set the offset
+                const yOffset = window.innerWidth < 768 ? -220 : -125; 
                 const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
                 window.scrollTo({
                     top: y,
                     behavior: 'smooth',
                 });
                 navigate('/', { state: { scrollToSection: sectionId } });
-                setScrollToSection(sectionId); // Set state for scrolling after navigating to home
+                setScrollToSection(sectionId); 
             }
         } else {
             navigate(item.link);
@@ -76,10 +77,12 @@ const Toolbar = ({ isAuthenticated, isAdmin, setScrollToSection }) => {
         <div className="navbar">
             <ul className="navbar-list">
                 {navigationitems.map((item, index) => renderNavItem(item, index))}
-                {/* Conditionally render AnchorTemporaryDrawer if isAdmin and isAuthenticated */}
+       
                 {isAuthenticated && (
                     <li>
-                        <AnchorTemporaryDrawer />
+                        <>
+                            <AnchorTemporaryDrawer />
+                        </>
                     </li>
                 )}
             </ul>
