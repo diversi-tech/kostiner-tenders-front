@@ -40,14 +40,14 @@ const AppRoutes = ({ isAuthenticated, isAdmin }) => {
   
       // location.reload();
 
-      window.addEventListener('load', () => {
-        
-          const currentPath = window.location.pathname || '/#/';
-          console.log("currentPath", currentPath);
+      // window.addEventListener('load', () => {
 
-          window.location.pathname = '/';
-          history.pushState(null, null, currentPath);
-      });
+      //     const currentPath = window.location.pathname || '/#/';
+      //     console.log("currentPath", currentPath);
+
+      //     window.location.pathname = '/';
+      //     history.pushState(null, null, currentPath);
+      // });
   
 
   // window.addEventListener('load')
