@@ -1,4 +1,5 @@
 // import axios from 'axios';
+import { json } from "react-router-dom";
 import axios from "../axios/axios";
 // const apiUrl = 'http://localhost:5000/api'; // Adjust URL according to your server
 const list = [
@@ -16,7 +17,7 @@ export const getAllTenders = async () => {
     const response = await axios.get(`/get-all-tenders`, {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': token,
+        'Authorization':  token
       },
       responseType: 'blob', // כדי להבטיח שהקבצים מתקבלים כבלוב
     });

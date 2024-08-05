@@ -29,16 +29,16 @@ import CategorySelection from '../categorySelection/categorySelection';
 import EditUserProfile from '../EditProfile/editUserProfile';
 import RequestsStatus from '../requestStatus/requestStatus';
 import AdminProfileEdit from '../EditProfile/editAdminProfile';
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 const AppRoutes = ({ isAuthenticated, isAdmin }) => {
   console.log("router");
 
 
   
-   const location = useLocation();
-  console.log(location);
+  //  const location = useLocation();
+  // console.log(location);
   
-      const currentPath = window.location.pathname || '/';
+      const currentPath = window.location.pathname || '/#/';
       console.log("currentPath", currentPath);
       // location.reload();
 
