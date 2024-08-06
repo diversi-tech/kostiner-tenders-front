@@ -249,7 +249,7 @@
 //         setUrl(res.url);
 
 //    })
-        
+
 
 
 
@@ -267,40 +267,54 @@
 // };
 
 // export default CreditCard;
+
+
+
 import React, { useEffect, useState } from 'react';
 import single from '../../Logic/payments';
+import './creditCard.css';
 
 const CreditCard = (props) => {
-    const  {type, items}={...props}
-    const [url,setUrl] =useState('');
+     const  {type, items}={...props}
+    const [url, setUrl] = useState('');
     const [loading, setLoading] = useState(true);
+    // const type = 1;
+    // const items = [{
+    //     "price": 45,
+    //     "quantity": 1,
+    //     "vatIncluded": false,
+    //     "name": "Product Name",
+    //     "description": "Product Description"
+    // }]
 
-    console.log("type: " + type, "items " + items);
-    
-    useEffect(()=>{
-        const fetchData = async () => {
-            try {
-                const res = await single.pay(type,items,{'name':'mmm','email':'maayan.malka3697@gmail.com'});
-                console.log("res ",res);
-                setUrl(res.url);
-                setLoading(false);
-            } catch (error) {
-                console.error("Error fetching URL: ", error);
-                setLoading(false);
-            }
-        };
+    console.log("type"+ type, "items"+items);
+    const fetchData = async () => {
 
+        try {
+            const res = await single.pay(type, { ...items }, { 'name': 'mmm', 'email': 'maayan.malka3697@gmail.com' });
+            console.info('res ',res);
+            setUrl(res);
+            setLoading(false);
+        }
+        catch (error) {
+            console.error("Error fetching URL: ", error);
+            setLoading(false);
+            // setUrl('https://app.upay.co.il/BANKRESOURCES/UPAY/redirectpages/b3JzOE9TK2lwSzlXOVI2c3hmajdmZEdwN2FkdkM5K3VwVUNkdkFudTRkZz0equal.html')
+
+        }
+    };
+    useEffect(() => {
         fetchData();
-    }, [type, items]);
+    }, []);
 
     return (
-        <div style={{ width: '100%', height: '500px', border: '1px solid #ccc', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <div style={{ width: '100%', height: '600px', border: '1px solid #ccc', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             {loading ? (
                 <div className="spinner"></div>
             ) : (
-                <iframe 
-                    src={url} 
-                    style={{ width: '100%', height: '100%' }} 
+                <iframe
+                    src={url}
+                    style={{ width: '100%', height: '100%' }}
                     title="iframe"
                     frameBorder="0"
                 />

@@ -1,0 +1,62 @@
+.dialog-container {
+    background-color: rgb(224, 242, 241);
+    color: rgb(10, 63, 61);
+    text-align: center;
+  }
+  
+  .text-field {
+    background-color: rgb(240, 255, 255);
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  
+  .text-field .MuiInputLabel-root {
+    color: rgb(10, 63, 61);
+  }
+  
+  .text-field .MuiInputBase-input {
+    color: rgb(10, 63, 61);
+  }
+  
+  .button-toggle {
+    color: rgb(10, 63, 61);
+    margin-top: 10px;
+  }
+  
+  .google-auth {
+    color: rgb(10, 63, 61);
+  }
+  
+  .sign-up-button {
+    background-color: #1C5F68;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    text-transform: none;
+    box-shadow: 0px 3px 6px #c8c8c8b5;
+    transition: background-color 0.3s ease;
+  }
+  
+  .sign-up-button:hover {
+    background-color: #1c5f68;
+  }
+  
+  .sign-up-button-secondary {
+    background-color: #A9A9A9;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    text-transform: none;
+    box-shadow: 0px 3px 6px #c8c8c8b5;
+  }
+  
+  .cancel-button {
+    color: rgb(10, 63, 61);
+  }
+  
+  .submit-button {
+    color: rgb(10, 63, 61);
+  }
+  

@@ -44,7 +44,7 @@ function App() {
     const [isAdmin, setIsAdmin] = useState(false);
 
     return (
-        <HashRouter>
+         <HashRouter>
         {/* // <BrowserRouter> */}
             <UserProvider>
                 <MainComponent
@@ -56,7 +56,7 @@ function App() {
                 />
             </UserProvider>
             {/* </BrowserRouter> */}
-        </HashRouter> 
+        // </HashRouter> 
     );
 }
 
