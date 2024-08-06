@@ -1,0 +1,35 @@
+/* src/components/ItemsList.css */
+.item-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.item-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px; /* רווח מהתוכן שמתחת לטבלה */
+  direction: rtl; /* הכיתוב מימין לשמאל */
+}
+
+.item-table th,
+.item-table td {
+  border: 1px solid rgba(26, 96, 104, 255);
+  padding: 12px; /* ריפוד גדול יותר עבור קצוות רכים */
+  text-align: right; /* טקסט מימין לשמאל */
+}
+
+.item-table th {
+  background-color: transparent; /* רקע שקוף עבור הכותרות */
+  color: rgba(26, 96, 104, 255); /* צבע הטקסט של הכותרות */
+  border: 1px solid rgba(26, 96, 104, 255); /* מסגרת בצבע הנוכחי */
+}
+
+.item-table td {
+  border-radius: 8px; /* קצוות רכים לתאים */
+}
+
+.item-table th,
+.item-table td {
+  border-radius: 8px; /* קצוות רכים לכותרות ותאים */
+}

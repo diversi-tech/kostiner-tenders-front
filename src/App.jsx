@@ -10,7 +10,8 @@ import Help from './Components/help/help';
 import About from './Components/about/about';
 import ItemsList from './Components/item/items';
 import { UserProvider, UserContext } from './context/userContext';
-// import auth from './Server/Auth'
+
+
 function App() {
     const items = [
         {
@@ -41,7 +42,6 @@ function App() {
 
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
-
     // useEffect(() => {
     //     const handleBeforeUnload = (event) => {
     //       alert('Before unload event triggered');
@@ -57,7 +57,7 @@ function App() {
     //   }, []);
     
     return (
-        <HashRouter>
+         <HashRouter>
         {/* // <BrowserRouter> */}
             <UserProvider>
                 <MainComponent
@@ -69,7 +69,7 @@ function App() {
                 />
             </UserProvider>
             {/* </BrowserRouter> */}
-        </HashRouter> 
+        // </HashRouter> 
     );
 }
 
@@ -79,9 +79,8 @@ const MainComponent = ({ isAuthenticated, setIsAuthenticated, isAdmin, setIsAdmi
 
     useEffect(() => {
         const token = localStorage.getItem('authToken');
-        const role = user.role; // Adjust this line if role is managed differently
-        console.log("role");
-        console.log(role);
+        const role = user.role; 
+
         if (token) {
             setIsAuthenticated(true);
             setIsAdmin(role === 'admin');
@@ -89,10 +88,10 @@ const MainComponent = ({ isAuthenticated, setIsAuthenticated, isAdmin, setIsAdmi
             setIsAuthenticated(false);
             setIsAdmin(false);
         }
-    }, [user.role]); // Adding user.role as dependency if it's being updated
+    }, [user.role]); 
 
     const isSectionPath = location.hash;
-
+console.log("role" ,isAdmin);
     return (
         <>
             <div style={{ display: 'none' }}><GGG /></div>
@@ -110,7 +109,6 @@ const MainComponent = ({ isAuthenticated, setIsAuthenticated, isAdmin, setIsAdmi
                         <>
                             <About />
                             <Help />
-                            <ItemsList items={items} />
                         </>
                     )}
                     <AppRoutes isAuthenticated={isAuthenticated} isAdmin={isAdmin} />
@@ -120,5 +118,6 @@ const MainComponent = ({ isAuthenticated, setIsAuthenticated, isAdmin, setIsAdmi
         </>
     );
 }
+
 
 export default App; 

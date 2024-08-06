@@ -61,7 +61,6 @@ const AddCategoryForm = ({ open, handleClose, handleSave, initialData }) => {
     let formIsValid = true;
     const newErrors = {};
 
-    // Check for any empty required fields
     if (formData.category.trim() === '') {
       newErrors.category = true;
       formIsValid = false;
@@ -70,11 +69,11 @@ const AddCategoryForm = ({ open, handleClose, handleSave, initialData }) => {
       newErrors.description = true;
       formIsValid = false;
     }
-    if (isNaN(parseFloat(formData.monthlyPrice))) {
+    if (isNaN(parseFloat(formData.monthlyPrice)) || parseFloat(formData.monthlyPrice) < 0) {
       newErrors.monthlyPrice = true;
       formIsValid = false;
     }
-    if (isNaN(parseFloat(formData.subscriptionPrice))) {
+    if (isNaN(parseFloat(formData.subscriptionPrice)) || parseFloat(formData.subscriptionPrice) < 0) {
       newErrors.subscriptionPrice = true;
       formIsValid = false;
     }

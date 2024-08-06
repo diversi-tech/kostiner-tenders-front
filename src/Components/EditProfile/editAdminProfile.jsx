@@ -12,6 +12,9 @@ import './editAdminProfile.css';
 const AdminProfileEdit = () => {
   const { user, setUser } = useContext(UserContext);
   const [saving, setSaving] = useState(false);
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('');
 
   const handleNameChange = (event) => {
     setUser(prevUser => ({ ...prevUser, userName: event.target.value }));
@@ -21,10 +24,34 @@ const AdminProfileEdit = () => {
     setUser(prevUser => ({ ...prevUser, userEmail: event.target.value }));
   };
 
+  const handlePasswordChange = (event) => {
+    setNewPassword(event.target.value);
+  };
+
+  const handleConfirmPasswordChange = (event) => {
+    setConfirmPassword(event.target.value);
+  };
+
+  const validatePasswords = () => {
+    if (newPassword !== confirmPassword) {
+      setError('הסיסמאות אינן תואמות');
+      return false;
+    }
+    if (newPassword.length < 6) {
+      setError('הסיסמה חייבת להיות לפחות 6 תווים');
+      return false;
+    }
+    setError('');
+    return true;
+  };
+
   const handleSave = async () => {
+    if (!validatePasswords()) return;
+
     const adminData = {
       userName: user.userName,
       userEmail: user.userEmail,
+      password: newPassword,
     };
 
     try {
@@ -55,6 +82,8 @@ const AdminProfileEdit = () => {
 
   const handleCancel = () => {
     // Reset form fields if needed, or handle cancellation logic
+    setNewPassword('');
+    setConfirmPassword('');
   };
 
   return (
@@ -95,17 +124,41 @@ const AdminProfileEdit = () => {
             value={user.userEmail}
             onChange={handleEmailChange}
           />
+          <Typography variant="h6" component="h3" className="SystemDetailsTitle">
+            פרטי מערכת
+          </Typography>
+          <TextField
+            fullWidth
+            margin="normal"
+            label="סיסמה חדשה"
+            type="password"
+            value={newPassword}
+            onChange={handlePasswordChange}
+          />
+          <TextField
+            fullWidth
+            margin="normal"
+            label="אימות סיסמה"
+            type="password"
+            value={confirmPassword}
+            onChange={handleConfirmPasswordChange}
+          />
+          {error && (
+            <Typography color="error" variant="body2" gutterBottom>
+              {error}
+            </Typography>
+          )}
 
           <Box className="button-container">
             <Button
               variant="contained"
-              color="primary"
               onClick={handleSave}
               disabled={saving}
+              className="SaveButton"
             >
-              שמור
+              שמור פרטים
             </Button>
-            <Button variant="outlined" onClick={handleCancel} disabled={saving}>
+            <Button variant="outlined" onClick={handleCancel} disabled={saving} >
               בטל
             </Button>
           </Box>

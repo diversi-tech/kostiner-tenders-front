@@ -21,3 +21,19 @@ export const getAllUsers = async () => {
   }
   
 };
+export const putUser = async()=>{
+  const token = localStorage.getItem('authToken');
+try{
+  await axios.put('/put-user',{
+    method:'PUT',
+    headers:{
+      'Authorization': token,
+      'Content-Type':'application/json',
+    },
+  });
+}
+catch(error){
+  console.error('Error fetching users:', error);
+    console.error('Response:', error.response);
+}
+};

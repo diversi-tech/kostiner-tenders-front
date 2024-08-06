@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 
 export default function TypeProduct_Step() {
     const [open, setOpen] = React.useState(true); // Open the modal by default
-    const handleClose = () => setOpen(false); // Close the modal
+    const handleClose = () => setOpen(true); // Close the modal
 
     const location = useLocation();
     const type = location.state || {}; // Destructure 'type' from location state
