@@ -38,7 +38,7 @@ class Payment
                 "failureUrl": "https://kostiner-tenders.onrender.com"
               }
 
-              return single.Pay(payDetails);
+              return await single.Pay({...payDetails});
 
 
         }
