@@ -545,7 +545,7 @@ export default function Login(props) {
         const userData = await LoginService.fetchAndSetUser(token);
         setUser(userData);
         navigate('/');
-        // location.reload();
+        location.reload();
         handleClose();
       }
     }

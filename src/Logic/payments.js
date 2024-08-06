@@ -33,9 +33,9 @@ class Payment
                   "name": user.name
                 },
                  "items": {...items},
-                "notifyUrl": "https://kostiner-tenders.onrender.com",
-                "successUrl": "https://kostiner-tenders.onrender.com",
-                "failureUrl": "https://kostiner-tenders.onrender.com"
+                "notifyUrl": `https://kostiner-tenders.onrender.com/#/finishPay/${type}`,
+                "successUrl": `https://kostiner-tenders.onrender.com/#/finishPay/${type}`,
+                "failureUrl": `https://kostiner-tenders.onrender.com/#/finishPay/${type}`
               }
 
               return await single.Pay({...payDetails});

@@ -187,31 +187,32 @@
 // export default GoogleAuthOld;
 
 
-import React from 'react';
+import React, { useState } from 'react';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { json, useNavigate } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 const clientId = import.meta.env.VITE_CLIENT_ID;
 
 const GoogleAuthOld = () => {
-  const handleLoginSuccess = (response) => {
+  const [err, setErr] = useState('');
+
+  const handleLoginSuccess = async(response) => {
     console.log('Login Success:', response);
     console.log("token",response.credential);
-    fetch('https://kostiner-tenders-back.onrender.com/auth/continue-with-google', {
-      mode: 'cors',
+    await fetch('https://kostiner-tenders-back.onrender.com/auth/continue-with-google', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+        'Content-Type': 'application/json'
       },
-      body: { token: response.credential },
-      token: response.credential
+      body: JSON.stringify({ 'token': ''+response.credential }),
+      'token': JSON.stringify(response.credential)
     })
     .then(res => res.json())
 
     .then(data => {
+      console.log("google data: ",data);
       localStorage.setItem('authToken', data.access_token);
       navigate('/');
       location.reload();
@@ -223,8 +224,9 @@ const GoogleAuthOld = () => {
     .catch(error => console.error('Error:', error));
   };
 
-  const handleLoginFailure = (error) => {
+  const handleLoginFailure = async(error) => {
     console.error('Login Failed:', error);
+    setErr(error);
   };
 
   return (
@@ -249,7 +251,10 @@ const GoogleAuthOld = () => {
             onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#357ae8')}
             onMouseOut={(e) => (e.currentTarget.style.backgroundColor = '#4285F4')}
           />
+          <br/>
+          <p>{err}</p>
           </div>
+          
     </GoogleOAuthProvider>
   );
 };
