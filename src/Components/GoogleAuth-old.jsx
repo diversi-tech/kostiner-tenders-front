@@ -197,7 +197,7 @@ const clientId = import.meta.env.VITE_CLIENT_ID;
 
 const GoogleAuthOld = () => {
   const [err, setErr] = useState('');
-
+  const navigate = useNavigate();
   const handleLoginSuccess = async(response) => {
     console.log('Login Success:', response);
     console.log("token",response.credential);
