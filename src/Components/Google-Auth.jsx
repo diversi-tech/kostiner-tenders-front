@@ -1,7 +1,8 @@
 import React from 'react';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 
-const CLIENT_ID = '720220089306-t58chastvvm3593rprr080mgjbjcntub.apps.googleusercontent.com';
+const CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
+const navigate = useNavigate();
 
 const GoogleAuth = () => {
   const onSuccess = async(response) => {
