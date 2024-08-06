@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: my-react-app
+    env: static
+    staticPublishPath: /dist
+    routes:
+      - type: rewrite
+        source: /product
+        destination: /
+      - type: rewrite
+        source: /.*
+        destination: /

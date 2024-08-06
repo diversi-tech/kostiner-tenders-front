@@ -30,7 +30,7 @@ export default function HomePage() {
         <Grid item xs={12} className="linkGrid">
           <Typography variant="body1">
             <Link 
-              href="/product"
+              href="/#/product"
               className="MuiLink-root"
               underline="hover"
             >

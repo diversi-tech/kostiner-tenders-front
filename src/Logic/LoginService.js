@@ -1,15 +1,26 @@
-import { action, makeObservable } from 'mobx';
-// const baseUrl = "http://localhost:5000";
+import { action, makeObservable,observable} from 'mobx';
+
+
 class Login {
+    token = '';
+
     constructor() {
         makeObservable(this, {
             login: action,
-            // getUsers: action,
+            token: observable,
+            setToken: action,
             requestPasswordReset: action,
             decodeJwtToken: action,
-            fetchAndSetUser: action
+           
         })
+        this.startTokenRefresh();
+
     }
+    setToken(newToken) {
+        this.token = newToken;
+        localStorage.setItem('authToken', newToken);
+    }
+
     async login(username, password) {
         try {
             const response = await fetch('https://kostiner-tenders-back.onrender.com/auth/login', {
@@ -19,16 +30,14 @@ class Login {
                 },
                 body: JSON.stringify({ username, password }),
             });
-        console.log(response);
+
             if (response.ok) {
                 const data = await response.json();
                 console.log('Login successful:', data);
-                const token = data.access_token;
-                if (token) {
-                    localStorage.setItem('authToken', token);
-                } else {
-                    console.warn('No access token found in response data.');
-                }
+                const { access_token, refresh_token } = data;
+                this.setToken(access_token);
+                localStorage.setItem('authToken', access_token);
+                localStorage.setItem('refreshToken', refresh_token);
                 return { status: 200, message: 'Login successful', data };
             } else {
                 const errorData = await response.json();
@@ -40,6 +49,41 @@ class Login {
             return { status: 400, message: 'Login failed', error };
         }
     }
+
+    async refreshToken() {
+        console.log("refreshToken");
+        try {
+            const response = await fetch('http://kostiner-tenders-back.onrender.com/auth/refresh-token', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('refreshToken')}`,
+                },
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                const { newToken, newRefreshToken } = data;
+                localStorage.setItem('authToken', newToken);
+                localStorage.setItem('refreshToken', newRefreshToken);
+            } else {
+                console.error('Token refresh failed');
+                localStorage.removeItem('authToken');
+                localStorage.removeItem('refreshToken');
+            }
+        } catch (error) {
+            console.error('Error refreshing token:', error);
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('refreshToken');
+        }
+    }
+
+    startTokenRefresh() {
+        const interval = (2 * 60 * 60 + 55 * 60) * 1000; // 2 שעות ו-55 דקות במילישניות
+        setInterval(() => {
+          this.refreshToken();
+        }, interval); 
+      }
+
     async requestPasswordReset(email, username) {
         try {
             const response = await fetch('https://kostiner-tenders-back.onrender.com/auth/reset-password/request', {
@@ -55,38 +99,17 @@ class Login {
                 throw new Error(responseData.status || 'Failed to reset password');
             }
             console.log(responseData);
-            localStorage.setItem('authToken', responseData);
-            return { success: true,responseData }
+            localStorage.setItem('resetToken', responseData);
+            return { success: true, responseData }
         } catch (error) {
             console.error('Error resetting password:', error);
             return { success: false, message: error.message };
         }
     }
-    // async getUsers() {
-    //     try {
-    //         const token = sessionStorage.getItem('authToken');
-    //         if (!token) {
-    //             console.error('No auth token found in localStorage');
-    //             return null;
-    //         }
-    //         const response = await fetch('http://127.0.0.1:5000/users/', {
-    //             method: 'GET',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //                 'Authorization': ` ${token}`
-    //             }
-    //         });
-    //         const data = await response.json();
-    //         console.log('Response data:', data);
-    //         return data;
-    //     } catch (error) {
-    //         console.error('Error fetching users:', error);
-    //         return null;
-    //     }
-    // }
+    
     async fetchAndSetUser(token) {
         try {
-            const userId = this.getUserIdFromToken(token); 
+            const userId = this.getUserIdFromToken(token);
             console.log(userId);
             const response = await fetch(`https://kostiner-tenders-back.onrender.com/api/get-id-user/${userId}`, {
                 headers: {
@@ -115,6 +138,10 @@ class Login {
         const payload = JSON.parse(atob(base64));
         return payload;
     }
+
+
+   
+
 }
 const singleton = new Login();
 export default singleton;
