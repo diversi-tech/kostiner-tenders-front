@@ -476,7 +476,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useRef, useEffect, useContext } from 'react';
 import { UserContext } from '../context/userContext';
 import '../Components/Login.css'; // הוספת קובץ ה-CSS
-
+import { toast } from 'react-toastify';
 export default function Login(props) {
   const [open, setOpen] = useState(props.open);
   const [credential, setCredential] = useState({ userName: '', password: '' });
@@ -525,13 +525,21 @@ export default function Login(props) {
     event.preventDefault();
     if (forgetPassword) {
       const res = await LoginService.requestPasswordReset(email, credential.userName);
+      console.log("res",res);
       if (res.success) {
-        setResetEmailSent(true);
-        setEmailError('');
-      } else {
-        setEmailError('אירעה שגיאה בשליחת המייל.');
-        setResetEmailSent(false);
+        setResetEmailSent(true); 
+        setEmailError(false)
+        toast.success('מייל לאיפוס סיסמא נשלח בהצלחה!');
+        handleClose();
+
+      } else if (!res.success) {
+        setEmailError(true);
+        setResetEmailSent(false); 
         setEmail('');
+
+        console.log("emailRef", emailRef);
+        console.log("emailRef.current", emailRef.current);
+        toast.error('לא הצלחנו לשלוח את מייל איפוס הסיסמה, נסה שנית.');
         emailRef.current.focus(); 
       }
     } else {

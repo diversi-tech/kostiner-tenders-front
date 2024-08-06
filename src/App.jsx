@@ -42,7 +42,20 @@ function App() {
 
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
-
+    // useEffect(() => {
+    //     const handleBeforeUnload = (event) => {
+    //       alert('Before unload event triggered');
+    //       logout(); 
+    //       event.returnValue = ''; // זה שדה חובה לדפדפנים מודרניים
+    //     };
+      
+    //     window.addEventListener('beforeunload', handleBeforeUnload);
+      
+    //     return () => {
+    //       window.removeEventListener('beforeunload', handleBeforeUnload);
+    //     };
+    //   }, []);
+    
     return (
          <HashRouter>
         {/* // <BrowserRouter> */}
