@@ -192,7 +192,6 @@ export default function TypeProduct({ typeTender }) {
   };
   const handleNav = () => {
     const dataToSend = {
-      type: typeTender, // הסוג ממנו הגענו
       selectedOptions: selectedOptions.map(option => ({
         price: option.price ,// מחיר
         quantity: 1,
@@ -201,9 +200,9 @@ export default function TypeProduct({ typeTender }) {
         description: option.label // תיאור (שם קטגוריה + מחיר)
       })),
     };
-console.log(dataToSend);
+console.log(dataToSend,typeTender);
     nav('/creditCard', {
-      state: { type: dataToSend },
+      state: { type: typeTender,items:dataToSend },
     });
   };
 

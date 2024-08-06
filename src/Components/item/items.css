@@ -3,6 +3,15 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
+  overflow-y: scroll; /* גלילה אנכית */
+  overflow-x: hidden; /* הסתרת גלילה אופקית */
+  height: 100vh; /* גובה 100% מהחלון */
+  scrollbar-width: none; /* הסתרת הסרגל גלילה עבור פיירפוקס */
+  -ms-overflow-style: none; /* הסתרת הסרגל גלילה עבור אקספלורר ואדג' */
+}
+
+.item-container::-webkit-scrollbar {
+  display: none; /* הסתרת הסרגל גלילה עבור כרום וספארי */
 }
 
 .item-table {

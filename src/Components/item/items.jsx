@@ -1,33 +1,59 @@
-// src/components/ItemsList.js
-import React, { useEffect, useState } from 'react';
-import Item from './item'; // נתיב מותאם
-import ExportExcel from './itemExel'; // נוודא שזה הנתיב הנכון לקומפוננטה
-import { getAllTenders } from '../../Server/tender'; // נתיב מותאם
+import React, { useContext, useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import Item from './item'; // שים לב לנתיב הנכון
+import ExportExcel from './itemExel'; // שים לב לנתיב הנכון
+import { getAllTenders } from '../../Server/tender'; // שים לב לנתיב הנכון
 import { CircularProgress, Box, Typography } from '@mui/material';
 import './items.css'; // הוספת סגנון CSS
+import { UserContext } from '../../context/userContext';
 
 function ItemsList() {
   const [items, setItems] = useState([]);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { user } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const location = useLocation();
+  const { categoryName, type } = location.state || {}; // הוספנו את type
 
   useEffect(() => {
     const fetchTenders = async () => {
+      setLoading(true);
       try {
         const data = await getAllTenders();
-        setItems(data[0]); // מציגים את הרשימה הראשונה
-        setIsAuthenticated(true); // במידה והבקשה הצליחה נעדכן שהמשתמש מחובר
+        // console.log("data ", data);
+
+        let filtersItems = [];
+        if (user && user.role === 'admin') {
+          console.log("admin");
+          filtersItems = data[categoryName] || [];
+        } else {
+          if (type === 1) {
+            console.log("history",data.history[categoryName]);
+            filtersItems = data.history[categoryName] || [];
+          } else {
+            console.log("subscriptions",data.subscriptions[categoryName]);
+            filtersItems = data.subscriptions[categoryName] || [];
+          }
+        }
+
+        if (filtersItems.length === 0) {
+          console.log("No items found for the category:", categoryName);
+        }
+
+        setItems(filtersItems.length > 0 ? filtersItems : []);
+        setIsAuthenticated(true);
       } catch (error) {
-        setError("מכרזים לתצוגה בלבד"); // הגדרת הודעת שגיאה
-        setIsAuthenticated(false); // במידה ויש שגיאה נעדכן שהמשתמש לא מחובר
+        setError("מכרזים לתצוגה בלבד");
+        setIsAuthenticated(false);
+        setItems([]); // להבטיח שהמצב יתעדכן גם במקרה של שגיאה
       } finally {
-        setLoading(false); // בסיום הטעינה נעדכן שהטען הסתיים
+        setLoading(false);
       }
     };
 
     fetchTenders();
-  }, []);
+  }, [categoryName, type, user]);
 
   // טבלת דמה להצגה כאשר המשתמש לא מחובר
   const dummyItems = [
@@ -66,7 +92,6 @@ function ItemsList() {
                 <th>שם ומספר המכרז</th>
                 <th>תאריך פרסום</th>
                 <th>תאריך הגשה</th>
-                {/* <th>קטגוריות</th> */}
                 <th>שם הזוכה</th>
                 <th>פרטי הזוכה</th>
                 <th>מציעים</th>
@@ -75,7 +100,7 @@ function ItemsList() {
               </tr>
             </thead>
             <tbody>
-              {(error ? dummyItems : items).map((item, index) => (
+              {(items.length > 0 ? items : dummyItems).map((item, index) => (
                 <Item
                   key={index}
                   company={item.body_name}
@@ -91,7 +116,7 @@ function ItemsList() {
               ))}
             </tbody>
           </table>
-          <ExportExcel items={error ? dummyItems : items} />
+          <ExportExcel items={items.length > 0 ? items : dummyItems} />
         </>
       )}
     </div>
