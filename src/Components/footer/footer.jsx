@@ -30,7 +30,7 @@ const Footer = () => {
         // const token = localStorage.getItem('authToken'); // קבלת הטוקן מה-localStorage
         try {
             const response = await axios.post(
-                'http://kostiner-tenders-back.onrender.com/auth/contact',
+                'https://kostiner-tenders-back.onrender.com/auth/contact',
                 formData,
                 {
                     headers: {
