@@ -127,7 +127,7 @@ const CategorySelection = () => {
                                 אין קטגוריות זמינות
                             </Typography>
                         )}
-                        {type !== 1 ||  !user.role === 'admin' &&(
+                        {(type !== 1 && user && user.role !== 'admin') && (
                             <Grid item xs={12}>
                                 <Card
                                     sx={{
