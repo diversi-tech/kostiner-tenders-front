@@ -99,7 +99,7 @@ class Login {
                 throw new Error(responseData.status || 'Failed to reset password');
             }
             console.log(responseData);
-            localStorage.setItem('authToken', responseData);
+            localStorage.setItem('resetToken', responseData);
             return { success: true, responseData }
         } catch (error) {
             console.error('Error resetting password:', error);
