@@ -54,7 +54,7 @@ const ResetPasswordForm = () => {
     }
 
     try {
-      const token = localStorage.getItem('authToken');
+      const token = localStorage.getItem('resetToken');
       console.log("token",token);
       const response = await fetch('https://kostiner-tenders-back.onrender.com/auth/reset-password/response', {
         method: 'POST',
