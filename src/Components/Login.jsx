@@ -18,7 +18,8 @@ import GoogleAuthOld from './GoogleAuth-old';
 import LoginService from '../Logic/LoginService';
 import { UserContext } from '../context/userContext';
 import { useContext } from 'react';
-
+import { toast } from 'react-toastify';
+import '../Components/Login.css';
 import { useNavigate } from 'react-router-dom';
 export default function Login(props) {
   console.log("login");
@@ -28,12 +29,12 @@ export default function Login(props) {
   const [email, setEmail] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-  const [resetEmailSent, setResetEmailSent] = useState(false); 
+  const [resetEmailSent, setResetEmailSent] = useState(false);
   const [message, setMessage] = useState(false);
-  const [emailError, setEmailError] = useState(false); 
+  const [emailError, setEmailError] = useState(false);
   const passwordRef = useRef(null);
   const emailRef = useRef(null);
-  const { setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
 
   const handleChange = (field, value) => {
@@ -46,17 +47,17 @@ export default function Login(props) {
     setOpen(true);
   };
   const forget = () => {
-    setMessage(''); // Clear previous message on submit
-    setEmailError(''); // Clear previous email error on submit
+    setMessage(''); 
+    setEmailError(''); 
     setForgetPassword(!forgetPassword)
   }
   const handleClose = () => {
     setOpen(false);
-    setResetEmailSent(false); // Reset the state when dialog is closed
-    setMessage(false); // Reset the message state when dialog is closed
-    setEmailError(false); // Reset the email error state when dialog is closed
-    setCredential({ userName: '', password: '' }); // Reset credentials
-    setEmail(''); // Reset email field
+    setResetEmailSent(false); 
+    setMessage(false); 
+    setEmailError(false); 
+    setCredential({ userName: '', password: '' }); 
+    setEmail(''); 
     navigate('/');
   };
 
@@ -78,17 +79,22 @@ export default function Login(props) {
     event.preventDefault();
     if (forgetPassword) {
       const res = await LoginService.requestPasswordReset(email, credential.userName);
+      console.log("res",res);
       if (res.success) {
-        setResetEmailSent(true); // Set state when password reset email is sent
+        setResetEmailSent(true); 
         setEmailError(false)
+        toast.success('מייל לאיפוס סיסמא נשלח בהצלחה!');
+        handleClose();
+
       } else if (!res.success) {
         setEmailError(true);
-        setResetEmailSent(false); // Set state when password reset email is sent
+        setResetEmailSent(false); 
         setEmail('');
 
         console.log("emailRef", emailRef);
         console.log("emailRef.current", emailRef.current);
-        emailRef.current.focus(); // Set focus on the email field
+        toast.error('לא הצלחנו לשלוח את מייל איפוס הסיסמה, נסה שנית.');
+        emailRef.current.focus(); 
       }
     } else {
       const res = await LoginService.login(credential.userName, credential.password);
@@ -105,11 +111,12 @@ export default function Login(props) {
         let userData = res.data;
         const token = localStorage.getItem('authToken');
         userData = await LoginService.fetchAndSetUser(token)
+        console.log("Before setUser:", userData);
         setUser(userData);
-        console.log(userData);
+        console.log("After setUser:", user);
         navigate('/');
 
-        // navigate('/user-profile');
+        // // navigate('/user-profile');
         location.reload();
         handleClose();
       }
@@ -127,7 +134,6 @@ export default function Login(props) {
         PaperProps={{
           component: 'form',
           onSubmit: handleSubmit,
-
           style: { backgroundColor: 'rgb(224, 242, 241)', color: 'rgb(10, 63, 61)', textAlign: 'center' }
         }}
       >

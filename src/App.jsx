@@ -10,7 +10,7 @@ import Help from './Components/help/help';
 import About from './Components/about/about';
 import ItemsList from './Components/item/items';
 import { UserProvider, UserContext } from './context/userContext';
-
+// import auth from './Server/Auth'
 function App() {
     const items = [
         {
@@ -42,6 +42,20 @@ function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
 
+    // useEffect(() => {
+    //     const handleBeforeUnload = (event) => {
+    //       alert('Before unload event triggered');
+    //       logout(); 
+    //       event.returnValue = ''; // זה שדה חובה לדפדפנים מודרניים
+    //     };
+      
+    //     window.addEventListener('beforeunload', handleBeforeUnload);
+      
+    //     return () => {
+    //       window.removeEventListener('beforeunload', handleBeforeUnload);
+    //     };
+    //   }, []);
+    
     return (
         <HashRouter>
         {/* // <BrowserRouter> */}

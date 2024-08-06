@@ -30,8 +30,9 @@ import CategorySelection from '../categorySelection/categorySelection';
 import EditUserProfile from '../EditProfile/editUserProfile';
 import RequestsStatus from '../requestStatus/requestStatus';
 import AdminProfileEdit from '../EditProfile/editAdminProfile';
-
 const AppRoutes = ({ isAuthenticated, isAdmin }) => {
+
+
   console.log("router");
 
   const categoriesData = [
