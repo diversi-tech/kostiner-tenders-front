@@ -1,41 +1,30 @@
-import React, { useState } from 'react';
-import {Box,Button,Table,TableBody,TableCell,TableContainer,TableHead,TableRow,Paper,Dialog,
-DialogActions,DialogContent,DialogContentText, DialogTitle} from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import {
+  Box,
+  Button,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from '@mui/material';
 import { format } from 'date-fns';
-
-const initialData = [
-  { id: 1, username: 'משתמש1', searchName: 'מכרז לתשתיות', date: new Date() },
-  { id: 2, username: 'משתמש2', searchName: 'מכרז לבנייה', date: new Date() },
-  { id: 3, username: 'משתמש3', searchName: 'מכרז לניקיון', date: new Date() },
-  { id: 4, username: 'משתמש4', searchName: 'מכרז לשיפוצים', date: new Date() },
-  { id: 5, username: 'משתמש5', searchName: 'מכרז להסעות', date: new Date() },
-  { id: 6, username: 'משתמש6', searchName: 'מכרז להסעות', date: new Date() },
-  { id: 7, username: 'משתמש7', searchName: 'מכרז להסעות', date: new Date() },
-  { id: 8, username: 'משתמש8', searchName: 'מכרז להסעות', date: new Date() },
-  { id: 9, username: 'משתמש9', searchName: 'מכרז להסעות', date: new Date() },
-  { id: 10, username: 'משתמש10', searchName: 'מכרז להסעות', date: new Date() },
-  { id: 11, username: 'משתמש11', searchName: 'מכרז להסעות', date: new Date() },
-  { id: 12, username: 'משתמש12', searchName: 'מכרז להסעות', date: new Date() },
-  { id: 13, username: 'משתמש13', searchName: 'מכרז להסעות', date: new Date() },
-  { id: 14, username: 'משתמש14', searchName: 'מכרז להסעות', date: new Date() },
-  { id: 15, username: 'משתמש15', searchName: 'מכרז להסעות', date: new Date() },
-  { id: 16, username: 'משתמש16', searchName: 'מכרז להסעות', date: new Date() },
-  { id: 17, username: 'משתמש17', searchName: 'מכרז להסעות', date: new Date() },
-  { id: 18, username: 'משתמש18', searchName: 'מכרז להסעות', date: new Date() },
-  { id: 19, username: 'משתמש19', searchName: 'מכרז להסעות', date: new Date() },
-  { id: 20, username: 'משתמש20', searchName: 'מכרז להסעות', date: new Date() },
-  { id: 21, username: 'משתמש21', searchName: 'מכרז להסעות', date: new Date() },
-  { id: 22, username: 'משתמש22', searchName: 'מכרז להסעות', date: new Date() },
-  { id: 23, username: 'משתמש23', searchName: 'מכרז להסעות', date: new Date() },
-  { id: 24, username: 'משתמש24', searchName: 'מכרז להסעות', date: new Date() },
-  { id: 25, username: 'משתמש25', searchName: 'מכרז להסעות', date: new Date() },
-];
+import { getAllRequests, updateRequests, deleteRequest } from '../../../../Server/requests'; // Ensure you import deleteRequests
 
 export default function CheckTender() {
   const [openDialog, setOpenDialog] = useState(false);
   const [dialogMessage, setDialogMessage] = useState('');
-  const [rows, setRows] = useState(initialData);
+  const [requests, setRequests] = useState([]);
   const [selectedRowId, setSelectedRowId] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const handleDialogOpen = (message) => {
     setDialogMessage(message);
@@ -48,14 +37,26 @@ export default function CheckTender() {
     setSelectedRowId(null);
   };
 
-  const handleApprove = (id) => {
-    handleDialogOpen('הבקשה אושרה, המשתמש יקבל הודעה');
-    setSelectedRowId(id);
+  const handleApprove = async (id) => {
+    try {
+      await updateRequests(id);
+      handleDialogOpen('הבקשה אושרה, המשתמש יקבל הודעה');
+      setSelectedRowId(id);
+    } catch (error) {
+      console.error('שגיאה בעדכון הבקשה:', error);
+      handleDialogOpen('נראה שקרתה שגיאה בעדכון הבקשה. אנא נסה שוב מאוחר יותר.');
+    }
   };
 
-  const handleReject = (id) => {
-    handleDialogOpen('הבקשה סורבה, המשתמש יקבל הודעה');
-    setSelectedRowId(id);
+  const handleReject = async (id) => {
+    try {
+      await deleteRequest(id);
+      handleDialogOpen('הבקשה סורבה, המשתמש יקבל הודעה');
+      setSelectedRowId(id);
+    } catch (error) {
+      console.error('שגיאה בעדכון הבקשה:', error);
+      handleDialogOpen('נראה שקרתה שגיאה בעדכון הבקשה. אנא נסה שוב מאוחר יותר.');
+    }
   };
 
   const handleDialogAction = () => {
@@ -63,6 +64,29 @@ export default function CheckTender() {
     console.log(`${message} למשתמש עם id ${selectedRowId}`);
     handleDialogClose();
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const requestsData = await getAllRequests();
+        setRequests(requestsData);
+        setLoading(false);
+      } catch (err) {
+        console.error('Failed to fetch requests:', err);
+        setError('Failed to fetch requests');
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return <Box>Loading...</Box>;
+  }
+
+  if (error) {
+    return <Box>Error: {error}</Box>;
+  }
 
   return (
     <Box
@@ -76,7 +100,7 @@ export default function CheckTender() {
         position: 'relative',
         zIndex: 1,
         textAlign: 'center',
-        marginTop: 4, // מרחק מלמעלה של 2 רמות
+        marginTop: 4,
       }}
     >
       <TableContainer component={Paper} sx={{ width: '90%', maxHeight: '70vh' }}>
@@ -85,64 +109,71 @@ export default function CheckTender() {
             <TableRow sx={{ backgroundColor: 'rgba(26,96,104,255)' }}>
               <TableCell align="center" sx={{ color: 'rgba(26,96,104,255)', fontFamily: 'Arial', fontSize: '1.2rem', width: '25%', fontWeight: 'bold' }}>
                 שם משתמש
-        </TableCell>
+              </TableCell>
               <TableCell align="center" sx={{ color: 'rgba(26,96,104,255)', fontFamily: 'Arial', fontSize: '1.2rem', width: '25%', fontWeight: 'bold' }}>
                 שם לחיפוש
-        </TableCell>
+              </TableCell>
               <TableCell align="center" sx={{ color: 'rgba(26,96,104,255)', fontFamily: 'Arial', fontSize: '1.2rem', width: '25%', fontWeight: 'bold' }}>
                 תאריך
-        </TableCell>
+              </TableCell>
               <TableCell align="center" sx={{ color: 'rgba(26,96,104,255)', fontFamily: 'Arial', fontSize: '1.2rem', width: '25%', fontWeight: 'bold' }}>
                 פעולה
-        </TableCell>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <TableRow key={row.id} sx={{ borderBottom: 'none' }}>
-                <TableCell align="center" sx={{ fontFamily: 'Arial', fontSize: '1rem', width: '25%' }}>{row.username}</TableCell>
-                <TableCell align="center" sx={{ fontFamily: 'Arial', fontSize: '1rem', width: '25%' }}>{row.searchName}</TableCell>
-                <TableCell align="center" sx={{ fontFamily: 'Arial', fontSize: '1rem', width: '25%' }}>{format(row.date, 'dd/MM/yyyy')}</TableCell>
-                <TableCell align="center" sx={{ width: '25%' }}>
-                  <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1 }}>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      sx={{
-                        backgroundColor: 'rgba(26,96,104,255)',
-                        color: 'white',
-                        fontFamily: 'Arial',
-                        '&:hover': {
-                          backgroundColor: 'rgb(129, 175, 164)',
-                        },
-                      }}
-                      onClick={() => handleApprove(row.id)}
-                    >
-                      אישור
-              </Button>
-                    <Button
-                      variant="contained"
-                      color="error"
-                      sx={{
-                        backgroundColor: 'rgba(26,96,104,255)',
-                        color: 'white',
-                        fontFamily: 'Arial',
-                        '&:hover': {
-                          backgroundColor: 'rgb(255, 82, 82)',
-                        },
-                      }}
-                      onClick={() => handleReject(row.id)}
-                    >
-                      סירוב
-              </Button>
-                  </Box>
+            {requests.length > 0 ? (
+              requests.map((row) => (
+                <TableRow key={row.request_id} sx={{ borderBottom: 'none' }}>
+                  <TableCell align="center" sx={{ fontFamily: 'Arial', fontSize: '1rem', width: '25%' }}>{row.userID}</TableCell>
+                  <TableCell align="center" sx={{ fontFamily: 'Arial', fontSize: '1rem', width: '25%' }}>{row.tender_name}</TableCell>
+                  <TableCell align="center" sx={{ fontFamily: 'Arial', fontSize: '1rem', width: '25%' }}>{format(new Date(row.date), 'dd/MM/yyyy')}</TableCell>
+                  <TableCell align="center" sx={{ width: '25%' }}>
+                    <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1 }}>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        sx={{
+                          backgroundColor: 'rgba(26,96,104,255)',
+                          color: 'white',
+                          fontFamily: 'Arial',
+                          '&:hover': {
+                            backgroundColor: 'rgb(129, 175, 164)',
+                          },
+                        }}
+                        onClick={() => handleApprove(row.request_id)}
+                      >
+                        אישור
+                      </Button>
+                      <Button
+                        variant="contained"
+                        color="error"
+                        sx={{
+                          backgroundColor: 'rgba(26,96,104,255)',
+                          color: 'white',
+                          fontFamily: 'Arial',
+                          '&:hover': {
+                            backgroundColor: 'rgb(255, 82, 82)',
+                          },
+                        }}
+                        onClick={() => handleReject(row.request_id)}
+                      >
+                        סירוב
+                      </Button>
+                    </Box>
+                  </TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={4} align="center" sx={{ fontFamily: 'Arial', fontSize: '1rem' }}>
+                  אין בקשות להצגה
                 </TableCell>
               </TableRow>
-            ))}
+            )}
           </TableBody>
         </Table>
       </TableContainer>
-
 
       <Dialog
         open={openDialog}
@@ -165,4 +196,3 @@ export default function CheckTender() {
     </Box>
   );
 }
-

@@ -9,7 +9,6 @@ import TextField from '@mui/material/TextField';
 import CircularProgress from '@mui/material/CircularProgress';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
-
 // ייבוא של הפונקציה המתאימה מתוך requests.js
 import { addRequest } from "../../Server/requests"; 
 
@@ -20,18 +19,14 @@ export default function TenderSearchBox() {
   const [snackbarMessage, setSnackbarMessage] = React.useState('');
   const [snackbarSeverity, setSnackbarSeverity] = React.useState('success');
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (tenderName) => {
     setLoading(true);
 
-    const token = localStorage.getItem('authToken'); // קבלת מזהה המשתמש מה-localStorage
-    const request = {
-      token: token,
-      date: new Date().toISOString(),
-      tenderName: tenderName
-    };
-
+  
     try {
-      await addRequest(request);
+      console.log("name",tenderName);
+     const re= await addRequest(tenderName);
+     console.log("ככ",re);
       setLoading(false);
       setSnackbarMessage('הבקשה נשלחה לבדיקה, בימים הקרובים תקבל עדכונים');
       setSnackbarSeverity('success');
@@ -105,7 +100,7 @@ export default function TenderSearchBox() {
               <Button
                 variant="contained"
                 color="primary"
-                onClick={handleSubmit}
+                onClick={() => handleSubmit(tenderName)}
                 disabled={!tenderName}
                 sx={{
                   margin: 'auto',

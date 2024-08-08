@@ -2,19 +2,20 @@ import axios from "../axios/axios";
 
 // const apiUrl = 'http://localhost:5000/api'; // Adjust URL according to your server
 
-const token = localStorage.getItem('authToken');
 
 export const getAllRequests = async () => {
+  console.log("gatallre");
   try {
     console.log("getAllRequests");
     const token = localStorage.getItem('authToken');
     console.log(token);
-    const response = await axios.get(`/get-all-requests`, {
+    const response = await axios.get(`/get-unapproved-requests`, {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
+        'Authorization': token,
       },
     });
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error('Error fetching requests:', error);
@@ -34,35 +35,52 @@ export const getRequestsByStatus = async (status) => {
   };
   
 
-export const addRequest = async (request) => {
+  export const addRequest = async (request) => {
+    console.log("add");
+    const token = localStorage.getItem('authToken');
+    console.log(token);
+    try {
+      const response = await axios.post(`/post-request/${request}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': token,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error adding request:', error);
+      throw error;
+    }
+  };
+
+export const updateRequests = async (tenderId, updatedRequests) => {
+  const token = localStorage.getItem('authToken');
   try {
-    console.log("addRequest", request);
-    const response = await axios.post(`/post-request`, request);
+    const response = await axios.put(`/approve-request/${tenderId}`, updatedRequests, {
+      headers: {
+        'Authorization': token,
+        'Content-Type': 'application/json',
+      },
+    });
     return response.data;
   } catch (error) {
-    console.error('Error adding request:', error);
-    throw error; // Rethrow to handle specific errors if needed
+    console.error(`Error updating Requests ${tenderId}:`, error);
+    throw error;
   }
 };
 
-export const updateRequest = async (requestId, updatedRequest) => {
+export const deleteRequest = async (request) => {
+  const token = localStorage.getItem('authToken');
+  console.log("tel",token);
   try {
-    console.log("updateRequest", requestId, updatedRequest);
-    const response = await axios.put(`/put-request/${requestId}`, updatedRequest);
-    return response.data;
+    await axios.delete(`/delete-request/${request}`, {
+      headers: {
+        'Authorization':token,
+      },
+    });
+    return true;
   } catch (error) {
-    console.error(`Error updating request ${requestId}:`, error);
-    throw error; // Rethrow to handle specific errors if needed
+    console.error(`Error deleting request ${request}:`, error);
+    throw error;
   }
 };
-
-// export const deleteRequest = async (requestId) => {
-//   try {
-//     console.log("deleteRequest", requestId);
-//     await axios.delete(`${apiUrl}/delete-request/${requestId}`);
-//     return true; // Assuming successful deletion returns true
-//   } catch (error) {
-//     console.error(`Error deleting request ${requestId}:`, error);
-//     throw error; // Rethrow to handle specific errors if needed
-//   }
-// };

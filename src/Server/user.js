@@ -21,6 +21,28 @@ export const getAllUsers = async () => {
   }
   
 };
+export const getUserById = async () => {
+  console.log("getUserById");
+  const token = localStorage.getItem('authToken');
+  try {
+    const response = await axios.get(`get-id-user/${userId}`, {
+      method:'GET',
+      headers: {
+        'Authorization': token,
+        'Content-Type': 'application/json',
+      },
+    });
+    console.log("response");
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching user:', error);
+    console.error('Response:', error.response);
+    return null;
+  }
+  
+};
+
 export const putUser = async()=>{
   const token = localStorage.getItem('authToken');
 try{
