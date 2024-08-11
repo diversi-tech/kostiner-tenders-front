@@ -1,7 +1,7 @@
 import { action, makeObservable } from 'mobx';
 
-// const baseUrl = "https://kostiner-tenders-back.onrender.com";
-const baseUrl = "http://127.0.0.1:5000";
+const baseUrl = "https://kostiner-tender-records.onrender.com";
+// const baseUrl = "http://127.0.0.1:5000";
 
 class Payment {
     constructor() {
@@ -37,6 +37,7 @@ class Payment {
 
         }
         catch (err) { console.log(err) 
+            return null;
             // return 'https://app.upay.co.il/BANKRESOURCES/UPAY/redirectpages/b3JzOE9TK2lwSzlXOVI2c3hmajdmZEdwN2FkdkM5K3VwVUNkdkFudTRkZz0equal.html'
         }
     }

@@ -17,11 +17,11 @@ export default function Product() {
   const nav = useNavigate();
   const handleNav = (title, type) => {
     if (title === 'דו"ח חד פעמי') {
-      nav('/tenderSearch');
+      nav('/tenderSearch', {state: {type: 1}});
     } else if (title === 'מנוי קבוע') {
-      nav('/typeProduct', { state: { type:2 } });
+      nav('/typeProduct', { state: { type:3 } });
     } else {
-      nav('/typeProduct', { state: { type: 1 } });
+      nav('/typeProduct', { state: { type: 2 } });
     }
   };
   

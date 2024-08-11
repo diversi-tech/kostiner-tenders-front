@@ -17,7 +17,7 @@ export default function HomePage() {
       <Grid container spacing={2} alignItems="center" justifyContent="center">
         <Grid item xs={12} className="titleGrid">
           <h1 className="title" style={{ fontSize: titleSize }}>
-            בעל/ת עסק! מעוניין להרחיב את מעגל הלקוחות?
+             מעוניינים להרחיב את מעגל הלקוחות?
           </h1>
         </Grid>
         <Grid item xs={12}>

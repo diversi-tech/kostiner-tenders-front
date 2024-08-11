@@ -9,16 +9,16 @@ export default function FinishPay_Step() {
     const [open, setOpen] = React.useState(true); // פתח את המודאל כברירת מחדל
     const navigate = useNavigate();
 
-    useEffect(() => {
-        // Set a timeout to close the modal after 5 seconds
-        const timer = setTimeout(() => {
-            setOpen(false);
-            navigate('/');
-        }, 5000); // 5000 milliseconds = 5 seconds
+    // useEffect(() => {
+    //     // Set a timeout to close the modal after 5 seconds
+    //     const timer = setTimeout(() => {
+    //         setOpen(false);
+    //         navigate('/');
+    //     }, 5000); // 5000 milliseconds = 5 seconds
 
-        // Cleanup timeout if component unmounts before timeout completes
-        return () => clearTimeout(timer);
-    }, [navigate]);
+    //     // Cleanup timeout if component unmounts before timeout completes
+    //     return () => clearTimeout(timer);
+    // }, [navigate]);
 
     const handleClose = () => {
         setOpen(false);

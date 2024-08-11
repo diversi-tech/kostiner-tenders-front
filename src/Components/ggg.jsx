@@ -99,12 +99,17 @@ const GoogleLoginButton = () => {
         headers: {
           'Content-Type': 'application/json'
         },
-        body:  token 
-      });
+        body: JSON.stringify(token) 
+      })
       const data = await response.json();
       
       console.log('Profile Info:', data);
-    } catch (error) {
+      localStorage.setItem('authToken', data.access_token);
+      navigate('/');
+      location.reload();
+      navigate('/');
+    } 
+    catch (error) {
       console.error('Error fetching profile info:', error);
     }
   };

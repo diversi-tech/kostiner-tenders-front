@@ -69,7 +69,7 @@ function App() {
                 />
             </UserProvider>
             {/* </BrowserRouter> */}
-        // </HashRouter> 
+         </HashRouter> 
     );
 }
 

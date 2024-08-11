@@ -10,7 +10,11 @@ export default function CreditCard_Step() {
 
     const [open, setOpen] = React.useState(true); // Open the modal by default
     const handleClose = () => setOpen(true);
-
+    const location = useLocation();
+    const { type, items } = location.state || {};
+    // console.log("type.type ", type.type);
+    console.log("type ", type);
+    console.log("items", items);
     return (
 
         <Modal
@@ -23,7 +27,8 @@ export default function CreditCard_Step() {
             <div>
                 <SvgIconsSize />
                 <IconStepper activeStep={2}/>
-                <CreditCard />
+                {/* <CreditCard type={JSON.parse(type)} items={JSON.parse(type)} /> */}
+                <CreditCard type={type} items={{...items}} />
             </div>
         </Modal>
     );

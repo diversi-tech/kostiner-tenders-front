@@ -200,9 +200,11 @@ export default function TypeProduct({ typeTender }) {
         description: option.label // תיאור (שם קטגוריה + מחיר)
       })),
     };
-console.log(dataToSend,typeTender);
+// console.log("dataToSend ="+{...dataToSend},"typeTender ="+typeTender);
+console.log("dataToSend =", JSON.stringify(dataToSend, null, 2));
+console.log("typeTender =", JSON.stringify(typeTender, null, 2));
     nav('/creditCard', {
-      state: { type: typeTender,items:dataToSend },
+      state: { type: typeTender.type,items:dataToSend },
     });
   };
 

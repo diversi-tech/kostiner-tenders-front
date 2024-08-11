@@ -216,7 +216,7 @@ const GoogleAuthOld = () => {
       localStorage.setItem('authToken', data.access_token);
       navigate('/');
       location.reload();
-      navigate('/user-profile');
+      navigate('/');
         
 
 
@@ -244,9 +244,7 @@ const GoogleAuthOld = () => {
               border: 'none',
               borderRadius: '5px',
               cursor: 'pointer',
-              transition: 'background-color 0.3s ease',
-              
-             
+              transition: 'background-color 0.3s ease',    
             }}
             onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#357ae8')}
             onMouseOut={(e) => (e.currentTarget.style.backgroundColor = '#4285F4')}
