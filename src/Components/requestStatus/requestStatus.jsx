@@ -70,10 +70,21 @@ const RequestsStatus = () => {
     
     // fetchRequests();
   }, []);
-
-  const handleFinishProcess = () => {
+  // {
+  //   "plan_type": "string",
+  //   "purchase_start_date": "2024-08-10",
+  //   "purchase_end_date": "2024-08-10",
+  //   "categories": [
+  //     "string"
+  //   ],
+  //   "amount": 0
+  // }
+  const handleFinishProcess = (name) => {
+    const dataToSend = {
+      'name': name
+    };
     navigate('/creditcard', {
-      state: { endProcess: true }
+      state: { endProcess: true, type: 1, items: dataToSend}
     });
   };
 
@@ -133,7 +144,7 @@ const RequestsStatus = () => {
                   לסיום התהליך{' '}
                   <span
                     className="FinishLink"
-                    onClick={handleFinishProcess}
+                    onClick={()=>handleFinishProcess(tender.nameTendet)}
                   >
                     לחץ כאן
                   </span>

@@ -90,8 +90,8 @@ const AppRoutes = ({ isAuthenticated, isAdmin }) => {
         <Route path="/typeProduct" element={isAuthenticated ? <TypeProduct_Step /> : <Navigate to="/login" />} />
         <Route path="/tenderSearch" element={isAuthenticated ? <ProductTender_Step /> : <Navigate to="/login" />} />
         <Route path="/creditCard" element={<CreditCard_Step />} />
-        <Route path="/finishPay" element={<FinishPay_Step />} />
-
+        <Route path="/finishPay/:type/:items" element={<FinishPay_Step />} />
+        
         {isAdmin && (
           <>
             <Route path="/dashboardAdmin" element={<ScrollToAnchor component={<AdminDashboard />} anchorId="admin-dashboard-anchor" />} />
