@@ -101,7 +101,7 @@ class Payment
                 "failureUrl": `https://kostiner-tenders.onrender.com/#/finishPay/${type*10}/${encodeURIComponent(JSON.stringify(items))}`
             }
               console.warn("payDetails ", payDetails);
-              console.warn("redirected: ",`http://localhost:5174/#/finishPay/${type}/${encodeURIComponent(JSON.stringify(items))}`);
+              console.warn("redirected: ",`https://kostiner-tenders.onrender.com/#/finishPay/${type}/${encodeURIComponent(JSON.stringify(items))}`);
               return await single.Pay({...payDetails});
 
 
