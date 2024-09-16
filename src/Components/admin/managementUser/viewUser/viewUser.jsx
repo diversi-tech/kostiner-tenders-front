@@ -90,13 +90,14 @@ const ViewUser = () => {
                     {user.email}
                   </TableCell>
                   <TableCell align="center" sx={{ fontFamily: 'Arial', fontSize: '1rem' }}>
-                    {user.subscriptions?.plan_type || 'לא מוגדר'}
+                    {user.subscriptions?.plan_type || '-'}
                   </TableCell>
                   <TableCell align="center" sx={{ fontFamily: 'Arial', fontSize: '1rem' }}>
-                    {user.subscriptions?.categories?.join(', ') || 'לא מוגדר'}
+                    {Array.isArray(user.subscriptions?.categories) ? user.subscriptions.categories.join(', ') : 'לא מוגדר'}
                   </TableCell>
+
                   <TableCell align="center" sx={{ fontFamily: 'Arial', fontSize: '1rem' }}>
-                    {user.business_name || 'לא מוגדר'}
+                    {user.business_name || '-'}
                   </TableCell>
                 </TableRow>
               ))}
