@@ -236,6 +236,7 @@ import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import singleton from '../../Logic/UserHistory';
 import sin from '../../Logic/LoginService'
+// import getUserById from '../../Server/user'
 // import { UserContext } from '../../context/userContext';
 import '../creditCard/creditCard.css'
 const PaymentConfirmation = () => {
@@ -268,6 +269,10 @@ const PaymentConfirmation = () => {
                     // התשלום עבר בהצלחה
                     setError('');
                     setLoading(false);
+                    //רענון המשתמש
+                    await sin.fetchAndSetUser()
+
+                    //------------------
                 } else {
                     // שגיאה בתשלום
                     setError('לא הצלחנו לשמור את המנוי שלך');

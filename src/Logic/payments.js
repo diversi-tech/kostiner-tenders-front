@@ -98,7 +98,7 @@ class Payment
                 // "failureUrl": `https://kostiner-tenders.onrender.com/#/finishPay/${type}0/${items}`
               "notifyUrl": `https://kostiner-tenders.onrender.com/#/finishPay/${type}/${encodeURIComponent(JSON.stringify(items))}`,
                 "successUrl": `https://kostiner-tenders.onrender.com/#/finishPay/${type}/${encodeURIComponent(JSON.stringify(items))}`,
-                "failureUrl": `https://kostiner-tenders.onrender.com/#/finishPay/${type*10}/${encodeURIComponent(JSON.stringify(items))}`
+                "failureUrl": `https://kostiner-tenders.onrender.com/#/finishPay/${type}0/${encodeURIComponent(JSON.stringify(items))}`
             }
               console.warn("payDetails ", payDetails);
               console.warn("redirected: ",`https://kostiner-tenders.onrender.com/#/finishPay/${type}/${encodeURIComponent(JSON.stringify(items))}`);

@@ -35,24 +35,53 @@ export const getRequestsByStatus = async (status) => {
   };
   
 
+  // export const addRequest = async (request) => {
+  //   console.log("add");
+  //   const token = localStorage.getItem('authToken');
+  //   console.log(token);
+  //   console.log(request);
+
+  //   try {
+  //     const response = await axios.post(`/post-request/${request}`, {
+  //       headers: {
+  //         'Authorization': token,
+  //         'Content-Type': 'application/json',
+          
+  //       },
+  //     });
+  //     return response.data;
+  //   } catch (error) {
+  //     console.error('Error adding request:', error);
+  //     throw error;
+  //   }
+  // };
   export const addRequest = async (request) => {
     console.log("add");
     const token = localStorage.getItem('authToken');
     console.log(token);
+    console.log(request);
+  
     try {
-      const response = await axios.post(`/post-request/${request}`, {
+      const response = await fetch(`http://127.0.0.1:5000/api/post-request/${request}`, {
+        method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
           'Authorization': token,
-        },
+          'Content-Type': 'application/json'
+        }
       });
-      return response.data;
+  
+      if (!response.ok) {
+        throw new Error('Error adding request');
+      }
+  
+      const data = await response.json();
+      return data;
     } catch (error) {
       console.error('Error adding request:', error);
       throw error;
     }
   };
-
+  
 export const updateRequests = async (tenderId, updatedRequests) => {
   const token = localStorage.getItem('authToken');
   try {

@@ -33,28 +33,28 @@ const statusIcons = {
 };
 
 // Static data mimicking server response
-const mockTenderStatuses = [
-  {
-    nameTendet: "מזון ומסחר תעופתי",
-    status: 'approved_pending_payment', // ממתינה לתשלום
-    date: '2024-07-20',
-  },
-  {
-    nameTendet: "תחבורה",
-    status: 'approved_paid', // שולם
-    date: '2024-07-18',
-  },
-  {
-    nameTendet: "שרותים רפואיים",
-    status: 'in_progress', // בטיפול
-    date: '2024-07-19',
-  },
-  {
-    nameTendet: "בתי ספר",
-    status: 'rejected', // נדחתה
-    date: '2024-07-17',
-  },
-];
+// const mockTenderStatuses = [
+//   {
+//     nameTendet: "מזון ומסחר תעופתי",
+//     status: 'approved_pending_payment', // ממתינה לתשלום
+//     date: '2024-07-20',
+//   },
+//   {
+//     nameTendet: "תחבורה",
+//     status: 'approved_paid', // שולם
+//     date: '2024-07-18',
+//   },
+//   {
+//     nameTendet: "שרותים רפואיים",
+//     status: 'in_progress', // בטיפול
+//     date: '2024-07-19',
+//   },
+//   {
+//     nameTendet: "בתי ספר",
+//     status: 'rejected', // נדחתה
+//     date: '2024-07-17',
+//   },
+// ];
 
 const RequestsStatus = () => {
   const [tenderStatuses, setTenderStatuses] = useState([]);
@@ -62,13 +62,13 @@ const RequestsStatus = () => {
   
   useEffect(() => {
     // Simulate server response with static data
-    setTenderStatuses(mockTenderStatuses);
-    // const fetchRequests = async () => {
-    //   const data = await getAllRequests();
-    //   setTenderStatuses(data);
-    // };
+    // setTenderStatuses(mockTenderStatuses);
+    const fetchRequests = async () => {
+      const data = await getAllRequests();
+      setTenderStatuses(data);
+    };
     
-    // fetchRequests();
+    fetchRequests();
   }, []);
   // {
   //   "plan_type": "string",
@@ -96,8 +96,13 @@ const RequestsStatus = () => {
       <Box className="GradientCircle2" />
       <Box className="TenderContainer">
         {tenderStatuses.map((tender, index) => {
-          const { status } = tender;
+          console.log("tender.approved = ",tender.approved);
+          console.log("tender", tender);
+          const ap = tender.approved
+          //----------------------------------------------------------------------------------------------------------------
+          const  status  = ap ? 'approved_pending_payment':'rejected';
           const { icon: StatusIcon, color, text } = statusIcons[status] || {};
+          console.log(status);
           
           return (
             <Box
@@ -115,7 +120,7 @@ const RequestsStatus = () => {
             >
               <Typography variant="h6" gutterBottom>
                 שם המכרז המבוקש: <br />
-                {tender.nameTendet}
+                {tender.tender_name}
               </Typography>
               <Typography variant="body2" color="textSecondary">
                 תאריך: {tender.date}
@@ -132,7 +137,7 @@ const RequestsStatus = () => {
                   <Typography variant="body1">סטטוס לא ידוע</Typography>
                 )}
               </Box>
-              {tender.status === 'approved_pending_payment' && (
+              {tender.approved == true && (
                 <Typography
                   className="FinishProcessText"
                   sx={{

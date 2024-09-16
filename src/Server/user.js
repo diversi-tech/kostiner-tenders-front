@@ -13,11 +13,11 @@ export const getAllUsers = async () => {
     });
     console.log("response");
     console.log(response.data);
-    return response.data;
+    return await response.data;
   } catch (error) {
     console.error('Error fetching users:', error);
     console.error('Response:', error.response);
-    return null;
+    return [];
   }
   
 };
@@ -25,7 +25,7 @@ export const getUserById = async () => {
   console.log("getUserById");
   const token = localStorage.getItem('authToken');
   try {
-    const response = await axios.get(`get-id-user/${userId}`, {
+    const response = await axios.get(`/get-id-user/${userId}`, {
       method:'GET',
       headers: {
         'Authorization': token,
@@ -46,7 +46,7 @@ export const getUserById = async () => {
 export const putUser = async()=>{
   const token = localStorage.getItem('authToken');
 try{
-  await axios.put('/put-user',{
+  await axios.put(`/put-user`,{
     method:'PUT',
     headers:{
       'Authorization': token,

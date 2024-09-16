@@ -405,7 +405,11 @@ const CreditCard = (props) => {
     return (
         <div style={{ width: '100%', height: '600px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             {loading ? (
+                <>
+                אנא המתן בזמן שאנו טוענים את דף התשלום
                 <div className="spinner"></div>
+
+                </>
             ) : (
                 error === '' ? (
                     <Card style={{
