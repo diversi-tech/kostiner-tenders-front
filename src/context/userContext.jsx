@@ -63,9 +63,16 @@
 import { createContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import LoginService from '../Logic/LoginService';
-
-const initialCurrentUser = {
+import User from '../Server/user'
+//  localStorage.getItem('user')
+// // | {...User.getCurrentUser} 
+// console.log("in userContext initialCurrentUser = ",initialCurrentUser);
+// console.log("in userContext {...User.getCurrentUser} = ",{...User.getCurrentUser});
+const initialCurrentUser =
+{
   role: 'user',
+  user_name: User.getCurrentUser?.user_name,
+  email: User.getCurrentUser?.email,
   categories: [],  // הוספת רשימת הקטגוריות
 };
 

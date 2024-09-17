@@ -1,8 +1,8 @@
 /* toolbar.css */
 
 .navbar {
-    background-color: #d5e6df;
-    color: white;
+    background-color: #f9f9f9;
+    color: rgb(0, 0, 0);
     display: flex;
     justify-content: center; /* לשמור על המרכז */
     align-items: center;
@@ -19,6 +19,7 @@
     margin-right: 20px;
     order: 2;
     margin-left: auto;
+    text-align: center;
 }
 
 .navbar-list {
@@ -30,6 +31,7 @@
     margin-left: auto;
     margin-right: auto;
     padding-left: 120px;
+    text-align: center;
 }
 
 .navbar-item {
@@ -40,6 +42,7 @@
     position: relative;
     margin-right: 40px; /* רווח בין קישורים */
     margin-top: 10px; /* רווח מעל לקישורים */
+    text-align: center;
 }
 
 .navbar-item::after {

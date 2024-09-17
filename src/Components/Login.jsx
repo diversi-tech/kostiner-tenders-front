@@ -697,6 +697,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useRef, useEffect, useContext } from 'react';
 import { UserContext } from '../context/userContext';
 import { toast } from 'react-toastify';
+import User from '../Server/user';
 
 export default function Login(props) {
   const [open, setOpen] = useState(props.open);
@@ -713,7 +714,7 @@ export default function Login(props) {
   const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
-    console.log("User in useEffect:", user);
+    console.log("User in useEffect:", {...user});
   }, [user]);
 
   const handleChange = (field, value) => {
@@ -773,6 +774,9 @@ export default function Login(props) {
         setUser(userData);
         navigate('/');
         location.reload();
+        // currentUser= localStorage.getItem('user');
+        // User.setUser({...currentUser});
+        // localStorage.removeItem('user');
         handleClose();
       }
     }

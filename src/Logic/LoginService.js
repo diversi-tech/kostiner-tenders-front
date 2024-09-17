@@ -1,5 +1,5 @@
 import { action, makeObservable,observable} from 'mobx';
-
+import User from '../Server/user'
 
 class Login {
     token = '';
@@ -18,12 +18,12 @@ class Login {
     }
     setToken(newToken) {
         this.token = newToken;
-        localStorage.setItem('authToken', newToken);
+        localStorage.setItem("authToken", newToken);
     }
 
     async login(username, password) {
         try {
-            const response = await fetch('https://kostiner-tenders-back.onrender.com/auth/login', {
+            const response = await fetch('http://127.0.0.1:5000/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -34,10 +34,16 @@ class Login {
             if (response.ok) {
                 const data = await response.json();
                 console.log('Login successful:', data);
-                const { access_token, refresh_token } = data;
+                const { access_token, refresh_token, user } = data;
                 this.setToken(access_token);
+                localStorage.setItem("user", JSON.stringify(user));
                 localStorage.setItem('authToken', access_token);
                 localStorage.setItem('refreshToken', refresh_token);
+                
+
+                // const res = User.setUser({...user})
+                // console.warn("res =", res);
+                
                 return { status: 200, message: 'Login successful', data };
             } else {
                 const errorData = await response.json();
@@ -117,6 +123,8 @@ class Login {
                     'Authorization': `${token}`,
                 },
             });
+            console.log("in fetchAndSetUser. | Login service | response= ",response);
+            
             if (response.ok) {
                 const userData = await response.json();
                 console.log('User details fetched:', userData);
@@ -133,10 +141,15 @@ class Login {
         return decodedToken.user_id;
     }
     decodeJwtToken(token) {
+        if(token)
+        {
         const base64Url = token.split('.')[1];
         const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
         const payload = JSON.parse(atob(base64));
         return payload;
+        }
+        else
+          return null;
     }
 
 

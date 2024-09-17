@@ -10,7 +10,7 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import CircularProgress from '@mui/material/CircularProgress';
 import Tooltip from '@mui/material/Tooltip';
-import { getAllUsers } from '../../../../Server/user';
+import user from '../../../../Server/user';
 
 const ViewUser = () => {
   const [users, setUsers] = useState([]);
@@ -18,7 +18,7 @@ const ViewUser = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const users = await getAllUsers();
+      const users = await user.getAllUsers();
       setUsers(users);
       setLoading(false);
     };
@@ -90,10 +90,10 @@ const ViewUser = () => {
                     {user.email}
                   </TableCell>
                   <TableCell align="center" sx={{ fontFamily: 'Arial', fontSize: '1rem' }}>
-                    {user.subscriptions?.plan_type || '-'}
+                    {user.subscriptions?.plan_type || '-'}                 
                   </TableCell>
                   <TableCell align="center" sx={{ fontFamily: 'Arial', fontSize: '1rem' }}>
-                    {Array.isArray(user.subscriptions?.categories) ? user.subscriptions.categories.join(', ') : 'לא מוגדר'}
+                    {Array.isArray(user.subscriptions?.categories) ? user.subscriptions.categories.join(', ') : '-'}
                   </TableCell>
 
                   <TableCell align="center" sx={{ fontFamily: 'Arial', fontSize: '1rem' }}>

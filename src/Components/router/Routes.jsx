@@ -28,6 +28,7 @@ import EditUserProfile from '../EditProfile/editUserProfile';
 import RequestsStatus from '../requestStatus/requestStatus';
 import AdminProfileEdit from '../EditProfile/editAdminProfile';
 import AdminDashboard from '../admin/adminDashboard';
+import PurchaseHistory from '../PurchaseHistory/purchaseHistory';
 
 const AppRoutes = ({ isAuthenticated, isAdmin }) => {
   const categoriesData = [
@@ -116,6 +117,7 @@ const AppRoutes = ({ isAuthenticated, isAdmin }) => {
             <Route path="/status-requests" element={<ScrollToAnchor component={<RequestsStatus />} anchorId="RequestStatus" key="RequestsStatus" />} />
             <Route path="/admin-profile" element={<ScrollToAnchor component={<AdminProfileEdit />} anchorId="adminProfile" key="adminProfile" />} />
             <Route path="/edit-tenders-by-category" element={<ScrollToAnchor component={<TenderTable />} anchorId="adminProfile" key="adminProfile" />} />
+            <Route path="/purchase-history" element={<ScrollToAnchor component={<PurchaseHistory />} anchorId="adminProfile" key="adminProfile" />} />
           </>
         )}
       </Routes>

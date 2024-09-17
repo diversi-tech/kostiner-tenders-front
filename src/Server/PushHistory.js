@@ -7,7 +7,7 @@ class PushHistory {
     constructor() {
         makeObservable(this, {
             Push: action,
-            
+            PushSingle: action,
         })
     }
 
@@ -65,7 +65,7 @@ class PushHistory {
 
             }
             const token = localStorage.getItem('authToken')
-            const res = await fetch(baseUrl + `/put-user${user_ID}`, {
+            const res = await fetch(baseUrl + `/put-user/${user_ID}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

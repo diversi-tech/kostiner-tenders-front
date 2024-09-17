@@ -1,5 +1,5 @@
 import singleton from "../Server/Auth";
-
+import User from '../Server/user'
 
 class AuthService
 {
@@ -12,6 +12,7 @@ class AuthService
 
             localStorage.setItem("access_token",access_token);
             //navigate to(AdminScreen / ClientScreen);
+            res= await User.fetchUserData();
             return access_token;
 
     }

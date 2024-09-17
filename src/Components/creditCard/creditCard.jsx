@@ -366,25 +366,43 @@ import single from '../../Logic/payments';
 import './creditCard.css';
 import { UserContext } from '../../context/userContext';
 import { Card, Button, Typography } from '@mui/material';
-
+import User from '../../Server/user'
+import { CircularProgress, Box } from '@mui/material';
 const CreditCard = (props) => {
     const { type, items } = { ...props }
     const [url, setUrl] = useState('');
     const [loading, setLoading] = useState(true);
-    const user = useContext(UserContext);
     const [error, setError] = useState('');
+    const userString = User.getCurrentUser; 
+    const [user, setUser]= useState(User.getCurrentUser)
+
+// if (userString) {
+//     try {
+//        const user = JSON.parse(userString); // המרה ל-JSON
+//     // setUser({...user1})
+//     } catch (error) {
+//         console.error("Error parsing JSON from localStorage:", error);
+//     }
+// } else {
+//     console.warn("No user found in localStorage");
+// }
+    // localStorage.getItem('user'); // שליפת הנתונים כ-string
+    
 
     const fetchData = async () => {
         try {
-            console.log("user: : : ",user);
+            console.log("in credit card. in fetchData. user: : : ",user);
             const itemsToSend = type == 1? {...items.name} : {...items.selectedOptions};
             console.warn("itemsToSend ", itemsToSend);
-            const res = await single.pay(type, itemsToSend, { 'name': user.user.user_name, 'email': user.user.email });
+            console.warn("\n \n \n \n ", user?.user_name+'\n\n\n '+  user.email);
+
+            const res = await single.pay(type, itemsToSend, { 'name': user?.user_name, 'email': user.email});
             console.warn('res ', res);
             if (res != null) {
                 setUrl(res);
             } else {
-                setError('אופס! נראה שהתרחשה שגיאה בעת טעינת דף התשלום. \n אנא נסה שנית');
+                setError('אופס! נראה שהתרחשה שגיאה בעת טעינת דף התשלום. \n אנא התחברו מחדש לחשבונכם ונסו שוב.');
+
             }
             setLoading(false);
         } catch (error) {
@@ -405,11 +423,18 @@ const CreditCard = (props) => {
     return (
         <div style={{ width: '100%', height: '600px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             {loading ? (
-                <>
-                אנא המתן בזמן שאנו טוענים את דף התשלום
-                <div className="spinner"></div>
-
-                </>
+                <Box
+                display="flex"
+                flexDirection="column"
+                alignItems="center"
+                justifyContent="center"
+                height="100vh"
+              >
+                <Typography variant="h6" sx={{ mb: 2 ,color:'white'}}>
+                  אנא המתן בזמן שאנו טוענים את דף התשלום
+                </Typography>
+                <CircularProgress size={60} />
+              </Box>
             ) : (
                 error === '' ? (
                     <Card style={{
