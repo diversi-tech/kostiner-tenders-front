@@ -23,7 +23,7 @@ class Login {
 
     async login(username, password) {
         try {
-            const response = await fetch('http://127.0.0.1:5000/auth/login', {
+            const response = await fetch('https://kostiner-tenders-back.onrender.com/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

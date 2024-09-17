@@ -12,7 +12,7 @@ class AuthService
 
             localStorage.setItem("access_token",access_token);
             //navigate to(AdminScreen / ClientScreen);
-            res= await User.fetchUserData();
+        const response = await User.fetchUserData();
             return access_token;
 
     }

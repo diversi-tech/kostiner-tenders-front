@@ -79,6 +79,7 @@ class Login {
         });
         if (response.ok) {
             localStorage.removeItem('authToken');
+            localStorage.removeItem('user');
             window.location.reload();
         }
         else
