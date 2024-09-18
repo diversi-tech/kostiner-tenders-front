@@ -19,14 +19,14 @@
 //     const items = {}
 //     const [error, setError] = useState('')
 //     const p = 'אל דאגה! במידה והתשלום לא הצליח- חשבונך לא יחויב'
-    
+
 //     useEffect(async () => {
 //         const location = useLocation();
 //         const queryParams = new URLSearchParams(location.search);
 //         const type = queryParams.get('type');
-        
+
 //         console.log("response type from YPAY = ", type);
-        
+
 //             const res = singleton.pushHistory(type, items);
 //             const data = await res.json();
 //             if (data.status == 200) {
@@ -37,18 +37,18 @@
 //                 // {
 //                 //     case 10:
 //                 //         {
-                            
+
 //                 //         }
-                    
+
 
 //                 // }
-                
+
 //                 setError('נראה שזה לא עבד. אירעה שגיאה בעת התשלום. אנא נסה שנית')
 
 //             }
 
 
-        
+
 
 
 
@@ -139,7 +139,7 @@
 //             </Card>
 //         </Box>
 //         :
-       
+
 //         <Box
 //             sx={{
 //                 display: 'flex',
@@ -244,8 +244,8 @@ const PaymentConfirmation = () => {
     const location = useLocation();
     const [error, setError] = useState('');
     const p = 'אל דאגה! במידה והתשלום לא הצליח- חשבונך לא יחויב';
-    const {type} = useParams();
-    const {items} = useParams();
+    const { type } = useParams();
+    const { items } = useParams();
     const [tryAgain, setTryAgain] = useState(0);
     const [loading, setLoading] = useState(true);
 
@@ -259,13 +259,22 @@ const PaymentConfirmation = () => {
             try {
                 setLoading(true);
                 const user_ID = userContext.user_id;
-                console.log("finishPay, typeOf items:", typeof items);
-                const res = await singleton.pushHistory(type, items, user_ID);
-                setLoading(false);
-                console.log("response type from YPAY = " + type," \n items: "+items);        
-                console.warn("res ====== ",res);
+                const decodedItems = decodeURIComponent(items);
+                console.warn("decodedItems = ", decodedItems + '\n \n \n');
+                console.warn("decodedItems = ", typeof decodedItems + '\n \n \n');
 
-                if (res.status === 200) {
+                const parsedObject = JSON.parse(decodedItems);
+
+                // המרת האובייקט למערך
+                const parsedItems = Object.values(parsedObject);
+
+                console.log("finishPay, typeOf items:", typeof parsedItems);
+                const res = await singleton.pushHistory(type, {...parsedItems}, user_ID);
+                setLoading(false);
+                console.log("response type from YPAY = " + type, " \n items: " + items);
+                // console.warn("res ====== ",res);
+
+                if (res && res?.status === 200) {
                     // התשלום עבר בהצלחה
                     setError('');
                     setLoading(false);
@@ -290,23 +299,7 @@ const PaymentConfirmation = () => {
 
     return (
         <>
-         {loading ?
-          <Box
-          sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              minHeight: '100vh',
-              padding: '2rem',
-              backgroundColor: 'transparent',
-          }}
-      >
-         <div className="spinner"></div></Box>
-         :
-        
-            <>
-            {type < 10 && error == '' ? 
-                
+            {loading ?
                 <Box
                     sx={{
                         display: 'flex',
@@ -317,257 +310,273 @@ const PaymentConfirmation = () => {
                         backgroundColor: 'transparent',
                     }}
                 >
-                    
-                    <Card
-                        size="lg"
-                        variant="outlined"
-                        sx={{
-                            minWidth: 400,
-                            maxWidth: '100%',
-                            boxShadow: '0px 3px 6px #00000029',
-                            transition: 'transform 0.3s ease',
-                            '&:hover': {
-                                transform: 'scale(1.02)',
-                            },
-                            marginBottom: '7rem',
-                            textAlign: 'center',
-                            padding: '1rem',
-                            backgroundColor: 'white',
-                        }}
-                    >
-                        <CardContent>
+                    <div className="spinner"></div></Box>
+                :
+
+                <>
+                    {type < 10 && error == '' ?
+
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                minHeight: '100vh',
+                                padding: '2rem',
+                                backgroundColor: 'transparent',
+                            }}
+                        >
+
+                            <Card
+                                size="lg"
+                                variant="outlined"
+                                sx={{
+                                    minWidth: 400,
+                                    maxWidth: '100%',
+                                    boxShadow: '0px 3px 6px #00000029',
+                                    transition: 'transform 0.3s ease',
+                                    '&:hover': {
+                                        transform: 'scale(1.02)',
+                                    },
+                                    marginBottom: '7rem',
+                                    textAlign: 'center',
+                                    padding: '1rem',
+                                    backgroundColor: 'white',
+                                }}
+                            >
+                                <CardContent>
+                                    <Box
+                                        sx={{
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                            marginBottom: '1rem',
+                                        }}
+                                    >
+                                        <TaskAltIcon
+                                            sx={{
+                                                fontSize: '10rem',
+                                                color: 'rgba(26,96,104,255)',
+                                                animation: 'checkmark 0.8s ease-in-out forwards',
+                                                '@keyframes checkmark': {
+                                                    '0%': {
+                                                        opacity: 0,
+                                                        transform: 'scale(0.5)',
+                                                    },
+                                                    '50%': {
+                                                        opacity: 1,
+                                                        transform: 'scale(1.1)',
+                                                    },
+                                                    '100%': {
+                                                        opacity: 1,
+                                                        transform: 'scale(1)',
+                                                    },
+                                                },
+                                            }}
+                                        />
+                                    </Box>
+                                    <Typography level="h2" textAlign="center" sx={{ marginTop: '1rem' }}>
+                                        !התשלום בוצע בהצלחה
+                                    </Typography>
+                                    <Typography level="body1" textAlign="center" sx={{ marginTop: '0.5rem' }}>
+                                        התשלום שלך עבר בהצלחה. תודה שבחרת בנו.
+                                    </Typography>
+                                    <Button
+                                        onClick={handleGoHome}
+                                        sx={{
+                                            marginTop: '2rem',
+                                            bgcolor: 'rgba(26,96,104,255)',
+                                            color: 'white',
+                                            '&:hover': {
+                                                bgcolor: 'rgb(129, 175, 164)',
+                                            },
+                                        }}
+                                    >
+                                        חזור לעמוד הבית
+                                    </Button>
+                                </CardContent>
+                            </Card>
+                        </Box>
+                        : type >= 10 ?
                             <Box
                                 sx={{
                                     display: 'flex',
                                     justifyContent: 'center',
                                     alignItems: 'center',
-                                    marginBottom: '1rem',
+                                    minHeight: '100vh',
+                                    padding: '2rem',
+                                    backgroundColor: 'transparent',
                                 }}
                             >
-                                <TaskAltIcon
+                                <Card
+                                    size="lg"
+                                    variant="outlined"
                                     sx={{
-                                        fontSize: '10rem',
-                                        color: 'rgba(26,96,104,255)',
-                                        animation: 'checkmark 0.8s ease-in-out forwards',
-                                        '@keyframes checkmark': {
-                                            '0%': {
-                                                opacity: 0,
-                                                transform: 'scale(0.5)',
-                                            },
-                                            '50%': {
-                                                opacity: 1,
-                                                transform: 'scale(1.1)',
-                                            },
-                                            '100%': {
-                                                opacity: 1,
-                                                transform: 'scale(1)',
-                                            },
+                                        minWidth: 400,
+                                        maxWidth: '100%',
+                                        boxShadow: '0px 3px 6px #00000029',
+                                        transition: 'transform 0.3s ease',
+                                        '&:hover': {
+                                            transform: 'scale(1.02)',
                                         },
+                                        marginBottom: '7rem',
+                                        textAlign: 'center',
+                                        padding: '1rem',
+                                        backgroundColor: 'white',
                                     }}
-                                />
+                                >
+                                    <CardContent>
+                                        <Box
+                                            sx={{
+                                                display: 'flex',
+                                                justifyContent: 'center',
+                                                alignItems: 'center',
+                                                marginBottom: '1rem',
+                                            }}
+                                        >
+                                            <ErrorIcon
+                                                sx={{
+                                                    fontSize: '10rem',
+                                                    color: 'rgba(255, 0, 0, 0.7)',
+                                                    animation: 'errorShake 0.8s ease-in-out forwards',
+                                                    '@keyframes errorShake': {
+                                                        '0%': {
+                                                            transform: 'translateX(0)',
+                                                        },
+                                                        '25%': {
+                                                            transform: 'translateX(-10px)',
+                                                        },
+                                                        '50%': {
+                                                            transform: 'translateX(10px)',
+                                                        },
+                                                        '75%': {
+                                                            transform: 'translateX(-10px)',
+                                                        },
+                                                        '100%': {
+                                                            transform: 'translateX(0)',
+                                                        },
+                                                    },
+                                                }}
+                                            />
+                                        </Box>
+                                        <Typography level="h2" textAlign="center" sx={{ marginTop: '1rem', color: 'rgba(255, 0, 0, 0.8)' }}>
+                                            !אירעה שגיאה
+                                        </Typography>
+                                        <Typography level="body1" textAlign="center" sx={{ marginTop: '0.5rem' }}>
+                                            אירעה שגיאה בעת התשלום.\n אנא נסה שנית
+                                            <br />
+                                            {p}
+                                        </Typography>
+                                        <Button
+                                            onClick={handleGoHome}
+                                            sx={{
+                                                marginTop: '2rem',
+                                                bgcolor: 'rgba(255, 0, 0, 0.7)',
+                                                color: 'white',
+                                                '&:hover': {
+                                                    bgcolor: 'rgb(200, 0, 0)',
+                                                },
+                                            }}
+                                        >
+                                            חזור לעמוד הבית
+                                        </Button>
+                                    </CardContent>
+                                </Card>
                             </Box>
-                            <Typography level="h2" textAlign="center" sx={{ marginTop: '1rem' }}>
-                                !התשלום בוצע בהצלחה
-                            </Typography>
-                            <Typography level="body1" textAlign="center" sx={{ marginTop: '0.5rem' }}>
-                                התשלום שלך עבר בהצלחה. תודה שבחרת בנו.
-                            </Typography>
-                            <Button
-                                onClick={handleGoHome}
-                                sx={{
-                                    marginTop: '2rem',
-                                    bgcolor: 'rgba(26,96,104,255)',
-                                    color: 'white',
-                                    '&:hover': {
-                                        bgcolor: 'rgb(129, 175, 164)',
-                                    },
-                                }}
-                            >
-                                חזור לעמוד הבית
-                            </Button>
-                        </CardContent>
-                    </Card>
-                </Box>
-             : type >= 10 ? 
-                <Box
-                    sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        minHeight: '100vh',
-                        padding: '2rem',
-                        backgroundColor: 'transparent',
-                    }}
-                >
-                    <Card
-                        size="lg"
-                        variant="outlined"
-                        sx={{
-                            minWidth: 400,
-                            maxWidth: '100%',
-                            boxShadow: '0px 3px 6px #00000029',
-                            transition: 'transform 0.3s ease',
-                            '&:hover': {
-                                transform: 'scale(1.02)',
-                            },
-                            marginBottom: '7rem',
-                            textAlign: 'center',
-                            padding: '1rem',
-                            backgroundColor: 'white',
-                        }}
-                    >
-                        <CardContent>
+                            :
                             <Box
                                 sx={{
                                     display: 'flex',
                                     justifyContent: 'center',
                                     alignItems: 'center',
-                                    marginBottom: '1rem',
+                                    minHeight: '100vh',
+                                    padding: '2rem',
+                                    backgroundColor: 'transparent',
                                 }}
                             >
-                                <ErrorIcon
+                                <Card
+                                    size="lg"
+                                    variant="outlined"
                                     sx={{
-                                        fontSize: '10rem',
-                                        color: 'rgba(255, 0, 0, 0.7)',
-                                        animation: 'errorShake 0.8s ease-in-out forwards',
-                                        '@keyframes errorShake': {
-                                            '0%': {
-                                                transform: 'translateX(0)',
-                                            },
-                                            '25%': {
-                                                transform: 'translateX(-10px)',
-                                            },
-                                            '50%': {
-                                                transform: 'translateX(10px)',
-                                            },
-                                            '75%': {
-                                                transform: 'translateX(-10px)',
-                                            },
-                                            '100%': {
-                                                transform: 'translateX(0)',
-                                            },
+                                        minWidth: 400,
+                                        maxWidth: '100%',
+                                        boxShadow: '0px 3px 6px #00000029',
+                                        transition: 'transform 0.7s ease',
+                                        '&:hover': {
+                                            transform: 'scale(1.02)',
                                         },
+                                        marginBottom: '7rem',
+                                        textAlign: 'center',
+                                        padding: '1rem',
+                                        backgroundColor: 'white',
                                     }}
-                                />
+                                >
+                                    <CardContent>
+                                        <Box
+                                            sx={{
+                                                display: 'flex',
+                                                justifyContent: 'center',
+                                                alignItems: 'center',
+                                                marginBottom: '1rem',
+                                            }}
+                                        >
+                                            <ErrorIcon
+                                                sx={{
+                                                    fontSize: '10rem',
+                                                    color: 'rgba(255, 0, 0, 0.7)',
+                                                    animation: 'errorShake 0.8s ease-in-out forwards',
+                                                    '@keyframes errorShake': {
+                                                        '0%': {
+                                                            transform: 'translateX(0)',
+                                                        },
+                                                        '25%': {
+                                                            transform: 'translateX(-10px)',
+                                                        },
+                                                        '50%': {
+                                                            transform: 'translateX(10px)',
+                                                        },
+                                                        '75%': {
+                                                            transform: 'translateX(-10px)',
+                                                        },
+                                                        '100%': {
+                                                            transform: 'translateX(0)',
+                                                        },
+                                                    },
+                                                }}
+                                            />
+                                        </Box>
+                                        <Typography level="h2" textAlign="center" sx={{ marginTop: '1rem', color: 'rgba(255, 0, 0, 0.8)' }}>
+                                            !אירעה שגיאה
+                                        </Typography>
+                                        <Typography level="body1" textAlign="center" sx={{ marginTop: '0.5rem' }}>
+                                            {/* {error} */}
+                                            <br />
+                                            לא הצלחנו לשמור את המוצר שקנית
+                                            <br />
+                                            .אנו ממליצים לבדוק את החיבור ולנסות שוב
+                                        </Typography>
+                                        <Button
+                                            onClick={() => setTryAgain(tryAgain + 1)}
+                                            sx={{
+                                                marginTop: '2rem',
+                                                bgcolor: 'rgba(255, 0, 0, 0.7)',
+                                                color: 'white',
+                                                '&:hover': {
+                                                    bgcolor: 'rgb(200, 0, 0)',
+                                                },
+                                            }}
+                                        >
+                                            נסה שנית
+                                        </Button>
+                                    </CardContent>
+                                </Card>
                             </Box>
-                            <Typography level="h2" textAlign="center" sx={{ marginTop: '1rem', color: 'rgba(255, 0, 0, 0.8)' }}>
-                                !אירעה שגיאה
-                            </Typography>
-                            <Typography level="body1" textAlign="center" sx={{ marginTop: '0.5rem' }}>
-                            אירעה שגיאה בעת התשלום.\n אנא נסה שנית
-                                <br/> 
-                                {p}
-                            </Typography>
-                            <Button
-                                onClick={handleGoHome}
-                                sx={{
-                                    marginTop: '2rem',
-                                    bgcolor: 'rgba(255, 0, 0, 0.7)',
-                                    color: 'white',
-                                    '&:hover': {
-                                        bgcolor: 'rgb(200, 0, 0)',
-                                    },
-                                }}
-                            >
-                                חזור לעמוד הבית
-                            </Button>
-                        </CardContent>
-                    </Card>
-                </Box>
-            :
-            <Box
-                    sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        minHeight: '100vh',
-                        padding: '2rem',
-                        backgroundColor: 'transparent',
-                    }}
-                >
-                    <Card
-                        size="lg"
-                        variant="outlined"
-                        sx={{
-                            minWidth: 400,
-                            maxWidth: '100%',
-                            boxShadow: '0px 3px 6px #00000029',
-                            transition: 'transform 0.7s ease',
-                            '&:hover': {
-                                transform: 'scale(1.02)',
-                            },
-                            marginBottom: '7rem',
-                            textAlign: 'center',
-                            padding: '1rem',
-                            backgroundColor: 'white',
-                        }}
-                    >
-                        <CardContent>
-                            <Box
-                                sx={{
-                                    display: 'flex',
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
-                                    marginBottom: '1rem',
-                                }}
-                            >
-                                <ErrorIcon
-                                    sx={{
-                                        fontSize: '10rem',
-                                        color: 'rgba(255, 0, 0, 0.7)',
-                                        animation: 'errorShake 0.8s ease-in-out forwards',
-                                        '@keyframes errorShake': {
-                                            '0%': {
-                                                transform: 'translateX(0)',
-                                            },
-                                            '25%': {
-                                                transform: 'translateX(-10px)',
-                                            },
-                                            '50%': {
-                                                transform: 'translateX(10px)',
-                                            },
-                                            '75%': {
-                                                transform: 'translateX(-10px)',
-                                            },
-                                            '100%': {
-                                                transform: 'translateX(0)',
-                                            },
-                                        },
-                                    }}
-                                />
-                            </Box>
-                            <Typography level="h2" textAlign="center" sx={{ marginTop: '1rem', color: 'rgba(255, 0, 0, 0.8)' }}>
-                                !אירעה שגיאה
-                            </Typography>
-                            <Typography level="body1" textAlign="center" sx={{ marginTop: '0.5rem' }}>
-                                {/* {error} */}
-                                <br/> 
-                                 לא הצלחנו לשמור את המוצר שקנית 
-                                <br/>
-                                .אנו ממליצים לבדוק את החיבור ולנסות שוב
-                            </Typography>
-                            <Button
-                                onClick={()=>setTryAgain(tryAgain+1)}
-                                sx={{
-                                    marginTop: '2rem',
-                                    bgcolor: 'rgba(255, 0, 0, 0.7)',
-                                    color: 'white',
-                                    '&:hover': {
-                                        bgcolor: 'rgb(200, 0, 0)',
-                                    },
-                                }}
-                            >
-                               נסה שנית
-                            </Button>
-                        </CardContent>
-                    </Card>
-                </Box>
-            
-            
+
+
+                    }
+                </>
+
             }
-            </>
-            
-        }
         </>
     );
 };

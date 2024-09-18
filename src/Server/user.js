@@ -28,7 +28,7 @@ class User {
       const currentUser=JSON.stringify(localStorage.getItem('user'));
       this.user = this.extractFromString(currentUser);
       console.warn(toJS(this.user));
-      console.warn("And The user is ------ \n \n ",this.user);
+      console.warn("And The user is ------ \n \n ",toJS(this.user));
       
       // localStorage.removeItem('user');
       
@@ -70,16 +70,22 @@ class User {
           try {
             const userData = await LoginService.fetchAndSetUser(token);
             if (userData) {
-              this.user = await {...userData}
+              const data = await {...userData};
+              this.setUser({...data})
             }
+            else
+            {
+              throw new Error("No user data received from the server.");
+            }
+            
           } catch (error) {
             console.error('Failed to fetch user data:', error);
             
             const currentUser= localStorage.getItem('user');
             this.setUser({...currentUser});
-            console.warn("And The user is ------ \n", currentUser);
+            console.warn("And The user is ------ \n", this.user);
             
-            localStorage.removeItem('user');
+            // localStorage.removeItem('user');
           }
         }
         else{
@@ -87,7 +93,7 @@ class User {
         this.setUser({...currentUser});
         console.warn("And The user is ------ \n", currentUser);
         
-        localStorage.removeItem('user');
+        // localStorage.removeItem('user');
         }
       };
 

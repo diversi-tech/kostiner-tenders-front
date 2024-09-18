@@ -128,7 +128,7 @@ class Login {
             if (response.ok) {
                 const userData = await response.json();
                 console.log('User details fetched:', userData);
-                return userData
+                return userData;
             } else {
                 console.error('Failed to fetch user details:', response.statusText);
             }

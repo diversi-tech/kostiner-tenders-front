@@ -3,8 +3,8 @@ import { action, get, makeObservable } from 'mobx';
 import single from '../Server/PushHistory';
 
 function ExtractDate(date, nextYear) {
-        
-    const year = nextYear? date.getFullYear()+1 : date.getFullYear();
+
+    const year = nextYear ? date.getFullYear() + 1 : date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0'); // החודש נמדד מ-0 (ינואר) עד 11 (דצמבר), ולכן מוסיפים 1
     const day = String(date.getDate()).padStart(2, '0'); // היום בחודש
 
@@ -32,8 +32,8 @@ class UserHistory {
                     'Authorization': token
                 }
             })
-            
-             const data = res.json();
+
+            const data = await res.json();
             // console.log(data);
             console.warn("GetUserDetails - res = ", data);
             // return data?.user;
@@ -91,94 +91,173 @@ class UserHistory {
     //     "amount": 0
     //   }]
 
-    
+
+
+
+    // async pushHistory(type, items, user_ID) {
+    //     const reportType = type == 1 ? 'דוח חד פעמי' : type == 2 ? 'דוח חודשי' : 'מנוי קבוע לשנה';
+    //     var history;
+    //     console.log("items********** =", items);
+    //     try {
+
+    //         switch (type) {
+    //             case '1': //שלח לפונ' של טליה
+    //                 {
+    //                     const name = '' //get tender name
+    //                     // history = {};
+
+    //                     return single.PushSingle(items, user_ID);
+
+    //                 }
+    //             case '2'://put-user 
+    //                 {
+    //                     // אם הוא קונה קטגוריה אחת זה בעצם למשך חודש
+    //                     // אז טווח התאריכים זה חודש ויש קטגוריה אחת
+
+    //                     history = {
+    //                         "subscriptions": {
+    //                             "plan_type": "One-time category",
+    //                             "start_date": ExtractDate(new Date(), false),
+    //                             "end_date": ExtractDate(new Date(), false),
+    //                             "categories": [
+    //                                 JSON.parse(items)[0].name
+    //                             ],
+    //                             "amount": JSON.parse(items)[0].price
+    //                         }
+    //                     }
+    //                     console.log("history: ", history);
+    //                     return single.Push(history.subscriptions, user_ID);
+    //                 }
+    //             case '3'://put-user
+    //                 {
+    //                     console.log("type of items: ", typeof items);
+    //                     const categories = JSON.parse(items).map(item => item.name);
+    //                     history = {
+    //                         "subscriptions": {
+    //                             "plan_type": "Subscription",
+    //                             "start_date": ExtractDate(new Date(), false),
+    //                             "end_date": ExtractDate(new Date(), true),
+    //                             "categories": 
+    //                                 {...categories},
+    //                             "amount": JSON.parse(items)[0].price
+    //                         }
+    //                     };
+    //                     console.log("history: ", history);
+    //                     return single.Push(history.subscriptions, user_ID);
+    //                 }
+    //             case '10':
+    //                 {
+    //                     return { 'failed': '10' };
+    //                 }
+    //             case '20':
+    //                 {
+    //                     return { 'failed': '20' };
+    //                 }
+    //             case '30':
+    //                 {
+    //                     return { 'failed': '30' };
+    //                 }
+    //             default:
+    //                 return {'status': 200, 'message': 'default response'}
+
+    //         }
+    //     }
+    //     catch (err) {
+    //         console.error(err);
+    //         return {'status':400, 'failed': err};
+
+    //     }
+
+
+
+
+
+
+    //     // return await single.Pay({...payDetails});
+
+
+    // }
 
 
     async pushHistory(type, items, user_ID) {
         const reportType = type == 1 ? 'דוח חד פעמי' : type == 2 ? 'דוח חודשי' : 'מנוי קבוע לשנה';
         var history;
         console.log("items********** =", items);
+
         try {
-
             switch (type) {
-                case '1': //שלח לפונ' של טליה
+                case '1': // שלח לפונ' של טליה
                     {
-                        const name = '' //get tender name
-                        // history = {};
-                        
-                        return single.PushSingle(items, user_ID);
-
+                        // קבלת שם מכרז - משתנה מדומיין
+                        const name = '';
+                        return await single.PushSingle(items, user_ID);
                     }
-                case '2'://put-user 
+                case '2': // דוח חודשי
                     {
-                        // אם הוא קונה קטגוריה אחת זה בעצם למשך חודש
-                        // אז טווח התאריכים זה חודש ויש קטגוריה אחת
-
                         history = {
                             "subscriptions": {
                                 "plan_type": "One-time category",
                                 "start_date": ExtractDate(new Date(), false),
                                 "end_date": ExtractDate(new Date(), false),
                                 "categories": [
-                                    JSON.parse(items)[0].name
+                                    items[0].name // אין צורך ב-JSON.parse
                                 ],
-                                "amount": JSON.parse(items)[0].price
+                                "amount": items[0].price
                             }
-                        }
+                        };
                         console.log("history: ", history);
-                        return single.Push(history.subscriptions, user_ID);
+                        return await single.Push(history.subscriptions, user_ID);
                     }
-                case '3'://put-user
+                // case '3': // מנוי שנתי
+                //     {
+                //         console.log("type of items: ", typeof items);
+                //         const categories = items.map(item => item.name); // items הוא כבר מערך
+                //         history = {
+                //             "subscriptions": {
+                //                 "plan_type": "Subscription",
+                //                 "start_date": ExtractDate(new Date(), false),
+                //                 "end_date": ExtractDate(new Date(), true),
+                //                 "categories": categories, // categories הוא כבר מערך
+                //                 "amount": items[0].price
+                //             }
+                //         };
+                //         console.log("history: ", history);
+                //         return single.Push(history.subscriptions, user_ID);
+                //     }
+                case '3': // מנוי שנתי
                     {
                         console.log("type of items: ", typeof items);
-                        const categories = JSON.parse(items).map(item => item.name);
+
+                        // המרת האובייקט למערך של ערכים
+                        const categories = Object.values(items).map(item => item.name);
+
                         history = {
                             "subscriptions": {
                                 "plan_type": "Subscription",
                                 "start_date": ExtractDate(new Date(), false),
                                 "end_date": ExtractDate(new Date(), true),
-                                "categories": 
-                                    {...categories},
-                                "amount": JSON.parse(items)[0].price
+                                "categories": categories, // categories עכשיו מערך
+                                "amount": Object.values(items)[0].price // שימוש בערך הראשון
                             }
                         };
+
                         console.log("history: ", history);
-                        return single.Push(history.subscriptions, user_ID);
+                        return await single.Push(history.subscriptions, user_ID);
                     }
                 case '10':
-                    {
-                        return { 'failed': '10' };
-                    }
+                    return { 'failed': '10' };
                 case '20':
-                    {
-                        return { 'failed': '20' };
-                    }
+                    return { 'failed': '20' };
                 case '30':
-                    {
-                        return { 'failed': '30' };
-                    }
+                    return { 'failed': '30' };
                 default:
-                    return {'status': 200, 'message': 'default response'}
-
+                    return { 'status': 200, 'message': 'default response' };
             }
-        }
-        catch (err) {
+        } catch (err) {
             console.error(err);
-            return {'status':400, 'failed': err};
-
+            return { 'status': 400, 'failed': err };
         }
-
-
-
-
-
-
-        // return await single.Pay({...payDetails});
-
-
     }
-
-
 
 
 }

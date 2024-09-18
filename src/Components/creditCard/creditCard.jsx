@@ -368,6 +368,7 @@ import { UserContext } from '../../context/userContext';
 import { Card, Button, Typography } from '@mui/material';
 import User from '../../Server/user'
 import { CircularProgress, Box } from '@mui/material';
+import { red } from '@mui/material/colors';
 const CreditCard = (props) => {
     const { type, items } = { ...props }
     const [url, setUrl] = useState('');
@@ -429,6 +430,7 @@ const CreditCard = (props) => {
                 alignItems="center"
                 justifyContent="center"
                 height="100vh"
+                // color={red}
               >
                 <Typography variant="h6" sx={{ mb: 2 ,color:'white'}}>
                   אנא המתן בזמן שאנו טוענים את דף התשלום
